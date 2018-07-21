@@ -10,20 +10,26 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 class ApplicationAvailabilityFunctionalTest extends WebTestCase
 {
 
-    private $client = null;
+    private $client;
 
-    public function setUp()
+    /*public function setUp()
     {
         $this->client = static::createClient();
-    }
+    }*/
+
+
 
     /**
      * @dataProvider urlProvider
      */
     public function testPageIsSuccessful($url)
     {
+        $this->client = static::createClient([
+            'environment' => 'test',
+            'debug'       => false
+        ]);
         $this->logIn();
-        $this->client = static::createClient();
+
         $crawler = $this->client->request('GET', $url);
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
