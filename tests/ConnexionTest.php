@@ -15,7 +15,11 @@ class ConnexionTest extends WebTestCase
 {
     public function testShowPost()
     {
-        $client = static::createClient();
+        $client = static::createClient(
+            [
+                'environment' => 'test',
+                'debug'       => false
+            ]);
 
         $client->request('GET', '/connexion');
 

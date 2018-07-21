@@ -25,7 +25,7 @@ matrix:
 
 before_install:
 #  - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || phpenv config-rm xdebug.ini'
-  - composer self-update
+  #- composer self-update
 
 install:
   - cp .env.dist .env
