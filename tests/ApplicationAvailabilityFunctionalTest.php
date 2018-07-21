@@ -30,18 +30,19 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
 
     public function urlProvider()
     {
-        yield['/administration/'];
+        /*yield['/administration/'];
         yield['/agenda/'];
         yield['/application/'];
         yield['/'];
         yield['/document/'];
         yield['/document/ajax/typedocument'];
-        yield['/document/ajax/document/{typedocument}'];
+        yield['/document/ajax/document/{typedocument}'];*/
         yield['/404'];
         yield['/faq/'];
         yield['/aide/'];
+        yield['/connexion'];
 
-        yield['/informations/'];
+        /*yield['/informations/'];
         yield['/internationale/'];
         yield['/mentions-legales/'];
         yield['/messagerie/'];
@@ -167,7 +168,7 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
         yield['/super-administration/ufr/imprimer'];
         yield['/super-administration/ufr/new'];
 
-        yield['/logout'];
+        yield['/logout'];*/
 
     }
 
