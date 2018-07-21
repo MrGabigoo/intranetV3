@@ -23,7 +23,7 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     public function testPageIsSuccessful($url)
     {
         $this->logIn();
-
+        $this->client = static::createClient();
         $crawler = $this->client->request('GET', $url);
         $this->assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
