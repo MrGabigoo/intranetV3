@@ -22,6 +22,9 @@ class ConnexionTest extends WebTestCase
             ]);
 
         $client->request('GET', '/connexion');
+        $client->request('GET', '/aide');
+        $client->request('GET', '/faq');
+        $client->request('GET', '/404');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }

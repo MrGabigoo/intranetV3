@@ -44,8 +44,8 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
         yield['/document/ajax/typedocument'];
         yield['/document/ajax/document/{typedocument}'];*/
         yield['/404'];
-        yield['/faq/'];
-        yield['/aide/'];
+        yield['/faq'];
+        yield['/aide'];
         yield['/connexion'];
 
         /*yield['/informations/'];

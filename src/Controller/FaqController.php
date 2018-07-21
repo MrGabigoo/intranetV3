@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class FaqController
  * @package App\Controller
- * @Route("/{_locale}/faq",
+ * @Route("/faq",
  *     requirements={
  *         "_locale": "fr|en"})
  */

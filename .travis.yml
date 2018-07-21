@@ -38,7 +38,7 @@ install:
   - ./bin/phpunit install
 
 script:
-  - phpunit --configuration phpunit.xml
+  #- phpunit --configuration phpunit.xml
   - ./bin/phpunit
   #- ./vendor/bin/simple-phpunit
 
