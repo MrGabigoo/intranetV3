@@ -1,12 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block header %}
-    {{ 'planning.annuel.heading'|trans }}
+    {{ 'planning.annuel.heading'|trans({'%annee%': annee, '%annees%':annee+1}) }}
 {% endblock %}
 
 {% block headeractions %}
     <div class="header-action">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active show" data-toggle="tab"
+                   href="#semestre1">Septembre-Février</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab"
+                   href="#semestre2">Mars-Août</a>
+            </li>
+        </ul>
         <div class="buttons">
+            <a href="{{ path('agenda_index') }}"
+               class="btn btn-info btn-sm btn-float" data-provide="tooltip"
+               data-placement="bottom" title="{{ 'atitle.agenda'|trans }}"><i class="material-icons">perm_contact_calendar</i></a>
             <a href="{{ path('default_homepage') }}" class="btn btn-primary btn-float" data-provide="tooltip"
                data-placement="bottom" title="{{ 'atitle.retour_dashboard'|trans }}"><i
                         class="material-icons">dashboard</i></a>
@@ -14,101 +27,18 @@
     </div>
 {% endblock %}
 {% block content %}
-
-    <div class="card">
-        <header class="card-header">
-            <h4 class="card-title">Planning {{ annee }} / {{ annee+1 }}</h4>
-            <div class="card-header-actions" style="">
-
-                <span>
-                    {% for semestre in user_data.semestres %}
-                        <a href="#" class="btn btn-sm btn btn-info filtreUtilisateurDate"
-                           data-type="{{ semestre.libelle }}"> {{ semestre.libelle }}</a>
-                    {% endfor %}
-                    {% if is_granted('ROLE_PERMANENT') %}
-                        <a href="#" class="btn btn-sm btn btn-info filtreUtilisateurDate" data-type="personnel"> personnel</a>
-                    {% endif %}
-                </span>
-
-                <span>
-                        <button class="btn btn-sm btn btn-success filtreTypeDate"
-                                data-type="{{ constant('App\\Entity\\Date::TYPE_SOUTENANCE') }}"> Soutenance(s)</button>
-                        <button class="btn btn-sm btn btn-success filtreTypeDate"
-                                data-type="{{ constant('App\\Entity\\Date::TYPE_PROJET') }}"> Projet(s)</button>
-                        <button class="btn btn-sm btn btn-success filtreTypeDate"
-                                data-type="{{ constant('App\\Entity\\Date::TYPE_STAGE') }}"> Stage(s)</button>
-                        <button class="btn btn-sm btn btn-success filtreTypeDate"
-                                data-type="{{ constant('App\\Entity\\Date::TYPE_COMMISSION') }}"> Jury/Commission(s)</button>
-                        <button class="btn btn-sm btn btn-success filtreTypeDate"
-                                data-type="{{ constant('App\\Entity\\Date::TYPE_REUNION') }}"> Réunion(s)/conseils</button>
-                        <button class="btn btn-sm btn btn-success filtreTypeDate"
-                                data-type="{{ constant('App\\Entity\\Date::TYPE_RENTREE') }}"> Rentrée(s)</button>
-                        <button class="btn btn-sm btn btn-success filtreTypeDate"
-                                data-type="{{ constant('App\\Entity\\Date::TYPE_AUTRE') }}"> Autre(s)</button>
-                </span>
-            </div>
-        </header>
-        <div class="card-body">
-
-            <table class="table table-bordered" id="planning">
-                <thead>
-                <tr>
-                    <th colspan="4">Septembre</th>
-                    <th colspan="4">Octobre</th>
-                    <th colspan="4">Novembre</th>
-                    <th colspan="4">Décembre</th>
-                    <th colspan="4">Janvier</th>
-                    <th colspan="4">Février</th>
-                    <th colspan="4">Mars</th>
-                    <th colspan="4">Avril</th>
-                    <th colspan="4">Mai</th>
-                    <th colspan="4">Juin</th>
-                    <th colspan="4">Juillet</th>
-                    <th colspan="4">Août</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i in 1..31 %}
-                    <tr>
-                        {% for j in 1..12 %}
-                            {% if tabPlanning[j][i] is defined %}
-                                {% set we = tabPlanning[j][i]|date('N') == 6 or tabPlanning[j][i]|date('N') == 7 %}
-                                {% if tabPlanning[j][i]|date('N') == 1 %}
-                                    {% if tabFinMois[j]-i >6 %}
-                                        <td rowspan="7">{{ tabPlanning[j][i]|date('W') }}</td>
-                                    {% else %}
-                                        <td rowspan="{{ tabFinMois[j] - i + 1 }}">{{ tabPlanning[j][i]|date('W') }}</td>
-                                    {% endif %}
-                                {% endif %}
-
-                                {% if i == 1 and tabPlanning[j][i]|date('N') != 1 %}
-                                    <td rowspan="{{ 8 - tabPlanning[j][i]|date('N') }}">{{ tabPlanning[j][i]|date('W') }}</td>
-                                {% endif %}
-
-                                <td {{ we ? 'style="background-color: #00AAAA"' }}>{{ tabJour[tabPlanning[j][i]|date('N')] }}</td>
-                                <td {{ we ? 'style="background-color: #00AAAA"' }}>{{ tabPlanning[j][i]|date('d') }}</td>
-                                <td
-                                        {% if tabPlanning[j][i]|date('Y-m-d') in tabFerie %}
-                                        style="background-color: orangered">
-                                    Férié
-                                    {% else %}
-                                        >{% if events[tabPlanning[j][i]|date('Y-m-d')] is defined %}
-                                        {% for event in events[tabPlanning[j][i]|date('Y-m-d')] %}
-                                            <span class="event {% for sem in event.semestres %}{{ sem.libelle }} {% endfor %}"
-                                                  data-type-event="{{ event.type }}"
-                                                  data-qui-event="{{ event.qui }}">{{ event.libelle }}</span>
-                                        {% endfor %}
-                                    {% endif %}
-                                    {% endif %}
-                                </td>
-                            {% else %}
-                                <td colspan="4">&nbsp;</td>
-                            {% endif %}
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+    <div class="tab-content card">
+        <div class="tab-pane fade active show" id="semestre1">
+            {{ include('planning/semestre.html.twig', {
+                title: 'Septembre-Février',
+                onglet: 1
+            }) }}
+        </div>
+        <div class="tab-pane" id="semestre2">
+            {{ include('planning/semestre.html.twig', {
+                title: 'Mars-Août',
+                onglet: 2
+            }) }}
         </div>
     </div>
 {% endblock %}
