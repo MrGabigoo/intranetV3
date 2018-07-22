@@ -5914,12 +5914,9 @@
       </segment>
     </unit>
     <unit id="gyk2f0e" name="planning.annuel.heading">
-      <notes>
-        <note category="file-source" priority="1">templates/planning/index.html.twig:4</note>
-      </notes>
       <segment>
         <source>planning.annuel.heading</source>
-        <target>Planning Annuel</target>
+        <target>Planning Annuel %annee% / %annees%</target>
       </segment>
     </unit>
     <unit id="kOb7i53" name="administration.heading">
@@ -7516,101 +7513,233 @@
         <target>bloc.actions.personnel.heading</target>
       </segment>
     </unit>
-      <unit id="IQdg_6g" name="bureau">
-          <segment>
-              <source>bureau</source>
-              <target>bureau</target>
-          </segment>
-      </unit>
-      <unit id="x__PpO5" name="tel.pro">
-          <segment>
-              <source>tel.pro</source>
-              <target>tel.pro</target>
-          </segment>
-      </unit>
-      <unit id="aeg0hIF" name="mail.personnel">
-          <segment>
-              <source>mail.personnel</source>
-              <target>mail.personnel</target>
-          </segment>
-      </unit>
-      <unit id="L_BX65B" name="rechercher">
-          <segment>
-              <source>rechercher</source>
-              <target>rechercher</target>
-          </segment>
-      </unit>
-      <unit id="ifaDJWD" name="Year">
-          <segment>
-              <source>Year</source>
-              <target>Year</target>
-          </segment>
-      </unit>
-      <unit id="MQylA_8" name="Month">
-          <segment>
-              <source>Month</source>
-              <target>Month</target>
-          </segment>
-      </unit>
-      <unit id="jyNk4Ru" name="Day">
-          <segment>
-              <source>Day</source>
-              <target>Day</target>
-          </segment>
-      </unit>
-      <unit id="8AY7gIc" name="Hour">
-          <segment>
-              <source>Hour</source>
-              <target>Hour</target>
-          </segment>
-      </unit>
-      <unit id="S3hmW_x" name="Minute">
-          <segment>
-              <source>Minute</source>
-              <target>Minute</target>
-          </segment>
-      </unit>
-      <unit id="_htlcwk" name="label.envoyer.demande">
-          <segment>
-              <source>label.envoyer.demande</source>
-              <target>label.envoyer.demande</target>
-          </segment>
-      </unit>
-      <unit id="W9.GBe_" name="atitle.accepter.la.demande">
-          <segment>
-              <source>atitle.accepter.la.demande</source>
-              <target>atitle.accepter.la.demande</target>
-          </segment>
-      </unit>
-      <unit id="VNswwXg" name="decision.rattrapage.acceptee">
-          <segment>
-              <source>decision.rattrapage.acceptee</source>
-              <target>decision.rattrapage.acceptee</target>
-          </segment>
-      </unit>
-      <unit id="k.Jo8RJ" name="decision.rattrapage.refusee">
-          <segment>
-              <source>decision.rattrapage.refusee</source>
-              <target>decision.rattrapage.refusee</target>
-          </segment>
-      </unit>
-      <unit id="RGGtXUU" name="Modification de la visibilité des notes effectuées">
-          <segment>
-              <source>Modification de la visibilité des notes effectuées</source>
-              <target>Modification de la visibilité des notes effectuées</target>
-          </segment>
-      </unit>
-      <unit id="qLtuuCG" name="date.duplicate.success.flash">
-          <segment>
-              <source>date.duplicate.success.flash</source>
-              <target>date.duplicate.success.flash</target>
-          </segment>
-      </unit>
-      <unit id="wqu21Dr" name="date.edit.success.flash">
-          <segment>
-              <source>date.edit.success.flash</source>
-              <target>date.edit.success.flash</target>
-          </segment>
-      </unit>
+    <unit id="IQdg_6g" name="bureau">
+      <segment>
+        <source>bureau</source>
+        <target>bureau</target>
+      </segment>
+    </unit>
+    <unit id="x__PpO5" name="tel.pro">
+      <segment>
+        <source>tel.pro</source>
+        <target>tel.pro</target>
+      </segment>
+    </unit>
+    <unit id="aeg0hIF" name="mail.personnel">
+      <segment>
+        <source>mail.personnel</source>
+        <target>mail.personnel</target>
+      </segment>
+    </unit>
+    <unit id="L_BX65B" name="rechercher">
+      <segment>
+        <source>rechercher</source>
+        <target>rechercher</target>
+      </segment>
+    </unit>
+    <unit id="ifaDJWD" name="Year">
+      <segment>
+        <source>Year</source>
+        <target>Year</target>
+      </segment>
+    </unit>
+    <unit id="MQylA_8" name="Month">
+      <segment>
+        <source>Month</source>
+        <target>Month</target>
+      </segment>
+    </unit>
+    <unit id="jyNk4Ru" name="Day">
+      <segment>
+        <source>Day</source>
+        <target>Day</target>
+      </segment>
+    </unit>
+    <unit id="8AY7gIc" name="Hour">
+      <segment>
+        <source>Hour</source>
+        <target>Hour</target>
+      </segment>
+    </unit>
+    <unit id="S3hmW_x" name="Minute">
+      <segment>
+        <source>Minute</source>
+        <target>Minute</target>
+      </segment>
+    </unit>
+    <unit id="_htlcwk" name="label.envoyer.demande">
+      <segment>
+        <source>label.envoyer.demande</source>
+        <target>label.envoyer.demande</target>
+      </segment>
+    </unit>
+    <unit id="W9.GBe_" name="atitle.accepter.la.demande">
+      <segment>
+        <source>atitle.accepter.la.demande</source>
+        <target>atitle.accepter.la.demande</target>
+      </segment>
+    </unit>
+    <unit id="VNswwXg" name="decision.rattrapage.acceptee">
+      <segment>
+        <source>decision.rattrapage.acceptee</source>
+        <target>decision.rattrapage.acceptee</target>
+      </segment>
+    </unit>
+    <unit id="k.Jo8RJ" name="decision.rattrapage.refusee">
+      <segment>
+        <source>decision.rattrapage.refusee</source>
+        <target>decision.rattrapage.refusee</target>
+      </segment>
+    </unit>
+    <unit id="RGGtXUU" name="Modification de la visibilité des notes effectuées">
+      <segment>
+        <source>Modification de la visibilité des notes effectuées</source>
+        <target>Modification de la visibilité des notes effectuées</target>
+      </segment>
+    </unit>
+    <unit id="qLtuuCG" name="date.duplicate.success.flash">
+      <segment>
+        <source>date.duplicate.success.flash</source>
+        <target>date.duplicate.success.flash</target>
+      </segment>
+    </unit>
+    <unit id="wqu21Dr" name="date.edit.success.flash">
+      <segment>
+        <source>date.edit.success.flash</source>
+        <target>date.edit.success.flash</target>
+      </segment>
+    </unit>
+    <unit id="1..Lpql" name="septembre">
+      <segment>
+        <source>septembre</source>
+        <target>Septembre</target>
+      </segment>
+    </unit>
+    <unit id="aOcXyZQ" name="octobre">
+      <segment>
+        <source>octobre</source>
+        <target>Octobre</target>
+      </segment>
+    </unit>
+    <unit id="zyfeDcA" name="novembre">
+      <segment>
+        <source>novembre</source>
+        <target>Novembre</target>
+      </segment>
+    </unit>
+    <unit id="iMYT8S8" name="decembre">
+      <segment>
+        <source>decembre</source>
+        <target>Décembre</target>
+      </segment>
+    </unit>
+    <unit id="IB8z5vr" name="janvier">
+      <segment>
+        <source>janvier</source>
+        <target>Janvier</target>
+      </segment>
+    </unit>
+    <unit id="S2mkEFK" name="fevrier">
+      <segment>
+        <source>fevrier</source>
+        <target>Février</target>
+      </segment>
+    </unit>
+    <unit id="0Vi_Qdu" name="mars">
+      <segment>
+        <source>mars</source>
+        <target>Mars</target>
+      </segment>
+    </unit>
+    <unit id="E6hvqex" name="avril">
+      <segment>
+        <source>avril</source>
+        <target>Avril</target>
+      </segment>
+    </unit>
+    <unit id="fZgLveU" name="mai">
+      <segment>
+        <source>mai</source>
+        <target>Mai</target>
+      </segment>
+    </unit>
+    <unit id="LsLH7vg" name="juin">
+      <segment>
+        <source>juin</source>
+        <target>Juin</target>
+      </segment>
+    </unit>
+    <unit id="xFykTg." name="juillet">
+      <segment>
+        <source>juillet</source>
+        <target>Juillet</target>
+      </segment>
+    </unit>
+    <unit id="v.j9YCB" name="aout">
+      <segment>
+        <source>aout</source>
+        <target>Août</target>
+      </segment>
+    </unit>
+    <unit id="RfpQR65" name="personnel">
+      <segment>
+        <source>personnel</source>
+        <target>personnel</target>
+      </segment>
+    </unit>
+    <unit id="Rj5Nz06" name="type.soutenance">
+      <segment>
+        <source>type.soutenance</source>
+        <target>type.soutenance</target>
+      </segment>
+    </unit>
+    <unit id="GxuC8rZ" name="type.projet">
+      <segment>
+        <source>type.projet</source>
+        <target>type.projet</target>
+      </segment>
+    </unit>
+    <unit id="rLcFIjF" name="type.stage">
+      <segment>
+        <source>type.stage</source>
+        <target>type.stage</target>
+      </segment>
+    </unit>
+    <unit id="WvrwPr2" name="type.commission">
+      <segment>
+        <source>type.commission</source>
+        <target>type.commission</target>
+      </segment>
+    </unit>
+    <unit id="fx213z." name="type.reunion">
+      <segment>
+        <source>type.reunion</source>
+        <target>type.reunion</target>
+      </segment>
+    </unit>
+    <unit id="gH0TA96" name="type.rentree">
+      <segment>
+        <source>type.rentree</source>
+        <target>type.rentree</target>
+      </segment>
+    </unit>
+    <unit id="PAfMs44" name="type.autre">
+      <segment>
+        <source>type.autre</source>
+        <target>type.autre</target>
+      </segment>
+    </unit>
+    <unit id="zCB6dTj" name="planning.annee.annee">
+      <segment>
+        <source>planning.annee.annee</source>
+        <target>planning.annee.annee</target>
+      </segment>
+    </unit>
+    <unit id="bWU84ZS" name="atitle.agenda">
+      <segment>
+        <source>atitle.agenda</source>
+        <target>atitle.agenda</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

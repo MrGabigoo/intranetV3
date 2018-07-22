@@ -7,9 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class AgendaController
  * @package App\Controller
- * @Route("/{_locale}/agenda",
- *     requirements={
- *         "_locale": "fr|en"})
+ * @Route({"fr":"agenda",
+ *         "en":"calendar"})
  */
 class AgendaController extends BaseController
 {

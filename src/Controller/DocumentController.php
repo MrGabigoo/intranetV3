@@ -10,9 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class DocumentController
  * @package App\Controller
- * @Route("/{_locale}/document",
- *     requirements={
- *         "_locale": "fr|en"})
+ * @Route({"fr":"documents",
+ *         "en":"files"})
  */
 class DocumentController extends BaseController
 {

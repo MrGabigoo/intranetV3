@@ -11,14 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class DefaultController
  * @package App\Controller
- * @Route("/{_locale}",
- *     requirements={"_locale": "fr|en"},
- *     defaults={"_locale":"fr"})
+ * @Route({"fr":"/",
+ *         "en":"/"})
  */
 class DefaultController extends BaseController
 {
     /**
-     * @Route("/", name="default_homepage")
+     * @Route({"fr":"/tableau-de-bord",
+     *         "en":"/dashboard"}, name="default_homepage")
      * @param ActualiteRepository $actualiteRepository
      * @param DateRepository      $dateRepository
      *

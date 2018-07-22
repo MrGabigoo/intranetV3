@@ -32,7 +32,7 @@ class DocumentRepository extends ServiceEntityRepository
     public function findByTypeDocument($type)
     {
         return $this->createQueryBuilder('d')
-            ->where('d.type_document = :type')
+            ->where('d.typeDocument = :type')
             ->setParameter('type', $type)
             ->orderBy('d.updated', 'DESC')
             ->getQuery()

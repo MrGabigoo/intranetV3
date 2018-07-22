@@ -8,9 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class ApplicationController
  * @package App\Controller
- * @Route("/{_locale}/application",
- *     requirements={
- *         "_locale": "fr|en"})
+ * @Route({"fr":"applications",
+ *         "en":"tools"})
  */
 class ApplicationController extends BaseController
 {

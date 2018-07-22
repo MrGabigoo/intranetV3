@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class PlanningController
  * @package App\Controller
+ * @Route({"fr":"agenda",
+ *         "en":"calendar"})
  */
 class PlanningController extends BaseController
 {
