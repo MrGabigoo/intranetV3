@@ -25,6 +25,11 @@
                 <a class="nav-link enseignanttrombi" data-toggle="tab" href="#" data-type="vacataire" role="tab"> {{ 'vacataires.heading'|trans }}</a>
             </li>
         </ul>
+        <div class="buttons">
+            <a href="{{ path('default_homepage') }}" class="btn btn-primary btn-float" data-provide="tooltip"
+               data-placement="bottom" title="{{ 'atitle.retour_dashboard'|trans }}"><i
+                        class="material-icons">dashboard</i></a>
+        </div>
     </div>
 {% endblock %}
 
