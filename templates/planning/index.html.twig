@@ -22,21 +22,29 @@
 
                 <span>
                     {% for semestre in user_data.semestres %}
-                        <a href="#" class="btn btn-sm btn btn-info"> {{ semestre.libelle }}</a>
+                        <a href="#" class="btn btn-sm btn btn-info filtreUtilisateurDate"
+                           data-type="{{ semestre.libelle }}"> {{ semestre.libelle }}</a>
                     {% endfor %}
                     {% if is_granted('ROLE_PERMANENT') %}
-                        <a href="#" class="btn btn-sm btn btn-info"> Enseignant</a>
+                        <a href="#" class="btn btn-sm btn btn-info filtreUtilisateurDate" data-type="personnel"> personnel</a>
                     {% endif %}
                 </span>
 
                 <span>
-                        <a href="#" class="btn btn-sm btn-flat btn btn-success"> Soutenance(s)</a>
-                        <a href="#" class="btn btn-sm btn-flat btn btn-success"> Projet(s)</a>
-                        <a href="#" class="btn btn-sm btn-flat btn btn-success"> Stage(s)</a>
-                        <a href="#" class="btn btn-sm btn-flat btn btn-success"> Jury/Commission(s)</a>
-                        <a href="#" class="btn btn-sm btn-flat btn btn-success"> Réunion(s)/conseils</a>
-                        <a href="#" class="btn btn-sm btn-flat btn btn-success"> Rentrée(s)</a>
-                        <a href="#" class="btn btn-sm btn-flat btn btn-success"> Autre(s)</a>
+                        <button class="btn btn-sm btn btn-success filtreTypeDate"
+                                data-type="{{ constant('App\\Entity\\Date::TYPE_SOUTENANCE') }}"> Soutenance(s)</button>
+                        <button class="btn btn-sm btn btn-success filtreTypeDate"
+                                data-type="{{ constant('App\\Entity\\Date::TYPE_PROJET') }}"> Projet(s)</button>
+                        <button class="btn btn-sm btn btn-success filtreTypeDate"
+                                data-type="{{ constant('App\\Entity\\Date::TYPE_STAGE') }}"> Stage(s)</button>
+                        <button class="btn btn-sm btn btn-success filtreTypeDate"
+                                data-type="{{ constant('App\\Entity\\Date::TYPE_COMMISSION') }}"> Jury/Commission(s)</button>
+                        <button class="btn btn-sm btn btn-success filtreTypeDate"
+                                data-type="{{ constant('App\\Entity\\Date::TYPE_REUNION') }}"> Réunion(s)/conseils</button>
+                        <button class="btn btn-sm btn btn-success filtreTypeDate"
+                                data-type="{{ constant('App\\Entity\\Date::TYPE_RENTREE') }}"> Rentrée(s)</button>
+                        <button class="btn btn-sm btn btn-success filtreTypeDate"
+                                data-type="{{ constant('App\\Entity\\Date::TYPE_AUTRE') }}"> Autre(s)</button>
                 </span>
             </div>
         </header>
@@ -86,7 +94,9 @@
                                     {% else %}
                                         >{% if events[tabPlanning[j][i]|date('Y-m-d')] is defined %}
                                         {% for event in events[tabPlanning[j][i]|date('Y-m-d')] %}
-                                            <span class="event">{{ event.libelle }}</span>
+                                            <span class="event {% for sem in event.semestres %}{{ sem.libelle }} {% endfor %}"
+                                                  data-type-event="{{ event.type }}"
+                                                  data-qui-event="{{ event.qui }}">{{ event.libelle }}</span>
                                         {% endfor %}
                                     {% endif %}
                                     {% endif %}

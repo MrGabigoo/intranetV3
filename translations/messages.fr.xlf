@@ -7600,5 +7600,17 @@
               <target>Modification de la visibilité des notes effectuées</target>
           </segment>
       </unit>
+      <unit id="qLtuuCG" name="date.duplicate.success.flash">
+          <segment>
+              <source>date.duplicate.success.flash</source>
+              <target>date.duplicate.success.flash</target>
+          </segment>
+      </unit>
+      <unit id="wqu21Dr" name="date.edit.success.flash">
+          <segment>
+              <source>date.edit.success.flash</source>
+              <target>date.edit.success.flash</target>
+          </segment>
+      </unit>
   </file>
 </xliff>
