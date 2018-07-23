@@ -10,6 +10,7 @@ use App\MesClasses\MyEtudiant;
 use App\MesClasses\MyEvaluation;
 use App\MesClasses\MyEvaluations;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -86,11 +87,11 @@ class NoteController extends BaseController
     }
 
     /**
-     * @Route("/saisie/etape-2/{evaluation}", name="application_personnel_note_saisie_2",
+     * @Route("/saisie/etape-2/{uuid}", name="application_personnel_note_saisie_2",
      *                                        requirements={"matiere"="\d+"})
      * @param MyEvaluation $myEvaluation
      * @param Evaluation   $evaluation
-     *
+     * @ParamConverter("evaluation", options={"mapping": {"uuid": "uuid"}})
      * @return Response
      */
     public function saisieNotes(MyEvaluation $myEvaluation, Evaluation $evaluation): Response
@@ -107,9 +108,9 @@ class NoteController extends BaseController
      * @param Request    $request
      *
      * @param Evaluation $evaluation
-     *
+     * @ParamConverter("evaluation", options={"mapping": {"uuid": "uuid"}})
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route("/sauvegarde/{evaluation}",
+     * @Route("/sauvegarde/{uuid}",
      *     name="application_personnel_note_ajax_saisie",
      *     methods={"POST|GET"},
      *     options={"expose":true})

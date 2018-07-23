@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="fr" trgLang="fr">
+  <file id="VichUploaderBundle.fr">
+    <unit id="MVIu471" name="label.fichier">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>label.fichier</source>
+        <target>label.fichier</target>
+      </segment>
+    </unit>
+    <unit id="DdW5EV0" name="label.logoFile">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>label.logoFile</source>
+        <target>label.logoFile</target>
+      </segment>
+    </unit>
+    <unit id="x7vVhiW" name="label.cv">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>label.cv</source>
+        <target>label.cv</target>
+      </segment>
+    </unit>
+    <unit id="F_My2fP" name="label.photo">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>label.photo</source>
+        <target>label.photo</target>
+      </segment>
+    </unit>
+    <unit id="U9dHZqv" name="label.apercu">
+      <notes>
+        <note category="state" priority="1">obsolete</note>
+      </notes>
+      <segment>
+        <source>label.apercu</source>
+        <target>label.apercu</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

@@ -7,6 +7,7 @@ use App\Entity\Constantes;
 use App\Entity\Document;
 use App\Form\DocumentType;
 use App\Repository\DocumentRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -73,9 +74,9 @@ class DocumentController extends BaseController
     }
 
     /**
-     * @Route("/{id}", name="administration_document_show", methods="GET")
+     * @Route("/{uuid}", name="administration_document_show", methods="GET")
      * @param Document $document
-     *
+     * @ParamConverter("document", options={"mapping": {"uuid": "uuid"}})
      * @return Response
      */
     public function show(Document $document): Response
@@ -84,10 +85,10 @@ class DocumentController extends BaseController
     }
 
     /**
-     * @Route("/{id}/edit", name="administration_document_edit", methods="GET|POST")
+     * @Route("/{uuid}/edit", name="administration_document_edit", methods="GET|POST")
      * @param Request                $request
      * @param Document               $document
-     *
+     * @ParamConverter("document", options={"mapping": {"uuid": "uuid"}})
      * @return Response
      */
     public function edit(Request $request, Document $document): Response
@@ -115,15 +116,15 @@ class DocumentController extends BaseController
     }
 
     /**
-     * @Route("/{id}", name="administration_document_delete", methods="DELETE")
+     * @Route("/{uuid}", name="administration_document_delete", methods="DELETE")
      * @param Request                $request
      * @param Document               $document
-     *
+     * @ParamConverter("document", options={"mapping": {"uuid": "uuid"}})
      * @return Response
      */
     public function delete(Request $request, Document $document): Response
     {
-        $id = $document->getId();
+        $id = $document->getUuidString();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
 
             $this->entityManager->remove($document);

@@ -3,7 +3,7 @@ $(document).on('click', '.optAfficher', function (e) {
   var $child = $(this).children('i')
   var $a = $(this)
   $.ajax({
-    url: Routing.generate('administration_evaluation_visibilite.fr', {evaluation: evaluation}),
+    url: Routing.generate('administration_evaluation_visibilite.fr', {uuid: evaluation}),
     success: function (e) {
       if ($child.hasClass('fa-eye')) {
         $a.addClass('btn-danger')
@@ -32,7 +32,7 @@ $(document).on('click', '.optVerrouiller', function (e) {
   var $child = $(this).children('i')
   var $a = $(this)
   $.ajax({
-    url: Routing.generate('administration_evaluation_modifiable.fr', {evaluation: evaluation}),
+    url: Routing.generate('administration_evaluation_modifiable.fr', {uuid: evaluation}),
     success: function (e) {
       if ($(this).children('i').hasClass('fa-pencil')) {
         $a.addClass('btn-danger')

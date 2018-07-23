@@ -22,7 +22,7 @@
                     <td>{{ absence.personnel ? absence.personnel.display : 'non.defini'|trans }}</td>
                     <td>
                         <button data-provide="modaler tooltip"
-                                data-url="{{ path('app_etudiant_absence_detail', {'id': absence.id}) }}"
+                                data-url="{{ path('app_etudiant_absence_detail', {'uuid': absence.uuidString}) }}"
                                 class="btn btn-info btn-outline btn-square btn-xs"
                                 data-placement="bottom"
                                 title="{{ 'atitle.details'|trans }}"

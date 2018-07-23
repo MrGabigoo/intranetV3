@@ -34,7 +34,7 @@
                class="btn btn-primary btn-float" data-provide="tooltip"
                data-placement="bottom" title="{{ 'atitle.retour_semestres'|trans }}"><i class="ti-arrow-left"></i></a>
             <a href="{{ path('administration_index') }}" class="btn btn-primary btn-float" data-provide="tooltip"
-               data-placement="bottom" title="{{ 'atitle.retour_administration'|trans }}"><i class="ti-home"></i></a>
+               data-placement="bottom" title="{{ 'atitle.retour_administration'|trans }}"><i class="material-icons">build</i></a>
         </div>
     </div>
 {% endblock %}
@@ -66,15 +66,15 @@
                         <td>
                             {% if rattrapage.etatDemande == 'f' %}
                                 <a href="#"
-                                   data-rattrapage="{{ rattrapage.id }}"
-                                   class="btn btn-success btn-outline btn-square rattrapage-accepte bx_{{ rattrapage.id }}"><i
+                                   data-rattrapage="{{ rattrapage.uuidString }}"
+                                   class="btn btn-success btn-outline btn-square rattrapage-accepte bx_{{ rattrapage.uuidString }}"><i
                                             class="ti-check"
                                             data-provide="tooltip"
                                             data-placement="bottom"
                                             title="{{ 'atitle.accepter.la.demande'|trans }}"></i></a>
                                 <a href="#"
-                                   data-rattrapage="{{ rattrapage.id }}"
-                                   class="btn btn-warning btn-outline btn-square rattrapage-refuse bx_{{ rattrapage.id }}"><i
+                                   data-rattrapage="{{ rattrapage.uuidString }}"
+                                   class="btn btn-warning btn-outline btn-square rattrapage-refuse bx_{{ rattrapage.uuidString }}"><i
                                             class="ti-na"
                                             data-provide="tooltip"
                                             data-placement="bottom"
@@ -87,9 +87,9 @@
                             {% else %}
                                 Erreur
                             {% endif %}
-                            <a href="{{ path('administration_rattrapage_delete', {id: rattrapage.id}) }}"
-                               data-csrf="{{ csrf_token('delete' ~ rattrapage.id) }}"
-                               class="btn btn-danger btn-outline btn-square supprimer" data-id="id"><i
+                            <a href="{{ path('administration_rattrapage_delete', {uuid: rattrapage.uuidString}) }}"
+                               data-csrf="{{ csrf_token('delete' ~ rattrapage.uuidString) }}"
+                               class="btn btn-danger btn-outline btn-square supprimer"><i
                                         class="ti-close" data-provide="tooltip" data-placement="bottom"
                                         title="{{ 'atitle.supprimer'|trans }}"></i></a>
 

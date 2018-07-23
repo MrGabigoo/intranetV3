@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -16,6 +17,21 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Document extends BaseEntity
 {
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Column(type="uuid_binary", unique=true)
+     */
+    protected $uuid;
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuid(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->uuid;
+    }
+
     /**
      * @var float
      *
@@ -70,8 +86,13 @@ class Document extends BaseEntity
      */
     private $semestres;
 
+    /**
+     * Document constructor.
+     * @throws \Exception
+     */
     public function __construct()
     {
+        $this->uuid = Uuid::uuid4();
         $this->semestres = new ArrayCollection();
     }
 
@@ -254,6 +275,11 @@ class Document extends BaseEntity
         }
 
         return $this;
+    }
+
+    public function getUuidString(): string
+    {
+        return $this->getUuid()->toString();
     }
 
 

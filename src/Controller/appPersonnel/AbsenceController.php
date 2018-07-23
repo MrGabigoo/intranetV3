@@ -15,6 +15,7 @@ use App\Repository\AbsenceRepository;
 use App\Repository\MatiereRepository;
 use App\Repository\TypeGroupeRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
@@ -106,14 +107,14 @@ class AbsenceController extends BaseController
     }
 
     /**
-     * @Route("/{id}", name="application_personnel_absence_delete", methods="DELETE")
+     * @Route("/{uuid}", name="application_personnel_absence_delete", methods="DELETE")
      * @param Absence $absence
-     *
+     * @ParamConverter("absence", options={"mapping": {"uuid": "uuid"}})
      * @return Response
      */
     public function supprimer(MyEtudiant $myEtudiant, Request $request, Absence $absence): Response
     {
-        $id = $absence->getId();
+        $id = $absence->getUuidString();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
             $myEtudiant->setEtudiant($absence->getEtudiant());
             $myEtudiant->removeAbsence($absence);

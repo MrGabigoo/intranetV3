@@ -5,12 +5,20 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\NoteRepository")
  */
 class Note extends BaseEntity
 {
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Column(type="uuid_binary", unique=true)
+     */
+    protected $uuid;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Evaluation", inversedBy="notes")
      */
@@ -43,8 +51,18 @@ class Note extends BaseEntity
 
     public function __construct()
     {
+        $this->uuid = Uuid::uuid4();
         $this->modificationNotes = new ArrayCollection();
     }
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuid(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->uuid;
+    }
+
 
     /**
      * @return Evaluation|null

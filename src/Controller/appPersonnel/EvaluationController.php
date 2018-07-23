@@ -6,6 +6,7 @@ use App\Controller\BaseController;
 use App\Entity\Evaluation;
 use App\MesClasses\MyEvaluation;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,9 +21,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class EvaluationController extends BaseController
 {
     /**
-     * @Route("/{evaluation}", name="application_personnel_evaluation_show",
+     * @Route("/{uuid}", name="application_personnel_evaluation_show",
      *                                    requirements={"evaluation"="\d+"})
-     *
+     * @ParamConverter("evaluation", options={"mapping": {"uuid": "uuid"}})
      * @param MyEvaluation $myEvaluation
      * @param Evaluation   $evaluation
      *
@@ -39,9 +40,9 @@ class EvaluationController extends BaseController
     }
 
     /**
-     * @Route("export/{_format}/{evaluation}", name="application_personnel_evaluation_export",
+     * @Route("export/{_format}/{uuid}", name="application_personnel_evaluation_export",
      *                                    requirements={"evaluation"="\d+","_format"="csv|xlsx|pdf"})
-     *
+     * @ParamConverter("evaluation", options={"mapping": {"uuid": "uuid"}})
      * @param MyEvaluation $myEvaluation
      * @param Evaluation   $evaluation
      *

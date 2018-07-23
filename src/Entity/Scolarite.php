@@ -3,12 +3,20 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ScolariteRepository")
  */
 class Scolarite extends BaseEntity
 {
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Column(type="uuid_binary", unique=true)
+     */
+    protected $uuid;
+
     /**
      * @ORM\Column(type="integer")
      */
@@ -48,6 +56,19 @@ class Scolarite extends BaseEntity
      * @ORM\Column(type="text", nullable=true)
      */
     private $commentaire;
+
+    public function __construct()
+    {
+        $this->uuid = Uuid::uuid4();
+    }
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuid(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->uuid;
+    }
 
 
     /**

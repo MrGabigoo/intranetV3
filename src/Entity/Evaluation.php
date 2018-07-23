@@ -5,12 +5,20 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EvaluationRepository")
  */
 class Evaluation extends BaseEntity
 {
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Column(type="uuid_binary", unique=true)
+     */
+    protected $uuid;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Matiere", inversedBy="evaluations")
      */
@@ -85,6 +93,8 @@ class Evaluation extends BaseEntity
      */
     public function __construct(Personnel $personnel, Matiere $matiere, Formation $formation)
     {
+        $this->uuid = Uuid::uuid4();
+
         $this->matiere = $matiere;
         $this->personnelAuteur = $personnel;
         $this->anneeuniversitaire = $formation->getAnneeCourante();
@@ -138,6 +148,14 @@ class Evaluation extends BaseEntity
         $this->personnelAuteur = $personnelAuteur;
 
         return $this;
+    }
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuid(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->uuid;
     }
 
     /**
@@ -299,7 +317,7 @@ class Evaluation extends BaseEntity
     /**
      * @return Collection|Note[]
      */
-    public function getNotes(): array
+    public function getNotes()
     {
         return $this->notes;
     }
@@ -416,5 +434,10 @@ class Evaluation extends BaseEntity
         $this->typeGroupe = $typeGroupe;
 
         return $this;
+    }
+
+    public function getUuidString(): string
+    {
+        return $this->getUuid()->toString();
     }
 }

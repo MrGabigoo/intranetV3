@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
@@ -12,6 +13,29 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  */
 class Absence extends BaseEntity
 {
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Column(type="uuid_binary", unique=true)
+     */
+    protected $uuid;
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuid(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuidString(): string
+    {
+        return $this->getUuid()->toString();
+    }
+
     /**
      * @var \DateTime
      *
@@ -72,8 +96,13 @@ class Absence extends BaseEntity
      */
     private $etudiant;
 
+    /**
+     * Absence constructor.
+     * @throws \Exception
+     */
     public function __construct()
     {
+        $this->uuid = Uuid::uuid4();
         $this->anneeuniversitaire = (int)date('Y');
     }
 

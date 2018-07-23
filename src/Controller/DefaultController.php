@@ -16,6 +16,17 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DefaultController extends BaseController
 {
+
+    /**
+     * @Route("/", name="default")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function default(): Response
+    {
+        return $this->redirectToRoute('default_homepage');
+    }
+
     /**
      * @Route({"fr":"/tableau-de-bord",
      *         "en":"/dashboard"}, name="default_homepage")

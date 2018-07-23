@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -13,6 +14,13 @@ class Rattrapage extends BaseEntity
     public const DEMANDE_FAITE = 'f';
     public const DEMANDE_ACCEPTEE = 'a';
     public const DEMANDE_REFUSEE = 'r';
+
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Column(type="uuid_binary", unique=true)
+     */
+    protected $uuid;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Etudiant", inversedBy="rattrapages")
@@ -86,10 +94,21 @@ class Rattrapage extends BaseEntity
      */
     public function __construct(Etudiant $etudiant, $annee)
     {
+        $this->uuid = Uuid::uuid4();
         $this->etudiant = $etudiant;
         $this->etatDemande = self::DEMANDE_FAITE;
         $this->anneeuniversitaire = $annee;
     }
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuid(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->uuid;
+    }
+
+
 
     /**
      * @return Etudiant|null
@@ -309,5 +328,10 @@ class Rattrapage extends BaseEntity
         $this->anneeuniversitaire = $anneeuniversitaire;
 
         return $this;
+    }
+
+    public function getUuidString(): string
+    {
+        return $this->getUuid()->toString();
     }
 }

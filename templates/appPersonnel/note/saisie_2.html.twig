@@ -59,6 +59,7 @@
                             {% for etudiant in groupe.etudiants %}
                                 <tr {% if not(notes[etudiant.id] is defined) or notes[etudiant.id].note == '-0.01' %}class="bg-pale-warning"{% endif %}>
                                     <td>{{ etudiant.nom|capitalize }} {{ etudiant.prenom|capitalize }}  </td>
+                                    {# todo: uuid sur étudiant#}
                                     <td><input type="text" name="no_{{ etudiant.id }}" tabindex="{{ tab }}"
                                                id="no_{{ etudiant.id }}" data-etudiant="{{ etudiant.id }}"
                                                class="form-control noteetudiant groupe_{{ groupe.id }}"
@@ -79,7 +80,7 @@
                         </table>
                         <br/>
                         <button class="btn btn-success btn-large btn-block savegroupe"
-                                id="groupe_{{ groupe.id }}" data-evaluation="{{ evaluation.id }}">Enregistrer les notes
+                                id="groupe_{{ groupe.id }}" data-evaluation="{{ evaluation.uuidString }}">Enregistrer les notes
                             de ce groupe
                         </button>
                     </div>

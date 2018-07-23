@@ -10,6 +10,7 @@ use App\Events;
 use App\MesClasses\MyExport;
 use App\Repository\AbsenceRepository;
 use App\Repository\RattrapageRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +28,7 @@ class RattrapageController extends BaseController
 {
     /**
      * @Route("/semestre/{semestre}", name="administration_rattrapage_semestre_index")
+     * @param AbsenceRepository    $absenceRepository
      * @param RattrapageRepository $rattrapageRepository
      * @param Semestre             $semestre
      *
@@ -84,8 +86,9 @@ class RattrapageController extends BaseController
     }
 
     /**
-     * @Route("/change-etat/{id}/{etat}", name="administration_rattrapage_change_etat", methods="GET",
+     * @Route("/change-etat/{uuid}/{etat}", name="administration_rattrapage_change_etat", methods="GET",
      *                                    requirements={"etat"="A|R"}, options={"expose":true})
+     * @ParamConverter("rattrapage", options={"mapping": {"uuid": "uuid"}})
      * @param EventDispatcherInterface $eventDispatcher
      * @param Rattrapage               $rattrapage
      * @param                          $etat
@@ -110,15 +113,15 @@ class RattrapageController extends BaseController
     }
 
     /**
-     * @Route("/{id}", name="administration_rattrapage_delete", methods="DELETE")
+     * @Route("/{uuid}", name="administration_rattrapage_delete", methods="DELETE")
      * @param Request    $request
      * @param Rattrapage $rattrapage
-     *
+     * @ParamConverter("rattrapage", options={"mapping": {"uuid": "uuid"}})
      * @return Response
      */
     public function delete(Request $request, Rattrapage $rattrapage): Response
     {
-        $id = $rattrapage->getId();
+        $id = $rattrapage->getUuidString();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
 
             $this->entityManager->remove($rattrapage);

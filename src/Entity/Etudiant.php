@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -12,6 +13,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
  */
 class Etudiant extends Utilisateur implements \Serializable
 {
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Column(type="uuid_binary", unique=true)
+     */
+    protected $uuid;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -115,13 +123,17 @@ class Etudiant extends Utilisateur implements \Serializable
      */
     private $messageDestinataireEtudiants;
 
-    //todo: ajouter boursier, contrat pro, demandeur d'emploi
+    //todo:  contrat pro
     //todo: gestion de l'alternance.
 
+    /**
+     * Etudiant constructor.
+     * @throws \Exception
+     */
     public function __construct()
     {
         parent::__construct();
-
+        $this->uuid = Uuid::uuid4();
         $this->notes = new ArrayCollection();
         $this->absences = new ArrayCollection();
         $this->rattrapages = new ArrayCollection();
@@ -132,6 +144,19 @@ class Etudiant extends Utilisateur implements \Serializable
         $this->articleLikes = new ArrayCollection();
         $this->groupes = new ArrayCollection();
         $this->messageDestinataireEtudiants = new ArrayCollection();
+    }
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuid(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->uuid;
+    }
+
+    public function getUuidString(): string
+    {
+        return $this->getUuid()->toString();
     }
 
     /**

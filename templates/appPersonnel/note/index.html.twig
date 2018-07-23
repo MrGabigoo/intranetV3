@@ -97,14 +97,14 @@
                                                 </button>
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
-                                                       href="{{ path('application_personnel_evaluation_export', {evaluation:eval.id, _format:'pdf'}) }}">{{ 'exporter.pdf'|trans }}</a>
+                                                       href="{{ path('application_personnel_evaluation_export', {uuid:eval.uuidString, _format:'pdf'}) }}">{{ 'exporter.pdf'|trans }}</a>
                                                     <a class="dropdown-item"
-                                                       href="{{ path('application_personnel_evaluation_export', {evaluation:eval.id, _format:'xlsx'}) }}">{{ 'exporter.xls'|trans }}</a>
+                                                       href="{{ path('application_personnel_evaluation_export', {uuid:eval.uuidString, _format:'xlsx'}) }}">{{ 'exporter.xls'|trans }}</a>
                                                     <a class="dropdown-item"
-                                                       href="{{ path('application_personnel_evaluation_export', {evaluation:eval.id, _format:'csv'}) }}">{{ 'exporter.csv'|trans }}</a>
+                                                       href="{{ path('application_personnel_evaluation_export', {uuid:eval.uuidString, _format:'csv'}) }}">{{ 'exporter.csv'|trans }}</a>
                                                 </div>
                                             </div>
-                                            <a href="{{ path('application_personnel_evaluation_show', {evaluation:eval.id}) }}"
+                                            <a href="{{ path('application_personnel_evaluation_show', {uuid:eval.uuidString}) }}"
                                                class="btn btn-block btn-info">Voir/modifier</a>
                                         </td>
                                     {% endfor %}
@@ -116,11 +116,11 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                   href="{{ path('application_personnel_evaluation_export', {evaluation:eval.id, _format:'pdf'}) }}">{{ 'exporter.pdf'|trans }}</a>
+                                                   href="{{ path('application_personnel_evaluation_export', {uuid:eval.uuidString, _format:'pdf'}) }}">{{ 'exporter.pdf'|trans }}</a>
                                                 <a class="dropdown-item"
-                                                   href="{{ path('application_personnel_evaluation_export', {evaluation:eval.id, _format:'xlsx'}) }}">{{ 'exporter.xls'|trans }}</a>
+                                                   href="{{ path('application_personnel_evaluation_export', {uuid:eval.uuidString, _format:'xlsx'}) }}">{{ 'exporter.xls'|trans }}</a>
                                                 <a class="dropdown-item"
-                                                   href="{{ path('application_personnel_evaluation_export', {evaluation:eval.id, _format:'csv'}) }}">{{ 'exporter.csv'|trans }}</a>
+                                                   href="{{ path('application_personnel_evaluation_export', {uuid:eval.uuidString, _format:'csv'}) }}">{{ 'exporter.csv'|trans }}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -163,7 +163,7 @@
     {{ include('composants/fab-buttons.html.twig', {boutons:[
         {
             type:'info',
-            href:path('help_article', {sujet: 'application/personnel_note'}),
+            href:path('help_article', {sujet: 'application_personnel_note'}),
             title: 'aide'|trans,
             icone: 'ti-help'
         }
