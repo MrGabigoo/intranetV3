@@ -48,8 +48,8 @@ class HrsType extends AbstractType
                 'choice_label' => 'libelle',
                 'label'        => 'label.typehrs'
             ])
-            ->add('libelle', TextType::class, ['label' => 'labele.libelle'])
-            ->add('nbHeuresTd', TextType::class, ['label' => 'labele.nbHeuresTd'])
+            ->add('libelle', TextType::class, ['label' => 'label.libelle'])
+            ->add('nbHeuresTd', TextType::class, ['label' => 'label.nbHeuresTd'])
             ->add('semestre', EntityType::class, [
                 'class'         => Semestre::class,
                 'required'      => false,

@@ -95,7 +95,7 @@
     </unit>
     <unit id="VuQvnpd" name="menu.documentation">
       <notes>
-          <note category="file-source" priority="1">templates/base.html.twig:368</note>
+          <note category="file-source" priority="1">templates/base.html.twig:366</note>
       </notes>
       <segment>
         <source>menu.documentation</source>
@@ -104,7 +104,7 @@
     </unit>
     <unit id="eKE4cDT" name="menu.faq">
       <notes>
-          <note category="file-source" priority="1">templates/base.html.twig:371</note>
+          <note category="file-source" priority="1">templates/base.html.twig:369</note>
       </notes>
       <segment>
         <source>menu.faq</source>
@@ -113,7 +113,7 @@
     </unit>
     <unit id="KfESJVk" name="menu.mentions_legales">
       <notes>
-          <note category="file-source" priority="1">templates/base.html.twig:374</note>
+          <note category="file-source" priority="1">templates/base.html.twig:372</note>
       </notes>
       <segment>
         <source>menu.mentions_legales</source>
@@ -158,7 +158,6 @@
     </unit>
     <unit id="nwn8xOA" name="security.login.connexion">
       <notes>
-          <note category="file-source" priority="1">templates/security/lock.html.twig:42</note>
           <note category="file-source" priority="1">templates/security/login.html.twig:9</note>
       </notes>
       <segment>
@@ -177,7 +176,7 @@
     </unit>
     <unit id="N_kLMwm" name="security.login.password">
       <notes>
-          <note category="file-source" priority="1">templates/security/lock.html.twig:38</note>
+          <note category="file-source" priority="1">templates/security/lock.html.twig:39</note>
           <note category="file-source" priority="1">templates/security/login.html.twig:27</note>
       </notes>
       <segment>
@@ -232,7 +231,7 @@
     </unit>
     <unit id="fdkV0aN" name="service.previsionnel.heading">
       <notes>
-          <note category="file-source" priority="1">templates/previsionnel/index.html.twig:3</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:3</note>
           <note category="file-source" priority="1">templates/administration/previsionnel/personnel.html.twig:3</note>
       </notes>
       <segment>
@@ -242,8 +241,9 @@
     </unit>
     <unit id="6yd61Yb" name="periode">
       <notes>
-          <note category="file-source" priority="1">templates/previsionnel/index.html.twig:3</note>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:15</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:3</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:15
+          </note>
           <note category="file-source" priority="1">templates/bloc_previsionnel/hrs.html.twig:5</note>
           <note category="file-source" priority="1">templates/bloc_previsionnel/total.html.twig:5</note>
           <note category="file-source" priority="1">templates/administration/previsionnel/personnel.html.twig:4</note>
@@ -259,8 +259,8 @@
     </unit>
     <unit id="b5Cr89X" name="chronologique">
       <notes>
-          <note category="file-source" priority="1">templates/previsionnel/index.html.twig:9</note>
-          <note category="file-source" priority="1">templates/previsionnel/index.html.twig:76</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:9</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:82</note>
           <note category="file-source" priority="1">templates/administration/previsionnel/personnel.html.twig:11</note>
       </notes>
       <segment>
@@ -270,8 +270,8 @@
     </unit>
     <unit id="1GruCMx" name="export">
       <notes>
-          <note category="file-source" priority="1">templates/previsionnel/index.html.twig:10</note>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:21</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:21
+          </note>
           <note category="file-source" priority="1">templates/administration/previsionnel/personnel.html.twig:13</note>
       </notes>
       <segment>
@@ -353,7 +353,7 @@
     </unit>
     <unit id="vLCNrft" name="application.votre.previsionnel.chronologique.heading">
       <notes>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:4</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:4</note>
       </notes>
       <segment>
         <source>application.votre.previsionnel.chronologique.heading</source>
@@ -362,7 +362,8 @@
     </unit>
     <unit id="n2lbxUS" name="service.chronologique.heading">
       <notes>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:15</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:15
+          </note>
       </notes>
       <segment>
         <source>service.chronologique.heading</source>
@@ -371,11 +372,13 @@
     </unit>
     <unit id="t6CesPp" name="table.matiere">
       <notes>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:31</note>
           <note category="file-source" priority="1">templates/bloc_notes_absences/personnel.html.twig:24</note>
+          <note category="file-source" priority="1">templates/bloc_notes_absences/mcc.html.twig:8</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:31
+          </note>
           <note category="file-source" priority="1">templates/administration/absence/justifier.html.twig:58</note>
-          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:48</note>
-        <note category="file-source" priority="1">templates/administration/notes/index.html.twig:38</note>
+          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:49</note>
+          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:52</note>
       </notes>
       <segment>
         <source>table.matiere</source>
@@ -384,7 +387,8 @@
     </unit>
     <unit id="Ut53zXW" name="table.jour">
       <notes>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:32</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:32
+          </note>
       </notes>
       <segment>
         <source>table.jour</source>
@@ -393,7 +397,8 @@
     </unit>
     <unit id="DmKpBSc" name="table.date">
       <notes>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:33</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:33
+          </note>
           <note category="file-source" priority="1">templates/administration/absence/justifier.html.twig:56</note>
       </notes>
       <segment>
@@ -403,7 +408,8 @@
     </unit>
     <unit id="99nMqnt" name="table.heure">
       <notes>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:34</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:34
+          </note>
           <note category="file-source" priority="1">templates/administration/absence/justifier.html.twig:57</note>
       </notes>
       <segment>
@@ -413,7 +419,8 @@
     </unit>
     <unit id="08R8fit" name="table.type_cours">
       <notes>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:35</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:35
+          </note>
       </notes>
       <segment>
         <source>table.type_cours</source>
@@ -422,7 +429,8 @@
     </unit>
     <unit id="00Ighii" name="table.groupe">
       <notes>
-        <note category="file-source" priority="1">templates/previsionnel/chronologique.html.twig:36</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/chronologique.html.twig:36
+          </note>
       </notes>
       <segment>
         <source>table.groupe</source>
@@ -446,13 +454,15 @@
           <note category="file-source" priority="1">templates/composants/adm-buttons-show.html.twig:3</note>
           <note category="file-source" priority="1">templates/composants/sadm-buttons-edit.html.twig:3</note>
           <note category="file-source" priority="1">templates/composants/adm-buttons-table-index.html.twig:24</note>
+          <note category="file-source" priority="1">templates/user/composants/actions_etudiant.html.twig:23</note>
           <note category="file-source" priority="1">templates/appPersonnel/carnet/edit.html.twig:12</note>
           <note category="file-source" priority="1">templates/appPersonnel/carnet/index.html.twig:33</note>
           <note category="file-source" priority="1">templates/appPersonnel/carnet/show.html.twig:12</note>
-          <note category="file-source" priority="1">templates/bloc_previsionnel/previ_semestre.html.twig:44</note>
+          <note category="file-source" priority="1">templates/bloc_previsionnel/previ_semestre.html.twig:45</note>
+          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:94</note>
           <note category="file-source" priority="1">templates/administration/previsionnel/semestre.html.twig:56</note>
           <note category="file-source" priority="1">templates/administration/previsionnel/matiere.html.twig:51</note>
-          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:97</note>
+          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:112</note>
           <note category="file-source" priority="1">templates/administration/groupe/index.html.twig:87</note>
           <note category="file-source" priority="1">templates/administration/groupe/index.html.twig:119</note>
           <note category="file-source" priority="1">templates/structure/index.html.twig:69</note>
@@ -535,7 +545,7 @@
           <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:38</note>
         <note category="file-source" priority="1">templates/administration/absence/saisie.html.twig:26</note>
           <note category="file-source" priority="1">templates/administration/configuration/index.html.twig:30</note>
-          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:36</note>
+          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:37</note>
         <note category="file-source" priority="1">templates/administration/commission_absence/index.html.twig:26</note>
           <note category="file-source" priority="1">templates/administration/etudiant/index.html.twig:17</note>
           <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:36</note>
@@ -582,12 +592,9 @@
         <note category="file-source" priority="1">templates/composants/adm-form.html.twig:4</note>
         <note category="file-source" priority="1">templates/composants/adm-form.html.twig:4</note>
         <note category="file-source" priority="1">templates/composants/adm-form.html.twig:4</note>
-          <note category="file-source" priority="1">templates/user/settings.html.twig:35</note>
-          <note category="file-source" priority="1">templates/user/settings.html.twig:35</note>
-          <note category="file-source" priority="1">templates/user/settings.html.twig:35</note>
-          <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:12</note>
-          <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:12</note>
-          <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:12</note>
+          <note category="file-source" priority="1">templates/user/settings.html.twig:31</note>
+          <note category="file-source" priority="1">templates/user/settings.html.twig:31</note>
+          <note category="file-source" priority="1">templates/user/settings.html.twig:31</note>
           <note category="file-source" priority="1">templates/appPersonnel/note/import.html.twig:10</note>
           <note category="file-source" priority="1">templates/appPersonnel/note/import.html.twig:10</note>
           <note category="file-source" priority="1">templates/appPersonnel/note/import.html.twig:10</note>
@@ -682,8 +689,8 @@
       <notes>
           <note category="file-source" priority="1">templates/bloc_notes_absences/personnel.html.twig:42</note>
           <note category="file-source" priority="1">templates/bloc_notes_absences/personnel.html.twig:43</note>
-          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:58</note>
-          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:59</note>
+          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:72</note>
+          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:73</note>
       </notes>
       <segment>
         <source>previsionnel.et.intervenants.matiere</source>
@@ -739,7 +746,7 @@
     </unit>
     <unit id="iBnkB06" name="profil.etudiant.heading">
       <notes>
-        <note category="file-source" priority="1">templates/user/profil-etudiant.html.twig:4</note>
+          <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
         <source>profil.etudiant.heading</source>
@@ -748,7 +755,7 @@
     </unit>
     <unit id="sub7le2" name="mon.profil.heading">
       <notes>
-          <note category="file-source" priority="1">templates/user/mon-profil.html.twig:4</note>
+          <note category="file-source" priority="1">templates/user/profil.html.twig:5</note>
       </notes>
       <segment>
         <source>mon.profil.heading</source>
@@ -757,7 +764,7 @@
     </unit>
     <unit id="NvqBF_x" name="profil.personnel.heading">
       <notes>
-        <note category="file-source" priority="1">templates/user/profil-personnel.html.twig:4</note>
+          <note category="state" priority="1">obsolete</note>
       </notes>
       <segment>
         <source>profil.personnel.heading</source>
@@ -831,7 +838,7 @@
     </unit>
     <unit id="g0KJ6ww" name="supprimer">
       <notes>
-        <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:49</note>
+          <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:53</note>
       </notes>
       <segment>
         <source>supprimer</source>
@@ -868,16 +875,18 @@
     </unit>
     <unit id="jQxXiLV" name="atitle.retour_dashboard">
       <notes>
-          <note category="file-source" priority="1">templates/informations/index.html.twig:28</note>
+          <note category="file-source" priority="1">templates/informations/index.html.twig:29</note>
           <note category="file-source" priority="1">templates/notification/index.html.twig:11</note>
           <note category="file-source" priority="1">templates/actualite/liste.html.twig:11</note>
-          <note category="file-source" priority="1">templates/planning/index.html.twig:11</note>
-          <note category="file-source" priority="1">templates/recherche/index.html.twig:9</note>
+          <note category="file-source" priority="1">templates/planning/index.html.twig:24</note>
+          <note category="file-source" priority="1">templates/document/index.html.twig:13</note>
           <note category="file-source" priority="1">templates/appPersonnel/note/index.html.twig:35</note>
         <note category="file-source" priority="1">templates/appPersonnel/absence/index.html.twig:12</note>
         <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:11</note>
           <note category="file-source" priority="1">templates/agenda/index.html.twig:14</note>
+          <note category="file-source" priority="1">templates/trombinoscope/index.html.twig:30</note>
           <note category="file-source" priority="1">templates/administration/index.html.twig:11</note>
+          <note category="file-source" priority="1">templates/application/menu.html.twig:61</note>
       </notes>
       <segment>
         <source>atitle.retour_dashboard</source>
@@ -906,15 +915,15 @@
     </unit>
     <unit id="Xn23lOI" name="aide">
       <notes>
-          <note category="file-source" priority="1">templates/previsionnel/index.html.twig:71</note>
           <note category="file-source" priority="1">templates/appPersonnel/note/index.html.twig:167</note>
           <note category="file-source" priority="1">templates/appPersonnel/absence/index.html.twig:114</note>
-          <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:92</note>
+          <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:96</note>
+          <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:77</note>
           <note category="file-source" priority="1">templates/appPersonnel/carnet/index.html.twig:73</note>
           <note category="file-source" priority="1">templates/administration/hrs/index.html.twig:86</note>
           <note category="file-source" priority="1">templates/administration/competence/index.html.twig:116</note>
           <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:105</note>
-          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:95</note>
+          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:127</note>
           <note category="file-source" priority="1">templates/administration/etudiant/index.html.twig:68</note>
           <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:95</note>
           <note category="file-source" priority="1">templates/administration/matiere/index.html.twig:127</note>
@@ -927,7 +936,7 @@
           <note category="file-source" priority="1">templates/administration/type_document/index.html.twig:75</note>
           <note category="file-source" priority="1">templates/administration/article/index.html.twig:76</note>
           <note category="file-source" priority="1">templates/administration/ppn/index.html.twig:78</note>
-          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:86</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:108</note>
           <note category="file-source" priority="1">templates/administration/groupe/index.html.twig:155</note>
           <note category="file-source" priority="1">templates/super-administration/ufr/index.html.twig:77</note>
           <note category="file-source" priority="1">templates/super-administration/type_hrs/index.html.twig:78</note>
@@ -1049,7 +1058,7 @@
     </unit>
     <unit id="wh3hNEq" name="no.record.found">
       <notes>
-          <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:55</note>
+          <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:59</note>
           <note category="file-source" priority="1">templates/appPersonnel/carnet/index.html.twig:38</note>
           <note category="file-source" priority="1">templates/bloc_previsionnel/hrs.html.twig:34</note>
           <note category="file-source" priority="1">templates/administration/hrs/index.html.twig:50</note>
@@ -1061,7 +1070,7 @@
           <note category="file-source" priority="1">templates/administration/type_document/index.html.twig:39</note>
         <note category="file-source" priority="1">templates/administration/article/index.html.twig:40</note>
         <note category="file-source" priority="1">templates/administration/ppn/index.html.twig:42</note>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:50</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:70</note>
           <note category="file-source" priority="1">templates/super-administration/ufr/index.html.twig:41</note>
           <note category="file-source" priority="1">templates/super-administration/type_hrs/index.html.twig:42</note>
           <note category="file-source" priority="1">templates/super-administration/salle/index.html.twig:42</note>
@@ -1082,7 +1091,7 @@
     </unit>
     <unit id="QAZ68z_" name="ajouter">
       <notes>
-          <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:86</note>
+          <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:90</note>
           <note category="file-source" priority="1">templates/appPersonnel/carnet/index.html.twig:67</note>
           <note category="file-source" priority="1">templates/administration/hrs/index.html.twig:80</note>
           <note category="file-source" priority="1">templates/administration/etudiant/index.html.twig:62</note>
@@ -1096,7 +1105,7 @@
           <note category="file-source" priority="1">templates/administration/type_document/index.html.twig:69</note>
           <note category="file-source" priority="1">templates/administration/article/index.html.twig:70</note>
           <note category="file-source" priority="1">templates/administration/ppn/index.html.twig:72</note>
-          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:80</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:102</note>
           <note category="file-source" priority="1">templates/super-administration/ufr/index.html.twig:71</note>
           <note category="file-source" priority="1">templates/super-administration/type_hrs/index.html.twig:72</note>
           <note category="file-source" priority="1">templates/super-administration/salle/index.html.twig:72</note>
@@ -1170,7 +1179,7 @@
     </unit>
     <unit id="zr82FnV" name="contacter">
       <notes>
-          <note category="file-source" priority="1">templates/user/mon-profil.html.twig:73</note>
+          <note category="file-source" priority="1">templates/user/profil.html.twig:50</note>
           <note category="file-source" priority="1">templates/trombinoscope/blocTrombi.html.twig:15</note>
       </notes>
       <segment>
@@ -1240,7 +1249,7 @@
           <note category="file-source" priority="1">templates/administration/absence/justifier.html.twig:25</note>
           <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:36</note>
         <note category="file-source" priority="1">templates/administration/absence/saisie.html.twig:24</note>
-          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:34</note>
+          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:35</note>
         <note category="file-source" priority="1">templates/administration/commission_absence/index.html.twig:24</note>
           <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:34</note>
         <note category="file-source" priority="1">templates/administration/sous_commission/index.html.twig:24</note>
@@ -1337,7 +1346,7 @@
     </unit>
     <unit id="KTcBPyG" name="update">
       <notes>
-          <note category="file-source" priority="1">templates/base.html.twig:246</note>
+          <note category="file-source" priority="1">templates/base.html.twig:244</note>
           <note category="file-source" priority="1">templates/appPersonnel/carnet/edit.html.twig:29</note>
           <note category="file-source" priority="1">templates/administration/hrs/edit.html.twig:18</note>
           <note category="file-source" priority="1">templates/administration/competence/edit.html.twig:17</note>
@@ -1489,8 +1498,9 @@
     </unit>
     <unit id="OupBZV1" name="table.coefficient">
       <notes>
+          <note category="file-source" priority="1">templates/bloc_notes_absences/mcc.html.twig:11</note>
         <note category="file-source" priority="1">templates/administration/matiere/index.html.twig:55</note>
-        <note category="file-source" priority="1">templates/administration/notes/index.html.twig:39</note>
+          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:53</note>
           <note category="file-source" priority="1">templates/structure/ue/index.html.twig:23</note>
           <note category="file-source" priority="1">templates/structure/ue/show.html.twig:37</note>
       </notes>
@@ -1524,7 +1534,7 @@
           <note category="file-source" priority="1">templates/administration/competence/index.html.twig:64</note>
           <note category="file-source" priority="1">templates/administration/absence/justifier.html.twig:60</note>
           <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:55</note>
-          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:53</note>
+          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:54</note>
           <note category="file-source" priority="1">templates/administration/etudiant/index.html.twig:33</note>
           <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:54</note>
         <note category="file-source" priority="1">templates/administration/matiere/index.html.twig:58</note>
@@ -1536,7 +1546,7 @@
           <note category="file-source" priority="1">templates/administration/type_document/index.html.twig:24</note>
         <note category="file-source" priority="1">templates/administration/article/index.html.twig:24</note>
         <note category="file-source" priority="1">templates/administration/ppn/index.html.twig:25</note>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:31</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:51</note>
         <note category="file-source" priority="1">templates/administration/personnel/add.html.twig:37</note>
           <note category="file-source" priority="1">templates/super-administration/ufr/index.html.twig:25</note>
           <note category="file-source" priority="1">templates/super-administration/rh/index.html.twig:29</note>
@@ -1597,6 +1607,7 @@
       <notes>
           <note category="file-source" priority="1">templates/composants/un-article.html.twig:18</note>
           <note category="file-source" priority="1">templates/bloc_notes_absences/etudiant_absences.html.twig:22</note>
+          <note category="file-source" priority="1">templates/bloc_notes_absences/mcc.html.twig:18</note>
           <note category="file-source" priority="1">templates/user/composants/scolarite.html.twig:20</note>
           <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:33</note>
           <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:36</note>
@@ -1613,10 +1624,10 @@
           <note category="file-source" priority="1">templates/administration/hrs/show.html.twig:10</note>
           <note category="file-source" priority="1">templates/administration/competence/show.html.twig:34</note>
           <note category="file-source" priority="1">templates/administration/competence/show.html.twig:38</note>
-          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:60</note>
           <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:61</note>
           <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:62</note>
           <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:63</note>
+          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:64</note>
         <note category="file-source" priority="1">templates/administration/matiere/show.html.twig:29</note>
         <note category="file-source" priority="1">templates/administration/matiere/show.html.twig:30</note>
         <note category="file-source" priority="1">templates/administration/matiere/show.html.twig:31</note>
@@ -1658,6 +1669,7 @@
           <note category="file-source" priority="1">templates/bloc_notes_absences/etudiant_absences.html.twig:21</note>
           <note category="file-source" priority="1">templates/appEtudiant/absence/detail.html.twig:9</note>
           <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:42</note>
+          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:65</note>
         <note category="file-source" priority="1">templates/administration/matiere/index.html.twig:73</note>
         <note category="file-source" priority="1">templates/administration/matiere/show.html.twig:42</note>
           <note category="file-source" priority="1">templates/administration/borne/index.html.twig:38</note>
@@ -1700,6 +1712,7 @@
           <note category="file-source" priority="1">templates/bloc_notes_absences/etudiant_absences.html.twig:21</note>
           <note category="file-source" priority="1">templates/appEtudiant/absence/detail.html.twig:9</note>
           <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:42</note>
+          <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:65</note>
         <note category="file-source" priority="1">templates/administration/matiere/index.html.twig:73</note>
         <note category="file-source" priority="1">templates/administration/matiere/show.html.twig:42</note>
           <note category="file-source" priority="1">templates/administration/borne/index.html.twig:38</note>
@@ -2110,7 +2123,7 @@
     <unit id="FMBuVGf" name="table.nb_notes">
       <notes>
         <note category="file-source" priority="1">templates/administration/matiere/index.html.twig:54</note>
-        <note category="file-source" priority="1">templates/administration/notes/index.html.twig:40</note>
+          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:54</note>
       </notes>
       <segment>
         <source>table.nb_notes</source>
@@ -2119,7 +2132,7 @@
     </unit>
     <unit id="8z1e0fd" name="table.evaluations">
       <notes>
-          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:42</note>
+          <note category="file-source" priority="1">templates/administration/notes/index.html.twig:56</note>
       </notes>
       <segment>
         <source>table.evaluations</source>
@@ -3311,7 +3324,7 @@
     <unit id="j7o93Pd" name="adm.personnel.index.heading">
       <notes>
         <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:4</note>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:19</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:21</note>
       </notes>
       <segment>
         <source>adm.personnel.index.heading</source>
@@ -3340,7 +3353,7 @@
       <notes>
           <note category="file-source" priority="1">templates/administration/etudiant/index.html.twig:30</note>
           <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:51</note>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:24</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:44</note>
         <note category="file-source" priority="1">templates/administration/personnel/add.html.twig:33</note>
           <note category="file-source" priority="1">templates/super-administration/rh/index.html.twig:26</note>
       </notes>
@@ -3353,7 +3366,7 @@
       <notes>
           <note category="file-source" priority="1">templates/administration/etudiant/index.html.twig:31</note>
           <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:52</note>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:25</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:45</note>
         <note category="file-source" priority="1">templates/administration/personnel/add.html.twig:34</note>
           <note category="file-source" priority="1">templates/super-administration/rh/index.html.twig:27</note>
       </notes>
@@ -3364,7 +3377,7 @@
     </unit>
     <unit id="Z5zrqGF" name="table.poste_interne">
       <notes>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:26</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:46</note>
       </notes>
       <segment>
         <source>table.poste_interne</source>
@@ -3373,7 +3386,7 @@
     </unit>
     <unit id="AnMCit2" name="table.tel_bureau">
       <notes>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:27</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:47</note>
       </notes>
       <segment>
         <source>table.tel_bureau</source>
@@ -3382,7 +3395,7 @@
     </unit>
     <unit id="LlFZGs4" name="table.bureau1">
       <notes>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:28</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:48</note>
       </notes>
       <segment>
         <source>table.bureau1</source>
@@ -3391,7 +3404,7 @@
     </unit>
     <unit id="NNmdCKs" name="table.numero_harpege">
       <notes>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:29</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:49</note>
           <note category="file-source" priority="1">templates/super-administration/rh/index.html.twig:25</note>
       </notes>
       <segment>
@@ -3401,7 +3414,7 @@
     </unit>
     <unit id="qeV8avB" name="table.mail_univ">
       <notes>
-        <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:30</note>
+          <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:50</note>
         <note category="file-source" priority="1">templates/administration/personnel/add.html.twig:36</note>
       </notes>
       <segment>
@@ -3892,6 +3905,7 @@
     </unit>
     <unit id="qujdlWN" name="table.formation">
       <notes>
+          <note category="file-source" priority="1">templates/user/settings.html.twig:45</note>
           <note category="file-source" priority="1">templates/structure/diplome/show.html.twig:33</note>
       </notes>
       <segment>
@@ -4568,7 +4582,7 @@
     </unit>
       <unit id="HRKwzv3" name="saisir.evaluation">
           <notes>
-              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:111</note>
+              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:126</note>
           </notes>
           <segment>
               <source>saisir.evaluation</source>
@@ -4764,7 +4778,7 @@
       </unit>
       <unit id="Sb1GcVd" name="saisir.password.lock">
           <notes>
-              <note category="file-source" priority="1">templates/security/lock.html.twig:30</note>
+              <note category="file-source" priority="1">templates/security/lock.html.twig:31</note>
           </notes>
           <segment>
               <source>saisir.password.lock</source>
@@ -4773,7 +4787,7 @@
       </unit>
       <unit id="rCZL1T6" name="vous.netes.pas">
           <notes>
-              <note category="file-source" priority="1">templates/security/lock.html.twig:45</note>
+              <note category="file-source" priority="1">templates/security/lock.html.twig:47</note>
           </notes>
           <segment>
               <source>vous.netes.pas</source>
@@ -4782,7 +4796,7 @@
       </unit>
       <unit id="0y2glNh" name="connectez.vous">
           <notes>
-              <note category="file-source" priority="1">templates/security/lock.html.twig:46</note>
+              <note category="file-source" priority="1">templates/security/lock.html.twig:48</note>
           </notes>
           <segment>
               <source>connectez.vous</source>
@@ -4917,9 +4931,8 @@
       </unit>
       <unit id="gPVMeGy" name="tab.timeline">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:13</note>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:24</note>
-              <note category="file-source" priority="1">templates/user/profil-etudiant.html.twig:11</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_personnel.html.twig:3</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_etudiant.html.twig:3</note>
           </notes>
           <segment>
               <source>tab.timeline</source>
@@ -4928,9 +4941,8 @@
       </unit>
       <unit id="IuqA4DW" name="tab.a-propos">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:15</note>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:36</note>
-              <note category="file-source" priority="1">templates/user/profil-etudiant.html.twig:23</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_personnel.html.twig:5</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_etudiant.html.twig:21</note>
           </notes>
           <segment>
               <source>tab.a-propos</source>
@@ -4939,7 +4951,7 @@
       </unit>
       <unit id="nDtnrid" name="tab.previsionnel">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:17</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_personnel.html.twig:8</note>
           </notes>
           <segment>
               <source>tab.previsionnel</source>
@@ -4948,9 +4960,8 @@
       </unit>
       <unit id="0yv.kf9" name="tab.actions">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:20</note>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:39</note>
-              <note category="file-source" priority="1">templates/user/profil-etudiant.html.twig:25</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_personnel.html.twig:12</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_etudiant.html.twig:25</note>
           </notes>
           <segment>
               <source>tab.actions</source>
@@ -4959,8 +4970,7 @@
       </unit>
       <unit id="6ZE7uVQ" name="tab.scolarite">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:26</note>
-              <note category="file-source" priority="1">templates/user/profil-etudiant.html.twig:13</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_etudiant.html.twig:6</note>
           </notes>
           <segment>
               <source>tab.scolarite</source>
@@ -4969,8 +4979,7 @@
       </unit>
       <unit id="CQhquus" name="tab.notes">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:28</note>
-              <note category="file-source" priority="1">templates/user/profil-etudiant.html.twig:15</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_etudiant.html.twig:9</note>
           </notes>
           <segment>
               <source>tab.notes</source>
@@ -4979,8 +4988,7 @@
       </unit>
       <unit id="kwiHOLa" name="tab.absences">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:30</note>
-              <note category="file-source" priority="1">templates/user/profil-etudiant.html.twig:17</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_etudiant.html.twig:12</note>
           </notes>
           <segment>
               <source>tab.absences</source>
@@ -5053,7 +5061,7 @@
       </unit>
       <unit id="7porkam" name="bloc.actions.etu.heading">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/actions.html.twig:2</note>
+              <note category="file-source" priority="1">templates/user/composants/actions_etudiant.html.twig:2</note>
           </notes>
           <segment>
               <source>bloc.actions.etu.heading</source>
@@ -5102,7 +5110,7 @@
       <unit id="0fcGqyZ" name="table.personnel">
           <notes>
               <note category="file-source" priority="1">templates/administration/hrs/index.html.twig:27</note>
-              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:49</note>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:50</note>
           </notes>
           <segment>
               <source>table.personnel</source>
@@ -5445,7 +5453,7 @@
       <unit id="FXxXjh1" name="table.etudiant">
           <notes>
               <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:49</note>
-              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:47</note>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:48</note>
           </notes>
           <segment>
               <source>table.etudiant</source>
@@ -5454,7 +5462,7 @@
       </unit>
       <unit id="fPd8tj8" name="table.date_evaluation">
           <notes>
-              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:50</note>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:51</note>
           </notes>
           <segment>
               <source>table.date_evaluation</source>
@@ -5463,7 +5471,7 @@
       </unit>
       <unit id="YZvadwy" name="table.date_demande">
           <notes>
-              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:51</note>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:52</note>
           </notes>
           <segment>
               <source>table.date_demande</source>
@@ -5472,7 +5480,7 @@
       </unit>
       <unit id="kikG._i" name="table.absence_justifiee">
           <notes>
-              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:52</note>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:53</note>
           </notes>
           <segment>
               <source>table.absence_justifiee</source>
@@ -5775,7 +5783,7 @@
       </unit>
       <unit id="cz4zYo1" name="atitle.saisir.evaluation">
           <notes>
-              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:110</note>
+              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:125</note>
           </notes>
           <segment>
               <source>atitle.saisir.evaluation</source>
@@ -6008,7 +6016,7 @@
               <note category="file-source" priority="1">templates/messagerie/index.html.twig:99</note>
               <note category="file-source" priority="1">templates/bloc_notes_absences/personnel.html.twig:39</note>
               <note category="file-source" priority="1">templates/bloc_notes_absences/personnel.html.twig:70</note>
-              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:54</note>
+              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:68</note>
           </notes>
           <segment>
               <source>fermer</source>
@@ -6036,7 +6044,7 @@
       </unit>
       <unit id="tYrlfM1" name="fullscreen">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:123</note>
+              <note category="file-source" priority="1">templates/base.html.twig:121</note>
           </notes>
           <segment>
               <source>fullscreen</source>
@@ -6045,7 +6053,7 @@
       </unit>
       <unit id="DAMFhpR" name="lock">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:128</note>
+              <note category="file-source" priority="1">templates/base.html.twig:126</note>
           </notes>
           <segment>
               <source>lock</source>
@@ -6054,7 +6062,7 @@
       </unit>
       <unit id="6Qil2.S" name="aucune.notification">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:233</note>
+              <note category="file-source" priority="1">templates/base.html.twig:231</note>
               <note category="file-source" priority="1">templates/notification/index.html.twig:41</note>
           </notes>
           <segment>
@@ -6064,7 +6072,7 @@
       </unit>
       <unit id="j4.aCWQ" name="lire.toutes.les.notifications">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:239</note>
+              <note category="file-source" priority="1">templates/base.html.twig:237</note>
           </notes>
           <segment>
               <source>lire.toutes.les.notifications</source>
@@ -6073,7 +6081,7 @@
       </unit>
       <unit id="Y.5RNI5" name="marquer.tout.comme.lu">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:243</note>
+              <note category="file-source" priority="1">templates/base.html.twig:241</note>
           </notes>
           <segment>
               <source>marquer.tout.comme.lu</source>
@@ -6302,7 +6310,7 @@
       </unit>
       <unit id="ywe_5Rg" name="pas.encore.date">
           <notes>
-              <note category="file-source" priority="1">templates/default/index.html.twig:40</note>
+              <note category="file-source" priority="1">templates/default/index.html.twig:49</note>
           </notes>
           <segment>
               <source>pas.encore.date</source>
@@ -6311,8 +6319,7 @@
       </unit>
       <unit id="W1fYrqx" name="tab.stages">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:33</note>
-              <note category="file-source" priority="1">templates/user/profil-etudiant.html.twig:20</note>
+              <note category="file-source" priority="1">templates/user/composants/menu_etudiant.html.twig:17</note>
           </notes>
           <segment>
               <source>tab.stages</source>
@@ -6321,7 +6328,7 @@
       </unit>
       <unit id="LkucwkK" name="friends">
           <notes>
-              <note category="file-source" priority="1">templates/user/profil-etudiant.html.twig:67</note>
+              <note category="state" priority="1">obsolete</note>
           </notes>
           <segment>
               <source>friends</source>
@@ -6330,7 +6337,7 @@
       </unit>
       <unit id="DTr_4kV" name="bloc.previsionnel.personnel.heading">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/previsionnel.html.twig:2</note>
+              <note category="state" priority="1">obsolete</note>
           </notes>
           <segment>
               <source>bloc.previsionnel.personnel.heading</source>
@@ -6429,7 +6436,8 @@
       </unit>
       <unit id="_CEixxq" name="en.attente">
           <notes>
-              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:39</note>
+              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:40</note>
+              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:47</note>
           </notes>
           <segment>
               <source>en.attente</source>
@@ -6438,7 +6446,7 @@
       </unit>
       <unit id="4dDjazl" name="acceptee">
           <notes>
-              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:39</note>
+              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:50</note>
           </notes>
           <segment>
               <source>acceptee</source>
@@ -6447,7 +6455,7 @@
       </unit>
       <unit id="_eOmGYb" name="refusee">
           <notes>
-              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:39</note>
+              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:52</note>
           </notes>
           <segment>
               <source>refusee</source>
@@ -6456,7 +6464,7 @@
       </unit>
       <unit id="fSmIyed" name="erreur">
           <notes>
-              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:39</note>
+              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:55</note>
           </notes>
           <segment>
               <source>erreur</source>
@@ -6773,7 +6781,6 @@
       </unit>
       <unit id="Yrx94lC" name="atitle.save_csv">
           <notes>
-              <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:29</note>
               <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:28</note>
               <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:28</note>
           </notes>
@@ -6784,7 +6791,6 @@
       </unit>
       <unit id="c3wRyXd" name="atitle.save_xls">
           <notes>
-              <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:32</note>
               <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:31</note>
               <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:31</note>
           </notes>
@@ -7097,7 +7103,7 @@
       <unit id="mZirDiY" name="atitle.dupliquer">
           <notes>
               <note category="file-source" priority="1">templates/composants/sadm-buttons-table-index.html.twig:3</note>
-              <note category="file-source" priority="1">templates/bloc_previsionnel/previ_semestre.html.twig:39</note>
+              <note category="file-source" priority="1">templates/bloc_previsionnel/previ_semestre.html.twig:40</note>
               <note category="file-source" priority="1">templates/administration/hrs/index.html.twig:44</note>
               <note category="file-source" priority="1">templates/administration/competence/index.html.twig:76</note>
               <note category="file-source" priority="1">templates/administration/competence/index.html.twig:90</note>
@@ -7451,15 +7457,16 @@
       </unit>
       <unit id="_zssdxs" name="exporter.xls">
           <notes>
-              <note category="file-source" priority="1">templates/previsionnel/index.html.twig:65</note>
               <note category="file-source" priority="1">templates/appPersonnel/note/index.html.twig:102</note>
               <note category="file-source" priority="1">templates/appPersonnel/note/index.html.twig:121</note>
               <note category="file-source" priority="1">templates/appPersonnel/absence/index.html.twig:108</note>
-              <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:80</note>
+              <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:84</note>
+              <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:14</note>
+              <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:71</note>
               <note category="file-source" priority="1">templates/appPersonnel/carnet/index.html.twig:61</note>
               <note category="file-source" priority="1">templates/administration/hrs/index.html.twig:74</note>
               <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:99</note>
-              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:89</note>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:121</note>
               <note category="file-source" priority="1">templates/administration/etudiant/index.html.twig:56</note>
               <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:89</note>
               <note category="file-source" priority="1">templates/administration/matiere/index.html.twig:115</note>
@@ -7470,11 +7477,12 @@
               <note category="file-source" priority="1">templates/administration/document/index.html.twig:37</note>
               <note category="file-source" priority="1">templates/administration/borne/index.html.twig:76</note>
               <note category="file-source" priority="1">templates/administration/type_document/index.html.twig:63</note>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:50</note>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:124</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:57</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:133</note>
               <note category="file-source" priority="1">templates/administration/article/index.html.twig:64</note>
               <note category="file-source" priority="1">templates/administration/ppn/index.html.twig:66</note>
-              <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:74</note>
+              <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:32</note>
+              <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:96</note>
               <note category="file-source" priority="1">templates/administration/groupe/index.html.twig:149</note>
               <note category="file-source" priority="1">templates/super-administration/ufr/index.html.twig:65</note>
               <note category="file-source" priority="1">templates/super-administration/type_hrs/index.html.twig:66
@@ -7499,15 +7507,16 @@
       </unit>
       <unit id="SiQjEts" name="exporter.pdf">
           <notes>
-              <note category="file-source" priority="1">templates/previsionnel/index.html.twig:53</note>
               <note category="file-source" priority="1">templates/appPersonnel/note/index.html.twig:100</note>
               <note category="file-source" priority="1">templates/appPersonnel/note/index.html.twig:119</note>
               <note category="file-source" priority="1">templates/appPersonnel/absence/index.html.twig:97</note>
-              <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:69</note>
+              <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:73</note>
+              <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:11</note>
+              <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:59</note>
               <note category="file-source" priority="1">templates/appPersonnel/carnet/index.html.twig:50</note>
               <note category="file-source" priority="1">templates/administration/hrs/index.html.twig:63</note>
               <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:88</note>
-              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:78</note>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:110</note>
               <note category="file-source" priority="1">templates/administration/etudiant/index.html.twig:45</note>
               <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:78</note>
               <note category="file-source" priority="1">templates/administration/matiere/index.html.twig:104</note>
@@ -7518,12 +7527,13 @@
               <note category="file-source" priority="1">templates/administration/document/index.html.twig:26</note>
               <note category="file-source" priority="1">templates/administration/borne/index.html.twig:65</note>
               <note category="file-source" priority="1">templates/administration/type_document/index.html.twig:52</note>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:54</note>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:81</note>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:120</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:51</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:85</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:127</note>
               <note category="file-source" priority="1">templates/administration/article/index.html.twig:53</note>
               <note category="file-source" priority="1">templates/administration/ppn/index.html.twig:55</note>
-              <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:63</note>
+              <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:28</note>
+              <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:85</note>
               <note category="file-source" priority="1">templates/administration/groupe/index.html.twig:138</note>
               <note category="file-source" priority="1">templates/super-administration/ufr/index.html.twig:54</note>
               <note category="file-source" priority="1">templates/super-administration/type_hrs/index.html.twig:55
@@ -7735,7 +7745,6 @@
       <unit id="FCl8b9r" name="Tous.les.champs.obligatoires">
           <notes>
               <note category="file-source" priority="1">templates/form/form_div_layout.html.twig:353</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>Tous.les.champs.obligatoires</source>
@@ -7744,8 +7753,7 @@
       </unit>
       <unit id="cz0cdCZ" name="Rechercher">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:175</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/base.html.twig:174</note>
           </notes>
           <segment>
               <source>Rechercher</source>
@@ -7754,8 +7762,7 @@
       </unit>
       <unit id="i6EoFNc" name="voir.tous.les.messages">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:287</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/base.html.twig:285</note>
           </notes>
           <segment>
               <source>voir.tous.les.messages</source>
@@ -7764,8 +7771,7 @@
       </unit>
       <unit id="83ExMj2" name="etudiants">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:397</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/base.html.twig:395</note>
           </notes>
           <segment>
               <source>etudiants</source>
@@ -7774,8 +7780,7 @@
       </unit>
       <unit id="iY1KBMS" name="permanents">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:505</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/base.html.twig:404</note>
           </notes>
           <segment>
               <source>permanents</source>
@@ -7784,8 +7789,7 @@
       </unit>
       <unit id="P5J6SAk" name="autres">
           <notes>
-              <note category="file-source" priority="1">templates/base.html.twig:537</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/base.html.twig:412</note>
           </notes>
           <segment>
               <source>autres</source>
@@ -7794,15 +7798,16 @@
       </unit>
       <unit id="MbMtZg9" name="exporter.csv">
           <notes>
-              <note category="file-source" priority="1">templates/previsionnel/index.html.twig:59</note>
               <note category="file-source" priority="1">templates/appPersonnel/note/index.html.twig:104</note>
               <note category="file-source" priority="1">templates/appPersonnel/note/index.html.twig:123</note>
               <note category="file-source" priority="1">templates/appPersonnel/absence/index.html.twig:102</note>
-              <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:74</note>
+              <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:78</note>
+              <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:16</note>
+              <note category="file-source" priority="1">templates/appPersonnel/previsionnel/index.html.twig:65</note>
               <note category="file-source" priority="1">templates/appPersonnel/carnet/index.html.twig:55</note>
               <note category="file-source" priority="1">templates/administration/hrs/index.html.twig:68</note>
               <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:93</note>
-              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:83</note>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:115</note>
               <note category="file-source" priority="1">templates/administration/etudiant/index.html.twig:50</note>
               <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:83</note>
               <note category="file-source" priority="1">templates/administration/matiere/index.html.twig:109</note>
@@ -7813,12 +7818,13 @@
               <note category="file-source" priority="1">templates/administration/document/index.html.twig:31</note>
               <note category="file-source" priority="1">templates/administration/borne/index.html.twig:70</note>
               <note category="file-source" priority="1">templates/administration/type_document/index.html.twig:57</note>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:52</note>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:83</note>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:122</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:54</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:88</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:130</note>
               <note category="file-source" priority="1">templates/administration/article/index.html.twig:58</note>
               <note category="file-source" priority="1">templates/administration/ppn/index.html.twig:60</note>
-              <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:68</note>
+              <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:30</note>
+              <note category="file-source" priority="1">templates/administration/personnel/index.html.twig:90</note>
               <note category="file-source" priority="1">templates/administration/groupe/index.html.twig:143</note>
               <note category="file-source" priority="1">templates/super-administration/ufr/index.html.twig:59</note>
               <note category="file-source" priority="1">templates/super-administration/type_hrs/index.html.twig:60
@@ -7832,7 +7838,6 @@
               <note category="file-source" priority="1">templates/structure/annee/index.html.twig:77</note>
               <note category="file-source" priority="1">templates/structure/ue/index.html.twig:66</note>
               <note category="file-source" priority="1">templates/structure/semestre/index.html.twig:64</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>exporter.csv</source>
@@ -7841,8 +7846,7 @@
       </unit>
       <unit id="r1QtS9k" name="aucune.adresse.fournie">
           <notes>
-              <note category="file-source" priority="1">templates/composants/adresse.html.twig:6</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/composants/adresse.html.twig:16</note>
           </notes>
           <segment>
               <source>aucune.adresse.fournie</source>
@@ -7853,7 +7857,6 @@
           <notes>
               <note category="file-source" priority="1">templates/bloc_notes_absences/etudiant_absences.html.twig:29
               </note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>detail.absence</source>
@@ -7863,7 +7866,6 @@
       <unit id="aTAB9VM" name="atitle.export">
           <notes>
               <note category="file-source" priority="1">templates/bloc_notes_absences/personnel.html.twig:73</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>atitle.export</source>
@@ -7873,7 +7875,6 @@
       <unit id="03qL5GP" name="export.heading">
           <notes>
               <note category="file-source" priority="1">templates/bloc_notes_absences/personnel.html.twig:74</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>export.heading</source>
@@ -7883,7 +7884,6 @@
       <unit id="yB0kqJr" name="mcc">
           <notes>
               <note category="file-source" priority="1">templates/bloc_notes_absences/mcc.html.twig:3</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>mcc</source>
@@ -7892,8 +7892,7 @@
       </unit>
       <unit id="V1iX7gk" name="liens.utiles.heading">
           <notes>
-              <note category="file-source" priority="1">templates/default/index.html.twig:62</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/default/index.html.twig:74</note>
           </notes>
           <segment>
               <source>liens.utiles.heading</source>
@@ -7902,8 +7901,7 @@
       </unit>
       <unit id="t9RahJD" name="contacts.heading">
           <notes>
-              <note category="file-source" priority="1">templates/default/index.html.twig:68</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/default/index.html.twig:80</note>
           </notes>
           <segment>
               <source>contacts.heading</source>
@@ -7912,8 +7910,7 @@
       </unit>
       <unit id="USARB8W" name="contacter.sur.mail.univ">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:75</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/profil.html.twig:52</note>
           </notes>
           <segment>
               <source>contacter.sur.mail.univ</source>
@@ -7922,8 +7919,7 @@
       </unit>
       <unit id="f1TiCfj" name="espace.travail">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:79</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/profil.html.twig:56</note>
           </notes>
           <segment>
               <source>espace.travail</source>
@@ -7932,8 +7928,7 @@
       </unit>
       <unit id="LzvMj15" name="consulter.espace.travail">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:81</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/profil.html.twig:58</note>
           </notes>
           <segment>
               <source>consulter.espace.travail</source>
@@ -7942,8 +7937,7 @@
       </unit>
       <unit id="4yZ9mxh" name="amis">
           <notes>
-              <note category="file-source" priority="1">templates/user/mon-profil.html.twig:95</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/profil.html.twig:72</note>
           </notes>
           <segment>
               <source>amis</source>
@@ -7952,8 +7946,7 @@
       </unit>
       <unit id="SID0cS4" name="vos.informations.identification">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:2</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:3</note>
           </notes>
           <segment>
               <source>vos.informations.identification</source>
@@ -7962,8 +7955,8 @@
       </unit>
       <unit id="Qv2ymo5" name="prenom.nom">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:4</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:6</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:17</note>
           </notes>
           <segment>
               <source>prenom.nom</source>
@@ -7972,8 +7965,8 @@
       </unit>
       <unit id="V0Jcbr7" name="date.naissance">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:5</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:7</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:18</note>
           </notes>
           <segment>
               <source>date.naissance</source>
@@ -7982,9 +7975,8 @@
       </unit>
       <unit id="vOC08oQ" name="numero.etudiant">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:7</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:9</note>
               <note category="file-source" priority="1">templates/api/matiere/document/export.html.twig:42</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>numero.etudiant</source>
@@ -7993,8 +7985,8 @@
       </unit>
       <unit id="ppQ3oxI" name="mail.universite">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:8</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:10</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:24</note>
           </notes>
           <segment>
               <source>mail.universite</source>
@@ -8003,8 +7995,8 @@
       </unit>
       <unit id="u.PkeHr" name="site.universite">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:10</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:12</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:26</note>
           </notes>
           <segment>
               <source>site.universite</source>
@@ -8013,8 +8005,8 @@
       </unit>
       <unit id="5C.oRsu" name="site.personnel">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:12</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:14</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:28</note>
           </notes>
           <segment>
               <source>site.personnel</source>
@@ -8023,8 +8015,7 @@
       </unit>
       <unit id="mPTchHn" name="donnees.personnelles">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:18</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:39</note>
           </notes>
           <segment>
               <source>donnees.personnelles</source>
@@ -8033,8 +8024,7 @@
       </unit>
       <unit id="83Bz_8M" name="adresse.de.letudiant">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:21</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:47</note>
           </notes>
           <segment>
               <source>adresse.de.letudiant</source>
@@ -8043,8 +8033,7 @@
       </unit>
       <unit id="daq2ru3" name="adresse.parentale">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:23</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:49</note>
           </notes>
           <segment>
               <source>adresse.parentale</source>
@@ -8053,8 +8042,7 @@
       </unit>
       <unit id="MDu3wLg" name="parcours.scolaire">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:34</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:60</note>
           </notes>
           <segment>
               <source>parcours.scolaire</source>
@@ -8063,9 +8051,8 @@
       </unit>
       <unit id="JopssP2" name="bac">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:37</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:63</note>
               <note category="file-source" priority="1">templates/api/matiere/document/export.html.twig:49</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>bac</source>
@@ -8074,8 +8061,7 @@
       </unit>
       <unit id="mbPBxwX" name="obtenu.en">
           <notes>
-              <note category="file-source" priority="1">templates/user/composants/about.html.twig:38</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:64</note>
           </notes>
           <segment>
               <source>obtenu.en</source>
@@ -8085,7 +8071,6 @@
       <unit id="jPAvEsl" name="tab.vosInformations">
           <notes>
               <note category="file-source" priority="1">templates/user/settings.html.twig:12</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>tab.vosInformations</source>
@@ -8095,7 +8080,6 @@
       <unit id="zxW3Yvc" name="tab.vosParametres">
           <notes>
               <note category="file-source" priority="1">templates/user/settings.html.twig:14</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>tab.vosParametres</source>
@@ -8105,7 +8089,6 @@
       <unit id="MdcLItV" name="atitle.retour_synthese">
           <notes>
               <note category="file-source" priority="1">templates/appPersonnel/note/saisie_2.html.twig:14</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>atitle.retour_synthese</source>
@@ -8115,7 +8098,6 @@
       <unit id="gF5205n" name="pas.etudiant.groupe">
           <notes>
               <note category="file-source" priority="1">templates/appPersonnel/note/saisie_2.html.twig:75</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>pas.etudiant.groupe</source>
@@ -8125,7 +8107,6 @@
       <unit id="kQ9e2Ef" name="parametres">
           <notes>
               <note category="file-source" priority="1">templates/appPersonnel/absence/index.html.twig:19</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>parametres</source>
@@ -8135,7 +8116,6 @@
       <unit id="sB_JXdU" name="app.personnel.absence.duree">
           <notes>
               <note category="file-source" priority="1">templates/appPersonnel/absence/voir.html.twig:27</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>app.personnel.absence.duree</source>
@@ -8145,7 +8125,6 @@
       <unit id="5yf3W8H" name="liste">
           <notes>
               <note category="file-source" priority="1">templates/api/matiere/document/export.html.twig:23</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>liste</source>
@@ -8155,7 +8134,6 @@
       <unit id="w9ayEHP" name="colonne.document">
           <notes>
               <note category="file-source" priority="1">templates/api/matiere/document/export.html.twig:29</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>colonne.document</source>
@@ -8165,7 +8143,6 @@
       <unit id="2DODNRQ" name="nom.prenom">
           <notes>
               <note category="file-source" priority="1">templates/api/matiere/document/export.html.twig:35</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>nom.prenom</source>
@@ -8175,7 +8152,6 @@
       <unit id="7Ehpbsb" name="mail.etudiant">
           <notes>
               <note category="file-source" priority="1">templates/api/matiere/document/export.html.twig:56</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>mail.etudiant</source>
@@ -8185,7 +8161,6 @@
       <unit id="DCQ2BW1" name="format.document">
           <notes>
               <note category="file-source" priority="1">templates/api/matiere/document/export.html.twig:62</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>format.document</source>
@@ -8195,7 +8170,6 @@
       <unit id="FCMaAEo" name="generer.fichier">
           <notes>
               <note category="file-source" priority="1">templates/api/matiere/document/export.html.twig:109</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>generer.fichier</source>
@@ -8205,7 +8179,6 @@
       <unit id="ysfObIR" name="eqtd">
           <notes>
               <note category="file-source" priority="1">templates/bloc_previsionnel/total.html.twig:15</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>eqtd</source>
@@ -8215,7 +8188,6 @@
       <unit id="KMrrFXA" name="heures.complementaires">
           <notes>
               <note category="file-source" priority="1">templates/bloc_previsionnel/total.html.twig:26</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>heures.complementaires</source>
@@ -8225,7 +8197,6 @@
       <unit id="lPYB_Al" name="s.heading">
           <notes>
               <note category="file-source" priority="1">templates/trombinoscope/trombiPersonnel.html.twig:3</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>s.heading</source>
@@ -8247,7 +8218,6 @@
               </note>
               <note category="file-source" priority="1">templates/administration/notes/index.html.twig:12</note>
               <note category="file-source" priority="1">templates/administration/fin_semestre/index.html.twig:12</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>atitle.changer.semestre</source>
@@ -8256,8 +8226,7 @@
       </unit>
       <unit id="ULyVyBV" name="atitle.save_pdf">
           <notes>
-              <note category="file-source" priority="1">templates/administration/absence/liste.html.twig:26</note>
-              <note category="state" priority="1">new</note>
+              <note category="state" priority="1">obsolete</note>
           </notes>
           <segment>
               <source>atitle.save_pdf</source>
@@ -8267,7 +8236,6 @@
       <unit id="CA_QRYl" name="liste.etudiants.semestre">
           <notes>
               <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:4</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>liste.etudiants.semestre</source>
@@ -8277,7 +8245,6 @@
       <unit id="q_leXud" name="table.groupes">
           <notes>
               <note category="file-source" priority="1">templates/administration/etudiant/semestre.html.twig:53</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>table.groupes</source>
@@ -8287,7 +8254,6 @@
       <unit id="NcvVIWG" name="choisir.un.semestre">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:31</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>choisir.un.semestre</source>
@@ -8297,7 +8263,6 @@
       <unit id="5ZmRAa_" name="choisir.dabord.un.semestre">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:43</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>choisir.dabord.un.semestre</source>
@@ -8307,7 +8272,6 @@
       <unit id="vqapDES" name="volume.matiere">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:62</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>volume.matiere</source>
@@ -8317,7 +8281,6 @@
       <unit id="Ejx329n" name="choisir.dabord.une.matiere">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:62</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>choisir.dabord.une.matiere</source>
@@ -8327,7 +8290,6 @@
       <unit id="gC4OO5L" name="explication.volume.horaire">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:66</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>explication.volume.horaire</source>
@@ -8337,7 +8299,6 @@
       <unit id="AwtaKbh" name="nb.seance.indicatif">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:67</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>nb.seance.indicatif</source>
@@ -8347,7 +8308,6 @@
       <unit id="Gs7tdAP" name="intervenant">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:72</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>intervenant</source>
@@ -8359,7 +8319,6 @@
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:78</note>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:81</note>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:84</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>nb.h.gr.</source>
@@ -8371,7 +8330,6 @@
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:79</note>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:82</note>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:85</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>nb.gr.</source>
@@ -8381,7 +8339,6 @@
       <unit id="o1ZHmv9" name="choisir.intervenant">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:93</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>choisir.intervenant</source>
@@ -8391,7 +8348,6 @@
       <unit id="SGKd261" name="ajouter.intervenant">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:125</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>ajouter.intervenant</source>
@@ -8401,7 +8357,6 @@
       <unit id="H9gSgXg" name="synthese">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:132</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>synthese</source>
@@ -8411,7 +8366,6 @@
       <unit id="UUWyoDL" name="total.cm">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:133</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>total.cm</source>
@@ -8421,7 +8375,6 @@
       <unit id="UU4bVT4" name="total.td">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:135</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>total.td</source>
@@ -8431,7 +8384,6 @@
       <unit id="FamHqlY" name="total.tp">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:137</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>total.tp</source>
@@ -8441,7 +8393,6 @@
       <unit id="0Cz0o8S" name="total.eq.td">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:142</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>total.eq.td</source>
@@ -8451,7 +8402,6 @@
       <unit id="owWfixZ" name="total.etudiant">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:144</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>total.etudiant</source>
@@ -8461,7 +8411,6 @@
       <unit id="PoRo.kB" name="total.matiere">
           <notes>
               <note category="file-source" priority="1">templates/administration/previsionnel/new.html.twig:146</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>total.matiere</source>
@@ -8472,7 +8421,6 @@
           <notes>
               <note category="file-source" priority="1">templates/administration/etudiant_groupe/index.html.twig:4
               </note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>gestion.des.groupes.semestre.heading</source>
@@ -8483,7 +8431,6 @@
           <notes>
               <note category="file-source" priority="1">templates/administration/type_groupe/show.html.twig:4</note>
               <note category="file-source" priority="1">templates/administration/type_groupe/show.html.twig:15</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>adm.type_groupe.show.heading</source>
@@ -8493,7 +8440,6 @@
       <unit id="HeBtyGn" name="gestion.du.semestre.heading">
           <notes>
               <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:4</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>gestion.du.semestre.heading</source>
@@ -8503,7 +8449,6 @@
       <unit id="RsRfWnx" name="changer.de.semestre">
           <notes>
               <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:12</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>changer.de.semestre</source>
@@ -8513,7 +8458,6 @@
       <unit id="VGnabIA" name="gestion.des.absences">
           <notes>
               <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:34</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>gestion.des.absences</source>
@@ -8523,7 +8467,6 @@
       <unit id="iw.ULbh" name="saisir.absences">
           <notes>
               <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:37</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>saisir.absences</source>
@@ -8532,8 +8475,7 @@
       </unit>
       <unit id="eY4QL8n" name="afficher.les.absences">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:63</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:66</note>
           </notes>
           <segment>
               <source>afficher.les.absences</source>
@@ -8542,8 +8484,7 @@
       </unit>
       <unit id="FPBD0jP" name="justifier.les.absences">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:66</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:69</note>
           </notes>
           <segment>
               <source>justifier.les.absences</source>
@@ -8552,8 +8493,7 @@
       </unit>
       <unit id="YlZ4JLL" name="commission.des.absences">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:69</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:72</note>
           </notes>
           <segment>
               <source>commission.des.absences</source>
@@ -8562,8 +8502,7 @@
       </unit>
       <unit id="0cH1vJn" name="gestion.des.notes">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:76</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:79</note>
           </notes>
           <segment>
               <source>gestion.des.notes</source>
@@ -8572,8 +8511,7 @@
       </unit>
       <unit id="2B.2w.f" name="exporter.xlsx">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:85</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:91</note>
           </notes>
           <segment>
               <source>exporter.xlsx</source>
@@ -8582,8 +8520,7 @@
       </unit>
       <unit id="m2WiE9r" name="afficher.les.notes">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:96</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:102</note>
           </notes>
           <segment>
               <source>afficher.les.notes</source>
@@ -8592,8 +8529,7 @@
       </unit>
       <unit id="F1EtOS5" name="demandes.rattrapages">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:100</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:106</note>
           </notes>
           <segment>
               <source>demandes.rattrapages</source>
@@ -8602,8 +8538,7 @@
       </unit>
       <unit id="fprFonO" name="gestion.des.etudiants">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:107</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:113</note>
           </notes>
           <segment>
               <source>gestion.des.etudiants</source>
@@ -8612,8 +8547,7 @@
       </unit>
       <unit id="9t7UDCs" name="Ajouter.des.etudiants">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:110</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:116</note>
           </notes>
           <segment>
               <source>Ajouter.des.etudiants</source>
@@ -8622,8 +8556,7 @@
       </unit>
       <unit id=".rNAEEN" name="donnees.des.etudiants">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:133</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:142</note>
           </notes>
           <segment>
               <source>donnees.des.etudiants</source>
@@ -8632,8 +8565,7 @@
       </unit>
       <unit id="Lxtk9oN" name="groupes">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:135</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:146</note>
           </notes>
           <segment>
               <source>groupes</source>
@@ -8642,8 +8574,7 @@
       </unit>
       <unit id="xrzuYmk" name="gerer.fin.semestre">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:142</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:153</note>
           </notes>
           <segment>
               <source>gerer.fin.semestre</source>
@@ -8652,8 +8583,7 @@
       </unit>
       <unit id="rG5oqR1" name="simulation.sous-commission">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:155</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:166</note>
           </notes>
           <segment>
               <source>simulation.sous-commission</source>
@@ -8662,8 +8592,7 @@
       </unit>
       <unit id="cgYAkl7" name="preparer.sous-commission">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:157</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:168</note>
           </notes>
           <segment>
               <source>preparer.sous-commission</source>
@@ -8672,8 +8601,7 @@
       </unit>
       <unit id="CtpuCRD" name="changement.semestre">
           <notes>
-              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:159</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:170</note>
           </notes>
           <segment>
               <source>changement.semestre</source>
@@ -8683,7 +8611,6 @@
       <unit id="6fg44VU" name="liste.des.notes.du.semestre">
           <notes>
               <note category="file-source" priority="1">templates/administration/notes/index.html.twig:4</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>liste.des.notes.du.semestre</source>
@@ -8692,8 +8619,7 @@
       </unit>
       <unit id="n.dSarn" name="table.intervenants">
           <notes>
-              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:41</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:55</note>
           </notes>
           <segment>
               <source>table.intervenants</source>
@@ -8702,8 +8628,7 @@
       </unit>
       <unit id="Xu5YSIq" name="detail.evaluation">
           <notes>
-              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:75</note>
-              <note category="state" priority="1">new</note>
+              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:89</note>
           </notes>
           <segment>
               <source>detail.evaluation</source>
@@ -8712,8 +8637,7 @@
       </unit>
       <unit id="zUO6JFO" name="afficher_masquer">
           <notes>
-              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:84</note>
-              <note category="state" priority="1">new</note>
+              <note category="state" priority="1">obsolete</note>
           </notes>
           <segment>
               <source>afficher_masquer</source>
@@ -8722,8 +8646,7 @@
       </unit>
       <unit id="jTkXepy" name="verouiller_deverouiller">
           <notes>
-              <note category="file-source" priority="1">templates/administration/notes/index.html.twig:91</note>
-              <note category="state" priority="1">new</note>
+              <note category="state" priority="1">obsolete</note>
           </notes>
           <segment>
               <source>verouiller_deverouiller</source>
@@ -8734,7 +8657,6 @@
           <notes>
               <note category="file-source" priority="1">templates/administration/groupe/show.html.twig:4</note>
               <note category="file-source" priority="1">templates/administration/groupe/show.html.twig:15</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>adm.groupe.show.heading</source>
@@ -8744,7 +8666,6 @@
       <unit id="5WwabuX" name="table.typeGroupe">
           <notes>
               <note category="file-source" priority="1">templates/administration/groupe/show.html.twig:33</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>table.typeGroupe</source>
@@ -8755,7 +8676,6 @@
           <notes>
               <note category="file-source" priority="1">templates/super-administration/help/edit.html.twig:4</note>
               <note category="file-source" priority="1">templates/super-administration/help/edit.html.twig:15</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>sadm.help.modification.heading</source>
@@ -8766,7 +8686,6 @@
           <notes>
               <note category="file-source" priority="1">templates/super-administration/help/new.html.twig:4</note>
               <note category="file-source" priority="1">templates/super-administration/help/new.html.twig:15</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>sadm.help.new.heading</source>
@@ -8777,7 +8696,6 @@
           <notes>
               <note category="file-source" priority="1">templates/super-administration/help/index.html.twig:4</note>
               <note category="file-source" priority="1">templates/super-administration/help/index.html.twig:15</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>sadm.help.index.heading</source>
@@ -8788,7 +8706,6 @@
           <notes>
               <note category="file-source" priority="1">templates/super-administration/help/show.html.twig:4</note>
               <note category="file-source" priority="1">templates/super-administration/help/show.html.twig:15</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>sadm.help.show.heading</source>
@@ -8800,7 +8717,6 @@
               <note category="file-source" priority="1">
                   templates/super-administration/super_admin_homepage.html.twig:90
               </note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>help</source>
@@ -8810,7 +8726,6 @@
       <unit id="IQ1Bluc" name="label.capacite">
           <notes>
               <note category="file-source" priority="1">src/Form/SalleType.php:28</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>label.capacite</source>
@@ -8820,7 +8735,6 @@
       <unit id="YbzAVFu" name="label.typesalle">
           <notes>
               <note category="file-source" priority="1">src/Form/SalleType.php:29</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>label.typesalle</source>
@@ -8830,7 +8744,6 @@
       <unit id="ZZhOaXT" name="label.site">
           <notes>
               <note category="file-source" priority="1">src/Form/SalleType.php:38</note>
-              <note category="state" priority="1">new</note>
           </notes>
           <segment>
               <source>label.site</source>
@@ -8840,6 +8753,340 @@
       <unit id="47DEQpj" name="">
           <segment>
               <source></source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="L_BX65B" name="rechercher">
+          <notes>
+              <note category="file-source" priority="1">templates/base.html.twig:171</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>rechercher</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="8uYjw5r" name="security.login.deverouiller">
+          <notes>
+              <note category="file-source" priority="1">templates/security/lock.html.twig:44</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>security.login.deverouiller</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="ie_S1Z5" name="table.ue">
+          <notes>
+              <note category="file-source" priority="1">templates/bloc_notes_absences/mcc.html.twig:9</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>table.ue</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="V2amomi" name="table.nombre.notes">
+          <notes>
+              <note category="file-source" priority="1">templates/bloc_notes_absences/mcc.html.twig:10</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>table.nombre.notes</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="bWU84ZS" name="atitle.agenda">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/index.html.twig:22</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>atitle.agenda</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="RfpQR65" name="personnel">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:12</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>personnel</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="1..Lpql" name="septembre">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:43</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>septembre</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="aOcXyZQ" name="octobre">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:44</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>octobre</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="zyfeDcA" name="novembre">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:45</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>novembre</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="iMYT8S8" name="decembre">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:46</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>decembre</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="IB8z5vr" name="janvier">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:47</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>janvier</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="S2mkEFK" name="fevrier">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:48</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>fevrier</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="0Vi_Qdu" name="mars">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:52</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>mars</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="E6hvqex" name="avril">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:53</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>avril</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="fZgLveU" name="mai">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:54</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>mai</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="LsLH7vg" name="juin">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:55</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>juin</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="xFykTg." name="juillet">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:56</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>juillet</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="v.j9YCB" name="aout">
+          <notes>
+              <note category="file-source" priority="1">templates/planning/semestre.html.twig:57</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>aout</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="97C_w3T" name="voir.planning">
+          <notes>
+              <note category="file-source" priority="1">templates/default/index.html.twig:52</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>voir.planning</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="NCvWq52" name="bloc.actions.personnel.heading">
+          <notes>
+              <note category="file-source" priority="1">templates/user/composants/actions_personnel.html.twig:2</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>bloc.actions.personnel.heading</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="IQdg_6g" name="bureau">
+          <notes>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:21</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>bureau</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="x__PpO5" name="tel.pro">
+          <notes>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:22</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>tel.pro</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="1LWOZnS" name="numero.harpege">
+          <notes>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:23</note>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:42</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>numero.harpege</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="aeg0hIF" name="mail.personnel">
+          <notes>
+              <note category="file-source" priority="1">templates/user/composants/about.html.twig:44</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>mail.personnel</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="7FiVtuX" name="profil.heading">
+          <notes>
+              <note category="file-source" priority="1">templates/user/profil.html.twig:7</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>profil.heading</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="I4f8m9h" name="settins.vos.informations">
+          <notes>
+              <note category="file-source" priority="1">templates/user/settings.html.twig:25</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>settins.vos.informations</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="wwkSAIV" name="settins.vos.parametres">
+          <notes>
+              <note category="file-source" priority="1">templates/user/settings.html.twig:38</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>settins.vos.parametres</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="G4eGyQ0" name="table.diplomes">
+          <notes>
+              <note category="file-source" priority="1">templates/user/settings.html.twig:46</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>table.diplomes</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="RqmkWR9" name="table.par.defaut">
+          <notes>
+              <note category="file-source" priority="1">templates/user/settings.html.twig:47</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>table.par.defaut</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="hycyMwG" name="erreur.type.user">
+          <notes>
+              <note category="file-source" priority="1">templates/user/settings.html.twig:68</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>erreur.type.user</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="_htlcwk" name="label.envoyer.demande">
+          <notes>
+              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:12</note>
+              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:12</note>
+              <note category="file-source" priority="1">templates/appEtudiant/rattrapage/index.html.twig:12</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>label.envoyer.demande</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="W9.GBe_" name="atitle.accepter.la.demande">
+          <notes>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:74</note>
+              <note category="file-source" priority="1">templates/administration/rattrapage/index.html.twig:81</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>atitle.accepter.la.demande</source>
+              <target></target>
+          </segment>
+      </unit>
+      <unit id="QppWdJM" name="synthese.des.parcours">
+          <notes>
+              <note category="file-source" priority="1">templates/administration/semestre/index.html.twig:144</note>
+              <note category="state" priority="1">new</note>
+          </notes>
+          <segment>
+              <source>synthese.des.parcours</source>
               <target></target>
           </segment>
       </unit>

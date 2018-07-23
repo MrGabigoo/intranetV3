@@ -34,11 +34,23 @@
             <div class="card">
                 <h4 class="card-title">{{ 'prochains.evenements.heading'|trans }}</h4>
                 <div class="card-body">
-                    {% for date in dates %}
-
-                    {% else %}
-                        <li class="alert alert-info">{{ 'pas.encore.date'|trans }}</li>
-                    {% endfor %}
+                    <ol class="timeline timeline-activity timeline-point-sm timeline-content-right text-left w-100">
+                        {% for date in dates %}
+                            <li class="timeline-block">
+                                <div class="timeline-point timeline-point-primary">
+                                    <span class="badge badge-ring badge-primary"></span>{# todo: varier les couleurs en fonction des types ? #}
+                                </div>
+                                <div class="timeline-content">
+                                    <time datetime="{{ date.dateDebut|date('Y-m-d') }}">{{ date.dateDebut|localizeddate('short', 'short', app.request.getLocale()) }}</time>
+                                    <p>{{ date.libelle }} : {{ date.texte }}</p>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="alert alert-info">{{ 'pas.encore.date'|trans }}</li>
+                        {% endfor %}
+                        <a href="{{ path('planning_index', {annee: user_data.anneeUniversitaire}) }}"
+                           class="pull-right">{{ 'voir.planning'|trans }}</a>
+                    </ol>
                 </div>
             </div>
         </div>
