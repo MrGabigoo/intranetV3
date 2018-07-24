@@ -26,12 +26,6 @@ class MyExport
         $this->excel = $excel;
     }
 
-
-    public function genereFichier($exportTypeDocument, $exportFormat, $exportChamps, $exportFiltre, $matiere): void
-    {
-
-    }
-
     /**
      * @param        $format
      * @param        $data
