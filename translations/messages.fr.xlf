@@ -7942,5 +7942,59 @@
         <target>article.add.success.flash</target>
       </segment>
     </unit>
+    <unit id="ssEkU20" name="Nom">
+      <segment>
+        <source>Nom</source>
+        <target>Nom</target>
+      </segment>
+    </unit>
+    <unit id="4yW.j5A" name="Prénom">
+      <segment>
+        <source>Prénom</source>
+        <target>Prénom</target>
+      </segment>
+    </unit>
+    <unit id="L1iK.hS" name="nom">
+      <segment>
+        <source>nom</source>
+        <target>nom</target>
+      </segment>
+    </unit>
+    <unit id="GjJemvH" name="num">
+      <segment>
+        <source>num</source>
+        <target>num</target>
+      </segment>
+    </unit>
+    <unit id="ANjT8Rc" name="mail">
+      <segment>
+        <source>mail</source>
+        <target>mail</target>
+      </segment>
+    </unit>
+    <unit id="6UY9zPB" name="Place">
+      <segment>
+        <source>Place</source>
+        <target>Place</target>
+      </segment>
+    </unit>
+    <unit id="2VoScIA" name="Présence">
+      <segment>
+        <source>Présence</source>
+        <target>Présence</target>
+      </segment>
+    </unit>
+    <unit id="2NosSd8" name="Note">
+      <segment>
+        <source>Note</source>
+        <target>Note</target>
+      </segment>
+    </unit>
+    <unit id="EwdJr6i" name="Remise Copie">
+      <segment>
+        <source>Remise Copie</source>
+        <target>Remise Copie</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

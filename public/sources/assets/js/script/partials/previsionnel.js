@@ -174,6 +174,9 @@ $(document).on('click', '#btnGenereFichier', function (e) {
       'exportChamps': selectedChamps,
       'exportFormat': $('input[type=radio][name=exportFormat]:checked').val(),
       'exportFiltre': $('input[type=radio][name=exportFiltre]:checked').val()
+    },
+    success: function(fichier) {
+      
     }
   })
 });

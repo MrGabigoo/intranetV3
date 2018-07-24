@@ -8,8 +8,14 @@
 
 namespace App\MesClasses\Excel;
 
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Style;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class MyExcelWriter
@@ -30,7 +36,7 @@ class MyExcelWriter
     public function __construct(TranslatorInterface $translator)
     {
         self::$spreadsheet = new Spreadsheet();
-        self::$sheet = self::$spreadsheet->getActiveSheet();
+        self::$spreadsheet->removeSheetByIndex(0);
         self::$translator = $translator;
     }
 
@@ -51,6 +57,15 @@ class MyExcelWriter
     }
 
     /**
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public static function createSheet($libelle)
+    {
+        self::$spreadsheet->createSheet()->setTitle($libelle);
+        self::$sheet = self::$spreadsheet->getSheetByName($libelle);
+    }
+
+    /**
      * @param     $array
      * @param int $col
      * @param int $row
@@ -58,7 +73,11 @@ class MyExcelWriter
     public static function writeHeader($array, $col = 1, $row = 1)
     {
         foreach ($array as $value) {
-            self::writeCellXY($col, $row, self::$translator->trans($value));
+            if (!empty($value) && $value !== null && $value !== '#') {
+                $value = self::$translator->trans($value);
+            }
+
+            self::writeCellXY($col, $row, $value);
             $col++;
         }
     }
@@ -75,5 +94,164 @@ class MyExcelWriter
         //traiter les options
     }
 
+    /**
+     * @param       $adresse
+     * @param       $value
+     * @param array $options
+     *
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public static function writeCellName($adresse, $value, array $options = [])
+    {
+        self::$sheet->setCellValue($adresse, $value);
 
+        if (is_array($options) && array_key_exists('style', $options)) {
+            switch ($options['style']) {
+                case 'HORIZONTAL_RIGHT':
+                    self::$sheet->getStyle($adresse)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_RIGHT);
+                    break;
+                case 'HORIZONTAL_CENTER':
+                    self::$sheet->getStyle($adresse)->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+                    break;
+                case 'numerique':
+                    self::$sheet->getStyle($adresse)->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+                    break;
+                case 'numerique3':
+                    self::$sheet->getStyle($adresse)->getNumberFormat()->setFormatCode('#,##0.000');
+                    break;
+
+            }
+        }
+    }
+
+    /**
+     * @param $col
+     * @param $lig
+     * @param $couleur
+     *
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public static function colorCellRange($col, $lig, $couleur)
+    {
+        $cell = Coordinate::stringFromColumnIndex($col) . $lig;
+        self::colorCells($cell, $couleur);
+    }
+
+    /**
+     * @param $cells
+     * @param $couleur
+     *
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public static function colorCells($cells, $couleur)
+    {
+        self::$sheet->getStyle($cells)->getFill()
+            ->setFillType(Fill::FILL_SOLID)
+            ->getStartColor()->setARGB($couleur);
+    }
+
+    /**
+     * @param $col1
+     * @param $lig1
+     * @param $col2
+     * @param $lig2
+     *
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public static function borderCellsRange($col1, $lig1, $col2, $lig2)
+    {
+        $cell1 = Coordinate::stringFromColumnIndex($col1) . $lig1;
+        $cell2 = Coordinate::stringFromColumnIndex($col2) . $lig2;
+        self::borderCells($cell1 . ':' . $cell2);
+    }
+
+    /**
+     * @param $cells
+     *
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public static function borderCells($cells)
+    {
+        self::$sheet->getStyle($cells)->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
+    }
+
+    /**
+     * @param integer $ligne
+     * @param integer $taille
+     */
+    public static function getRowDimension($ligne, $taille)
+    {
+        self::$sheet->getRowDimension($ligne)->setRowHeight($taille);
+    }
+
+    /**
+     * @param string  $col
+     * @param integer $taille
+     */
+    public static function getColumnDimension($col, $taille)
+    {
+        self::$sheet->getColumnDimension($col)->setWidth($taille);
+    }
+
+    /**
+     * @param $col
+     */
+    public static function getColumnAutoSize($col)
+    {
+        if (is_numeric($col)) {
+            $col = Coordinate::stringFromColumnIndex($col);
+        }
+
+        self::$sheet->getColumnDimension($col)->setAutoSize(true);
+    }
+
+    /**
+     * @param $col1
+     * @param $lig1
+     * @param $col2
+     * @param $lig2
+     *
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public static function mergeCellsCaR($col1, $lig1, $col2, $lig2)
+    {
+        $cell1 = Coordinate::stringFromColumnIndex($col1) . $lig1;
+        $cell2 = Coordinate::stringFromColumnIndex($col2) . $lig2;
+        self::mergeCells($cell1 . ':' . $cell2);
+    }
+
+    /**
+     * @param $cells
+     *
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public static function mergeCells($cells)
+    {
+        self::$sheet->mergeCells($cells);
+    }
+
+    /**
+     * @param string[] $tEnTete
+     * @param integer  $colonne
+     * @param integer  $ligne
+     */
+    /*public function ecritLigne($tEnTete, $colonne, $ligne)
+    {
+        foreach ($tEnTete as $t) {
+            $this->ecritCelluleCaR($colonne, $ligne, $t);
+            $colonne++;
+        }
+    }*/
+
+    /**
+     * @param integer $colonne
+     * @param integer $ligne
+     * @param         $texte
+     * @param string  $style
+     */
+   /* public function ecritCelluleCaR($colonne, $ligne, $texte, $style = '')
+    {
+        $cell = PHPExcel_Cell::stringFromColumnIndex($colonne) . $ligne;
+        $this->ecritCellule($cell, $texte, $style);
+    }*/
 }

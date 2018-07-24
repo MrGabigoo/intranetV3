@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\MesClasses\MyExport;
+use App\MesClasses\MyExportListing;
 use App\Repository\MatiereRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,12 +17,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class ExportController extends Controller
 {
     /**
-     * @Route("/listing", name="export_listing", options={"expose":true})
+     * @Route("/listing", name="export_listing")
      * @param MatiereRepository $matiereRepository
-     * @param MyExport          $myExport
+     * @param MyExportListing          $myExport
      * @param Request           $request
      */
-    public function listing(MatiereRepository $matiereRepository, MyExport $myExport, Request $request): void
+    public function listing(MatiereRepository $matiereRepository, MyExportListing $myExport, Request $request)
     {
         $matiere = $request->request->get('matiere');
         if ($matiere !== 0) {
@@ -33,6 +34,6 @@ class ExportController extends Controller
         $exportFormat = $request->request->get('exportFormat');
         $exportFiltre = $request->request->get('exportFiltre');
 
-        $myExport->genereFichier($exportTypeDocument, $exportFormat, $exportChamps, $exportFiltre, $matiere);
+        return $myExport->genereFichier($exportTypeDocument, $exportFormat, $exportChamps, $exportFiltre, $matiere);
     }
 }
