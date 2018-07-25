@@ -6,6 +6,7 @@ use App\Controller\BaseController;
 use App\Entity\Constantes;
 use App\Entity\Date;
 use App\Form\DatesType;
+use App\MesClasses\MyExport;
 use App\Repository\DateRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,11 +32,20 @@ class DateController extends BaseController
 
     /**
      * @Route("/export.{_format}", name="administration_date_export", methods="GET", requirements={"_format"="csv|xlsx|pdf"})
+     * @param MyExport          $myExport
+     * @param DateRepository $dateRepository
+     * @param                   $_format
+     *
+     * @return Response
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    public function export(): Response
+    public function export(MyExport $myExport, DateRepository $dateRepository, $_format): Response
     {
-        //save en csv
-        return new Response('', Response::HTTP_OK);
+        $dates = $dateRepository->findByFormation($this->dataUserSession->getFormation(), 0);
+        $response = $myExport->genereFichierGenerique($_format, $dates, 'dates',
+            ['date_administration', 'utilisateur'], ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]);//todo: définir les colonnes. copier/coller ici
+
+        return $response;
     }
 
     /**

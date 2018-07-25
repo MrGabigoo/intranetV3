@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,6 +35,16 @@ class Salle extends BaseEntity
      * @ORM\ManyToOne(targetEntity="App\Entity\Site", inversedBy="salles")
      */
     private $site;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SalleExamen", mappedBy="salle")
+     */
+    private $salleExamens;
+
+    public function __construct()
+    {
+        $this->salleExamens = new ArrayCollection();
+    }
 
     /**
      * @return null|string
@@ -110,6 +122,37 @@ class Salle extends BaseEntity
     public function setSite(?Site $site): self
     {
         $this->site = $site;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SalleExamen[]
+     */
+    public function getSalleExamens(): Collection
+    {
+        return $this->salleExamens;
+    }
+
+    public function addSalleExamen(SalleExamen $salleExamen): self
+    {
+        if (!$this->salleExamens->contains($salleExamen)) {
+            $this->salleExamens[] = $salleExamen;
+            $salleExamen->setSalle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSalleExamen(SalleExamen $salleExamen): self
+    {
+        if ($this->salleExamens->contains($salleExamen)) {
+            $this->salleExamens->removeElement($salleExamen);
+            // set the owning side to null (unless already changed)
+            if ($salleExamen->getSalle() === $this) {
+                $salleExamen->setSalle(null);
+            }
+        }
 
         return $this;
     }

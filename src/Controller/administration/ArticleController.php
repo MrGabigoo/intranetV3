@@ -27,7 +27,7 @@ class ArticleController extends BaseController
      */
     public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('administration/article/index.html.twig', ['articles' => $articleRepository->findAll()]);
+        return $this->render('administration/article/index.html.twig', ['articles' => $articleRepository->findByFormation($this->dataUserSession->getFormation())]);
     }
 
     /**

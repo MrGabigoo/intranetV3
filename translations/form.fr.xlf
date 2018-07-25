@@ -2333,5 +2333,35 @@
         <target>Nb. Heures TD</target>
       </segment>
     </unit>
+    <unit id="EqSWKvg" name="libelle.salle">
+      <segment>
+        <source>libelle.salle</source>
+        <target>libelle.salle</target>
+      </segment>
+    </unit>
+    <unit id="fagJyiv" name="libelle.nbColonnes">
+      <segment>
+        <source>libelle.nbColonnes</source>
+        <target>libelle.nbColonnes</target>
+      </segment>
+    </unit>
+    <unit id="qQjBnkO" name="libelle.nbRangs">
+      <segment>
+        <source>libelle.nbRangs</source>
+        <target>libelle.nbRangs</target>
+      </segment>
+    </unit>
+    <unit id="RTz._Io" name="libelle.capacite">
+      <segment>
+        <source>libelle.capacite</source>
+        <target>libelle.capacite</target>
+      </segment>
+    </unit>
+    <unit id="Ogoj_MK" name="libelle.placesInterdites">
+      <segment>
+        <source>libelle.placesInterdites</source>
+        <target>libelle.placesInterdites</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

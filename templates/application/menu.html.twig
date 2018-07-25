@@ -23,6 +23,11 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link changeapplication {% if onglet == 'salle_examen' %}active{% endif %}"
+                   href="{{ path('application_personnel_salle_examen_index') }}" role="tab">{{ 'menu.salle_examen'|trans }}</a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link changeapplication {% if onglet == 'quizz' %}active{% endif %}"
                    href="{{ path('application_personnel_quizz_index') }}" role="tab">{{ 'menu.quizz'|trans }}</a>
             </li>

@@ -7996,5 +7996,53 @@
         <target>Remise Copie</target>
       </segment>
     </unit>
+    <unit id="MoXQy0T" name="adm.parametres.formation">
+      <segment>
+        <source>adm.parametres.formation</source>
+        <target>adm.parametres.formation</target>
+      </segment>
+    </unit>
+    <unit id="nJU8FK0" name="adm.salle_examens">
+      <segment>
+        <source>adm.salle_examens</source>
+        <target>adm.salle_examens</target>
+      </segment>
+    </unit>
+    <unit id="HFwLaDj" name="adm.salle_examen.index.heading">
+      <segment>
+        <source>adm.salle_examen.index.heading</source>
+        <target>adm.salle_examen.index.heading</target>
+      </segment>
+    </unit>
+    <unit id="jndPAa0" name="table.nbColonnes">
+      <segment>
+        <source>table.nbColonnes</source>
+        <target>table.nbColonnes</target>
+      </segment>
+    </unit>
+    <unit id="BXNL_I6" name="table.nbRangs">
+      <segment>
+        <source>table.nbRangs</source>
+        <target>table.nbRangs</target>
+      </segment>
+    </unit>
+    <unit id="li0bJoe" name="table.placesInterdites">
+      <segment>
+        <source>table.placesInterdites</source>
+        <target>table.placesInterdites</target>
+      </segment>
+    </unit>
+    <unit id="3kXPjXQ" name="adm.salle_examen.new.heading">
+      <segment>
+        <source>adm.salle_examen.new.heading</source>
+        <target>adm.salle_examen.new.heading</target>
+      </segment>
+    </unit>
+    <unit id="jf0RtiA" name="menu.salle_examen">
+      <segment>
+        <source>menu.salle_examen</source>
+        <target>menu.salle_examen</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -185,6 +185,11 @@ class Formation extends BaseEntity
      */
     private $diplomes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SalleExamen", mappedBy="formation")
+     */
+    private $salleExamens;
+
     public function __construct()
     {
         $this->anneeCourante = (int)date('Y');
@@ -194,6 +199,7 @@ class Formation extends BaseEntity
         $this->actualites = new ArrayCollection();
         $this->trelloTaches = new ArrayCollection();
         $this->diplomes = new ArrayCollection();
+        $this->salleExamens = new ArrayCollection();
     }
 
     /**
@@ -741,6 +747,37 @@ class Formation extends BaseEntity
             // set the owning side to null (unless already changed)
             if ($diplome->getFormation() === $this) {
                 $diplome->setFormation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SalleExamen[]
+     */
+    public function getSalleExamens(): Collection
+    {
+        return $this->salleExamens;
+    }
+
+    public function addSalleExamen(SalleExamen $salleExamen): self
+    {
+        if (!$this->salleExamens->contains($salleExamen)) {
+            $this->salleExamens[] = $salleExamen;
+            $salleExamen->setFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSalleExamen(SalleExamen $salleExamen): self
+    {
+        if ($this->salleExamens->contains($salleExamen)) {
+            $this->salleExamens->removeElement($salleExamen);
+            // set the owning side to null (unless already changed)
+            if ($salleExamen->getFormation() === $this) {
+                $salleExamen->setFormation(null);
             }
         }
 

@@ -30,6 +30,10 @@
             {{ render(controller(
                 'App\\Controller\\appPersonnel\\QuizzController::index'
             )) }}
+        {% elseif onglet == 'salle_examen' %}
+            {{ render(controller(
+                'App\\Controller\\appPersonnel\\SalleExamenController::index'
+            )) }}
 
         {% endif %}
     {% else %}
