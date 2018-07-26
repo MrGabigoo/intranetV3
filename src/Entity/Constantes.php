@@ -50,6 +50,7 @@ class Constantes
     public const FORMAT_PDF = 'pdf';
 
     public const NB_RESULTS_PER_PAGE = 2;
+    const BASE_URL = '';
 
     /**
      * @return array

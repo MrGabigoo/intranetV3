@@ -9,9 +9,13 @@
 namespace App\MesClasses;
 
 
+use App\Entity\Constantes;
+use App\Entity\Etudiant;
+use App\Entity\Groupe;
 use App\Entity\Matiere;
 use App\Entity\SalleExamen;
 use App\Entity\TypeGroupe;
+use App\MesClasses\Pdf\MyPDF;
 use App\Repository\EtudiantRepository;
 use App\Repository\GroupeRepository;
 use App\Repository\MatiereRepository;
@@ -67,15 +71,24 @@ class MySalleExamen
         $this->etudiantRepository = $etudiantRepository;
     }
 
-
-    public function genereAction(
+    /**
+     * @param $requestdateeval
+     * @param $requestsalle
+     * @param $requestmatiere
+     * @param $requesttypegroupe
+     * @param $requestgroupes
+     * @param $requestenseignant1
+     * @param $requestenseignant2
+     */
+    public function genereDocument(
         $requestdateeval,
-            $requestsalle,
-            $requestmatiere,
-            $requesttypegroupe,
-            $requestgroupes
-    )
-    {
+        $requestsalle,
+        $requestmatiere,
+        $requesttypegroupe,
+        $requestgroupes,
+        $requestenseignant1,
+        $requestenseignant2
+    ) {
         $this->salle = $this->salleExamenRepository->find($requestsalle);
         $this->matiere = $this->matiereRepository->find($requestmatiere);
 
@@ -86,13 +99,13 @@ class MySalleExamen
                 $this->typeGroupe = $this->typeGroupeRepository->find($requesttypegroupe);
                 $groupes = $this->typeGroupe->getGroupes();
 
-                $typeg = $groupes[0]->getTypegroupe()->getTypegroupe();
+                $typeg = $groupes[0]->getTypegroupe();
                 $grdetail = array();
                 $etudiants = array();
-                /** @var Groupes $gr */
+                /** @var Groupe $gr */
                 foreach ($groupes as $gr) {
-                    foreach ($request->request->get('detail_groupes') as $dgr) {
-                        if ($gr->getId() == $dgr) {
+                    foreach ($requestgroupes as $dgr) {
+                        if ($gr->getId() === $dgr) {
                             $grdetail[] = $gr;
                             foreach ($gr->getEtudiants() as $etu) {
                                 $etudiants[] = $etu;
@@ -102,7 +115,7 @@ class MySalleExamen
                 }
             } else {
                 $grdetail = $this->groupeDefaut($this->matiere->getSemestre());
-                $typeg = $grdetail[0]->getTypegroupe()->getTypegroupe();
+                $typeg = $grdetail[0]->getTypegroupe();
                 $etudiants = $this->etudiantRepository->findBySemestre($this->matiere->getSemestre());
             }
 
@@ -112,28 +125,20 @@ class MySalleExamen
                 $tabplace = $this->calculPlaces();
 
                 /* document 1 par groupe */
-                $html = $this->renderView('DAKernelBundle:PDF:placement.html.twig', array(
+                $data = array(
                     'matiere'   => $this->matiere,
                     'etudiants' => $etudiants,
                     'tabplace'  => $this->placement($etudiants, $tabplace),
                     'typeg'     => $typeg,
                     'salle'     => $this->salle,
-                    'ens1'      => $this->recupereEnseignant($request->request->get('enseignant1')),
-                    'ens2'      => $this->recupereEnseignant($request->request->get('enseignant2')),
+                    'ens1'      => $requestenseignant1 !== '' ? $this->personnelRepository->find($requestenseignant1) : null,
+                    'ens2'      => $requestenseignant2 !== '' ? $this->personnelRepository->find($requestenseignant2) : null,
                     'groupes'   => $grdetail,
                     'depreuve'  => (string)$requestdateeval,
-                    'linuxpath' => Configuration::BASE_URL
-                ));
+                    'linuxpath' => Constantes::BASE_URL
+                );
 
-                $options = new Options();
-                $options->set('isRemoteEnabled', true);
-                $options->set('isPhpEnabled', true);
-
-                $dompdf = new Dompdf($options);
-                $dompdf->loadHtml($html);
-                $dompdf->render();
-
-                return new Response ($dompdf->stream('Placement', array('Attachment' => 1)));
+                MyPDF::generePdf('pdf/placement.html.twig', $data, 'placement');
             }
             $this->container->get('session')->getFlashBag()->add('warning',
                 'Salle Trop petite Veuillez choisir une autre salle !');
@@ -141,19 +146,28 @@ class MySalleExamen
         }
     }
 
-
+    /**
+     * @param $semestre
+     *
+     * @return \App\Entity\Groupe[]|bool|\Doctrine\Common\Collections\Collection
+     */
     private function groupeDefaut($semestre)
     {
-        $typegroupe = $this->getDoctrine()->getRepository('DAKernelBundle:TypeGroupe')->findBy(array('semestre' => $semestre));
+        $typegroupe = $this->typeGroupeRepository->findBySemestre($semestre);
+
+        /** @var TypeGroupe $tg */
         foreach ($typegroupe as $tg) {
             if ($tg->getDefaut() === true) {
-                return $this->getDoctrine()->getRepository('DAKernelBundle:Groupes')->findBy(array('typegroupe' => $tg->getId()));
+                return $tg->getGroupes();
             }
         }
 
         return false;
     }
 
+    /**
+     * @return array
+     */
     private function calculPlaces()
     {
         $k = 0;
@@ -193,7 +207,8 @@ class MySalleExamen
         $placementetu = array();
         $placement = array();
         $i = 0;
-        /** @var Etudiants $etu */
+
+        /** @var Etudiant $etu */
         foreach ($etudiants as $etu) {
             $placementetu[$etu->getId()] = $tabplace[$i];
             $placement[$tabplace[$i]] = $etu;
