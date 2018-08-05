@@ -31,4 +31,24 @@ class AbsenceController extends BaseController
             'absence' => $absence
         ]);
     }
+
+    /**
+     *
+     * @Route("/justificatif/depot", name="app_etudiant_absence_justificatif_depot")
+     * @return Response
+     */
+    public function justificatifDepot()
+    {
+
+    }
+
+    /**
+     *
+     * @Route("/justificatif/depot", name="app_etudiant_absence_justificatif_etat")
+     * @return Response
+     */
+    public function justificatifEtat()
+    {
+        //return $this->render('app')
+    }
 }

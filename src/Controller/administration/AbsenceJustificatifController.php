@@ -1,0 +1,142 @@
+<?php
+
+namespace App\Controller\administration;
+
+use App\Controller\BaseController;
+use App\Entity\AbsenceJustificatif;
+use App\Entity\Constantes;
+use App\Entity\Etudiant;
+use App\Entity\Semestre;
+use App\Events;
+use App\MesClasses\MyAbsences;
+use App\MesClasses\MyExport;
+use App\Repository\AbsenceJustificatifRepository;
+use App\Repository\AbsenceRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\GenericEvent;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+/**
+ * Class AbsenceController
+ * @package App\Controller\administration
+ * @Route({"fr":"administration/absence/justificatif",
+ *         "en":"administration/en-absence"}
+ *)
+ */
+class AbsenceJustificatifController extends BaseController
+{
+
+
+    /**
+     * @Route("/semestre/{semestre}", name="administration_absences_justificatif_semestre_liste")
+     * @param Semestre $semestre
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function justificatif(
+        AbsenceJustificatifRepository $absenceJustificatifRepository,
+        Semestre $semestre
+    ): Response {
+        return $this->render('administration/absencejustificatif/justificatif.html.twig', [
+            'semestre'      => $semestre,
+            'justificatifs' => $absenceJustificatifRepository->findBySemestre($semestre,
+                $this->dataUserSession->getAnneeUniversitaire())
+        ]);
+    }
+
+
+    /**
+     * @Route("/semestre/{semestre}/export.{_format}", name="administration_absences_justificatif_semestre_export",
+     *                                                 requirements={"_format"="csv|xlsx|pdf"})
+     * @param MyExport   $myExport
+     * @param MyAbsences $myAbsences
+     * @param Semestre   $semestre
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function exportJustificatif(
+        MyExport $myExport,
+        AbsenceJustificatifRepository $absenceJustificatifRepository,
+        Semestre $semestre,
+        $_format
+    ): Response {
+        $justificatifs = $absenceJustificatifRepository->findBySemestre($semestre,
+            $this->dataUserSession->getAnneeUniversitaire());
+        $response = $myExport->genereFichierAbsence($_format, $justificatifs, 'absences_' . $semestre->getLibelle());
+
+        return $response;
+    }
+
+    /**
+     * @Route("/{id}", name="administration_absence_justificatif_delete", methods="DELETE")
+     * @param Request             $request
+     * @param AbsenceJustificatif $absenceJustificatif
+     *
+     * @return Response
+     */
+    public function delete(Request $request, AbsenceJustificatif $absenceJustificatif): Response
+    {
+        $id = $absenceJustificatif->getUuidString();
+        if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
+
+            $this->entityManager->remove($absenceJustificatif);
+            $this->entityManager->flush();
+            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS,
+                'absenceJustificatif.delete.success.flash');//todo: interet ? jamais affiché ?
+
+            return $this->json($id, Response::HTTP_OK);
+        }
+
+        $this->addFlashBag(Constantes::FLASHBAG_ERROR, 'absenceJustificatif.delete.error.flash');
+
+        return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * @Route("/show/{uuid}", name="administration_absence_justificatif_details")
+     * @param AbsenceJustificatif $absenceJustificatif
+     * @ParamConverter("absenceJustificatif", options={"mapping": {"uuid": "uuid"}})
+     *
+     * @return Response
+     */
+    public function details(AbsenceJustificatif $absenceJustificatif): Response
+    {
+        return $this->render('administration/absencejustificatif/details.html.twig', [
+            'justificatif' => $absenceJustificatif
+        ]);
+    }
+
+    /**
+     * @Route("/change-etat/{uuid}/{etat}", name="administration_absence_justificatif_change_etat", methods="GET",
+     *                                    requirements={"etat"="A|R|D"}, options={"expose":true})
+     * @ParamConverter("absenceJustificatif", options={"mapping": {"uuid": "uuid"}})
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param AbsenceJustificatif      $absenceJustificatif
+     * @param                          $etat
+     *
+     * @return Response
+     */
+    public function accepte(EventDispatcherInterface $eventDispatcher, AbsenceJustificatif $absenceJustificatif, $etat)
+    {
+            $absenceJustificatif->setEtat($etat);
+            $this->entityManager->flush();
+
+            if ($etat === 'A') {
+                //todo: Mettre à jour les absences en conséquence !!
+            }
+
+            if ($etat === 'A' || $etat === 'R') {
+                $event = new GenericEvent($absenceJustificatif);
+                $eventDispatcher->dispatch(Events::MAIL_DECISION_JUSTIFICATIF, $event);
+                $eventDispatcher->dispatch(Events::DECISION_JUSTIFICATIF, $event);
+            }
+
+            return new Response('', Response::HTTP_OK);
+    }
+}

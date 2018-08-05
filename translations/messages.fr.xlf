@@ -3947,7 +3947,7 @@
       </notes>
       <segment>
         <source>heure</source>
-        <target>heure</target>
+        <target>Heure</target>
       </segment>
     </unit>
     <unit id="RpC_3Cb" name="matiere">
@@ -7343,7 +7343,7 @@
       </notes>
       <segment>
         <source>mcc</source>
-        <target>MCC</target>
+        <target>Modalités de Contrôle des Connaissances</target>
       </segment>
     </unit>
     <unit id="sB_JXdU" name="app.personnel.absence.duree">
@@ -7486,7 +7486,7 @@
       </notes>
       <segment>
         <source>table.ue</source>
-        <target>table.ue</target>
+        <target>UE</target>
       </segment>
     </unit>
     <unit id="V2amomi" name="table.nombre.notes">
@@ -7495,7 +7495,7 @@
       </notes>
       <segment>
         <source>table.nombre.notes</source>
-        <target>table.nombre.notes</target>
+        <target>Nombre de notes</target>
       </segment>
     </unit>
     <unit id="7FiVtuX" name="profil.heading">
@@ -7670,7 +7670,7 @@
       </notes>
       <segment>
         <source>decision.rattrapage.acceptee</source>
-        <target>decision.rattrapage.acceptee</target>
+        <target>Demande de rattrapage acceptée</target>
       </segment>
     </unit>
     <unit id="k.Jo8RJ" name="decision.rattrapage.refusee">
@@ -7679,7 +7679,7 @@
       </notes>
       <segment>
         <source>decision.rattrapage.refusee</source>
-        <target>decision.rattrapage.refusee</target>
+        <target>Demande de rattrapage refusée</target>
       </segment>
     </unit>
     <unit id="RGGtXUU" name="Modification de la visibilité des notes effectuées">
@@ -7913,7 +7913,7 @@
       </notes>
       <segment>
         <source>voir.planning</source>
-        <target>voir.planning</target>
+        <target>Voir le planning annuel</target>
       </segment>
     </unit>
     <unit id="8uYjw5r" name="security.login.deverouiller">
@@ -8042,6 +8042,168 @@
       <segment>
         <source>menu.salle_examen</source>
         <target>menu.salle_examen</target>
+      </segment>
+    </unit>
+    <unit id="mIA2AJT" name="desposer.un.justificatif">
+      <segment>
+        <source>desposer.un.justificatif</source>
+        <target>desposer.un.justificatif</target>
+      </segment>
+    </unit>
+    <unit id="XOL9sGc" name="absence_justificatif_deposer">
+      <segment>
+        <source>absence_justificatif_deposer</source>
+        <target>absence_justificatif_deposer</target>
+      </segment>
+    </unit>
+    <unit id="RRW_8uU" name="absence_justificatif_etat">
+      <segment>
+        <source>absence_justificatif_etat</source>
+        <target>absence_justificatif_etat</target>
+      </segment>
+    </unit>
+    <unit id="RSjX2pM" name="adm.edt.index.heading">
+      <segment>
+        <source>adm.edt.index.heading</source>
+        <target>Emploi du temps</target>
+      </segment>
+    </unit>
+    <unit id="ymqz1G1" name="adm.edt.actions">
+      <segment>
+        <source>adm.edt.actions</source>
+        <target>Actions</target>
+      </segment>
+    </unit>
+    <unit id="gk_zRTZ" name="adm.edt.import.semaine">
+      <segment>
+        <source>adm.edt.import.semaine</source>
+        <target>Importer une semaine</target>
+      </segment>
+    </unit>
+    <unit id="KfGaT5M" name="adm.edt.effacer.semestre">
+      <segment>
+        <source>adm.edt.effacer.semestre</source>
+        <target>Effacer un semestre</target>
+      </segment>
+    </unit>
+    <unit id="J6LL7Gw" name="adm.edt.export">
+      <segment>
+        <source>adm.edt.export</source>
+        <target>Exports</target>
+      </segment>
+    </unit>
+    <unit id="rpJjZnM" name="adm.edt.comparaison">
+      <segment>
+        <source>adm.edt.comparaison</source>
+        <target>Outils de comparaison</target>
+      </segment>
+    </unit>
+    <unit id="HW1kz9v" name="adm.edt.service.realise">
+      <segment>
+        <source>adm.edt.service.realise</source>
+        <target>Services réalisés</target>
+      </segment>
+    </unit>
+    <unit id="DXDCUPr" name="semaine.precedente">
+      <segment>
+        <source>semaine.precedente</source>
+        <target>semaine précédente</target>
+      </segment>
+    </unit>
+    <unit id="6MD8e0j" name="semaine.suivante">
+      <segment>
+        <source>semaine.suivante</source>
+        <target>Semaine suivante</target>
+      </segment>
+    </unit>
+    <unit id="RxWiwKp" name="semaine.courante">
+      <segment>
+        <source>semaine.courante</source>
+        <target>Semaine courante</target>
+      </segment>
+    </unit>
+    <unit id="yDMNETC" name="edt.filtrer.jour">
+      <segment>
+        <source>edt.filtrer.jour</source>
+        <target>Afficher toutes les promos sur un jour</target>
+      </segment>
+    </unit>
+    <unit id="Ne_E6YW" name="edt.filtrer.salle">
+      <segment>
+        <source>edt.filtrer.salle</source>
+        <target>Filtrer par salle</target>
+      </segment>
+    </unit>
+    <unit id="CqxjSmQ" name="edt.filtrer.personnel">
+      <segment>
+        <source>edt.filtrer.personnel</source>
+        <target>Filtrer par personnel</target>
+      </segment>
+    </unit>
+    <unit id="zu4e2XV" name="edt.filtrer.matiere">
+      <segment>
+        <source>edt.filtrer.matiere</source>
+        <target>Filtrer par matiere</target>
+      </segment>
+    </unit>
+    <unit id="RKGHOYl" name="edt.filtrer.semaine">
+      <segment>
+        <source>edt.filtrer.semaine</source>
+        <target>Filtrer par semaine</target>
+      </segment>
+    </unit>
+    <unit id="1J..tsI" name="liste.justificatifs">
+      <segment>
+        <source>liste.justificatifs</source>
+        <target>liste.justificatifs</target>
+      </segment>
+    </unit>
+    <unit id="_8rY3bg" name="justificatif.absence.semestre.heading">
+      <segment>
+        <source>justificatif.absence.semestre.heading</source>
+        <target>Justificatifs d'absence du semestre</target>
+      </segment>
+    </unit>
+    <unit id="3vBi4lf" name="table.periode_absence">
+      <segment>
+        <source>table.periode_absence</source>
+        <target>Période de l'absence</target>
+      </segment>
+    </unit>
+    <unit id="2UsPLPY" name="table.etat_justificatif">
+      <segment>
+        <source>table.etat_justificatif</source>
+        <target>Etat du justificatif</target>
+      </segment>
+    </unit>
+    <unit id="F2buemm" name="table.motif">
+      <segment>
+        <source>table.motif</source>
+        <target>Motif de l'absence</target>
+      </segment>
+    </unit>
+    <unit id="wQEIgIa" name="atitle.accepter.le.justificatif">
+      <segment>
+        <source>atitle.accepter.le.justificatif</source>
+        <target>Accepter le justificatif et justifier les absences</target>
+      </segment>
+    </unit>
+    <unit id="UieEqF6" name="atitle.refuser.le.justificatif">
+      <segment>
+        <source>atitle.refuser.le.justificatif</source>
+        <target>Refuser le justificatif</target>
+      </segment>
+    </unit>
+    <unit id="_fPC3eG" name="detail.absencejustificatif">
+      <segment>
+        <source>detail.absencejustificatif</source>
+        <target>Détails du justificatif</target>
+      </segment>
+    </unit>
+    <unit id="GYo_DhY" name="atitle.annuler">
+      <segment>
+        <source>atitle.annuler</source>
+        <target>atitle.annuler</target>
       </segment>
     </unit>
   </file>

@@ -248,36 +248,37 @@ app.ready(function () {
   //require('./plugins/documents.js'
 
 
-  var idModal = 1
+var idModal = 1;
 
-  function openModal (titre) {
-
-
-    var html = '<div id="modal' + idModal + '" role="dialog" aria-hidden="true" class="modal fade" style="display: none;">\n' +
-      '                    <div class="modal-dialog modal-md modal-dialog-centered">\n' +
-      '                        <div tabindex="-1" class="modal-content">\n' +
-      '                            <header class="modal-header"><h5 class="modal-title">\n' +
-      '                                    ' + titre + '</h5>\n' +
-      '                                <button type="button" data-dismiss="modal" class="close">×</button>\n' +
-      '                            </header>\n' +
-      '                            <div class="modal-body"><p class="my-4"></p></div>\n' +
-      '                            <footer class="modal-footer">\n' +
-      '                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>\n' +
-      '                            </footer>\n' +
-      '                        </div>\n' +
-      '                    </div>\n' +
-      '                </div>'
+function openModal(titre)
+{
 
 
-  }
+  var html = '<div id="modal'+idModal+'" role="dialog" aria-hidden="true" class="modal fade" style="display: none;">\n' +
+    '                    <div class="modal-dialog modal-md modal-dialog-centered">\n' +
+    '                        <div tabindex="-1" class="modal-content">\n' +
+    '                            <header class="modal-header"><h5 class="modal-title">\n' +
+    '                                    '+ titre +'</h5>\n' +
+    '                                <button type="button" data-dismiss="modal" class="close">×</button>\n' +
+    '                            </header>\n' +
+    '                            <div class="modal-body"><p class="my-4"></p></div>\n' +
+    '                            <footer class="modal-footer">\n' +
+    '                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>\n' +
+    '                            </footer>\n' +
+    '                        </div>\n' +
+    '                    </div>\n' +
+    '                </div>';
 
-  $(document).on('click', '.page-link', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    var zone = $('#zone-pagination')
-    zone.empty()
-    zone.load($(this).attr('href'))
-  })
+
+}
+
+$(document).on('click', '.page-link', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var zone = $('#zone-pagination');
+  zone.empty();
+  zone.load($(this).attr('href'));
+});
 
   $.fn.editable.defaults.mode = 'inline'
   $.fn.editableform.buttons =
@@ -306,463 +307,541 @@ app.ready(function () {
   */
 
 
-  $(document).on('click', '.changeprofil', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
+$(document).on('click', '.changeprofil', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
 
-    $('.changeprofil').removeClass('active show')
-    $(this).addClass('active show')
-    $('#profilContent').empty().load($(this).attr('href'))
-  })
+  $('.changeprofil').removeClass('active show');
+  $(this).addClass('active show');
+  $('#profilContent').empty().load($(this).attr('href'));
+});
 
-  $(document).on('change', '.addfavori', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
+$(document).on('change', '.addfavori', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
 
-    $.ajax({
-      url: Routing.generate('user_add_favori.fr'),
-      method: 'POST',
-      data: {
-        'user': $(this).val(),
-        'etat': $(this).prop('checked')
-      }
-    })
-  })
-
-  $(document).on('click', '.afficheDocuments', function () {
-    $('#zone_document').empty().load(Routing.generate('document_ajax', {typedocument: $(this).data('type')}))
-    $('#boutonBack').show()
-  })
-
-  $(document).on('click', '#boutonBack', function () {
-    $('#zone_document').empty().load(Routing.generate('typedocument_ajax'))
-    $('#boutonBack').hide()
-  })
-
-  $(document).on('click', '.semestretrombi', function (e) {
-    //todo: comment gérer la locale ?
-    e.preventDefault()
-
-
-    $('.semestretrombi').removeClass('active show')
-    $('.enseignanttrombi').removeClass('active show')
-    $(this).addClass('active show')
-
-
-    /*$.ajax({
-      url: Routing.generate('api_etudiants_semestre', {semestre: $(this).data('sem')}),
-      success: function (data){
-        $('#trombi').empty();
-        jQuery.each(data, function(index, etudiant) {
-          var html = "<div class=\"col-sm-6 col-md-3 col-lg-3\">\n" +
-            "    <div class=\"card card-trombi\">\n" +
-            "        <div class=\"flexbox align-items-center px-20 pt-20\">\n" +
-            "            <label class=\"toggler toggler-danger fs-16\">\n" +
-            "                <input type=\"checkbox\" checked class=\"addfavori\" value=\"" + etudiant.slug + "\">\n" +
-            "                <i class=\"fa fa-heart\"></i>\n" +
-            "            </label>\n" +
-            "            <div class=\"dropdown\">\n" +
-            "                <a data-toggle=\"dropdown\" href=\"#\"><i class=\"ti-more-alt rotate-90 text-muted\"></i></a>\n" +
-            "                <div class=\"dropdown-menu dropdown-menu-right\">\n" +
-            "                    <a class=\"dropdown-item\" href=\"" + Routing.generate('user_profil.fr', {
-              type: 'etudiant',
-              slug: etudiant.slug
-            }) + "\"><i class=\"fa fa-user\"></i> Profil</a>\n" +
-            "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-picture-o\"></i> Site personnel</a>\n" +
-            "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"ti-world\"></i> Site Universitaire</a>\n" +
-            "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"ti-email\"></i> Contacter</a>\n" +
-            "                </div>\n" +
-            "            </div>\n" +
-            "        </div>\n" +
-            "        <div class=\"card-body text-center pt-1 pb-50\">\n" +
-            "            <a href=\"" + Routing.generate('user_profil.fr', {
-              type: 'etudiant',
-              slug: etudiant.slug
-            }) + "\">\n" +
-            "                <img class=\"avatar avatar-xxl\" src=\"\">\n" +
-            "            </a>\n" +
-            "            <h5 class=\"mt-3 mb-1\">\n" +
-            "                <a class=\"hover-primary\" href=\"" + Routing.generate('user_profil.fr', {
-              type: 'etudiant',
-              slug: etudiant.slug
-            }) + "\">" + etudiant.prenom + " " + etudiant.nom + "\n" +
-            "                </a>\n" +
-            "            </h5>\n" +
-            "        </div>\n" +
-            "    </div>\n" +
-            "</div>";
-          $('#trombi').append(html);
-        });
-      }
-    })*/
-    $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre.fr', {semestre: $(this).data('sem')})).slideDown()
-  })
-
-  $(document).on('click', '.changeTypeGroupe', function (e) {
-    //todo: comment gérer la locale ?
-    e.preventDefault()
-
-    $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre.fr', {
-      semestre: $(this).data('semestre'),
-      typegroupe: $(this).data('typegroupe')
-    })).slideDown()
-  })
-
-  $(document).on('click', '.enseignanttrombi', function (e) {
-    e.preventDefault()
-    //$('#trombifiltre').hide();
-    $('.semestretrombi').removeClass('active show')
-    $('.enseignanttrombi').removeClass('active show')
-    $(this).addClass('active show')
-    $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_personnel.fr', {type: $(this).data('type')})).slideDown()
-
-    //$('.card-title').html($(this).text());
-    /*$.ajax({
-      url: Routing.generate('api_enseignants_type', {type: $(this).data('type')}),
-      dataType: 'json',
-      success: function (data){
-
-        $('#trombi').empty();
-        jQuery.each(data, function(index, pers) {
-          var html = "<div class=\"col-sm-6 col-md-3 col-lg-3\">\n" +
-            "    <div class=\"card card-trombi\">\n" +
-            "        <div class=\"flexbox align-items-center px-20 pt-20\">\n" +
-            "            <label class=\"toggler toggler-danger fs-16\">\n" +
-            "                <input type=\"checkbox\" checked>\n" +
-            "                <i class=\"fa fa-heart\"></i>\n" +
-            "            </label>\n" +
-            "            <div class=\"dropdown\">\n" +
-            "                <a data-toggle=\"dropdown\" href=\"#\"><i class=\"ti-more-alt rotate-90 text-muted\"></i></a>\n" +
-            "                <div class=\"dropdown-menu dropdown-menu-right\">\n" +
-            "                    <a class=\"dropdown-item\" href=\""+Routing.generate('user_profil', {type: 'personnel', slug: pers.slug})+"\"><i class=\"fa fa-user\"></i> Profil</a>\n" +
-            "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-picture-o\"></i> Site personnel</a>\n" +
-            "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"ti-world\"></i> Site Universitaire</a>\n" +
-            "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"ti-email\"></i> Contacter</a>\n" +
-            "                </div>\n" +
-            "            </div>\n" +
-            "        </div>\n" +
-            "        <div class=\"card-body text-center pt-1 pb-50\">\n" +
-            "            <a href=\""+Routing.generate('user_profil', {type: 'personnel', slug: pers.slug})+"\">\n" +
-            "                <img class=\"avatar avatar-xxl\" src=\"\">\n" +
-            "            </a>\n" +
-            "            <h5 class=\"mt-3 mb-1\">\n" +
-            "                <a class=\"hover-primary\" href=\""+Routing.generate('user_profil', {type: 'personnel', slug: pers.slug})+"\">"+pers.prenom+" " + pers.nom+"\n" +
-            "                </a>\n" +
-            "            </h5>\n" +
-            "        </div>\n" +
-            "    </div>\n" +
-            "</div>";
-          $('#trombi').append(html);
-        });
-      }
-    })*/
-
-  })
-
-
-  $(document).on('keyup', '#login_urca', function () {
-    var $val = $(this).val()
-    console.log($val)
-    if ($val.length > 2) {
-      $.ajax({
-        url: Routing.generate('api_personnel_recherche', {needle: $val}),
-        dataType: 'json',
-        success: function (data) {
-          $('#result').empty()
-          jQuery.each(data, function (index, pers) {
-            var html = '<tr>' +
-              '<td>' + pers.nom + '</td>' +
-              '<td>' + pers.prenom + '</td>' +
-              '<td>' + pers.username + '</td>' +
-              '<td>' + pers.mail_univ + '</td>' +
-              '<td><a href="#" class="btn btn-success btn-outline btn-square addpersonnel" data-provide="tooltip" data-placement="bottom" title="Ajouter à la formation" data-slug="' + pers.slug + '"><i class="ti-plus"></i></a></td>' +
-              '</tr>'
-            $('#result').append(html)
-          })
-        }
-      })
+  $.ajax({
+    url: Routing.generate('user_add_favori.fr'),
+    method: 'POST',
+    data: {
+      'user': $(this).val(),
+      'etat': $(this).prop('checked')
     }
   })
+});
 
-  $(document).on('click', '.addpersonnel', function () {
+$(document).on('click', '.afficheDocuments', function() {
+  $('#zone_document').empty().load(Routing.generate('document_ajax', {typedocument: $(this).data('type')}));
+  $('#boutonBack').show();
+});
+
+$(document).on('click', '#boutonBack', function() {
+  $('#zone_document').empty().load(Routing.generate('typedocument_ajax'));
+  $('#boutonBack').hide();
+});
+
+$(document).on('click', '.semestretrombi', function(e) {
+  //todo: comment gérer la locale ?
+  e.preventDefault();
+
+
+  $('.semestretrombi').removeClass('active show');
+  $('.enseignanttrombi').removeClass('active show');
+  $(this).addClass('active show');
+
+
+  /*$.ajax({
+    url: Routing.generate('api_etudiants_semestre', {semestre: $(this).data('sem')}),
+    success: function (data){
+      $('#trombi').empty();
+      jQuery.each(data, function(index, etudiant) {
+        var html = "<div class=\"col-sm-6 col-md-3 col-lg-3\">\n" +
+          "    <div class=\"card card-trombi\">\n" +
+          "        <div class=\"flexbox align-items-center px-20 pt-20\">\n" +
+          "            <label class=\"toggler toggler-danger fs-16\">\n" +
+          "                <input type=\"checkbox\" checked class=\"addfavori\" value=\"" + etudiant.slug + "\">\n" +
+          "                <i class=\"fa fa-heart\"></i>\n" +
+          "            </label>\n" +
+          "            <div class=\"dropdown\">\n" +
+          "                <a data-toggle=\"dropdown\" href=\"#\"><i class=\"ti-more-alt rotate-90 text-muted\"></i></a>\n" +
+          "                <div class=\"dropdown-menu dropdown-menu-right\">\n" +
+          "                    <a class=\"dropdown-item\" href=\"" + Routing.generate('user_profil.fr', {
+            type: 'etudiant',
+            slug: etudiant.slug
+          }) + "\"><i class=\"fa fa-user\"></i> Profil</a>\n" +
+          "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-picture-o\"></i> Site personnel</a>\n" +
+          "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"ti-world\"></i> Site Universitaire</a>\n" +
+          "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"ti-email\"></i> Contacter</a>\n" +
+          "                </div>\n" +
+          "            </div>\n" +
+          "        </div>\n" +
+          "        <div class=\"card-body text-center pt-1 pb-50\">\n" +
+          "            <a href=\"" + Routing.generate('user_profil.fr', {
+            type: 'etudiant',
+            slug: etudiant.slug
+          }) + "\">\n" +
+          "                <img class=\"avatar avatar-xxl\" src=\"\">\n" +
+          "            </a>\n" +
+          "            <h5 class=\"mt-3 mb-1\">\n" +
+          "                <a class=\"hover-primary\" href=\"" + Routing.generate('user_profil.fr', {
+            type: 'etudiant',
+            slug: etudiant.slug
+          }) + "\">" + etudiant.prenom + " " + etudiant.nom + "\n" +
+          "                </a>\n" +
+          "            </h5>\n" +
+          "        </div>\n" +
+          "    </div>\n" +
+          "</div>";
+        $('#trombi').append(html);
+      });
+    }
+  })*/
+  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre.fr', {semestre: $(this).data('sem')})).slideDown();
+});
+
+$(document).on('click', '.changeTypeGroupe', function (e) {
+  //todo: comment gérer la locale ?
+  e.preventDefault();
+
+  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre.fr', {
+    semestre: $(this).data('semestre'),
+    typegroupe: $(this).data('typegroupe')
+  })).slideDown();
+});
+
+$(document).on('click', '.enseignanttrombi', function(e) {
+  e.preventDefault();
+  //$('#trombifiltre').hide();
+  $('.semestretrombi').removeClass('active show');
+  $('.enseignanttrombi').removeClass('active show');
+  $(this).addClass('active show');
+  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_personnel.fr', {type: $(this).data('type')})).slideDown();
+
+  //$('.card-title').html($(this).text());
+  /*$.ajax({
+    url: Routing.generate('api_enseignants_type', {type: $(this).data('type')}),
+    dataType: 'json',
+    success: function (data){
+
+      $('#trombi').empty();
+      jQuery.each(data, function(index, pers) {
+        var html = "<div class=\"col-sm-6 col-md-3 col-lg-3\">\n" +
+          "    <div class=\"card card-trombi\">\n" +
+          "        <div class=\"flexbox align-items-center px-20 pt-20\">\n" +
+          "            <label class=\"toggler toggler-danger fs-16\">\n" +
+          "                <input type=\"checkbox\" checked>\n" +
+          "                <i class=\"fa fa-heart\"></i>\n" +
+          "            </label>\n" +
+          "            <div class=\"dropdown\">\n" +
+          "                <a data-toggle=\"dropdown\" href=\"#\"><i class=\"ti-more-alt rotate-90 text-muted\"></i></a>\n" +
+          "                <div class=\"dropdown-menu dropdown-menu-right\">\n" +
+          "                    <a class=\"dropdown-item\" href=\""+Routing.generate('user_profil', {type: 'personnel', slug: pers.slug})+"\"><i class=\"fa fa-user\"></i> Profil</a>\n" +
+          "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"fa fa-picture-o\"></i> Site personnel</a>\n" +
+          "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"ti-world\"></i> Site Universitaire</a>\n" +
+          "                    <a class=\"dropdown-item\" href=\"#\"><i class=\"ti-email\"></i> Contacter</a>\n" +
+          "                </div>\n" +
+          "            </div>\n" +
+          "        </div>\n" +
+          "        <div class=\"card-body text-center pt-1 pb-50\">\n" +
+          "            <a href=\""+Routing.generate('user_profil', {type: 'personnel', slug: pers.slug})+"\">\n" +
+          "                <img class=\"avatar avatar-xxl\" src=\"\">\n" +
+          "            </a>\n" +
+          "            <h5 class=\"mt-3 mb-1\">\n" +
+          "                <a class=\"hover-primary\" href=\""+Routing.generate('user_profil', {type: 'personnel', slug: pers.slug})+"\">"+pers.prenom+" " + pers.nom+"\n" +
+          "                </a>\n" +
+          "            </h5>\n" +
+          "        </div>\n" +
+          "    </div>\n" +
+          "</div>";
+        $('#trombi').append(html);
+      });
+    }
+  })*/
+
+});
+
+
+$(document).on('keyup', '#login_urca', function() {
+  var $val = $(this).val();
+  console.log($val);
+  if ($val.length > 2) {
     $.ajax({
-      url: Routing.generate('api_personnel_add_to_formation', {slug: $(this).data('slug')}),
+      url: Routing.generate('api_personnel_recherche', {needle: $val}),
       dataType: 'json',
-      success: function (data) {
-        $(this).remove()
+      success: function(data) {
+        $('#result').empty();
+        jQuery.each(data, function (index, pers) {
+          var html = "<tr>" +
+            "<td>"+pers.nom+"</td>" +
+            "<td>"+pers.prenom+"</td>" +
+            "<td>"+pers.username+"</td>" +
+            "<td>"+pers.mail_univ+"</td>" +
+            "<td><a href=\"#\" class=\"btn btn-success btn-outline btn-square addpersonnel\" data-provide=\"tooltip\" data-placement=\"bottom\" title=\"Ajouter à la formation\" data-slug=\""+pers.slug+"\"><i class=\"ti-plus\"></i></a></td>" +
+            "</tr>";
+          $('#result').append(html);
+        });
       }
     })
-  })
+  }
+});
 
-  $(document).on('click', '.personnel_index_change', function () {
-    $('.personnel_index_change').removeClass('active show')
-    $(this).addClass('active show')
-    var table = $('#tableau').DataTable()
-    table.clear() //effacer le datatable
-    table.destroy() //supprimer le datatable
-    $.ajax({
-      url: Routing.generate('api_enseignants_type', {type: $(this).data('type')}),
-      dataType: 'json',
-      success: function (data) {
-        jQuery.each(data, function (index, pers) {
-          //ajouter les lignes
-          var html = '<tr>\n' +
-            '                        <td>' + pers.nom + '</td>\n' +
-            '                        <td>' + pers.prenom + '</td>\n' +
-            '                        <td>' + pers.posteInterne + '</td>\n' +
-            '                        <td>' + pers.telBureau + '</td>\n' +
-            '                        <td>' + pers.bureau1 + '</td>\n' +
-            '                        <td>' + pers.numeroHarpege + '</td>\n' +
-            '                        <td>' + pers.mailUniv + '</td>\n' +
-            '                        <td>\n' +
-            '<a href="' + Routing.generate('administration_personnel_show', {id: pers.id}) + '" class="btn btn-info btn-outline btn-square" data-provide="tooltip"\n' +
-            '   data-placement="bottom" title="Détails"><i class="ti-eye"></i></a>\n' +
-            '<a href="' + Routing.generate('administration_personnel_edit', {id: pers.id}) + '"\n' +
-            '   class="btn btn-warning btn-outline btn-square"><i class="ti-pencil"\n' +
-            '                                                     data-provide="tooltip"\n' +
-            '                                                     data-placement="bottom"\n' +
-            '                                                     title="Modifier"></i></a>\n' +
-            '<a href="' + Routing.generate('administration_personnel_delete', {id: pers.id}) + '" class="btn btn-danger btn-outline btn-square supprimer" data-id="id"><i\n' +
-            '            class="ti-close" data-provide="tooltip" data-placement="bottom"\n' +
-            '            title="Supprimer"></i></a>'
+$(document).on('click', '.addpersonnel', function(){
+  $.ajax({
+    url: Routing.generate('api_personnel_add_to_formation', {slug: $(this).data('slug')}),
+    dataType: 'json',
+    success: function(data) {
+      $(this).remove();
+    }
+  })
+});
+
+$(document).on('click', '.personnel_index_change', function(){
+  $('.personnel_index_change').removeClass('active show');
+  $(this).addClass('active show');
+  var table = $('#tableau').DataTable();
+  table.clear(); //effacer le datatable
+  table.destroy(); //supprimer le datatable
+  $.ajax({
+    url: Routing.generate('api_enseignants_type', {type: $(this).data('type')}),
+    dataType: 'json',
+    success: function(data) {
+      jQuery.each(data, function (index, pers) {
+        //ajouter les lignes
+        var html = "<tr>\n" +
+          "                        <td>"+pers.nom+"</td>\n" +
+          "                        <td>"+pers.prenom+"</td>\n" +
+          "                        <td>"+pers.posteInterne+"</td>\n" +
+          "                        <td>"+pers.telBureau+"</td>\n" +
+          "                        <td>"+pers.bureau1+"</td>\n" +
+          "                        <td>"+pers.numeroHarpege+"</td>\n" +
+          "                        <td>"+pers.mailUniv+"</td>\n" +
+          "                        <td>\n" +
+          "<a href=\""+Routing.generate('administration_personnel_show', {id: pers.id})+"\" class=\"btn btn-info btn-outline btn-square\" data-provide=\"tooltip\"\n" +
+          "   data-placement=\"bottom\" title=\"Détails\"><i class=\"ti-eye\"></i></a>\n" +
+          "<a href=\""+Routing.generate('administration_personnel_edit', {id: pers.id})+"\"\n" +
+          "   class=\"btn btn-warning btn-outline btn-square\"><i class=\"ti-pencil\"\n" +
+          "                                                     data-provide=\"tooltip\"\n" +
+          "                                                     data-placement=\"bottom\"\n" +
+          "                                                     title=\"Modifier\"></i></a>\n" +
+          "<a href=\""+Routing.generate('administration_personnel_delete', {id: pers.id})+"\" class=\"btn btn-danger btn-outline btn-square supprimer\" data-id=\"id\"><i\n" +
+          "            class=\"ti-close\" data-provide=\"tooltip\" data-placement=\"bottom\"\n" +
+          "            title=\"Supprimer\"></i></a>"
           "                        </td>\n" +
           "                    </tr>";
-          $('#datatableau').append(html)
-        });
+        $('#datatableau').append(html);
+      });
 
-        $('#tableau').DataTable({}) //regenerer le datatable avec les nouvelles data
-      }
-    })
-  });
+      $('#tableau').DataTable({}); //regenerer le datatable avec les nouvelles data
+    }
+  })
+});
 
 //var table = $('#datatableRh').DataTable({});
 //table.clear(); //effacer le datatable
 //table.destroy(); //supprimer le datatable
 
-  $('#datatableRh').DataTable({
-    'processing': true,
-    'serverSide': true,
-    'ajax': Routing.generate('api_all_personnel'),
-    'sAjaxDataProp': 'data',
-    'pageLength': 25,
-    'columns': [
-      {'data': 'numero_harpege'},
-      {'data': 'nom'},
-      {'data': 'prenom'},
-      {'data': 'formations'},
-      {'data': 'profil'}]
+$('#datatableRh').DataTable({
+  "processing": true,
+  "serverSide": true,
+  "ajax": Routing.generate('api_all_personnel'),
+  "sAjaxDataProp": "data",
+  "pageLength": 25,
+  "columns": [
+    {"data": "numero_harpege"},
+    {"data": "nom"},
+    {"data": "prenom"},
+    {"data": "formations"},
+    {"data": "profil"}]
+});
+
+
+
+
+
+var table = $('#datatableEtudiants').DataTable({});
+table.clear(); //effacer le datatable
+table.destroy(); //supprimer le datatable
+
+$('#datatableEtudiants').DataTable({
+  "language": langueFr,
+  "processing": true,
+  "serverSide": true,
+  "ajax": Routing.generate('api_etudiant_formation'),
+  "sAjaxDataProp": "data",
+  //"pageLength": 25,
+  "columns": [
+    {"data": "numetudiant"},
+    {"data": "nom"},
+    {"data": "prenom"},
+    {"data": "semestre"},
+    {"data": "profil"}]
+});
+
+
+
+$(document).on('click', '.changeapplication', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  $('.changeapplication').removeClass('active show');
+  $(this).addClass('active show');
+  $('#mainContent').empty().load($(this).attr('href'));
+
+});
+
+$(document).on('change', '#selectsemestre', function () {
+  //matieres
+  $('#listegroupe').empty();
+  var selectMatiere = $("#selectmatiere");
+  var selectGroupes = $("#selectgroupes");
+  $.ajax(
+    {
+      url: Routing.generate('api_matieres_semestre', {semestre: $(this).val()}),
+      dataType: "json", //Return data type (what we expect).
+      success: function (data) {
+        selectMatiere.empty();
+        selectMatiere.append($("<option></option>")
+          .attr("value", "")
+          .text("Choisir une matière"));
+        jQuery.each(data, function (index, matiere) {
+
+          selectMatiere.append($("<option></option>")
+            .attr("value", matiere.id)
+            .text(matiere.libelle));
+        });
+      },
+      error: function () {
+//todo: message ?
+      }
+    });
+  //groupes
+  $.ajax(
+    {
+      url: Routing.generate('api_type_groupe_semestre', {semestre: $(this).val()}),
+
+      dataType: "json", //Return data type (what we expect).
+      success: function (data) {
+        selectGroupes.empty();
+        selectGroupes.append($("<option></option>")
+          .attr("value", "")
+          .text("Choisir un type de groupe"));
+        jQuery.each(data, function (index, typeGroupe) {
+
+          selectGroupes.append($("<option></option>")
+            .attr("value", typeGroupe.id)
+            .text(typeGroupe.libelle));
+        });
+      },
+      error: function () {
+//todo: message ?
+      }
+    });
+});
+
+$(document).on('change', '#selectgroupes', function () {
+
+  var $lgr = $('#listegroupe');
+  //matieres
+  $.ajax(
+    {
+      url: Routing.generate('api_groupe_type_groupe', {typeGroupe: $(this).val()}),
+      dataType: "json", //Return data type (what we expect).
+      success: function (data) {
+        $lgr.empty();
+        var $html = '';
+        jQuery.each(data, function (index, groupe) {
+          $html += '<input type="checkbox" checked name="detail_groupes[]" value="' + groupe.id + '"> ' + groupe.libelle + ' | ';
+        });
+        $lgr.html($html);
+      },
+      error: function () {
+        //todo: message ?
+      }
+    });
+});
+
+var nbLignePrevisionnel = 1;
+
+$(document).ajaxComplete(function () {
+  $('.editPrevi').editable({
+    type: 'text',
+    url: Routing.generate('administration_previsionnel_edit.fr')
+    //todo: si success recalculer toute la ligne.
   })
+})
 
+$(document).on('change', '#previSemestre', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_semestre.fr', {semestre: $(this).val()}));
+});
 
-  var table = $('#datatableEtudiants').DataTable({})
-  table.clear() //effacer le datatable
-  table.destroy() //supprimer le datatable
+$(document).on('change', '#previMatiere', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_matiere.fr', {matiere: $(this).val()}));
+});
 
-  $('#datatableEtudiants').DataTable({
-    'language': langueFr,
-    'processing': true,
-    'serverSide': true,
-    'ajax': Routing.generate('api_etudiant_formation'),
-    'sAjaxDataProp': 'data',
-    //"pageLength": 25,
-    'columns': [
-      {'data': 'numetudiant'},
-      {'data': 'nom'},
-      {'data': 'prenom'},
-      {'data': 'semestre'},
-      {'data': 'profil'}]
-  })
+$(document).on('change', '#previPersonnel', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_personnel.fr', {personnel: $(this).val()}));
+});
 
+$(document).on('click', '.previsionnel_add_change', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('.previsionnel_add_change').removeClass('active show');
+  $(this).addClass('active show');
+  $('#mainContent').empty().load($(this).attr('href'));
+});
 
-  $(document).on('click', '.changeapplication', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
+$(document).on('click', '#addIntervenantPrevisionnel', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  nbLignePrevisionnel++;
 
-    $('.changeapplication').removeClass('active show')
-    $(this).addClass('active show')
-    $('#mainContent').empty().load($(this).attr('href'))
+  var html = '<tr>\n' +
+    '                        <td>\n' +
+    '                            <select class="form-control">\n' +
+    '                                <option value="">Choisir l\'intervenant</option>\n' +
+    '                            </select>\n' +
+    '                        </td>\n' +
+    '                        <td><input type="text" name="cm_1" id="cm_' + nbLignePrevisionnel + '" data-ligne="1" class="form-control chgcm" value="0"></td>\n' +
+    '                        <td><input type="number" name="gr_cm_1" id="gr_cm_' + nbLignePrevisionnel + '" value="0" data-ligne="1" class="form-control chgcm">\n' +
+    '                        </td>\n' +
+    '                        <td id="ind_cm_' + nbLignePrevisionnel + '">0</td>\n' +
+    '                        <td style="background-color: #68C39F"><input type="text" value="0" name="td_' + nbLignePrevisionnel + '" id="td_' + nbLignePrevisionnel + '" data-ligne="' + nbLignePrevisionnel + '"\n' +
+    '                                                                     class="form-control chgtd"></td>\n' +
+    '                        <td style="background-color: #68C39F"><input type="number" value="0" name="gr_td_' + nbLignePrevisionnel + '" id="gr_td_' + nbLignePrevisionnel + '"\n' +
+    '                                                                     data-ligne="' + nbLignePrevisionnel + '" class="form-control chgtd"></td>\n' +
+    '                        <td style="background-color: #68C39F" id="ind_td_' + nbLignePrevisionnel + '">0</td>\n' +
+    '                        <td style="background-color: #FFC052"><input type="text" value="0" name="tp_' + nbLignePrevisionnel + '" id="tp_' + nbLignePrevisionnel + '" data-ligne="' + nbLignePrevisionnel + '"\n' +
+    '                                                                     class="form-control chgtp"></td>\n' +
+    '                        <td style="background-color: #FFC052"><input type="number" value="0" name="gr_tp_' + nbLignePrevisionnel + '" id="gr_tp_' + nbLignePrevisionnel + '"\n' +
+    '                                                                     data-ligne="' + nbLignePrevisionnel + '" class="form-control chgtp"></td>\n' +
+    '                        <td style="background-color: #FFC052" id="ind_tp_' + nbLignePrevisionnel + '">0</td>\n' +
+    '                    </tr>';
 
-  })
+  $('#nbLigne').val(nbLignePrevisionnel);
+  $('#ligneAdd').before(html);
+});
 
-  var nbLignePrevisionnel = 1
+$(document).on('change', '.chgcm', function (e) {
+  var ligne = $(this).data('ligne');
+  var nbSeance = parseFloat($('#cm_' + ligne).val()) / 1.5;
+  $('#ind_cm_' + ligne).html(nbSeance.toFixed(2));
 
-  $(document).ajaxComplete(function () {
-    $('.editPrevi').editable({
-      type: 'text',
-      url: Routing.generate('administration_previsionnel_edit.fr')
-      //todo: si success recalculer toute la ligne.
-    })
-  })
+  updateSynthesePrevisionnel();
+});
 
-  $(document).on('change', '#previSemestre', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_semestre.fr', {semestre: $(this).val()}))
-  })
+$(document).on('change', '.chgtd', function (e) {
+  var ligne = $(this).data('ligne');
+  var nbSeance = parseFloat($('#td_' + ligne).val()) / 1.5;
+  $('#ind_td_' + ligne).html(nbSeance.toFixed(2));
 
-  $(document).on('change', '#previMatiere', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_matiere.fr', {matiere: $(this).val()}))
-  })
+  updateSynthesePrevisionnel();
+});
 
-  $(document).on('change', '#previPersonnel', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_personnel.fr', {personnel: $(this).val()}))
-  })
+$(document).on('change', '.chgtp', function (e) {
+  var ligne = $(this).data('ligne');
+  var nbSeance = parseFloat($('#tp_' + ligne).val()) / 1.5;
+  $('#ind_tp_' + ligne).html(nbSeance.toFixed(2));
 
-  $(document).on('click', '.previsionnel_add_change', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    $('.previsionnel_add_change').removeClass('active show')
-    $(this).addClass('active show')
-    $('#mainContent').empty().load($(this).attr('href'))
-  })
+  updateSynthesePrevisionnel();
+});
 
-  $(document).on('click', '#addIntervenantPrevisionnel', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    nbLignePrevisionnel++
+function updateSynthesePrevisionnel() {
+  var totalCm = 0;
+  var totalTd = 0;
+  var totalTp = 0;
+  var totalEqTd = 0;
+  var totalEtu = 0;
+  var totalMatiere = 0;
 
-    var html = '<tr>\n' +
-      '                        <td>\n' +
-      '                            <select class="form-control">\n' +
-      '                                <option value="">Choisir l\'intervenant</option>\n' +
-      '                            </select>\n' +
-      '                        </td>\n' +
-      '                        <td><input type="text" name="cm_1" id="cm_' + nbLignePrevisionnel + '" data-ligne="1" class="form-control chgcm" value="0"></td>\n' +
-      '                        <td><input type="number" name="gr_cm_1" id="gr_cm_' + nbLignePrevisionnel + '" value="0" data-ligne="1" class="form-control chgcm">\n' +
-      '                        </td>\n' +
-      '                        <td id="ind_cm_' + nbLignePrevisionnel + '">0</td>\n' +
-      '                        <td style="background-color: #68C39F"><input type="text" value="0" name="td_' + nbLignePrevisionnel + '" id="td_' + nbLignePrevisionnel + '" data-ligne="' + nbLignePrevisionnel + '"\n' +
-      '                                                                     class="form-control chgtd"></td>\n' +
-      '                        <td style="background-color: #68C39F"><input type="number" value="0" name="gr_td_' + nbLignePrevisionnel + '" id="gr_td_' + nbLignePrevisionnel + '"\n' +
-      '                                                                     data-ligne="' + nbLignePrevisionnel + '" class="form-control chgtd"></td>\n' +
-      '                        <td style="background-color: #68C39F" id="ind_td_' + nbLignePrevisionnel + '">0</td>\n' +
-      '                        <td style="background-color: #FFC052"><input type="text" value="0" name="tp_' + nbLignePrevisionnel + '" id="tp_' + nbLignePrevisionnel + '" data-ligne="' + nbLignePrevisionnel + '"\n' +
-      '                                                                     class="form-control chgtp"></td>\n' +
-      '                        <td style="background-color: #FFC052"><input type="number" value="0" name="gr_tp_' + nbLignePrevisionnel + '" id="gr_tp_' + nbLignePrevisionnel + '"\n' +
-      '                                                                     data-ligne="' + nbLignePrevisionnel + '" class="form-control chgtp"></td>\n' +
-      '                        <td style="background-color: #FFC052" id="ind_tp_' + nbLignePrevisionnel + '">0</td>\n' +
-      '                    </tr>'
-
-    $('#nbLigne').val(nbLignePrevisionnel)
-    $('#ligneAdd').before(html)
-  })
-
-  $(document).on('change', '.chgcm', function (e) {
-    var ligne = $(this).data('ligne')
-    var nbSeance = parseFloat($('#cm_' + ligne).val()) / 1.5
-    $('#ind_cm_' + ligne).html(nbSeance.toFixed(2))
-
-    updateSynthesePrevisionnel()
-  })
-
-  $(document).on('change', '.chgtd', function (e) {
-    var ligne = $(this).data('ligne')
-    var nbSeance = parseFloat($('#td_' + ligne).val()) / 1.5
-    $('#ind_td_' + ligne).html(nbSeance.toFixed(2))
-
-    updateSynthesePrevisionnel()
-  })
-
-  $(document).on('change', '.chgtp', function (e) {
-    var ligne = $(this).data('ligne')
-    var nbSeance = parseFloat($('#tp_' + ligne).val()) / 1.5
-    $('#ind_tp_' + ligne).html(nbSeance.toFixed(2))
-
-    updateSynthesePrevisionnel()
-  })
-
-  function updateSynthesePrevisionnel () {
-    var totalCm = 0
-    var totalTd = 0
-    var totalTp = 0
-    var totalEqTd = 0
-    var totalEtu = 0
-    var totalMatiere = 0
-
-    for (var i = 1; i <= nbLignePrevisionnel; i++) {
-      totalCm = totalCm + parseFloat($('#cm_' + i).val()) * parseInt($('#gr_cm_' + i).val())
-      totalTd = totalTd + parseFloat($('#td_' + i).val()) * parseInt($('#gr_td_' + i).val())
-      totalTp = totalTp + parseFloat($('#tp_' + i).val()) * parseInt($('#gr_tp_' + i).val())
-      totalMatiere = totalMatiere + totalCm + totalTd + totalTp
-      totalEtu = totalEtu + parseFloat($('#cm_' + i).val()) + parseFloat($('#td_' + i).val()) + parseFloat($('#tp_' + i).val())
-    }
-
-
-    $('#totalCm').html(totalCm.toFixed(2))
-    $('#totalTd').html(totalTd.toFixed(2))
-    $('#totalTp').html(totalTp.toFixed(2))
-    $('#totalEqTd').html(totalEqTd.toFixed(2))
-    $('#totalEtu').html(totalEtu.toFixed(2))
-    $('#totalMatiere').html(totalMatiere.toFixed(2))
+  for (var i = 1; i <= nbLignePrevisionnel; i++) {
+    totalCm = totalCm + parseFloat($('#cm_' + i).val()) * parseInt($('#gr_cm_' + i).val());
+    totalTd = totalTd + parseFloat($('#td_' + i).val()) * parseInt($('#gr_td_' + i).val());
+    totalTp = totalTp + parseFloat($('#tp_' + i).val()) * parseInt($('#gr_tp_' + i).val());
+    totalMatiere = totalMatiere + totalCm + totalTd + totalTp;
+    totalEtu = totalEtu + parseFloat($('#cm_' + i).val()) + parseFloat($('#td_' + i).val()) + parseFloat($('#tp_' + i).val());
   }
 
-  $(document).on('change', '#previsionnel_semestre', function () {
-    var selectMatiere = $('#previsionnel_matiere')
-    if ($(this).val() == '') {
-      selectMatiere.empty()
-      selectMatiere.append($('<option></option>')
-        .attr('value', '')
-        .text('Choisir d\'abord un semestre'))
-    } else {
-      $.ajax({
-        url: Routing.generate('api_matieres_semestre', {'semestre': $(this).val()}),
-        success: function (data) {
 
-          selectMatiere.empty()
-          selectMatiere.append($('<option></option>')
-            .attr('value', '')
-            .text('Choisir une matière'))
-          jQuery.each(data, function (index, matiere) {
+  $('#totalCm').html(totalCm.toFixed(2));
+  $('#totalTd').html(totalTd.toFixed(2));
+  $('#totalTp').html(totalTp.toFixed(2));
+  $('#totalEqTd').html(totalEqTd.toFixed(2));
+  $('#totalEtu').html(totalEtu.toFixed(2));
+  $('#totalMatiere').html(totalMatiere.toFixed(2));
+}
 
-            selectMatiere.append($('<option></option>')
-              .attr('value', matiere.id)
-              .text(matiere.libelle))
-          })
-        }
-      })
-    }
-  })
-
-  $(document).on('change', '#previsionnel_matiere', function () {
-    var volumeMatiere = $('#volumeMatiere')
-    if ($(this).val() == '') {
-      volumeMatiere.html('Choisir d\'abord une matière')
-    } else {
-      $.ajax({
-        url: Routing.generate('api_matiere', {'matiere': $(this).val()}),
-        success: function (data) {
-          var html = 'PPN Officiel => CM ' + data.cmFormation + ' heure(s); TD ' + data.tdFormation + ' heure(s); TP ' + data.tpFormation + ' heure(s); PPN Réalisé/formation => CM ' + data.cmPpn + ' heure(s); TD ' + data.tdPpn + ' heure(s); TP ' + data.tpPpn + ' heure(s);'
-          volumeMatiere.html(html)
-        }
-      })
-    }
-  })
-
-  $(document).on('click', '#btnGenereFichier', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-
-    var selectedChamps = []
-    $('input:checkbox[name=exportChamps]:checked').each(function () {
-      selectedChamps.push($(this).val())
-    })
-
+$(document).on('change', '#previsionnel_semestre', function () {
+  var selectMatiere = $('#previsionnel_matiere');
+  if ($(this).val() == "") {
+    selectMatiere.empty();
+    selectMatiere.append($("<option></option>")
+      .attr("value", "")
+      .text("Choisir d'abord un semestre"));
+  } else {
     $.ajax({
-      url: Routing.generate('export_listing.fr'),
-      method: 'POST',
-      data: {
-        'matiere': $(this).data('matiere'),
-        'exportTypeDocument': $('input[type=radio][name=exportTypeDocument]:checked').val(),
-        'exportChamps': selectedChamps,
-        'exportFormat': $('input[type=radio][name=exportFormat]:checked').val(),
-        'exportFiltre': $('input[type=radio][name=exportFiltre]:checked').val()
+      url: Routing.generate('api_matieres_semestre', {'semestre': $(this).val()}),
+      success: function (data) {
+
+        selectMatiere.empty();
+        selectMatiere.append($("<option></option>")
+          .attr("value", "")
+          .text("Choisir une matière"));
+        jQuery.each(data, function (index, matiere) {
+
+          selectMatiere.append($("<option></option>")
+            .attr("value", matiere.id)
+            .text(matiere.libelle));
+        });
       }
-    })
+    });
+  }
+});
+
+$(document).on('change', '#previsionnel_matiere', function () {
+  var volumeMatiere = $('#volumeMatiere');
+  if ($(this).val() == "") {
+    volumeMatiere.html("Choisir d'abord une matière");
+  } else {
+    $.ajax({
+      url: Routing.generate('api_matiere', {'matiere': $(this).val()}),
+      success: function (data) {
+        var html = "PPN Officiel => CM " + data.cmFormation + " heure(s); TD " + data.tdFormation + " heure(s); TP " + data.tpFormation + " heure(s); PPN Réalisé/formation => CM " + data.cmPpn + " heure(s); TD " + data.tdPpn + " heure(s); TP " + data.tpPpn + " heure(s);"
+        volumeMatiere.html(html);
+      }
+    });
+  }
+});
+
+$(document).on('click', '#btnGenereFichier', function (e) {
+  e.preventDefault()
+  e.stopPropagation()
+
+  var selectedChamps = []
+  $('input:checkbox[name=exportChamps]:checked').each(function () {
+    selectedChamps.push($(this).val())
   })
+
+  $.ajax({
+    url: Routing.generate('export_listing.fr'),
+    method: 'POST',
+    data: {
+      'matiere': $(this).data('matiere'),
+      'exportTypeDocument': $('input[type=radio][name=exportTypeDocument]:checked').val(),
+      'exportChamps': selectedChamps,
+      'exportFormat': $('input[type=radio][name=exportFormat]:checked').val(),
+      'exportFiltre': $('input[type=radio][name=exportFiltre]:checked').val()
+    },
+    success: function(fichier) {
+      
+    }
+  })
+});
 
 
 // $(document).on('click', '.previsionnelModule', function () {
@@ -819,580 +898,653 @@ app.ready(function () {
 //   });
 // })
 
-  $(document).on('click', '.changeinformation', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    console.log($(this).text())
-    $('#header-title').empty().append($(this).text())
-    $('.changeinformation').removeClass('active show')
-    $(this).addClass('active show')
-    $('#mainContent').empty().load($(this).attr('href'))
+$(document).on('click', '.changeinformation', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  console.log($(this).text());
+  $('#header-title').empty().append($(this).text());
+  $('.changeinformation').removeClass('active show');
+  $(this).addClass('active show');
+  $('#mainContent').empty().load($(this).attr('href'));
 
+});
+
+$(document).on('change', '.changeOption', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  console.log($(this));
+  console.log();
+
+  $.ajax({
+    url: Routing.generate('administration_configuration_change_option.fr'),
+    method: 'POST',
+    data: {
+      type: $(this).data('type'),
+      value: $(this).prop('checked'),
+      name: $(this).attr('name'),
+      id: $(this).data('id')
+    }
   })
 
-  $(document).on('change', '.changeOption', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
+});
 
-    console.log($(this))
-    console.log()
+$(document).on('change', '.changeOptionSelect', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
 
-    $.ajax({
-      url: Routing.generate('administration_configuration_change_option.fr'),
-      method: 'POST',
-      data: {
-        type: $(this).data('type'),
-        value: $(this).prop('checked'),
-        name: $(this).attr('name'),
-        id: $(this).data('id')
-      }
-    })
+  console.log($(this));
+  console.log();
 
+  $.ajax({
+    url: Routing.generate('administration_configuration_change_option.fr'),
+    method: 'POST',
+    data: {
+      type: $(this).data('type'),
+      value: $(this).val(),
+      name: $(this).attr('name'),
+      id: $(this).data('id')
+    }
   })
 
-  $(document).on('change', '.changeOptionSelect', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
+});
 
-    console.log($(this))
-    console.log()
+$(document).on('click', '.messagerie-filtre', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#messages-liste').empty().load(Routing.generate('messagerie_filtre', {'filtre': $(this).data('filtre')}));
+});
 
-    $.ajax({
-      url: Routing.generate('administration_configuration_change_option.fr'),
-      method: 'POST',
-      data: {
-        type: $(this).data('type'),
-        value: $(this).val(),
-        name: $(this).attr('name'),
-        id: $(this).data('id')
-      }
-    })
+$(document).on('click', '.message-read', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
 
+  $('#messages-liste').empty().load(Routing.generate('messagerie_message', {message: $(this).data('message')}));
+})
+
+$(document).on('click', '#message-new', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  $('#zone-messagerie').empty().load(Routing.generate('messagerie_new'));
+})
+
+$(document).on('click', '#marquerNotificationsRead', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  $.ajax({
+    url: Routing.generate('notification_marquer_lu'),
+    success: function (e) {
+
+      $('.notification').removeClass('media-new')
+    }
   })
+})
 
-  $(document).on('click', '.messagerie-filtre', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    $('#messages-liste').empty().load(Routing.generate('messagerie_filtre', {'filtre': $(this).data('filtre')}))
+
+
+var tabsences = [];
+
+$(document).on('change', '#justifier_etudiant', function (e) {
+  console.log('justifier_etudiant')
+  $.ajax({
+    url: Routing.generate('administration_absences_liste_absence_etudiant.fr', {etudiant: $(this).val()}),
+    //dataType: 'json',
+    success: function (data) {
+      console.log('ok')
+      console.log(data)
+      console.log(data.length)
+
+      var table = $('#tableJustifier').empty()
+      table.append('<thead>\n' +
+        '                <tr>\n' +
+        '                    <th>{{ \'table.date\'|trans }}</th>\n' +
+        '                    <th>{{ \'table.heure\'|trans }}</th>\n' +
+        '                    <th>{{ \'table.matiere\'|trans }}</th>\n' +
+        '                    <th>{{ \'table.justifier\'|trans }}</th>\n' +
+        '                    <th>{{ \'table.actions\'|trans }}</th>\n' +
+        '                </tr>\n' +
+        '                </thead>' +
+        '<tbody>')
+
+      jQuery.each(data, function (index, etudiant) {
+        console.log(etudiant)
+        var html = '<tr>\n' +
+          '                        <td>' + etudiant.date + '</td>\n' +
+          '                        <td>' + etudiant.heure + '</td>\n' +
+          '                        <td>' + etudiant.matiere + '</td>\n' +
+          '                        <td>' + etudiant.justifie + '</td>\n' +
+          '                        <td><a href="" class="btn btn-danger supprimer"><i class="ti-close"></i></a></td>\n' +
+          '                    </tr>'
+        table.append(html)
+      })
+      table.append('</tbody>')
+      table.dataTable({
+        'language': langueFr
+      })
+    }
   })
-
-  $(document).on('click', '.message-read', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-
-    $('#messages-liste').empty().load(Routing.generate('messagerie_message', {message: $(this).data('message')}))
-  })
-
-  $(document).on('click', '#message-new', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-
-    $('#zone-messagerie').empty().load(Routing.generate('messagerie_new'))
-  })
-
-  $(document).on('click', '#marquerNotificationsRead', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-
-    $.ajax({
-      url: Routing.generate('notification_marquer_lu'),
-      success: function (e) {
-
-        $('.notification').removeClass('media-new')
-      }
-    })
-  })
-
-
-  var tabsences = []
-
-  $(document).on('change', '#justifier_etudiant', function (e) {
-    console.log('justifier_etudiant')
-    $.ajax({
-      url: Routing.generate('administration_absences_liste_absence_etudiant.fr', {etudiant: $(this).val()}),
-      //dataType: 'json',
-      success: function (data) {
-        console.log('ok')
-        console.log(data)
-        console.log(data.length)
-
-        var table = $('#tableJustifier').empty()
-        table.append('<thead>\n' +
-          '                <tr>\n' +
-          '                    <th>{{ \'table.date\'|trans }}</th>\n' +
-          '                    <th>{{ \'table.heure\'|trans }}</th>\n' +
-          '                    <th>{{ \'table.matiere\'|trans }}</th>\n' +
-          '                    <th>{{ \'table.justifier\'|trans }}</th>\n' +
-          '                    <th>{{ \'table.actions\'|trans }}</th>\n' +
-          '                </tr>\n' +
-          '                </thead>' +
-          '<tbody>')
-
-        jQuery.each(data, function (index, etudiant) {
-          console.log(etudiant)
-          var html = '<tr>\n' +
-            '                        <td>' + etudiant.date + '</td>\n' +
-            '                        <td>' + etudiant.heure + '</td>\n' +
-            '                        <td>' + etudiant.matiere + '</td>\n' +
-            '                        <td>' + etudiant.justifie + '</td>\n' +
-            '                        <td><a href="" class="btn btn-danger supprimer"><i class="ti-close"></i></a></td>\n' +
-            '                    </tr>'
-          table.append(html)
-        })
-        table.append('</tbody>')
-        table.dataTable({
-          'language': langueFr
-        })
-      }
-    })
-  })
+})
 
 //Saisie des absences
-  $(document).on('click', '.absChangeTypeGroupe', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    $('#listeEtudiantsAbsences').load(Routing.generate('api_absence_liste_etudiant', {typegroupe: $(this).data('typegroupe')}))
-    var date = $('#absence-date')
-    var heure = $('#absence-heure')
-    updateAffichage(date.val(), heure.val())
+$(document).on('click', '.absChangeTypeGroupe', function (e) {
+  e.preventDefault()
+  e.stopPropagation()
+  $('#listeEtudiantsAbsences').load(Routing.generate('api_absence_liste_etudiant', {typegroupe: $(this).data('typegroupe')}))
+  var date = $('#absence-date')
+  var heure = $('#absence-heure')
+  updateAffichage(date.val(), heure.val())
+})
+
+
+function updateAffichage (date, heure) {
+  $.ajax({
+    type: 'GET',
+    url: Routing.generate('application_personnel_absence_get_ajax.fr', {matiere: $('#absence-matiere').val()}),
+    dataType: 'json',
+    success: function (data) {
+      tabsences = data
+    }
   })
+  var t = date.split('/')
+  var ddate = t[2].trim() + '-' + t[1].trim() + '-' + t[0].trim()
 
 
-  function updateAffichage (date, heure) {
-    $.ajax({
-      type: 'GET',
-      url: Routing.generate('application_personnel_absence_get_ajax.fr', {matiere: $('#absence-matiere').val()}),
-      dataType: 'json',
-      success: function (data) {
-        tabsences = data
-      }
-    })
-    var t = date.split('/')
-    var ddate = t[2].trim() + '-' + t[1].trim() + '-' + t[0].trim()
-
-
-    if (typeof tabsences[ddate] !== 'undefined') {
-      if (typeof tabsences[ddate][heure] !== 'undefined') {
-        for (var i = 0; i < tabsences[ddate][heure].length; i++) {
-          $('#' + tabsences[ddate][heure][i]).addClass('absent')
-        }
+  if (typeof tabsences[ddate] !== 'undefined') {
+    if (typeof tabsences[ddate][heure] !== 'undefined') {
+      for (var i = 0; i < tabsences[ddate][heure].length; i++) {
+        $('#' + tabsences[ddate][heure][i]).addClass('absent')
       }
     }
-
   }
 
-  $(document).on('change', '#absence-matiere', function () {
-    var etudiants = $('.etudiant')
-    var date = $('#absence-date')
-    var heure = $('#absence-heure')
-    etudiants.removeClass('absent')
-    //etudiants.addClass('absence');
-    updateAffichage(date.val(), heure.val())
-  })
+}
 
-  $(document).on('change', '#absence-date', function () {
-    var etudiants = $('.etudiant')
-    var date = $('#absence-date')
-    var heure = $('#absence-heure')
-    etudiants.removeClass('absent')
-    updateAffichage(date.val(), heure.val())
-  })
+$(document).on('change', '#absence-matiere', function () {
+  var etudiants = $('.etudiant')
+  var date = $('#absence-date')
+  var heure = $('#absence-heure')
+  etudiants.removeClass('absent')
+  //etudiants.addClass('absence');
+  updateAffichage(date.val(), heure.val())
+})
 
-  $(document).on('change', '#absence-heure', function () {
-    var etudiants = $('.etudiant')
-    var date = $('#absence-date')
-    var heure = $('#absence-heure')
-    etudiants.removeClass('absent')
-    updateAffichage(date.val(), heure.val())
-  })
+$(document).on('change', '#absence-date', function () {
+  var etudiants = $('.etudiant')
+  var date = $('#absence-date')
+  var heure = $('#absence-heure')
+  etudiants.removeClass('absent')
+  updateAffichage(date.val(), heure.val())
+})
+
+$(document).on('change', '#absence-heure', function () {
+  var etudiants = $('.etudiant')
+  var date = $('#absence-date')
+  var heure = $('#absence-heure')
+  etudiants.removeClass('absent')
+  updateAffichage(date.val(), heure.val())
+})
 
 //marquage et enregistrement des absents
-  $(document).on('click', '.etudiant', function () {
-    if ($(this).hasClass('absent')) {
+$(document).on('click', '.etudiant', function () {
+  if ($(this).hasClass('absent')) {
 
-      //supprimer absence
-      $(this).removeClass('absent')
-      //$(this).addClass('absence');
-      $.ajax({
-        type: 'POST',
-        url: Routing.generate('application_personnel_absence_saisie_ajax.fr', {
-          matiere: $('#absence-matiere').val(),
-          etudiant: $(this).attr('id')
-        }),
-        dataType: 'json',
-        data: {
-          date: $('#absence-date').val(),
-          heure: $('#absence-heure').val(),
-          action: 'suppr'
-        },
-        //affichage de l'erreur en cas de problème
-        error: function (msg, string) {
-          addCallout('Le délai pour l\'enregistrement est dépassé. Contactez le responsable de la formation', 'danger')
-        },
-        success: function (data) {
-          tabsences = data
-          addCallout('La suppression a été effectuée avec succés !', 'success')
-        }
-      })
-    }
-    else {
-      //marquer comme absent
-      $(this).addClass('absent')
-      //$(this).removeClass('absence');
-      $.ajax({
-        type: 'POST',
-        url: Routing.generate('application_personnel_absence_saisie_ajax.fr', {
-          matiere: $('#absence-matiere').val(),
-          etudiant: $(this).attr('id')
-        }),
-        dataType: 'json',
-        data: {
-          date: $('#absence-date').val(),
-          heure: $('#absence-heure').val(),
-          action: 'saisie'
-        },
-        //affichage de l'erreur en cas de problème
-        error: function (msg, string) {
-          if (msg.responseText == 'out') {
-            addCallout('Le délai pour l\'enregistrement est dépassé. Contactez le responsable de la formation', 'danger')
-          } else {
-            addCallout('Erreur lors de l\'enregistrement.', 'danger')
-          }
-        },
-        success: function (data) {
-          tabsences = data
-          console.log('ajout')
-          console.log(tabsences)
-          addCallout('Absence enregistrée avec succés !', 'success')
-
-        }
-      })
-    }
-  })
-
-  $('#liste-absences').dataTable({
-    'language': langueFr,
-    /*'createdRow': function (row, data, dataIndex) {
-      if (data[6] == 'non' || data[6] == 'no' || data[6] == 'No' || data[6] == 'Non')
-      {
-        $(row).addClass('bg-pale-error')
-      } else {
-        $(row).addClass('bg-pale-error')
-      }
-    }*/
-    'fnRowCallback': function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-      if (aData[6] == 'non' || aData[6] == 'no' || aData[6] == 'No' || aData[6] == 'Non') {
-        $('td', nRow).css('background-color', '#fce3e3')
-      } else {
-        $('td', nRow).css('background-color', '#e3fcf2')
-      }
-    }
-  })
-
-  $('.savegroupe').click(function () {
-    var groupe = $(this).attr('id')
-    console.log(groupe)
-    var notes = {'notes': []}
-    $('.noteetudiant:input').each(function () {
-      if ($(this).hasClass(groupe)) //vérifier que c'est le groupe concerné
-      {
-        var $id = $(this).data('etudiant')
-        var obj = {
-          'id': $id,
-          'note': $(this).val(),
-          'commentaire': $('#com_' + $id).val()
-        }
-
-        notes['notes'].push(obj)
-      }
-    })
-
-    $.ajax(
-      {
-        url: Routing.generate('application_personnel_note_ajax_saisie.fr', {evaluation: $(this).data('evaluation')}),
-        type: 'POST',
-        data: {
-          notes: notes
-        },
-        success: function (data) {
-          addCallout('Les notes de <strong>ce groupe</strong> ont été enregistrées avec succés ! Vous pouvez les modifier !', 'success')
-          //feature: supprimer le "orange" sur les notes sauvegardées. Peut être récupérer en data les notes.
-        },
-        error: function () {
-          addCallout('Une erreur est survenue pendant l\'envoi... <br>Veuillez réessayer', 'danger')
-          //feature: être plus précis ?
-        }
-      })
-
-  })
-
-  $(document).on('keyup', '.noteetudiant', function (e) {
-    var val = $(this).val()
-
-    if (val == '-0.01') {
-      $(this).addClass('is-valid')
-    } else if (parseFloat(val) >= 0 && parseFloat(val) <= 20) {
-      $(this).addClass('is-valid')
-    } else {
-      $(this).addClass('is-invalid')
-    }
-  })
-
-  $(document).on('click', '.articleLike', function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    var elt = $(this)
-
+    //supprimer absence
+    $(this).removeClass('absent')
+    //$(this).addClass('absence');
     $.ajax({
-      url: Routing.generate('article_like.fr', {slug: $(this).data('article')}),
+      type: 'POST',
+      url: Routing.generate('application_personnel_absence_saisie_ajax.fr', {
+        matiere: $('#absence-matiere').val(),
+        etudiant: $(this).attr('id')
+      }),
+      dataType: 'json',
+      data: {
+        date: $('#absence-date').val(),
+        heure: $('#absence-heure').val(),
+        action: 'suppr'
+      },
+      //affichage de l'erreur en cas de problème
+      error: function (msg, string) {
+        addCallout('Le délai pour l\'enregistrement est dépassé. Contactez le responsable de la formation', 'danger')
+      },
       success: function (data) {
-        elt.html('<i class="ti-heart text-danger fs-11"></i> ' + data)
+        tabsences = data
+        addCallout('La suppression a été effectuée avec succés !', 'success')
       }
     })
-  })
-
-  $(document).on('keyup', '#search', function (e) {
-
-    var keyword = $(this).val()
-    console.log(keyword)
-    var search_reponse_etudiant = $('#search_reponse_etudiant')
-    var search_reponse_personnel = $('#search_reponse_personnel')
-    var search_reponse_autre = $('#search_reponse_autre')
-
-    if (keyword.length > 2) {
-      $.ajax({
-        url: Routing.generate('recherche', {keyword: keyword}),
-        dataType: 'json',
-        success: function (data) {
-
-
-          var html = ''
-          if (data.etudiants.length > 0) {
-            jQuery.each(data.etudiants, function (index, etudiant) {
-              html = html + '<a class="media" href="' + Routing.generate('user_profil.fr', {
-                  type: 'etudiant',
-                  slug: etudiant.slug
-                }) + '" target="_blank">\n' +
-                '                <span class="avatar status-dark">\n' +
-                '                  <img src="' + basePath + 'photo/' + etudiant.photo + '" alt="Photo de profil de ' + etudiant.displayPr + '">\n' +
-                '                </span>\n' +
-                '\n' +
-                '                        <div class="media-body">\n' +
-                '                            <p><strong>' + etudiant.displayPr + '</strong>\n' +
-                '                                <time class="float-right" datetime="2018-07-14 20:00">Groupes...</time>\n' +
-                '                            </p>\n' +
-                '                        </div>\n' +
-                '                    </a>'
-            })
-          } else {
-            html = '<div class="alert alert-warning">Pas de résultat pour votre rehcerche <strong>"' + keyword + '"</strong></div>'
-          }
-
-          search_reponse_etudiant.slideUp().empty().append(html).slideDown()
-
-          html = ''
-          if (data.personnels.length > 0) {
-            jQuery.each(data.personnels, function (index, personnel) {
-              html = html + '<a class="media items-center" href="' + Routing.generate('user_profil.fr', {
-                  type: 'personnel',
-                  slug: personnel.slug
-                }) + '" target="_blank">\n' +
-                '                        <img class="avatar avatar-sm" src="' + basePath + 'photo/' + personnel.photo + '" alt="Photo de profil de ' + personnel.displayPr + '">\n' +
-                '                        <p>' + personnel.displayPr + '</p>\n' +
-                '                    </a>'
-            })
-          } else {
-            html = '<div class="alert alert-warning">Pas de résultat pour votre rehcerche <strong>"' + keyword + '"</strong></div>'
-          }
-          search_reponse_personnel.slideUp().empty().append(html).slideDown()
-
-          html = ''
-          if (data.autres.length > 0) {
-            jQuery.each(data.autres, function (index, autre) {
-              html = html + '<a class="media items-center" href="">\n' +
-                '                        <img class="avatar avatar-sm" src="../assets/img/avatar/1.jpg" alt="...">\n' +
-                '                        <p>' + autre + '</p>\n' +
-                '                    </a>'
-            })
-          } else {
-            html = '<div class="alert alert-warning">Pas de résultat pour votre rehcerche <strong>"' + keyword + '"</strong></div>'
-          }
-          search_reponse_autre.slideUp().empty().append(html).slideDown()
-      }
-    })
-    } else {
-      var html = '<div class="alert alert-info">Saisir au moins 3 caractères</div>'
-      search_reponse_autre.slideUp().empty().append(html).slideDown()
-      search_reponse_personnel.slideUp().empty().append(html).slideDown()
-      search_reponse_etudiant.slideUp().empty().append(html).slideDown()
-    }
-  })
-
-  $(document).on('click', '.rattrapage-accepte', function (e) {
-    var rattrapage = $(this).data('rattrapage')
+  }
+  else {
+    //marquer comme absent
+    $(this).addClass('absent')
+    //$(this).removeClass('absence');
     $.ajax({
-      url: Routing.generate('administration_rattrapage_change_etat.fr', {id: rattrapage, etat: 'A'}),
-      success: function (e) {
-        var bx = $('.bx_' + rattrapage)
-        var parent = bx.parent()
-        bx.remove()
-        parent.prepend('<a href="#" class="btn btn-success btn-outline"><i class="ti-check"></i>Acceptée</a>')
-        addCallout('Demande de rattrapage validée !', 'success')
+      type: 'POST',
+      url: Routing.generate('application_personnel_absence_saisie_ajax.fr', {
+        matiere: $('#absence-matiere').val(),
+        etudiant: $(this).attr('id')
+      }),
+      dataType: 'json',
+      data: {
+        date: $('#absence-date').val(),
+        heure: $('#absence-heure').val(),
+        action: 'saisie'
       },
-      error: function (e) {
-        addCallout('Une erreur est survenue !', 'danger')
-      }
-    })
-  })
-
-  $(document).on('click', '.rattrapage-refuse', function (e) {
-    var rattrapage = $(this).data('rattrapage')
-    $.ajax({
-      url: Routing.generate('administration_rattrapage_change_etat.fr', {id: rattrapage, etat: 'R'}),
-      success: function (e) {
-        var bx = $('.bx_' + rattrapage)
-        var parent = bx.parent()
-        bx.remove()
-        parent.prepend('<a href="#" class="btn btn-warning btn-outline"><i class="ti-na"></i>Refusée</a>')
-        addCallout('Demande de rattrapage refusée !', 'success')
-      },
-      error: function (e) {
-        addCallout('Une erreur est survenue !', 'danger')
-      }
-    })
-  })
-
-  $(document).on('click', '.optAfficher', function (e) {
-    var evaluation = $(this).data('id')
-    var $child = $(this).children('i')
-    var $a = $(this)
-    $.ajax({
-      url: Routing.generate('administration_evaluation_visibilite.fr', {evaluation: evaluation}),
-      success: function (e) {
-        if ($child.hasClass('fa-eye')) {
-          $a.addClass('btn-danger')
-          $a.removeClass('btn-info').removeClass('btn-outline')
-
-          $child.removeClass('fa-eye')
-          $child.addClass('fa-eye-slash')
-          $a.attr('title', 'Evaluation masquée. Rendre visible l\'évaluation')
+      //affichage de l'erreur en cas de problème
+      error: function (msg, string) {
+        if (msg.responseText == 'out') {
+          addCallout('Le délai pour l\'enregistrement est dépassé. Contactez le responsable de la formation', 'danger')
         } else {
-          $a.removeClass('btn-danger')
-          $a.addClass('btn-info').addClass('btn-outline')
-          $child.removeClass('fa-eye-slash')
-          $child.addClass('fa-eye')
-          $a.attr('title', 'Evaluation visible. Masquer l\'évaluation')
+          addCallout('Erreur lors de l\'enregistrement.', 'danger')
         }
-        addCallout('Visibilité de l\'évaluation modifiée !', 'success')
       },
-      error: function (e) {
-        addCallout('Une erreur est survenue !', 'danger')
+      success: function (data) {
+        tabsences = data
+        console.log('ajout')
+        console.log(tabsences)
+        addCallout('Absence enregistrée avec succés !', 'success')
+
       }
     })
+  }
+})
+
+$('#liste-absences').dataTable({
+  'language': langueFr,
+  /*'createdRow': function (row, data, dataIndex) {
+    if (data[6] == 'non' || data[6] == 'no' || data[6] == 'No' || data[6] == 'Non')
+    {
+      $(row).addClass('bg-pale-error')
+    } else {
+      $(row).addClass('bg-pale-error')
+    }
+  }*/
+  'fnRowCallback': function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+    if (aData[6] == 'non' || aData[6] == 'no' || aData[6] == 'No' || aData[6] == 'Non') {
+      $('td', nRow).css('background-color', '#fce3e3')
+    } else {
+      $('td', nRow).css('background-color', '#e3fcf2')
+    }
+  }
+})
+
+//** Partie Justificatif **/
+
+$(document).on('click', '.justificatif-accepte', function (e) {
+  var justificatif = $(this).data('justificatif')
+  $.ajax({
+    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'A'}),
+    success: function (e) {
+      var bx = $('.bx_' + justificatif)
+      var parent = bx.parent()
+      bx.remove()
+      parent.prepend('<a href="#" class="btn btn-success btn-outline"><i class="ti-check"></i>Accepté</a>')
+      //todo: gérer la création du bouton annuler.
+      addCallout('Justificatif d\'absence validé !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
+    }
+  })
+})
+
+$(document).on('click', '.justificatif-refuse', function (e) {
+  var justificatif = $(this).data('justificatif')
+  $.ajax({
+    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'R'}),
+    success: function (e) {
+      var bx = $('.bx_' + justificatif)
+      var parent = bx.parent()
+      bx.remove()
+      parent.prepend('<a href="#" class="btn btn-warning btn-outline"><i class="ti-check"></i>Refusé</a>')
+      //todo: gérer la création du bouton annuler.
+      addCallout('Justificatif d\'absence refusé !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
+    }
+  })
+})
+
+$(document).on('click', '.justificatif-annuler', function (e) {
+  var justificatif = $(this).data('justificatif')
+  $.ajax({
+    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'D'}),
+    success: function (e) {
+      var bx = $('.bx_' + justificatif)
+      var parent = bx.parent()
+      bx.remove()
+      //todo: gérer la création des deux boutons.
+
+      var html = "<a href=\"#\"\n" +
+        "                               class=\"btn btn-success btn-outline btn-square justificatif-accepte bx_"+justificatif+"\" data-provide=\"tooltip\"\n" +
+        "                               data-justificatif=\""+justificatif+"\"\n" +
+        "                               data-placement=\"bottom\" title=\"atitle.accepter.le.justificatif\"><i\n" +
+        "                                        class=\"ti-check\"></i></a>\n" +
+        "                            <a href=\"#\"\n" +
+        "                               class=\"btn btn-warning btn-outline btn-square justificatif-refuse bx_"+justificatif+"\" data-provide=\"tooltip\"\n" +
+        "                               data-justificatif=\""+justificatif+"\"\n" +
+        "                               data-placement=\"bottom\" title=\"atitle.refuser.le.justificatif\"><i\n" +
+        "                                        class=\"ti-na\"></i></a>\n" +
+        "\n" +
+        "                            <a href=\""+Routing.generate('administration_absence_justificatif_delete', {id: justificatif})+"\" data-csrf=\"{{ csrf_token('delete' ~ justificatif.uuidString) }}\"\n" +
+        "                               class=\"btn btn-danger btn-outline btn-square supprimer bx_"+justificatif+"\"><i\n" +
+        "                                        class=\"ti-close\" data-provide=\"tooltip\" data-placement=\"bottom\"\n" +
+        "                                        title=\"atitle.supprimer\"></i></a>"
+      parent.prepend(html)
+      addCallout('Etat du justificatif d\'absence annulé !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
+    }
+  })
+})
+
+$('.savegroupe').click(function () {
+  var groupe = $(this).attr('id')
+  console.log(groupe)
+  var notes = {'notes': []}
+  $('.noteetudiant:input').each(function () {
+    if ($(this).hasClass(groupe)) //vérifier que c'est le groupe concerné
+    {
+      var $id = $(this).data('etudiant')
+      var obj = {
+        'id': $id,
+        'note': $(this).val(),
+        'commentaire': $('#com_' + $id).val()
+      }
+
+      notes['notes'].push(obj)
+    }
   })
 
-  $(document).on('click', '.optVerrouiller', function (e) {
-    var evaluation = $(this).data('id')
-    var $child = $(this).children('i')
-    var $a = $(this)
+  $.ajax(
+    {
+      url: Routing.generate('application_personnel_note_ajax_saisie.fr', {uuid: $(this).data('evaluation')}),
+      type: 'POST',
+      data: {
+        notes: notes
+      },
+      success: function (data) {
+        addCallout('Les notes de <strong>ce groupe</strong> ont été enregistrées avec succés ! Vous pouvez les modifier !', 'success')
+        //feature: supprimer le "orange" sur les notes sauvegardées. Peut être récupérer en data les notes.
+      },
+      error: function () {
+        addCallout('Une erreur est survenue pendant l\'envoi... <br>Veuillez réessayer', 'danger')
+        //feature: être plus précis ?
+      }
+    })
+
+})
+
+$(document).on('keyup', '.noteetudiant', function (e) {
+  var val = $(this).val()
+
+  if (val == '-0.01') {
+    $(this).addClass('is-valid')
+  } else if (parseFloat(val) >= 0 && parseFloat(val) <= 20) {
+    $(this).addClass('is-valid')
+  } else {
+    $(this).addClass('is-invalid')
+  }
+})
+
+$(document).on('click', '.articleLike', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  var elt = $(this);
+
+  $.ajax({
+    url: Routing.generate('article_like.fr', {slug: $(this).data('article')}),
+    success: function (data) {
+      elt.html('<i class="ti-heart text-danger fs-11"></i> ' + data);
+    }
+  })
+})
+
+$(document).on('keyup', '#search', function (e) {
+
+  var keyword = $(this).val()
+  console.log(keyword)
+  var search_reponse_etudiant = $('#search_reponse_etudiant')
+  var search_reponse_personnel = $('#search_reponse_personnel')
+  var search_reponse_autre = $('#search_reponse_autre')
+
+  if (keyword.length > 2) {
     $.ajax({
-      url: Routing.generate('administration_evaluation_modifiable.fr', {evaluation: evaluation}),
-      success: function (e) {
-        if ($(this).children('i').hasClass('fa-pencil')) {
-          $a.addClass('btn-danger')
-          $a.removeClass('btn-warning').removeClass('btn-outline')
-          $child.children('i').removeClass('fa-pencil')
-          $child.children('i').addClass('fa-lock')
-          $a.attr('data-original-title', 'Modification interdite. Autoriser la modificaiton')
+      url: Routing.generate('recherche', {keyword: keyword}),
+      dataType: 'json',
+      success: function (data) {
+
+
+        var html = ''
+        if (data.etudiants.length > 0) {
+          jQuery.each(data.etudiants, function (index, etudiant) {
+            html = html + '<a class="media" href="' + Routing.generate('user_profil.fr', {
+                type: 'etudiant',
+                slug: etudiant.slug
+              }) + '" target="_blank">\n' +
+              '                <span class="avatar status-dark">\n' +
+              '                  <img src="' + basePath + 'photo/' + etudiant.photo + '" alt="Photo de profil de ' + etudiant.displayPr + '">\n' +
+              '                </span>\n' +
+              '\n' +
+              '                        <div class="media-body">\n' +
+              '                            <p><strong>' + etudiant.displayPr + '</strong>\n' +
+              '                                <time class="float-right" datetime="2018-07-14 20:00">Groupes...</time>\n' +
+              '                            </p>\n' +
+              '                        </div>\n' +
+              '                    </a>'
+          })
         } else {
-          $a.removeClass('btn-danger')
-          $a.addClass('btn-warning').addClass('btn-outline')
-          $child.children('i').removeClass('fa-lock')
-          $child.addClass('fa-pencil')
-          $a.attr('data-original-title', 'Modification autorisée. Interdire la modification')
+          html = '<div class="alert alert-warning">Pas de résultat pour votre rehcerche <strong>"' + keyword + '"</strong></div>'
         }
-        addCallout('Vérouillage de l\'évaluation modifiée !', 'success')
-      },
-      error: function (e) {
-        addCallout('Une erreur est survenue !', 'danger')
+
+        search_reponse_etudiant.slideUp().empty().append(html).slideDown()
+
+        html = ''
+        if (data.personnels.length > 0) {
+          jQuery.each(data.personnels, function (index, personnel) {
+            html = html + '<a class="media items-center" href="' + Routing.generate('user_profil.fr', {
+                type: 'personnel',
+                slug: personnel.slug
+              }) + '" target="_blank">\n' +
+              '                        <img class="avatar avatar-sm" src="' + basePath + 'photo/' + personnel.photo + '" alt="Photo de profil de ' + personnel.displayPr + '">\n' +
+              '                        <p>' + personnel.displayPr + '</p>\n' +
+              '                    </a>'
+          })
+        } else {
+          html = '<div class="alert alert-warning">Pas de résultat pour votre rehcerche <strong>"' + keyword + '"</strong></div>'
+        }
+        search_reponse_personnel.slideUp().empty().append(html).slideDown()
+
+        html = ''
+        if (data.autres.length > 0) {
+          jQuery.each(data.autres, function (index, autre) {
+            html = html + '<a class="media items-center" href="">\n' +
+              '                        <img class="avatar avatar-sm" src="../assets/img/avatar/1.jpg" alt="...">\n' +
+              '                        <p>' + autre + '</p>\n' +
+              '                    </a>'
+          })
+        } else {
+          html = '<div class="alert alert-warning">Pas de résultat pour votre rehcerche <strong>"' + keyword + '"</strong></div>'
+        }
+        search_reponse_autre.slideUp().empty().append(html).slideDown()
       }
     })
-  })
+  } else {
+    var html = '<div class="alert alert-info">Saisir au moins 3 caractères</div>'
+    search_reponse_autre.slideUp().empty().append(html).slideDown()
+    search_reponse_personnel.slideUp().empty().append(html).slideDown()
+    search_reponse_etudiant.slideUp().empty().append(html).slideDown()
+  }
+})
 
-  $(document).on('click', '.filtreTypeDate', function (e) {
-    var btn = $(this)
-    var type = btn.data('type')
-    if (btn.hasClass('btn-outline')) {
-      afficheType(type)
-      btn.removeClass('btn-outline')
-    } else {
-      btn.addClass('btn-outline')
-      removeType(type)
-
+$(document).on('click', '.rattrapage-accepte', function (e) {
+  var rattrapage = $(this).data('rattrapage')
+  $.ajax({
+    url: Routing.generate('administration_rattrapage_change_etat.fr', {uuid: rattrapage, etat: 'A'}),
+    success: function (e) {
+      var bx = $('.bx_' + rattrapage)
+      var parent = bx.parent()
+      bx.remove()
+      parent.prepend('<a href="#" class="btn btn-success btn-outline"><i class="ti-check"></i>Acceptée</a>')
+      addCallout('Demande de rattrapage validée !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
     }
   })
+})
 
-  $(document).on('click', '.filtreUtilisateurDate', function (e) {
-    var btn = $(this)
-    var type = btn.data('type')
-    if (btn.hasClass('btn-outline')) {
-      afficheUtilisateur(type)
-      btn.removeClass('btn-outline')
-    } else {
-      btn.addClass('btn-outline')
-      removeUtilisateur(type)
-
+$(document).on('click', '.rattrapage-refuse', function (e) {
+  var rattrapage = $(this).data('rattrapage')
+  $.ajax({
+    url: Routing.generate('administration_rattrapage_change_etat.fr', {uuid: rattrapage, etat: 'R'}),
+    success: function (e) {
+      var bx = $('.bx_' + rattrapage)
+      var parent = bx.parent()
+      bx.remove()
+      parent.prepend('<a href="#" class="btn btn-warning btn-outline"><i class="ti-na"></i>Refusée</a>')
+      addCallout('Demande de rattrapage refusée !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
     }
   })
+})
+
+$(document).on('click', '.optAfficher', function (e) {
+  var evaluation = $(this).data('id')
+  var $child = $(this).children('i')
+  var $a = $(this)
+  $.ajax({
+    url: Routing.generate('administration_evaluation_visibilite.fr', {uuid: evaluation}),
+    success: function (e) {
+      if ($child.hasClass('fa-eye')) {
+        $a.addClass('btn-danger')
+        $a.removeClass('btn-info').removeClass('btn-outline')
+
+        $child.removeClass('fa-eye')
+        $child.addClass('fa-eye-slash')
+        $a.attr('title', 'Evaluation masquée. Rendre visible l\'évaluation')
+      } else {
+        $a.removeClass('btn-danger')
+        $a.addClass('btn-info').addClass('btn-outline')
+        $child.removeClass('fa-eye-slash')
+        $child.addClass('fa-eye')
+        $a.attr('title', 'Evaluation visible. Masquer l\'évaluation')
+      }
+      addCallout('Visibilité de l\'évaluation modifiée !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
+    }
+  })
+})
+
+$(document).on('click', '.optVerrouiller', function (e) {
+  var evaluation = $(this).data('id')
+  var $child = $(this).children('i')
+  var $a = $(this)
+  $.ajax({
+    url: Routing.generate('administration_evaluation_modifiable.fr', {uuid: evaluation}),
+    success: function (e) {
+      if ($(this).children('i').hasClass('fa-pencil')) {
+        $a.addClass('btn-danger')
+        $a.removeClass('btn-warning').removeClass('btn-outline')
+        $child.children('i').removeClass('fa-pencil')
+        $child.children('i').addClass('fa-lock')
+        $a.attr('data-original-title', 'Modification interdite. Autoriser la modificaiton')
+      } else {
+        $a.removeClass('btn-danger')
+        $a.addClass('btn-warning').addClass('btn-outline')
+        $child.children('i').removeClass('fa-lock')
+        $child.addClass('fa-pencil')
+        $a.attr('data-original-title', 'Modification autorisée. Interdire la modification')
+      }
+      addCallout('Vérouillage de l\'évaluation modifiée !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
+    }
+  })
+})
+
+$(document).on('click', '.filtreTypeDate', function (e) {
+  var btn = $(this)
+  var type = btn.data('type')
+  if (btn.hasClass('btn-outline')) {
+    afficheType(type)
+    btn.removeClass('btn-outline')
+  } else {
+    btn.addClass('btn-outline')
+    removeType(type)
+
+  }
+})
+
+$(document).on('click', '.filtreUtilisateurDate', function (e) {
+  var btn = $(this)
+  var type = btn.data('type')
+  if (btn.hasClass('btn-outline')) {
+    afficheUtilisateur(type)
+    btn.removeClass('btn-outline')
+  } else {
+    btn.addClass('btn-outline')
+    removeUtilisateur(type)
+
+  }
+})
 
 //todo: croiser les filtres.
-  function removeType (type) {
+function removeType (type) {
+  $('.event').each(function (e) {
+    if ($(this).data('type-event') === type) {
+      $(this).hide()
+    }
+  })
+}
+
+function afficheType (type) {
+  $('.event').each(function (e) {
+    if ($(this).data('type-event') === type) {
+      $(this).show()
+    }
+  })
+}
+
+function removeUtilisateur (type) {
+  if (type === 'E') {
     $('.event').each(function (e) {
-      if ($(this).data('type-event') === type) {
+      if ($(this).data('qui-event') === type) {
+        $(this).hide()
+      }
+    })
+  } else {
+    $('.event').each(function (e) {
+      if ($(this).hasClass(type)) {
         $(this).hide()
       }
     })
   }
+}
 
-  function afficheType (type) {
+function afficheUtilisateur (type) {
+  if (type === 'E') {
     $('.event').each(function (e) {
-      if ($(this).data('type-event') === type) {
+      if ($(this).data('qui-event') === type) {
+        $(this).show()
+      }
+    })
+  } else {
+    $('.event').each(function (e) {
+      if ($(this).hasClass(type)) {
         $(this).show()
       }
     })
   }
-
-  function removeUtilisateur (type) {
-    if (type === 'E') {
-      $('.event').each(function (e) {
-        if ($(this).data('qui-event') === type) {
-          $(this).hide()
-        }
-      })
-    } else {
-      $('.event').each(function (e) {
-        if ($(this).hasClass(type)) {
-          $(this).hide()
-        }
-      })
-    }
-  }
-
-  function afficheUtilisateur (type) {
-    if (type === 'E') {
-      $('.event').each(function (e) {
-        if ($(this).data('qui-event') === type) {
-          $(this).show()
-        }
-      })
-    } else {
-      $('.event').each(function (e) {
-        if ($(this).hasClass(type)) {
-          $(this).show()
-        }
-      })
-    }
-  }
+}
 
   //$.fn.dataTable.moment( 'Do MMMM  YYYY à h:mm' ); pour trier les datatable selon une date. Ne fonctionne pas.
 

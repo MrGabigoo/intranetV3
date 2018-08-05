@@ -30,6 +30,10 @@ class Events
     public const DECISION_RATTRAPAGE = 'decision.rattrapage';
     public const DECISION_RATTRAPAGE_ACCEPTEE = 'decision.rattrapage.acceptee';
     public const DECISION_RATTRAPAGE_REFUSEE = 'decision.rattrapage.refusee';
+    public const DECISION_JUSTIFICATIF = 'decision.justificatif';
+    public const DECISION_JUSTIFICATIF_ACCEPTEE = 'decision.justificatif.acceptee';
+    public const DECISION_JUSTIFICATIF_REFUSEE = 'decision.justificatif.refusee';
+
 
     public const MAIL_ABSENCE_ADDED = 'mail.absence.added';
     public const MAIL_ABSENCE_ADDED_RESPONSABLE = 'mail.absence.added.responsable';
@@ -38,6 +42,8 @@ class Events
     public const MAIL_NOTE_MODIFICATION_RESPONSABLE = 'mail.note.modification.responsable';
     public const MAIL_NEW_TRANSCRIPT_RESPONSABLE = 'mail.new.transcript.responsable';
     public const MAIL_DECISION_RATTRAPAGE = 'mail.decision.rattrapage';
+    public const MAIL_DECISION_JUSTIFICATIF = 'mail.decision.justificatif';
+
 
 
 }

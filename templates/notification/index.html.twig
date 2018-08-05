@@ -20,27 +20,18 @@
             {{ 'notification.heading'|trans }}
         </h4>
         {# todo: finaliser mise en page et gérer les "a lire" des "lu" #}
-        <div class="card-body">
-            {% if notifications|length > 0 %}
-                <ol class="timeline timeline-activity timeline-point-sm timeline-content-right text-left w-100">
-                    {% for notification in notifications %}
-                        <li class="timeline-block">
-                            <div class="timeline-point timeline-point-{{ notification.color }}">
-                                <span class="badge badge-ring badge-{{ notification.color }}"></span>
-                            </div>
-                            <div class="timeline-content">
-                                <time datetime="{{ notification.created|date('d/m/y H:i') }}">{{ notification.created|time_ago }}</time>
-                                <p><a href="{{ notification.url }}"><i
-                                                class="{{ notification.icone }}"></i> {{ notification.type|trans }}</a></p>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ol>
+
+        <div class="media-list media-list-hover media-list-divided">
+            {% for notification in user_data.notifications %}
+                <a class="media media-single {% if notification.lu == false %}media-new{% endif %} notification"
+                   href="{{ notification.url }}">
+                    <span class="avatar bg-{{ notification.color }}"><i class="{{ notification.icone }}"></i></span>
+                    <span class="title">{{ notification.type|trans }}</span>
+                 <time datetime="{{ notification.created|date('d/m/y H:i') }}">{{ notification.created|time_ago }}</time>
+                </a>
             {% else %}
-                <div class="alert alert-info">
-                    {{ 'aucune.notification'|trans }}
-                </div>
-            {% endif %}
+                {{ 'aucune.notification'|trans }}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

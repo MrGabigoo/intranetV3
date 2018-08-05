@@ -95,6 +95,7 @@ class Etudiant extends Utilisateur implements \Serializable
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Notification", mappedBy="etudiant")
+     * @ORM\OrderBy({"created":"desc"})
      */
     private $notifications;
 
@@ -123,6 +124,11 @@ class Etudiant extends Utilisateur implements \Serializable
      */
     private $messageDestinataireEtudiants;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AbsenceJustificatif", mappedBy="etudiant")
+     */
+    private $absenceJustificatifs;
+
     //todo:  contrat pro
     //todo: gestion de l'alternance.
 
@@ -144,6 +150,7 @@ class Etudiant extends Utilisateur implements \Serializable
         $this->articleLikes = new ArrayCollection();
         $this->groupes = new ArrayCollection();
         $this->messageDestinataireEtudiants = new ArrayCollection();
+        $this->absenceJustificatifs = new ArrayCollection();
     }
 
     /**
@@ -747,6 +754,37 @@ class Etudiant extends Utilisateur implements \Serializable
             // set the owning side to null (unless already changed)
             if ($messageDestinataireEtudiant->getEtudiant() === $this) {
                 $messageDestinataireEtudiant->setEtudiant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AbsenceJustificatif[]
+     */
+    public function getAbsenceJustificatifs(): Collection
+    {
+        return $this->absenceJustificatifs;
+    }
+
+    public function addAbsenceJustificatif(AbsenceJustificatif $absenceJustificatif): self
+    {
+        if (!$this->absenceJustificatifs->contains($absenceJustificatif)) {
+            $this->absenceJustificatifs[] = $absenceJustificatif;
+            $absenceJustificatif->setEtudiant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAbsenceJustificatif(AbsenceJustificatif $absenceJustificatif): self
+    {
+        if ($this->absenceJustificatifs->contains($absenceJustificatif)) {
+            $this->absenceJustificatifs->removeElement($absenceJustificatif);
+            // set the owning side to null (unless already changed)
+            if ($absenceJustificatif->getEtudiant() === $this) {
+                $absenceJustificatif->setEtudiant(null);
             }
         }
 

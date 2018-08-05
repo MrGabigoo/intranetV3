@@ -7,9 +7,12 @@ use App\Entity\Etudiant;
 use App\Entity\Semestre;
 use App\MesClasses\MyAbsences;
 use App\MesClasses\MyExport;
+use App\Repository\AbsenceJustificatifRepository;
 use App\Repository\AbsenceRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+//todo: utiliser les voters : https://medium.com/@galopintitouan/using-symfony-security-voters-to-check-user-permissions-with-ease-9a48e2d45540
 
 /**
  * Class AbsenceController
@@ -61,6 +64,22 @@ class AbsenceController extends BaseController
     }
 
     /**
+     * @Route("/semestre/{semestre}/justificatif", name="administration_absences_semestre_liste_justificatif")
+     * @param MyAbsences $myAbsences
+     * @param Semestre   $semestre
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function justificatif(AbsenceJustificatifRepository $absenceJustificatifRepository, Semestre $semestre): Response
+    {
+        return $this->render('administration/absence/justificatif.html.twig', [
+            'semestre' => $semestre,
+            'justificatifs' => $absenceJustificatifRepository->findBySemestre($semestre, $this->dataUserSession->getAnneeUniversitaire())
+        ]);
+    }
+
+    /**
      * @Route("/semestre/{semestre}/justifier", name="administration_absences_semestre_justifier")
      * @param Semestre $semestre
      *
@@ -84,6 +103,23 @@ class AbsenceController extends BaseController
         return $this->render('administration/absence/saisie.html.twig', [
             'semestre' => $semestre
         ]);
+    }
+
+    /**
+     * @Route("/semestre/{semestre}/justificatif/export.{_format}", name="administration_absences_semestre_justificatif_export", requirements={"_format"="csv|xlsx|pdf"})
+     * @param MyExport   $myExport
+     * @param MyAbsences $myAbsences
+     * @param Semestre   $semestre
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function exportJustificatif(MyExport $myExport, AbsenceJustificatifRepository $absenceJustificatifRepository, Semestre $semestre, $_format): Response
+    {
+        $justificatifs = $absenceJustificatifRepository->findBySemestre($semestre, $this->dataUserSession->getAnneeUniversitaire());
+        $response = $myExport->genereFichierAbsence($_format, $justificatifs, 'absences_' . $semestre->getLibelle());
+
+        return $response;
     }
 
     /**

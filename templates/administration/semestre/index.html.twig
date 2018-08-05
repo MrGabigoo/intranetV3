@@ -64,6 +64,9 @@
                     <a href="{{ path('administration_absences_semestre_liste',{semestre:semestre.id}) }}"
                        class="btn btn-block btn-primary">
                         {{ 'afficher.les.absences'|trans }}</a>
+                    <a href="{{ path('administration_absences_justificatif_semestre_liste',{semestre:semestre.id}) }}"
+                       class="btn btn-block btn-primary">
+                        {{ 'liste.justificatifs'|trans }} (xx nouveaux)</a>
                     <a href="{{ path('administration_absences_semestre_justifier',{semestre:semestre.id}) }}"
                        class="btn btn-block btn-primary">
                         {{ 'justifier.les.absences'|trans }}</a>
@@ -103,7 +106,7 @@
                     </a>
                     <a href="{{ path('administration_rattrapage_semestre_index',{semestre:semestre.id}) }}"
                        class="btn btn-block btn-primary">
-                        {{ 'demandes.rattrapages'|trans }}
+                        {{ 'demandes.rattrapages'|trans }} <span class="badge badge-pill badge-info">{{ nbRattrapage|length }}</span>
                     </a>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Absence;
+use App\Entity\AbsenceJustificatif;
 use App\Entity\Evaluation;
 use App\Entity\Note;
 use App\Entity\Rattrapage;
@@ -46,7 +47,8 @@ class MailingSubscriber implements EventSubscriberInterface
             Events::MAIL_ABSENCE_REMOVED_RESPONSABLE   => 'onMailAbsenceRemovedResponsable',
             Events::MAIL_NOTE_MODIFICATION_RESPONSABLE => 'onMailNoteModificationResponsable',
             Events::MAIL_NEW_TRANSCRIPT_RESPONSABLE    => 'onMailNewTranscriptResponsable',
-            Events::DECISION_RATTRAPAGE                => 'onMailDecisionRattrapage',
+            Events::MAIL_DECISION_RATTRAPAGE           => 'onMailDecisionRattrapage',
+            Events::MAIL_DECISION_JUSTIFICATIF         => 'onMailDecisionJustificatif',
         ];
     }
 
@@ -78,6 +80,25 @@ class MailingSubscriber implements EventSubscriberInterface
             } else {
                 $this->myMailer->setTemplate('mails/rattrapage_refused.txt.twig', ['rattrapage' => $rattrapage]);
                 $this->myMailer->sendMessage($rattrapage->getEtudiant()->getMails(), 'Demande de rattrapage refusée');
+            }
+        }
+
+    }
+
+    /**
+     * @param GenericEvent $event
+     */
+    public function onMailDecisionJustificatif(GenericEvent $event): void
+    {
+        /** @var AbsenceJustificatif $absenceJustificatif */
+        $absenceJustificatif = $event->getSubject();
+        if ($absenceJustificatif->getEtudiant() !== null) {
+            if ($absenceJustificatif->getEtat() === 'A') {
+                $this->myMailer->setTemplate('mails/justificatif_accepted.txt.twig', ['justificatif' => $absenceJustificatif]);
+                $this->myMailer->sendMessage($absenceJustificatif->getEtudiant()->getMails(), 'Justificatif d\'absence accepté');
+            } else {
+                $this->myMailer->setTemplate('mails/justificatif_refused.txt.twig', ['justificatif' => $absenceJustificatif]);
+                $this->myMailer->sendMessage($absenceJustificatif->getEtudiant()->getMails(), 'Justificatif d\'absence refusé');
             }
         }
 

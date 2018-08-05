@@ -22,6 +22,11 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/public/upload/photo'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
             inject_on_load: true
+        justificatif:
+            uri_prefix: /fichiers/justificatif
+            upload_destination: '%kernel.project_dir%/public/upload/justificatif'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            inject_on_load: true
     #    products:
     #        uri_prefix: /images/products
     #        upload_destination: '%kernel.project_dir%/public/images/products'

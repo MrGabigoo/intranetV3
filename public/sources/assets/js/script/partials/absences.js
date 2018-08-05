@@ -182,3 +182,75 @@ $('#liste-absences').dataTable({
     }
   }
 })
+
+//** Partie Justificatif **/
+
+$(document).on('click', '.justificatif-accepte', function (e) {
+  var justificatif = $(this).data('justificatif')
+  $.ajax({
+    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'A'}),
+    success: function (e) {
+      var bx = $('.bx_' + justificatif)
+      var parent = bx.parent()
+      bx.remove()
+      parent.prepend('<a href="#" class="btn btn-success btn-outline"><i class="ti-check"></i>Accepté</a>')
+      //todo: gérer la création du bouton annuler.
+      addCallout('Justificatif d\'absence validé !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
+    }
+  })
+})
+
+$(document).on('click', '.justificatif-refuse', function (e) {
+  var justificatif = $(this).data('justificatif')
+  $.ajax({
+    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'R'}),
+    success: function (e) {
+      var bx = $('.bx_' + justificatif)
+      var parent = bx.parent()
+      bx.remove()
+      parent.prepend('<a href="#" class="btn btn-warning btn-outline"><i class="ti-check"></i>Refusé</a>')
+      //todo: gérer la création du bouton annuler.
+      addCallout('Justificatif d\'absence refusé !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
+    }
+  })
+})
+
+$(document).on('click', '.justificatif-annuler', function (e) {
+  var justificatif = $(this).data('justificatif')
+  $.ajax({
+    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'D'}),
+    success: function (e) {
+      var bx = $('.bx_' + justificatif)
+      var parent = bx.parent()
+      bx.remove()
+      //todo: gérer la création des deux boutons.
+
+      var html = "<a href=\"#\"\n" +
+        "                               class=\"btn btn-success btn-outline btn-square justificatif-accepte bx_"+justificatif+"\" data-provide=\"tooltip\"\n" +
+        "                               data-justificatif=\""+justificatif+"\"\n" +
+        "                               data-placement=\"bottom\" title=\"atitle.accepter.le.justificatif\"><i\n" +
+        "                                        class=\"ti-check\"></i></a>\n" +
+        "                            <a href=\"#\"\n" +
+        "                               class=\"btn btn-warning btn-outline btn-square justificatif-refuse bx_"+justificatif+"\" data-provide=\"tooltip\"\n" +
+        "                               data-justificatif=\""+justificatif+"\"\n" +
+        "                               data-placement=\"bottom\" title=\"atitle.refuser.le.justificatif\"><i\n" +
+        "                                        class=\"ti-na\"></i></a>\n" +
+        "\n" +
+        "                            <a href=\""+Routing.generate('administration_absence_justificatif_delete', {id: justificatif})+"\" data-csrf=\"{{ csrf_token('delete' ~ justificatif.uuidString) }}\"\n" +
+        "                               class=\"btn btn-danger btn-outline btn-square supprimer bx_"+justificatif+"\"><i\n" +
+        "                                        class=\"ti-close\" data-provide=\"tooltip\" data-placement=\"bottom\"\n" +
+        "                                        title=\"atitle.supprimer\"></i></a>"
+      parent.prepend(html)
+      addCallout('Etat du justificatif d\'absence annulé !', 'success')
+    },
+    error: function (e) {
+      addCallout('Une erreur est survenue !', 'danger')
+    }
+  })
+})

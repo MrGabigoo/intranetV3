@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Annee;
 use App\Entity\Diplome;
+use App\Entity\Formation;
 use App\Entity\Matiere;
 use App\Entity\Semestre;
 use App\Entity\Ue;
@@ -71,5 +72,10 @@ class MatiereRepository extends ServiceEntityRepository
             ->setParameter('semestre', $semestre->getId())
             ->orderBy('m.ue', 'ASC')
             ->orderBy('m.codeMatiere', 'ASC');
+    }
+
+    public function findByFormation(Formation $formation)
+    {
+        return $this->findByFormationBuilder($formation)->getQuery()->getResult();
     }
 }
