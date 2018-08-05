@@ -1,0 +1,204 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {{ 'stage_periode_gestion.heading'|trans({'%libelle%':stagePeriode.libelle})|raw }}
+{% endblock %}
+
+{% block headerright %}
+    <div class="right gap-items-2">
+        {% for periode in periodes %}
+            <a href="{{ path('administration_stage_periode_gestion', {uuid:periode.uuidString}) }}"
+               class="btn btn-round {% if periode.id == stagePeriode.id %}btn-primary{% endif %}"
+               title="{{ 'changer.de.stage_periode'|trans }}"
+               data-provide="tooltip"
+               data-placement="bottom"
+            >{{ periode.libelle }}</a>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block headeractions %}
+    <div class="header-action">
+        <div class="buttons">
+            <a href="{{ path('administration_stage_periode_offre_index', {id: stagePeriode.uuidString}) }}"
+               class="btn btn-info btn-sm btn-float" data-provide="tooltip"
+               data-placement="bottom" title="{{ 'atitle.stage_offres'|trans }}"><i class="material-icons">work</i></a>
+            <a href="{{ path('administration_stage_entreprise_index') }}"
+               class="btn btn-info btn-sm btn-float" data-provide="tooltip"
+               data-placement="bottom" title="{{ 'atitle.stage_entreprises'|trans }}"><i class="material-icons">account_balance</i></a>
+            <a href="{{ path('administration_stage_periode_soutenance_index', {id: stagePeriode.uuidString}) }}"
+               class="btn btn-info btn-sm btn-float" data-provide="tooltip"
+               data-placement="bottom" title="{{ 'atitle.stage_soutenances'|trans }}"><i class="material-icons">insert_invitation</i></a>
+            <a href="{{ path('administration_stage_periode_courrier_index', {id: stagePeriode.uuidString}) }}"
+               class="btn btn-info btn-sm btn-float" data-provide="tooltip"
+               data-placement="bottom" title="{{ 'atitle.stage_courrier'|trans }}"><i class="material-icons">local_post_office</i></a>
+
+            <a href="{{ path('administration_stage_periode_edit', {id: stagePeriode.uuidString}) }}"
+               class="btn btn-warning btn-sm btn-float" data-provide="tooltip"
+               data-placement="bottom" title="{{ 'atitle.modifier'|trans }}"><i class="material-icons">edit</i>
+
+                <a href="{{ path('administration_index') }}" class="btn btn-primary btn-float" data-provide="tooltip"
+                   data-placement="bottom" title="{{ 'atitle.retour_administration'|trans }}"><i class="material-icons">build</i></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12 sol-sm-12">
+            <div class="card card-slided-up">
+                <header class="card-header">
+                    <h4 class="card-title">Période : <strong>{{ stagePeriode.libelle }}</strong>
+                        (n° {{ stagePeriode.numeroPeriode }}
+                        | {{ stagePeriode.semestre.libelle }})</h4>
+                    <ul class="card-controls">
+                        <li><a class="card-btn-slide" href="#" title="plus de détails" data-provide="tooltip"></a></li>
+                    </ul>
+                </header>
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <p>Période de stage du
+                                    <strong>{{ stagePeriode.dateDebut ? stagePeriode.dateDebut|localizeddate('long', 'none', app.request.getLocale()) : 'non.defini'|trans }}
+                                        au {{ stagePeriode.dateFin ? stagePeriode.dateFin|localizeddate('long', 'none', app.request.getLocale()) : 'non.defini'|trans }}</strong>
+                                    soit {{ stagePeriode.nbJours }} jour(s) ou {{ stagePeriode.nbSemaines }} semaine(s)
+                                </p>
+                                <p>Les responsables de cette période sont : </p>
+                                <ul>
+                                    {% for personnel in stagePeriode.responsables %}
+                                        <li>{{ personnel.displayPr }}</li>
+                                    {% else %}
+                                        {{ 'non.defini'|trans }}
+                                    {% endfor %}
+                                </ul>
+                                <p>
+                                    Les dates de cette période de stage sont
+                                    <strong>{{ stagePeriode.datesFlexibles ? 'flexibles'|trans : 'fixe'|trans }}</strong>.<br/>
+                                    L'assistant(e)
+                                    <strong>{{ stagePeriode.copieAssistant ? 'est.en.copie'|trans : 'nest.pas.en.copie'|trans }}</strong>
+                                    des mails générés par l'intranet.
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <p>Périodes d'interruptions prévues : </p>
+                                <ul>
+                                    {% for stagePeriodeInterruption in stagePeriode.stagePeriodeInterruptions %}
+                                        <li>
+                                            Du {{ stagePeriodeInterruption.dateDebut? stagePeriodeInterruption.dateDebut|localizeddate('long', 'none', app.request.getLocale()) : 'non.defini'|trans }}
+                                            au {{ stagePeriodeInterruption.dateFin? stagePeriodeInterruption.dateFin|localizeddate('long', 'none', app.request.getLocale()) : 'non.defini'|trans }} </li>
+                                    {% else %}
+                                        {{ 'non.defini'|trans }}
+                                    {% endfor %}
+                                </ul>
+
+                                <p>Périodes de soutenances prévues : </p>
+                                <ul>
+                                    {% for stagePeriodeSoutenance in stagePeriode.stagePeriodeSoutenances %}
+                                        <li>
+                                            Du {{ stagePeriodeSoutenance.dateDebut?stagePeriodeSoutenance.dateDebut|localizeddate('long', 'none', app.request.getLocale()) : 'non.defini'|trans }}
+                                            au {{ stagePeriodeSoutenance.dateFin?stagePeriodeSoutenance.dateFin|localizeddate('long', 'none', app.request.getLocale()) : 'non.defini'|trans }}
+                                            , rapport pour
+                                            le {{ stagePeriodeSoutenance.dateRenduRapport?stagePeriodeSoutenance.dateRenduRapport|localizeddate('long', 'short', app.request.getLocale()) : 'non.defini'|trans }}</li>
+                                    {% else %}
+                                        {{ 'non.defini'|trans }}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs nav-tabs-danger nav-justified" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#onglet_proposition" role="tab">Propositions
+                            à
+                            valider (xx)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#onglet_envoyer" role="tab">Conventions à envoyer
+                            (xx)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#onglet_attente" role="tab">Conventions en attente
+                            de
+                            retour (xx)</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#onglet_complet" role="tab">Conventions complétes
+                            (xx)</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="card-body tab-content">
+                    <div class="tab-pane fade active show" id="onglet_proposition">
+
+                    </div>
+                    <div class="tab-pane fade" id="onglet_envoyer">
+
+                    </div>
+                    <div class="tab-pane fade" id="onglet_attente">
+
+                    </div>
+                    <div class="tab-pane fade" id="onglet_complet">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-lg-12">
+            <div class="card">
+                <h4 class="card-header">Etudiants</h4>
+                <div class="card-body">
+                    <table class="table table-striped" data-provide="datatable">
+                        <thead>
+                        <tr>
+                            <th>Etudiant</th>
+                            <th>Entreprise</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block fabactions %}
+    {{ include('composants/fab-buttons.html.twig', {boutons:[
+        {type: 'info',
+            href: path('administration_stage_periode_export', {_format:'pdf'}),
+            title: 'exporter.pdf'|trans,
+            icone : "ti-printer"},
+        {
+            type:'info',
+            href:path('administration_stage_periode_export', {_format:'csv'}),
+            title: 'exporter.csv'|trans,
+            icone: 'ti-save'
+        },
+        {
+            type:'info',
+            href:path('administration_stage_periode_export', {_format:'xlsx'}),
+            title: 'exporter.xls'|trans,
+            icone: 'fa fa-table'
+        },
+        {
+            type:'info',
+            href:path('help_article', {sujet: 'administration_stage_periode'}),
+            title: 'aide'|trans,
+            icone: 'ti-help'
+        }
+    ]}) }}
+{% endblock %}

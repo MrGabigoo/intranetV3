@@ -158,6 +158,11 @@ class Personnel extends Utilisateur implements \Serializable // implements Seria
      */
     private $messageDestinatairePersonnels;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\StagePeriode", mappedBy="responsables")
+     */
+    private $stagePeriodes;
+
     public function __construct()
     {
         parent::__construct();
@@ -172,6 +177,7 @@ class Personnel extends Utilisateur implements \Serializable // implements Seria
         $this->personnelFormations = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->messageDestinatairePersonnels = new ArrayCollection();
+        $this->stagePeriodes = new ArrayCollection();
     }
 
     /**
@@ -865,6 +871,34 @@ class Personnel extends Utilisateur implements \Serializable // implements Seria
             if ($messageDestinatairePersonnel->getPersonnel() === $this) {
                 $messageDestinatairePersonnel->setPersonnel(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StagePeriode[]
+     */
+    public function getStagePeriodes(): Collection
+    {
+        return $this->stagePeriodes;
+    }
+
+    public function addStagePeriode(StagePeriode $stagePeriode): self
+    {
+        if (!$this->stagePeriodes->contains($stagePeriode)) {
+            $this->stagePeriodes[] = $stagePeriode;
+            $stagePeriode->addResponsable($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStagePeriode(StagePeriode $stagePeriode): self
+    {
+        if ($this->stagePeriodes->contains($stagePeriode)) {
+            $this->stagePeriodes->removeElement($stagePeriode);
+            $stagePeriode->removeResponsable($this);
         }
 
         return $this;

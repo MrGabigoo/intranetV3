@@ -121,32 +121,27 @@
                 </div>
             </div>
         </div>
+        {% if user_data.formation.optStage %}
         <div class="col-md-8 col-lg-8">
             <div class="card"><h4 class="card-title"><strong>{{ 'adm.stages'|trans }}</strong></h4>
                 <div class="card-body">
                     <div class="row gap-y">
+                        {% for periode in periodes %}
                         <div class="col-md-4">
-                            <div><a href="{{ path('administration_stage_index', {periode:1}) }}" class="btn btn-block btn-primary"> Période ...</a>
+                            <div><a href="{{ path('administration_stage_periode_gestion', {uuid:periode.uuidString}) }}" class="btn btn-block btn-primary"> Période {{ periode.libelle }}</a>
                             </div>
                         </div>
+                        {% endfor %}
+
+
                         <div class="col-md-4">
-                            <div><a href="/administration/stages/2" class="btn btn-block btn-primary"> Période ...</a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div><a href="/administration/stages/3" class="btn btn-block btn-primary"> Période ...</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row gap-y">
-                        <div class="col-md-12">
-                            <div><a href="{{ path('administration_stage_gestion_index') }}" class="btn btn-block btn-primary"> Gérer
-                                    (ajouter période, offres de stages, statistiques)</a></div>
+                            <div><a href="{{ path('administration_stage_periode_index') }}" class="btn btn-block btn-primary"> <i class="fa fa-plus-circle"></i> Créer une période</a></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
         <div class="col-md-4 col-lg-4">
             <div class="card"><h4 class="card-title"><strong>{{ 'adm.documents'|trans }}</strong></h4>
                 <div class="card-body">

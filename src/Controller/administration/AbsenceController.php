@@ -64,22 +64,6 @@ class AbsenceController extends BaseController
     }
 
     /**
-     * @Route("/semestre/{semestre}/justificatif", name="administration_absences_semestre_liste_justificatif")
-     * @param MyAbsences $myAbsences
-     * @param Semestre   $semestre
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
-     */
-    public function justificatif(AbsenceJustificatifRepository $absenceJustificatifRepository, Semestre $semestre): Response
-    {
-        return $this->render('administration/absence/justificatif.html.twig', [
-            'semestre' => $semestre,
-            'justificatifs' => $absenceJustificatifRepository->findBySemestre($semestre, $this->dataUserSession->getAnneeUniversitaire())
-        ]);
-    }
-
-    /**
      * @Route("/semestre/{semestre}/justifier", name="administration_absences_semestre_justifier")
      * @param Semestre $semestre
      *

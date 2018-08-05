@@ -236,6 +236,11 @@ class Semestre extends BaseEntity
      */
     private $annee;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\StagePeriode", mappedBy="semestre")
+     */
+    private $stagePeriodes;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -247,6 +252,7 @@ class Semestre extends BaseEntity
         $this->cahierTextes = new ArrayCollection();
         $this->ues = new ArrayCollection();
         $this->typeGroupes = new ArrayCollection();
+        $this->stagePeriodes = new ArrayCollection();
     }
 
     /**
@@ -1066,6 +1072,37 @@ class Semestre extends BaseEntity
     public function setMoisDebut(int $moisDebut): self
     {
         $this->moisDebut = $moisDebut;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StagePeriode[]
+     */
+    public function getStagePeriodes(): Collection
+    {
+        return $this->stagePeriodes;
+    }
+
+    public function addStagePeriode(StagePeriode $stagePeriode): self
+    {
+        if (!$this->stagePeriodes->contains($stagePeriode)) {
+            $this->stagePeriodes[] = $stagePeriode;
+            $stagePeriode->setSemestre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStagePeriode(StagePeriode $stagePeriode): self
+    {
+        if ($this->stagePeriodes->contains($stagePeriode)) {
+            $this->stagePeriodes->removeElement($stagePeriode);
+            // set the owning side to null (unless already changed)
+            if ($stagePeriode->getSemestre() === $this) {
+                $stagePeriode->setSemestre(null);
+            }
+        }
 
         return $this;
     }

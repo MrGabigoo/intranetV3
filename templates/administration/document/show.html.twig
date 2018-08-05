@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <th>{{ 'table.fichier'|trans }}</th>
-                <td>{{ document.documentFile }}</td>
+                <td><a href="{{ vich_uploader_asset(document, 'documentFile') }}" target="_blank">{{ 'voir.le.document'|trans }}</a></td>
             </tr>
             <tr>
                 <th>{{ 'table.created'|trans }}</th>

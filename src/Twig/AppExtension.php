@@ -22,7 +22,18 @@ class AppExtension extends AbstractExtension
             new TwigFilter('time_ago', [$this, 'timeAgo']),
             new TwigFilter('badge', [$this, 'badge']),
             new TwigFilter('escapetitle', [$this, 'escapetitle']),
+            new TwigFilter('chr', [$this, 'mychr']),
+
         );
+    }
+
+    /**
+     * @param $var
+     * @return string
+     */
+    public function mychr($var):string
+    {
+        return \chr($var);
     }
 
     public function escapetitle($texte): ?string

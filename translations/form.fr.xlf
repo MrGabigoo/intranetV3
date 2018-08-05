@@ -2363,5 +2363,239 @@
         <target>libelle.placesInterdites</target>
       </segment>
     </unit>
+    <unit id="a4ayc.8" name="1">
+      <segment>
+        <source>1</source>
+        <target>1</target>
+      </segment>
+    </unit>
+    <unit id="1HNeOiZ" name="2">
+      <segment>
+        <source>2</source>
+        <target>2</target>
+      </segment>
+    </unit>
+    <unit id="TgdAhWK" name="3">
+      <segment>
+        <source>3</source>
+        <target>3</target>
+      </segment>
+    </unit>
+    <unit id="SyJ3d9T" name="4">
+      <segment>
+        <source>4</source>
+        <target>4</target>
+      </segment>
+    </unit>
+    <unit id="7y0SfeN" name="5">
+      <segment>
+        <source>5</source>
+        <target>5</target>
+      </segment>
+    </unit>
+    <unit id="5.bAEXd" name="6">
+      <segment>
+        <source>6</source>
+        <target>6</target>
+      </segment>
+    </unit>
+    <unit id="Pc3pfsS" name="help.libelleStagePeriode">
+      <segment>
+        <source>help.libelleStagePeriode</source>
+        <target>help.libelleStagePeriode</target>
+      </segment>
+    </unit>
+    <unit id="V1dv9so" name="label.nbSemaines">
+      <segment>
+        <source>label.nbSemaines</source>
+        <target>label.nbSemaines</target>
+      </segment>
+    </unit>
+    <unit id="Bl0vwPA" name="help.nbSemaines">
+      <segment>
+        <source>help.nbSemaines</source>
+        <target>help.nbSemaines</target>
+      </segment>
+    </unit>
+    <unit id="cSLudtO" name="label.nbJours">
+      <segment>
+        <source>label.nbJours</source>
+        <target>label.nbJours</target>
+      </segment>
+    </unit>
+    <unit id="Qfg3I0i" name="help.nbJours">
+      <segment>
+        <source>help.nbJours</source>
+        <target>help.nbJours</target>
+      </segment>
+    </unit>
+    <unit id="wgxVE4y" name="label.datesFlexibles">
+      <segment>
+        <source>label.datesFlexibles</source>
+        <target>label.datesFlexibles</target>
+      </segment>
+    </unit>
+    <unit id="CpBAdjn" name="Oui">
+      <segment>
+        <source>Oui</source>
+        <target>Oui</target>
+      </segment>
+    </unit>
+    <unit id="f2JJawy" name="Non">
+      <segment>
+        <source>Non</source>
+        <target>Non</target>
+      </segment>
+    </unit>
+    <unit id="9tTuIC3" name="help.datesFlexibles">
+      <segment>
+        <source>help.datesFlexibles</source>
+        <target>help.datesFlexibles</target>
+      </segment>
+    </unit>
+    <unit id="3qPqJfn" name="label.copieAssistant">
+      <segment>
+        <source>label.copieAssistant</source>
+        <target>label.copieAssistant</target>
+      </segment>
+    </unit>
+    <unit id="Fqs.jVj" name="help.copieAssistant">
+      <segment>
+        <source>help.copieAssistant</source>
+        <target>help.copieAssistant</target>
+      </segment>
+    </unit>
+    <unit id="2uzOLeK" name="label.texteLibre">
+      <segment>
+        <source>label.texteLibre</source>
+        <target>label.texteLibre</target>
+      </segment>
+    </unit>
+    <unit id="vIyyaL8" name="help.texteLibre">
+      <segment>
+        <source>help.texteLibre</source>
+        <target>help.texteLibre</target>
+      </segment>
+    </unit>
+    <unit id="SHF5AXn" name="label.competencesVisees">
+      <segment>
+        <source>label.competencesVisees</source>
+        <target>label.competencesVisees</target>
+      </segment>
+    </unit>
+    <unit id="hQKCyVU" name="help.competencesVisees">
+      <segment>
+        <source>help.competencesVisees</source>
+        <target>help.competencesVisees</target>
+      </segment>
+    </unit>
+    <unit id="qM0SFEW" name="label.modaliteEvaluation">
+      <segment>
+        <source>label.modaliteEvaluation</source>
+        <target>label.modaliteEvaluation</target>
+      </segment>
+    </unit>
+    <unit id="5H3.rOL" name="help.modaliteEvaluation">
+      <segment>
+        <source>help.modaliteEvaluation</source>
+        <target>help.modaliteEvaluation</target>
+      </segment>
+    </unit>
+    <unit id=".8y3Z85" name="label.modaliteEvaluationPedagogique">
+      <segment>
+        <source>label.modaliteEvaluationPedagogique</source>
+        <target>label.modaliteEvaluationPedagogique</target>
+      </segment>
+    </unit>
+    <unit id="wpuP6Zp" name="help.modaliteEvaluationPedagogique">
+      <segment>
+        <source>help.modaliteEvaluationPedagogique</source>
+        <target>help.modaliteEvaluationPedagogique</target>
+      </segment>
+    </unit>
+    <unit id="UJDG1Nl" name="label.modaliteEncadrement">
+      <segment>
+        <source>label.modaliteEncadrement</source>
+        <target>label.modaliteEncadrement</target>
+      </segment>
+    </unit>
+    <unit id="wOF4YWf" name="help.modaliteEncadrement">
+      <segment>
+        <source>help.modaliteEncadrement</source>
+        <target>help.modaliteEncadrement</target>
+      </segment>
+    </unit>
+    <unit id="3WLFNKW" name="label.documentRendre">
+      <segment>
+        <source>label.documentRendre</source>
+        <target>label.documentRendre</target>
+      </segment>
+    </unit>
+    <unit id="XatVFUZ" name="help.documentRendre">
+      <segment>
+        <source>help.documentRendre</source>
+        <target>help.documentRendre</target>
+      </segment>
+    </unit>
+    <unit id="vhFtCpd" name="label.nbEcts">
+      <segment>
+        <source>label.nbEcts</source>
+        <target>label.nbEcts</target>
+      </segment>
+    </unit>
+    <unit id="NgcINE0" name="help.nbEcts">
+      <segment>
+        <source>help.nbEcts</source>
+        <target>help.nbEcts</target>
+      </segment>
+    </unit>
+    <unit id="0hIFHbC" name="label.semestre_stage_periode">
+      <segment>
+        <source>label.semestre_stage_periode</source>
+        <target>label.semestre_stage_periode</target>
+      </segment>
+    </unit>
+    <unit id="C8S30K0" name="label.anneeUniversitaire">
+      <segment>
+        <source>label.anneeUniversitaire</source>
+        <target>label.anneeUniversitaire</target>
+      </segment>
+    </unit>
+    <unit id="RuZ8UlY" name="2017">
+      <segment>
+        <source>2017</source>
+        <target>2017</target>
+      </segment>
+    </unit>
+    <unit id="FS5pzzy" name="2018">
+      <segment>
+        <source>2018</source>
+        <target>2018</target>
+      </segment>
+    </unit>
+    <unit id="Aj4zUEq" name="2019">
+      <segment>
+        <source>2019</source>
+        <target>2019</target>
+      </segment>
+    </unit>
+    <unit id="c6KviGT" name="2020">
+      <segment>
+        <source>2020</source>
+        <target>2020</target>
+      </segment>
+    </unit>
+    <unit id="G_og4d8" name="2021">
+      <segment>
+        <source>2021</source>
+        <target>2021</target>
+      </segment>
+    </unit>
+    <unit id="saseiSY" name="2022">
+      <segment>
+        <source>2022</source>
+        <target>2022</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

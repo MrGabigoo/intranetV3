@@ -30,6 +30,8 @@ class BorneController extends BaseController
         return $this->render('administration/borne/index.html.twig', ['bornes' => $borneRepository->findAll()]);
     }
 
+    //todo: ajouter duplicate
+
     /**
      * @Route("/new", name="administration_borne_new", methods="GET|POST")
      * @param Request                $request

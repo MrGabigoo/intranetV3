@@ -50,7 +50,7 @@
                 <th>Retour copie</th>
             </tr>
             </thead>
-        {% for key, t in tabplace.place if key|slice(0,1) == chr(lettre+64) %}
+        {% for key, t in tabplace.place if key|slice(0,1) == (lettre+64)|chr %}
             <tr style="height: 20px;">
                 <td style="text-align:center">{{ key }}</td>
                 <td>{{ t.numetudiant }}</td>

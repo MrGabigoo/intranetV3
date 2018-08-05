@@ -31,14 +31,12 @@
                     <tr>
                         <td>{{ date.id }}</td>
                         <td>{{ date.libelle }}</td>
-                        <td>{{ date.dateDebut ? date.dateDebut|localizeddate('long', 'none', app.request.getLocale()) : '' }}</td>
-                        <td>{{ date.heureDebut ? date.heureDebut|localizeddate('none', 'short', app.request.getLocale()) : '' }}</td>
+                        <td>{{ date.dateDebut ? date.dateDebut|localizeddate('long', 'none', app.request.getLocale()) : 'non.defini'|trans }}</td>
+                        <td>{{ date.heureDebut ? date.heureDebut|localizeddate('none', 'short', app.request.getLocale()) : 'non.defini'|trans }}</td>
                         <td>{{ date.lieu }}</td>
                         <td>{% for semestre in date.semestres %}{{ semestre.libelle }} {% endfor %}</td>
                         <td>
-                            <a href="{{ path('administration_date_duplicate', {'id': date.id}) }}"
-                               class="btn btn-success btn-outline btn-square" data-provide="tooltip"
-                               data-placement="bottom" title="{{ 'atitle.dupliquer'|trans }}"><i class="fa fa-copy"></i></a>
+
                             {{ include('composants/adm-buttons-table-index.html.twig', {elt:'date', id:date.id}) }}
                         </td>
                     </tr>

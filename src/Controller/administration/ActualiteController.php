@@ -27,7 +27,7 @@ class ActualiteController extends BaseController
     public function index(ActualiteRepository $actualiteRepository): Response
     {
         return $this->render('administration/actualite/index.html.twig',
-            ['actualites' => $actualiteRepository->findAll()]);
+            ['actualites' => $actualiteRepository->findByFormation($this->dataUserSession->getFormation())]);
     }
 
     /**

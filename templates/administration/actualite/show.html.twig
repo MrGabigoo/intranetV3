@@ -31,11 +31,11 @@
                 </tr>
                 <tr>
                     <th>{{ 'table.created'|trans }}</th>
-                    <td>{{ actualite.created ? actualite.created|localizeddate('long', 'short', app.request.getLocale()) : '' }}</td>
+                    <td>{{ actualite.created ? actualite.created|localizeddate('long', 'short', app.request.getLocale()) : 'non.defini'|trans }}</td>
                 </tr>
                 <tr>
                     <th>{{ 'table.updated'|trans }}</th>
-                    <td>{{ actualite.updated ? actualite.updated|localizeddate('long', 'short', app.request.getLocale()) : '' }}</td>
+                    <td>{{ actualite.updated ? actualite.updated|localizeddate('long', 'short', app.request.getLocale()) : 'non.defini'|trans }}</td>
                 </tr>
                 </tbody>
             </table>

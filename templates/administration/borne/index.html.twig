@@ -38,6 +38,7 @@
                         <td>{{ borne.visible ? 'Yes'|trans : 'No'|trans }}</td>
                         <td>{% for semestre in borne.semestres %}{{ semestre.libelle }}, {% endfor %}</td>
                         <td>
+                            {# todo: ajouter duplicate #}
                             <a href="#" class="btn btn-success btn-outline btn-square visibiliteBorne"
                                data-provide="tooltip"
                                data-placement="bottom" title="{{ 'atitle.afficher.masquer'|trans }}"

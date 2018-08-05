@@ -46,5 +46,11 @@
         <target>label.apercu</target>
       </segment>
     </unit>
+    <unit id="lgWCmBh" name="help.ficheRenseignement">
+      <segment>
+        <source>help.ficheRenseignement</source>
+        <target>help.ficheRenseignement</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

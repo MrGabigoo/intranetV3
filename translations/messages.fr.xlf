@@ -8206,5 +8206,203 @@
         <target>atitle.annuler</target>
       </segment>
     </unit>
+    <unit id="6DSQ9qQ" name="adm.stage_periode.index.heading">
+      <segment>
+        <source>adm.stage_periode.index.heading</source>
+        <target>adm.stage_periode.index.heading</target>
+      </segment>
+    </unit>
+    <unit id="0iJvB78" name="adm.stage_periode.new.heading">
+      <segment>
+        <source>adm.stage_periode.new.heading</source>
+        <target>adm.stage_periode.new.heading</target>
+      </segment>
+    </unit>
+    <unit id="z8NPhv." name="table.mumeroPeriode">
+      <segment>
+        <source>table.mumeroPeriode</source>
+        <target>table.mumeroPeriode</target>
+      </segment>
+    </unit>
+    <unit id="GJenKGw" name="table.anneeUniversitaire">
+      <segment>
+        <source>table.anneeUniversitaire</source>
+        <target>table.anneeUniversitaire</target>
+      </segment>
+    </unit>
+    <unit id="slY8H49" name="table.nbSemaines">
+      <segment>
+        <source>table.nbSemaines</source>
+        <target>table.nbSemaines</target>
+      </segment>
+    </unit>
+    <unit id="40kz5SE" name="table.nbJours">
+      <segment>
+        <source>table.nbJours</source>
+        <target>table.nbJours</target>
+      </segment>
+    </unit>
+    <unit id="WEZMS24" name="table.dateFin">
+      <segment>
+        <source>table.dateFin</source>
+        <target>table.dateFin</target>
+      </segment>
+    </unit>
+    <unit id="M4YQu_X" name="table.nbEcts">
+      <segment>
+        <source>table.nbEcts</source>
+        <target>table.nbEcts</target>
+      </segment>
+    </unit>
+    <unit id="Tc7s95w" name="table.duree_stage">
+      <segment>
+        <source>table.duree_stage</source>
+        <target>table.duree_stage</target>
+      </segment>
+    </unit>
+    <unit id="IHbnI45" name="adm.stage_periode.show.heading">
+      <segment>
+        <source>adm.stage_periode.show.heading</source>
+        <target>adm.stage_periode.show.heading</target>
+      </segment>
+    </unit>
+    <unit id="drx.AkN" name="table.numeroPeriode">
+      <segment>
+        <source>table.numeroPeriode</source>
+        <target>table.numeroPeriode</target>
+      </segment>
+    </unit>
+    <unit id="_77GiBk" name="table.responsables_stage_periode">
+      <segment>
+        <source>table.responsables_stage_periode</source>
+        <target>table.responsables_stage_periode</target>
+      </segment>
+    </unit>
+    <unit id="Ul3eHwc" name="table.stage_periode_interruptions">
+      <segment>
+        <source>table.stage_periode_interruptions</source>
+        <target>table.stage_periode_interruptions</target>
+      </segment>
+    </unit>
+    <unit id="QAQIy3r" name="table.stage_periode_soutenance">
+      <segment>
+        <source>table.stage_periode_soutenance</source>
+        <target>table.stage_periode_soutenance</target>
+      </segment>
+    </unit>
+    <unit id="R4_xfin" name="table.ficheRenseignement">
+      <segment>
+        <source>table.ficheRenseignement</source>
+        <target>table.ficheRenseignement</target>
+      </segment>
+    </unit>
+    <unit id="LoOrySn" name="table.competencesVisees">
+      <segment>
+        <source>table.competencesVisees</source>
+        <target>table.competencesVisees</target>
+      </segment>
+    </unit>
+    <unit id="SQACd26" name="table.modaliteEvaluation">
+      <segment>
+        <source>table.modaliteEvaluation</source>
+        <target>table.modaliteEvaluation</target>
+      </segment>
+    </unit>
+    <unit id="Lf5MUWB" name="table.modaliteEvaluationPedagogique">
+      <segment>
+        <source>table.modaliteEvaluationPedagogique</source>
+        <target>table.modaliteEvaluationPedagogique</target>
+      </segment>
+    </unit>
+    <unit id="HDFMrQh" name="table.modaliteEncadrement">
+      <segment>
+        <source>table.modaliteEncadrement</source>
+        <target>table.modaliteEncadrement</target>
+      </segment>
+    </unit>
+    <unit id="WJj4mds" name="table.documentRendre">
+      <segment>
+        <source>table.documentRendre</source>
+        <target>table.documentRendre</target>
+      </segment>
+    </unit>
+    <unit id="_5w1pwF" name="table.datesFlexibles">
+      <segment>
+        <source>table.datesFlexibles</source>
+        <target>table.datesFlexibles</target>
+      </segment>
+    </unit>
+    <unit id="Vd7YKaa" name="table.copieAssistant">
+      <segment>
+        <source>table.copieAssistant</source>
+        <target>table.copieAssistant</target>
+      </segment>
+    </unit>
+    <unit id="CwQYarr" name="voir.le.document">
+      <segment>
+        <source>voir.le.document</source>
+        <target>Voir le document</target>
+      </segment>
+    </unit>
+    <unit id="N3axLgP" name="adm.stage_periode.modification.heading">
+      <segment>
+        <source>adm.stage_periode.modification.heading</source>
+        <target>adm.stage_periode.modification.heading</target>
+      </segment>
+    </unit>
+    <unit id="KRjjtwI" name="stage_periode_gestion.heading">
+      <segment>
+        <source>stage_periode_gestion.heading</source>
+        <target>stage_periode_gestion.heading</target>
+      </segment>
+    </unit>
+    <unit id="obipO.M" name="changer.de.stage_periode">
+      <segment>
+        <source>changer.de.stage_periode</source>
+        <target>changer.de.stage_periode</target>
+      </segment>
+    </unit>
+    <unit id="quy2U57" name="atitle.settings">
+      <segment>
+        <source>atitle.settings</source>
+        <target>atitle.settings</target>
+      </segment>
+    </unit>
+    <unit id="meec3A8" name="flexibles">
+      <segment>
+        <source>flexibles</source>
+        <target>flexibles</target>
+      </segment>
+    </unit>
+    <unit id="RUNqCa2" name="est.en.copie">
+      <segment>
+        <source>est.en.copie</source>
+        <target>est.en.copie</target>
+      </segment>
+    </unit>
+    <unit id="7CgWYYS" name="atitle.stage_offres">
+      <segment>
+        <source>atitle.stage_offres</source>
+        <target>atitle.stage_offres</target>
+      </segment>
+    </unit>
+    <unit id="AzuYzbt" name="atitle.stage_entreprises">
+      <segment>
+        <source>atitle.stage_entreprises</source>
+        <target>atitle.stage_entreprises</target>
+      </segment>
+    </unit>
+    <unit id="gDdzQSO" name="atitle.stage_soutenances">
+      <segment>
+        <source>atitle.stage_soutenances</source>
+        <target>atitle.stage_soutenances</target>
+      </segment>
+    </unit>
+    <unit id="HqIPpeT" name="atitle.stage_courrier">
+      <segment>
+        <source>atitle.stage_courrier</source>
+        <target>atitle.stage_courrier</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
