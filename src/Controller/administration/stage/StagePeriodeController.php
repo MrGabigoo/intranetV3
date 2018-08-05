@@ -68,9 +68,9 @@ class StagePeriodeController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($stagePeriode);
-            $em->flush();
+            $this->entityManager->persist($stagePeriode);
+            $this->entityManager->flush();
+            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'stage_periode.create.success.flash');
 
             return $this->redirectToRoute('administration_stage_periode_index');
         }
@@ -113,9 +113,10 @@ class StagePeriodeController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $this->entityManager->flush();
+            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'stage_periode.edit.success.flash');
 
-            return $this->redirectToRoute('administration_stage_periode_edit', ['id' => $stagePeriode->getId()]);
+            return $this->redirectToRoute('administration_stage_periode_edit', ['id' => $stagePeriode->getUuidString()]);
         }
 
         return $this->render('administration/stage/stage_periode/edit.html.twig', [

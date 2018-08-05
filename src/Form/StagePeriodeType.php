@@ -9,6 +9,7 @@ use App\Repository\SemestreRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -55,6 +56,31 @@ class StagePeriodeType extends AbstractType
             ->add('nbSemaines', TextType::class, ['label' => 'label.nbSemaines', 'help' => 'help.nbSemaines'])
             ->add('nbJours', TextType::class, ['label' => 'label.nbJours', 'help' => 'help.nbJours'])
             ->add('datesFlexibles', YesNoType::class, ['label' => 'label.datesFlexibles', 'help' => 'help.datesFlexibles'])
+            //todo: pour info. gestion des collections ici : https://github.com/ninsuo/symfony-collection
+            ->add('stagePeriodeInterruptions', CollectionType::class, [
+                'entry_type' => StagePeriodeInterruptionType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'prototype' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'attr' => array(
+                    'class' => 'selector-stagePeriodeInterruptions',
+                ),
+            ])
+
+            ->add('stagePeriodeSoutenances', CollectionType::class, [
+                'entry_type' => StagePeriodeSoutenanceType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'prototype' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'attr' => array(
+                    'class' => 'selector-stagePeriodeSoutenances',
+                ),
+            ])
+
             ->add('copieAssistant', YesNoType::class, ['label' => 'label.copieAssistant', 'help' => 'help.copieAssistant'])
             ->add('documentFile', VichFileType::class, [
                 'required'       => true,

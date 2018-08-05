@@ -8,8 +8,13 @@ vich_uploader:
             namer: Vich\UploaderBundle\Naming\UniqidNamer
             inject_on_load: true
         ficheRenseignement:
-            uri_prefix: /upload/ficheRenseignement
-            upload_destination: '%kernel.project_dir%/public/upload/ficheRenseignement'
+            uri_prefix: /upload/fiche-renseignement
+            upload_destination: '%kernel.project_dir%/public/upload/fiche-renseignement'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+            inject_on_load: true
+        offreStage:
+            uri_prefix: /upload/offre-stage
+            upload_destination: '%kernel.project_dir%/public/upload/offre-stage'
             namer: Vich\UploaderBundle\Naming\UniqidNamer
             inject_on_load: true
         logo:

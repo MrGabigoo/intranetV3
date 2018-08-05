@@ -69,7 +69,7 @@ class DateController extends BaseController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($date);
             $this->entityManager->flush();
-
+            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'date.create.success.flash');
             return $this->redirectToRoute('administration_date_index');
         }
 

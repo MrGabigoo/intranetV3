@@ -336,3 +336,15 @@
         </small>
     {%- endif -%}
 {%- endblock form_help %}
+
+
+{# COLLECTION #}
+
+{% block _stage_periode_stagePeriodeInterruptions_entry_widget %}
+    <h5>Période d'interruption</h5>
+    <div class="row">
+        <div class="col-md-6">{{ form_row(form.dateDebut) }}</div>
+        <div class="col-md-6">{{ form_row(form.dateFin) }}</div>
+        <div class="col-md-12">{{ form_row(form.motif) }}</div>
+    </div>
+{% endblock %}

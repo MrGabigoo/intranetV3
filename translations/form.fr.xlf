@@ -2597,5 +2597,83 @@
         <target>2022</target>
       </segment>
     </unit>
+    <unit id="Hs23Twr" name="label.stagePeriodes">
+      <segment>
+        <source>label.stagePeriodes</source>
+        <target>label.stagePeriodes</target>
+      </segment>
+    </unit>
+    <unit id="gROiwmw" name="Stage periode interruptions">
+      <segment>
+        <source>Stage periode interruptions</source>
+        <target>Stage periode interruptions</target>
+      </segment>
+    </unit>
+    <unit id="XIKWKPm" name="Date debut">
+      <segment>
+        <source>Date debut</source>
+        <target>Date debut</target>
+      </segment>
+    </unit>
+    <unit id="ifaDJWD" name="Year">
+      <segment>
+        <source>Year</source>
+        <target>Year</target>
+      </segment>
+    </unit>
+    <unit id="MQylA_8" name="Month">
+      <segment>
+        <source>Month</source>
+        <target>Month</target>
+      </segment>
+    </unit>
+    <unit id="jyNk4Ru" name="Day">
+      <segment>
+        <source>Day</source>
+        <target>Day</target>
+      </segment>
+    </unit>
+    <unit id="I4Kmk6." name="Date fin">
+      <segment>
+        <source>Date fin</source>
+        <target>Date fin</target>
+      </segment>
+    </unit>
+    <unit id="yJrI8NQ" name="Motif">
+      <segment>
+        <source>Motif</source>
+        <target>Motif</target>
+      </segment>
+    </unit>
+    <unit id="CpXy8SJ" name="label.dateDebut">
+      <segment>
+        <source>label.dateDebut</source>
+        <target>label.dateDebut</target>
+      </segment>
+    </unit>
+    <unit id="T1Hbte." name="label.dateFin">
+      <segment>
+        <source>label.dateFin</source>
+        <target>label.dateFin</target>
+      </segment>
+    </unit>
+    <unit id="zzgk67Y" name="label.motif">
+      <segment>
+        <source>label.motif</source>
+        <target>label.motif</target>
+      </segment>
+    </unit>
+    <unit id="JHuhn6l" name="Stage periode soutenances">
+      <segment>
+        <source>Stage periode soutenances</source>
+        <target>Stage periode soutenances</target>
+      </segment>
+    </unit>
+    <unit id="4puM4VG" name="label.dateRenduRapport">
+      <segment>
+        <source>label.dateRenduRapport</source>
+        <target>label.dateRenduRapport</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

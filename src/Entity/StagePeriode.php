@@ -34,22 +34,22 @@ class StagePeriode extends BaseEntity
     /**
      * @ORM\Column(type="integer")
      */
-    private $numeroPeriode;
+    private $numeroPeriode = 1;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $libelle;
+    private $libelle = 'stage';
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbSemaines;
+    private $nbSemaines = 10;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbJours;
+    private $nbJours = 40;
 
     /**
      * @ORM\Column(type="date")
@@ -64,32 +64,32 @@ class StagePeriode extends BaseEntity
     /**
      * @ORM\Column(type="text")
      */
-    private $competencesVisees;
+    private $competencesVisees = 'texte';
 
     /**
      * @ORM\Column(type="text")
      */
-    private $modaliteEvaluation;
+    private $modaliteEvaluation = 'texte';
 
     /**
      * @ORM\Column(type="text")
      */
-    private $modaliteEvaluationPedagogique;
+    private $modaliteEvaluationPedagogique= 'texte';
 
     /**
      * @ORM\Column(type="text")
      */
-    private $modaliteEncadrement;
+    private $modaliteEncadrement= 'texte';
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $documentRendre;
+    private $documentRendre= 'texte';
 
     /**
      * @ORM\Column(type="float")
      */
-    private $nbEcts;
+    private $nbEcts = 12;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Semestre", inversedBy="stagePeriodes")
@@ -99,20 +99,20 @@ class StagePeriode extends BaseEntity
     /**
      * @ORM\Column(type="boolean")
      */
-    private $datesFlexibles;
+    private $datesFlexibles = false;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $copieAssistant;
+    private $copieAssistant = true;
 
     /**
-     * @ORM\OneToMany(targetEntity="StagePeriodeInterruption", mappedBy="stagePeriode")
+     * @ORM\OneToMany(targetEntity="StagePeriodeInterruption", mappedBy="stagePeriode", cascade={"persist", "remove"})
      */
     private $stagePeriodeInterruptions;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\StagePeriodeSoutenance", mappedBy="stagePeriode")
+     * @ORM\OneToMany(targetEntity="App\Entity\StagePeriodeSoutenance", mappedBy="stagePeriode", cascade={"persist", "remove"})
      */
     private $stagePeriodeSoutenances;
 
@@ -137,6 +137,11 @@ class StagePeriode extends BaseEntity
      * @ORM\Column(type="text")
      */
     private $texteLibre;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\StagePeriodeOffre", mappedBy="stagePeriodes")
+     */
+    private $stagePeriodeOffres;
 
     /**
      * @return \Ramsey\Uuid\UuidInterface
@@ -165,6 +170,7 @@ class StagePeriode extends BaseEntity
         $this->responsables = new ArrayCollection();
         $this->uuid = Uuid::uuid4();
         $this->setAnneeUniversitaire($anneeUniversitaire);
+        $this->stagePeriodeOffres = new ArrayCollection();
     }
 
     public function getNumeroPeriode(): ?int
@@ -355,7 +361,7 @@ class StagePeriode extends BaseEntity
         return $this->stagePeriodeInterruptions;
     }
 
-    public function addPeriodeInterruptionStage(StagePeriodeInterruption $periodeInterruptionStage): self
+    public function addStagePeriodeInterruption(StagePeriodeInterruption $periodeInterruptionStage): self
     {
         if (!$this->stagePeriodeInterruptions->contains($periodeInterruptionStage)) {
             $this->stagePeriodeInterruptions[] = $periodeInterruptionStage;
@@ -365,7 +371,7 @@ class StagePeriode extends BaseEntity
         return $this;
     }
 
-    public function removePeriodeInterruptionStage(StagePeriodeInterruption $periodeInterruptionStage): self
+    public function removeStagePeriodeInterruption(StagePeriodeInterruption $periodeInterruptionStage): self
     {
         if ($this->stagePeriodeInterruptions->contains($periodeInterruptionStage)) {
             $this->stagePeriodeInterruptions->removeElement($periodeInterruptionStage);
@@ -498,8 +504,36 @@ class StagePeriode extends BaseEntity
     /**
      * @param string $documentName
      */
-    public function setDocumentName(string $documentName): void
+    public function setDocumentName(?string $documentName): void
     {
         $this->documentName = $documentName;
+    }
+
+    /**
+     * @return Collection|StagePeriodeOffre[]
+     */
+    public function getStagePeriodeOffres(): Collection
+    {
+        return $this->stagePeriodeOffres;
+    }
+
+    public function addStagePeriodeOffre(StagePeriodeOffre $stagePeriodeOffre): self
+    {
+        if (!$this->stagePeriodeOffres->contains($stagePeriodeOffre)) {
+            $this->stagePeriodeOffres[] = $stagePeriodeOffre;
+            $stagePeriodeOffre->addStagePeriode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStagePeriodeOffre(StagePeriodeOffre $stagePeriodeOffre): self
+    {
+        if ($this->stagePeriodeOffres->contains($stagePeriodeOffre)) {
+            $this->stagePeriodeOffres->removeElement($stagePeriodeOffre);
+            $stagePeriodeOffre->removeStagePeriode($this);
+        }
+
+        return $this;
     }
 }

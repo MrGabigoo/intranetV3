@@ -31,23 +31,28 @@ class StagePeriodeRepository extends ServiceEntityRepository
      */
     public function findByFormation(Formation $formation, $anneeUniversitaire = 0)
     {
+           return $this->findByFormationBuilder($formation, $anneeUniversitaire)->getQuery()
+               ->getResult();
+    }
+
+    public function findByFormationBuilder(Formation $formation, $anneeUniversitaire = 0)
+    {
         $query = $this->createQueryBuilder('p')
             ->innerJoin(Semestre::class, 's', 'WITH', 'p.semestre = s.id')
             ->innerJoin(Annee::class, 'a', 'WITH', 's.annee = a.id')
             ->innerJoin(Diplome::class, 'd', 'WITH', 'a.diplome = d.id')
             ->where('d.formation = :formation');
 
-           if ($anneeUniversitaire !== 0) {
-               $query->andWhere('p.anneeUniversitaire = :annee')
-                   ->setParameter('annee', $anneeUniversitaire);
-           }
+        if ($anneeUniversitaire !== 0) {
+            $query->andWhere('p.anneeUniversitaire = :annee')
+                ->setParameter('annee', $anneeUniversitaire);
+        }
 
         $query->setParameter('formation', $formation->getId())
             ->orderBy('p.anneeUniversitaire', 'DESC')
             ->orderBy('p.numeroPeriode', 'ASC')
-            ;
+        ;
 
-           return $query->getQuery()
-               ->getResult();
+        return $query;
     }
 }

@@ -8353,7 +8353,7 @@
     <unit id="KRjjtwI" name="stage_periode_gestion.heading">
       <segment>
         <source>stage_periode_gestion.heading</source>
-        <target>stage_periode_gestion.heading</target>
+        <target>stage_periode_gestion.heading %libelle%</target>
       </segment>
     </unit>
     <unit id="obipO.M" name="changer.de.stage_periode">
@@ -8402,6 +8402,108 @@
       <segment>
         <source>atitle.stage_courrier</source>
         <target>atitle.stage_courrier</target>
+      </segment>
+    </unit>
+    <unit id="G_quk4P" name="adm.stage_periode_offre.index.heading">
+      <segment>
+        <source>adm.stage_periode_offre.index.heading</source>
+        <target>adm.stage_periode_offre.index.heading</target>
+      </segment>
+    </unit>
+    <unit id="rbJMoVs" name="table.entreprise">
+      <segment>
+        <source>table.entreprise</source>
+        <target>table.entreprise</target>
+      </segment>
+    </unit>
+    <unit id="e6EZEvo" name="table.ville">
+      <segment>
+        <source>table.ville</source>
+        <target>table.ville</target>
+      </segment>
+    </unit>
+    <unit id="TFPRilf" name="table.document">
+      <segment>
+        <source>table.document</source>
+        <target>table.document</target>
+      </segment>
+    </unit>
+    <unit id="SBXV.l2" name="adm.stage_periode_offre.new.heading">
+      <segment>
+        <source>adm.stage_periode_offre.new.heading</source>
+        <target>adm.stage_periode_offre.new.heading</target>
+      </segment>
+    </unit>
+    <unit id="FIFQMkr" name="atitle.retour.stage_periode_offre">
+      <segment>
+        <source>atitle.retour.stage_periode_offre</source>
+        <target>atitle.retour.stage_periode_offre</target>
+      </segment>
+    </unit>
+    <unit id="3wHmPSZ" name="stage_periode_offre.create.success.flash">
+      <segment>
+        <source>stage_periode_offre.create.success.flash</source>
+        <target>stage_periode_offre.create.success.flash</target>
+      </segment>
+    </unit>
+    <unit id="JuflWsk" name="atitle.retour.stage_periode_gestion">
+      <segment>
+        <source>atitle.retour.stage_periode_gestion</source>
+        <target>atitle.retour.stage_periode_gestion</target>
+      </segment>
+    </unit>
+    <unit id="X6QHDri" name="adm.stage_periode_offre.show.heading">
+      <segment>
+        <source>adm.stage_periode_offre.show.heading</source>
+        <target>adm.stage_periode_offre.show.heading</target>
+      </segment>
+    </unit>
+    <unit id="vqonb8W" name="atitle.stage_periode_offre">
+      <segment>
+        <source>atitle.stage_periode_offre</source>
+        <target>atitle.stage_periode_offre</target>
+      </segment>
+    </unit>
+    <unit id=".cd1MNI" name="adm.stage_entreprise.index.heading">
+      <segment>
+        <source>adm.stage_entreprise.index.heading</source>
+        <target>adm.stage_entreprise.index.heading</target>
+      </segment>
+    </unit>
+    <unit id="6KCXLmx" name="table.responsale">
+      <segment>
+        <source>table.responsale</source>
+        <target>table.responsale</target>
+      </segment>
+    </unit>
+    <unit id="gur7Cu_" name="table.email">
+      <segment>
+        <source>table.email</source>
+        <target>table.email</target>
+      </segment>
+    </unit>
+    <unit id="ZTn4PkY" name="table.nbstagiaire">
+      <segment>
+        <source>table.nbstagiaire</source>
+        <target>table.nbstagiaire</target>
+      </segment>
+    </unit>
+    <unit id="rnj36HB" name="stage_periode.create.success.flash">
+      <segment>
+        <source>stage_periode.create.success.flash</source>
+        <target>stage_periode.create.success.flash</target>
+      </segment>
+    </unit>
+    <unit id="VgRvTep" name="label.update">
+      <segment>
+        <source>label.update</source>
+        <target>label.update</target>
+      </segment>
+    </unit>
+    <unit id="tb81anI" name="stage_periode.edit.success.flash">
+      <segment>
+        <source>stage_periode.edit.success.flash</source>
+        <target>stage_periode.edit.success.flash</target>
       </segment>
     </unit>
   </file>

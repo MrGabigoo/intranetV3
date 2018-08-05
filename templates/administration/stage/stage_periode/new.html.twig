@@ -11,10 +11,22 @@
 {% endblock %}
 
 {% block content %}
+    toto
     <div class="card">
         <h4 class="card-title">{{ 'adm.stage_periode.new.heading'|trans }}</h4>
         <div class="card-body">
-            {{ include('composants/adm-form.html.twig') }}
+            {% form_theme form 'form/bootstrap_4_layout.html.twig' 'form/jquery.collection.html.twig' %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-success">{{ button_label|default('label.save'|trans) }}</button>
+            {{ form_end(form) }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+  $('.selector-stagePeriodeSoutenances').collection();
+$('.selector-stagePeriodeInterruptions').collection();
+</script>
 {% endblock %}
