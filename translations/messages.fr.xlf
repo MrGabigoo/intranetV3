@@ -8506,5 +8506,11 @@
         <target>stage_periode.edit.success.flash</target>
       </segment>
     </unit>
+    <unit id="Rk7Foa_" name="stage_etudiant.change_etat.success.flash">
+      <segment>
+        <source>stage_etudiant.change_etat.success.flash</source>
+        <target>stage_etudiant.change_etat.success.flash</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

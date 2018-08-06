@@ -144,6 +144,16 @@ class StagePeriode extends BaseEntity
     private $stagePeriodeOffres;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\StageEtudiant", mappedBy="stagePeriode")
+     */
+    private $stageEtudiants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\StageMailTemplate", mappedBy="stagePeriode")
+     */
+    private $stageMailTemplates;
+
+    /**
      * @return \Ramsey\Uuid\UuidInterface
      */
     public function getUuid(): \Ramsey\Uuid\UuidInterface
@@ -171,6 +181,8 @@ class StagePeriode extends BaseEntity
         $this->uuid = Uuid::uuid4();
         $this->setAnneeUniversitaire($anneeUniversitaire);
         $this->stagePeriodeOffres = new ArrayCollection();
+        $this->stageEtudiants = new ArrayCollection();
+        $this->stageMailTemplates = new ArrayCollection();
     }
 
     public function getNumeroPeriode(): ?int
@@ -532,6 +544,68 @@ class StagePeriode extends BaseEntity
         if ($this->stagePeriodeOffres->contains($stagePeriodeOffre)) {
             $this->stagePeriodeOffres->removeElement($stagePeriodeOffre);
             $stagePeriodeOffre->removeStagePeriode($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StageEtudiant[]
+     */
+    public function getStageEtudiants(): Collection
+    {
+        return $this->stageEtudiants;
+    }
+
+    public function addStageEtudiant(StageEtudiant $stageEtudiant): self
+    {
+        if (!$this->stageEtudiants->contains($stageEtudiant)) {
+            $this->stageEtudiants[] = $stageEtudiant;
+            $stageEtudiant->setStagePeriode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStageEtudiant(StageEtudiant $stageEtudiant): self
+    {
+        if ($this->stageEtudiants->contains($stageEtudiant)) {
+            $this->stageEtudiants->removeElement($stageEtudiant);
+            // set the owning side to null (unless already changed)
+            if ($stageEtudiant->getStagePeriode() === $this) {
+                $stageEtudiant->setStagePeriode(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StageMailTemplate[]
+     */
+    public function getStageMailTemplates(): Collection
+    {
+        return $this->stageMailTemplates;
+    }
+
+    public function addStageMailTemplate(StageMailTemplate $stageMailTemplate): self
+    {
+        if (!$this->stageMailTemplates->contains($stageMailTemplate)) {
+            $this->stageMailTemplates[] = $stageMailTemplate;
+            $stageMailTemplate->setStagePeriode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStageMailTemplate(StageMailTemplate $stageMailTemplate): self
+    {
+        if ($this->stageMailTemplates->contains($stageMailTemplate)) {
+            $this->stageMailTemplates->removeElement($stageMailTemplate);
+            // set the owning side to null (unless already changed)
+            if ($stageMailTemplate->getStagePeriode() === $this) {
+                $stageMailTemplate->setStagePeriode(null);
+            }
         }
 
         return $this;

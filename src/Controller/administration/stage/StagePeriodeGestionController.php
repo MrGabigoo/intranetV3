@@ -4,6 +4,7 @@ namespace App\Controller\administration\stage;
 
 use App\Controller\BaseController;
 use App\Entity\StagePeriode;
+use App\MesClasses\MyStage;
 use App\Repository\StagePeriodeRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,11 +27,12 @@ class StagePeriodeGestionController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function periode(StagePeriodeRepository $stagePeriodeRepository, StagePeriode $stagePeriode): Response
+    public function periode(StagePeriodeRepository $stagePeriodeRepository, MyStage $myStage, StagePeriode $stagePeriode): Response
     {
         return $this->render('administration/stage/stage_periode_gestion/index.html.twig', [
             'stagePeriode' => $stagePeriode,
-            'periodes' => $stagePeriodeRepository->findByFormation($this->dataUserSession->getFormation(), $this->dataUserSession->getAnneeUniversitaire())
+            'periodes' => $stagePeriodeRepository->findByFormation($this->dataUserSession->getFormation(), $this->dataUserSession->getAnneeUniversitaire()),
+            'myStage' => $myStage->getDataPeriode($stagePeriode, $this->dataUserSession->getAnneeUniversitaire())
         ]);
     }
 }

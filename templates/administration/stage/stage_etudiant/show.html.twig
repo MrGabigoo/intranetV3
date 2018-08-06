@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StageEtudiant{% endblock %}
+
+{% block body %}
+    <h1>StageEtudiant</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stage_etudiant.id }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ stage_etudiant.created ? stage_etudiant.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ stage_etudiant.updated ? stage_etudiant.updated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ServiceStageEntreprise</th>
+                <td>{{ stage_etudiant.serviceStageEntreprise }}</td>
+            </tr>
+            <tr>
+                <th>SujetStage</th>
+                <td>{{ stage_etudiant.sujetStage }}</td>
+            </tr>
+            <tr>
+                <th>DateDepotFormulaire</th>
+                <td>{{ stage_etudiant.dateDepotFormulaire ? stage_etudiant.dateDepotFormulaire|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateValidation</th>
+                <td>{{ stage_etudiant.dateValidation ? stage_etudiant.dateValidation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateConventionEnvoyee</th>
+                <td>{{ stage_etudiant.dateConventionEnvoyee ? stage_etudiant.dateConventionEnvoyee|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateConventionRecu</th>
+                <td>{{ stage_etudiant.dateConventionRecu ? stage_etudiant.dateConventionRecu|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>EtatStage</th>
+                <td>{{ stage_etudiant.etatStage }}</td>
+            </tr>
+            <tr>
+                <th>DateDebutStage</th>
+                <td>{{ stage_etudiant.dateDebutStage ? stage_etudiant.dateDebutStage|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateFinStage</th>
+                <td>{{ stage_etudiant.dateFinStage ? stage_etudiant.dateFinStage|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Activites</th>
+                <td>{{ stage_etudiant.activites }}</td>
+            </tr>
+            <tr>
+                <th>AmenagementStage</th>
+                <td>{{ stage_etudiant.amenagementStage }}</td>
+            </tr>
+            <tr>
+                <th>Gratification</th>
+                <td>{{ stage_etudiant.gratification ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>GratificationMontant</th>
+                <td>{{ stage_etudiant.gratificationMontant }}</td>
+            </tr>
+            <tr>
+                <th>GratificationPeriode</th>
+                <td>{{ stage_etudiant.gratificationPeriode }}</td>
+            </tr>
+            <tr>
+                <th>Avantages</th>
+                <td>{{ stage_etudiant.avantages }}</td>
+            </tr>
+            <tr>
+                <th>DureeHebdomadaire</th>
+                <td>{{ stage_etudiant.dureeHebdomadaire }}</td>
+            </tr>
+            <tr>
+                <th>DureeJoursStage</th>
+                <td>{{ stage_etudiant.dureeJoursStage }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('stage_etudiant_index') }}">back to list</a>
+
+    <a href="{{ path('stage_etudiant_edit', {'id': stage_etudiant.id}) }}">edit</a>
+
+    {{ include('stage_etudiant/_delete_form.html.twig') }}
+{% endblock %}

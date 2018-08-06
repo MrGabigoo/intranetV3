@@ -138,16 +138,24 @@
                 <!-- Tab panes -->
                 <div class="card-body tab-content">
                     <div class="tab-pane fade active show" id="onglet_proposition">
+                        {% for etudiant in myStage.propositionsAValider %}
 
+                        {% endfor %}
                     </div>
                     <div class="tab-pane fade" id="onglet_envoyer">
+                        {% for etudiant in myStage.conventionAEnvoyer %}
 
+                        {% endfor %}
                     </div>
                     <div class="tab-pane fade" id="onglet_attente">
+                        {% for etudiant in myStage.conventionEnAttente %}
 
+                        {% endfor %}
                     </div>
                     <div class="tab-pane fade" id="onglet_complet">
+                        {% for etudiant in myStage.conventionComplete %}
 
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -162,10 +170,137 @@
                         <tr>
                             <th>Etudiant</th>
                             <th>Entreprise</th>
+                            <th>Ville</th>
+                            <th>Période</th>
+                            <th>Référent</th>
+                            <th>Etat</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
+                        {% for stageEtudiant in myStage.dataEtudiants %}
+                        <tr>
+                            <td>{{ stageEtudiant.etudiant.display }}</td>
+                            {% if stageEtudiant.stage is defined %}
+                                {% if stageEtudiant.stage.etatStage == 'ETAT_STAGE_AUTORISE' %}
+                                    <td colspan="5">Saisie Autorisée. Formulaire non complété</td>
+                                    <td>
+                                        <div class="dropdown table-action btn btn-primary btn-outline">
+                                            <span class="dropdown-toggle no-caret" data-toggle="dropdown"><i class="ti-more-alt rotate-90"></i> Autre situation ?</span>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_ETRANGER'}) }}">Valider stage étranger</a>
+                                                <a class="dropdown-item" href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_ERASMUS'}) }}">Semestre ERASMUS</a>
+                                                <a class="dropdown-item" href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_APPRENTISSAGE'}) }}">Formation en apprentissage</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                {% else %}
+                                    <td>{{ stageEtudiant.stage.entreprise.libelle }}</td>
+                                    <td>{% if prop.adresseStage == null or prop.adresseStage.isNotEmpty == false %}
+                                            {% if prop.adresseEntreprise != null %}
+                                                {{ prop.adresseEntreprise.ville|capitalize }} ({{ prop.adresseEntreprise.cp }})
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        {% else %}
+                                            {% if prop.adresseStage.isNotEmpty == true %}
+                                                {{ prop.adresseStage.ville|capitalize }} ({{ prop.adresseStage.cp }})
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        {% endif %}
+                                    </td>
+                                    <td {% if stageEtudiant.stage.dateDebut != stagePeriode.dateDebut or stageEtudiant.stage.dateFin != stagePeriode.dateFin %} style="background-color: firebrick; color: whitesmoke"{% endif %}>
+                                        {{ stageEtudiant.stage.dateDebut|date('d/m/Y') }}
+                                        <br/> {{ stageEtudiant.stage.dateFin|date('d/m/Y') }}
+                                    </td>
+                                    <td><select name="tuteur_{{ etu.id }}" data-stage="{{ prop.id }}"
+                                                class="changetuteur form-control">
+                                            <option>Tuteur</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        {% if stageEtudiant.stage.etatStage == 'ETAT_STAGE_VALIDE' %}
+                                            <a href="{{ path('administration_stage_etudiant_show',{id:stageEtudiant.stage.id}) }}"
+                                               class="btn btn-success btn-block" data-provide="tooltip"
+                                               data-placement="top" title="Voir le stage">Stage Validé</a>
+                                        {% elseif stageEtudiant.stage.etatStage == 'ETAT_STAGE_CONVENTION_ENVOYEE' %}
+                                            <a href="{{ path('administration_stage_etudiant_show',{id:stageEtudiant.stage.id}) }}"
+                                               class="btn btn-warning btn-block" data-provide="tooltip"
+                                               data-placement="top" title="Voir le stage">Convention envoyée</a>
+                                        {% elseif stageEtudiant.stage.etatStage == 'ETAT_STAGE_CONVENTION_RECUE' %}
+                                            <a href="{{ path('administration_stage_etudiant_show',{id:stageEtudiant.stage.id}) }}"
+                                               class="btn btn-success btn-block" data-provide="tooltip"
+                                               data-placement="top" title="Voir le stage">Convention complète</a>
+                                        {% elseif stageEtudiant.stage.etatStage == 'ETAT_STAGE_DEPOSE' %}
+                                            <a href="{{ path('administration_stage_etudiant_show',{id:stageEtudiant.stage.id}) }}"
+                                               class="btn btn-warning btn-block" data-provide="tooltip"
+                                               data-placement="top" title="Voir le stage">Proposition effectuée</a>
+                                        {% elseif stageEtudiant.stage.etatStage =='ETAT_STAGE_ETRANGER' %}
+                                            <a href="#" class="btn btn-success btn-block" rel="tooltip"
+                                               data-placement="top"
+                                               data-original-title="Stage à l'étranger">Stage à l'étranger</a>
+                                        {% elseif stageEtudiant.stage.etatStage =='ETAT_STAGE_ERASMUS' %}
+                                            <a href="#" class="btn btn-success btn-block" rel="tooltip"
+                                               data-placement="top"
+                                               data-original-title="ERASMUS">ERASMUS</a>
+                                        {% elseif stageEtudiant.stage.etatStage =='ETAT_STAGE_APPRENTISSAGE' %}
+                                            <a href="#" class="btn btn-success btn-block" rel="tooltip"
+                                               data-placement="top"
+                                               data-original-title="Apprentissage">Apprentissage</a>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-right table-actions">
 
+                                        <a href="{{ path('administration_stage_etudiant_show', {id:stageEtudiant.stage.id}) }}"
+                                           class="btn btn-info btn-outline btn-square" data-provide="tooltip"
+                                           data-placement="bottom" title="{{ 'atitle.details'|trans }}"><i class="material-icons">info_outline</i></a>
+
+                                    <a href="{{ path('administration_stage_etudiant_edit', {id:stageEtudiant.stage.id}) }}"
+                                       class="btn btn-warning btn-outline btn-square"
+                                       data-provide="tooltip"
+                                       data-placement="bottom"
+                                       title="{{ 'atitle.modifier'|trans }}"><i class="material-icons">edit</i></a>
+                                    <a href="{{ path('administration_stage_etudiant_delete', {id:stageEtudiant.stage.id}) }}" data-csrf="{{ csrf_token('delete' ~ istageEtudiant.stage.id) }}"
+                                       class="btn btn-danger btn-outline btn-square supprimer" data-provide="tooltip" data-placement="bottom"
+                                       title="{{ 'atitle.supprimer'|trans }}"><i class="material-icons">delete</i></a>
+
+
+                                        <div class="dropdown table-action">
+                                            <span class="dropdown-toggle no-caret hover-primary" data-toggle="dropdown"><i class="ti-more-alt rotate-90"></i></span>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#">Télécharger la convention</a>
+                                                <a class="dropdown-item" href="#">Mettre à jour la convention</a>
+                                                <a class="dropdown-item" href="#">Editer le courrier</a>
+                                                <a class="dropdown-item" href="#">Fiche enseignant</a>
+                                                <a class="dropdown-item" href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_ETRANGER'}) }}">Valider stage étranger</a>
+                                                <a class="dropdown-item" href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_ERASMUS'}) }}">Semestre ERASMUS</a>
+                                                <a class="dropdown-item" href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_APPRENTISSAGE'}) }}">Formation en apprentissage</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                {% endif %}
+                            {% else %}
+                                <td>Pas de stage</td>
+                                <td>Pas de stage</td>
+                                <td>Pas de stage</td>
+                                <td>Pas de stage</td>
+                                <td><a href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_AUTORISE'}) }}" class="btn btn-danger btn-block" rel="tooltip" data-placement="bottom"
+                                       data-original-title="Cliquez pour autoriser la saisie des informations (proposition signée reçue)">Autoriser
+                                        la saisie</a>
+                                </td>
+                                <td>
+                                    <div class="dropdown table-action btn btn-primary btn-outline">
+                                        <span class="dropdown-toggle no-caret" data-toggle="dropdown"><i class="ti-more-alt rotate-90"></i> Autre situation ?</span>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_ETRANGER'}) }}">Valider stage étranger</a>
+                                            <a class="dropdown-item" href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_ERASMUS'}) }}">Semestre ERASMUS</a>
+                                            <a class="dropdown-item" href="{{ path('administration_stage_etudiant_change_etat', {stagePeriode: stagePeriode.uuidString, etudiant:stageEtudiant.etudiant.id, etat: 'ETAT_STAGE_APPRENTISSAGE'}) }}">Formation en apprentissage</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            {% endif %}
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

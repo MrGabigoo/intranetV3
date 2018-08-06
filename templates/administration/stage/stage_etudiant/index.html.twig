@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StageEtudiant index{% endblock %}
+
+{% block body %}
+    <h1>StageEtudiant index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th>ServiceStageEntreprise</th>
+                <th>SujetStage</th>
+                <th>DateDepotFormulaire</th>
+                <th>DateValidation</th>
+                <th>DateConventionEnvoyee</th>
+                <th>DateConventionRecu</th>
+                <th>EtatStage</th>
+                <th>DateDebutStage</th>
+                <th>DateFinStage</th>
+                <th>Activites</th>
+                <th>AmenagementStage</th>
+                <th>Gratification</th>
+                <th>GratificationMontant</th>
+                <th>GratificationPeriode</th>
+                <th>Avantages</th>
+                <th>DureeHebdomadaire</th>
+                <th>DureeJoursStage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stage_etudiant in stage_etudiants %}
+            <tr>
+                <td>{{ stage_etudiant.id }}</td>
+                <td>{{ stage_etudiant.created ? stage_etudiant.created|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ stage_etudiant.updated ? stage_etudiant.updated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ stage_etudiant.serviceStageEntreprise }}</td>
+                <td>{{ stage_etudiant.sujetStage }}</td>
+                <td>{{ stage_etudiant.dateDepotFormulaire ? stage_etudiant.dateDepotFormulaire|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ stage_etudiant.dateValidation ? stage_etudiant.dateValidation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ stage_etudiant.dateConventionEnvoyee ? stage_etudiant.dateConventionEnvoyee|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ stage_etudiant.dateConventionRecu ? stage_etudiant.dateConventionRecu|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ stage_etudiant.etatStage }}</td>
+                <td>{{ stage_etudiant.dateDebutStage ? stage_etudiant.dateDebutStage|date('Y-m-d') : '' }}</td>
+                <td>{{ stage_etudiant.dateFinStage ? stage_etudiant.dateFinStage|date('Y-m-d') : '' }}</td>
+                <td>{{ stage_etudiant.activites }}</td>
+                <td>{{ stage_etudiant.amenagementStage }}</td>
+                <td>{{ stage_etudiant.gratification ? 'Yes' : 'No' }}</td>
+                <td>{{ stage_etudiant.gratificationMontant }}</td>
+                <td>{{ stage_etudiant.gratificationPeriode }}</td>
+                <td>{{ stage_etudiant.avantages }}</td>
+                <td>{{ stage_etudiant.dureeHebdomadaire }}</td>
+                <td>{{ stage_etudiant.dureeJoursStage }}</td>
+                <td>
+                    <a href="{{ path('stage_etudiant_show', {'id': stage_etudiant.id}) }}">show</a>
+                    <a href="{{ path('stage_etudiant_edit', {'id': stage_etudiant.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="21">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('stage_etudiant_new') }}">Create new</a>
+{% endblock %}

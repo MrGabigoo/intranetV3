@@ -163,6 +163,11 @@ class Personnel extends Utilisateur implements \Serializable // implements Seria
      */
     private $stagePeriodes;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\StageEtudiant", mappedBy="tuteurUniversitaire")
+     */
+    private $stageEtudiants;
+
     public function __construct()
     {
         parent::__construct();
@@ -178,6 +183,7 @@ class Personnel extends Utilisateur implements \Serializable // implements Seria
         $this->messages = new ArrayCollection();
         $this->messageDestinatairePersonnels = new ArrayCollection();
         $this->stagePeriodes = new ArrayCollection();
+        $this->stageEtudiants = new ArrayCollection();
     }
 
     /**
@@ -899,6 +905,37 @@ class Personnel extends Utilisateur implements \Serializable // implements Seria
         if ($this->stagePeriodes->contains($stagePeriode)) {
             $this->stagePeriodes->removeElement($stagePeriode);
             $stagePeriode->removeResponsable($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StageEtudiant[]
+     */
+    public function getStageEtudiants(): Collection
+    {
+        return $this->stageEtudiants;
+    }
+
+    public function addStageEtudiant(StageEtudiant $stageEtudiant): self
+    {
+        if (!$this->stageEtudiants->contains($stageEtudiant)) {
+            $this->stageEtudiants[] = $stageEtudiant;
+            $stageEtudiant->setTuteurUniversitaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStageEtudiant(StageEtudiant $stageEtudiant): self
+    {
+        if ($this->stageEtudiants->contains($stageEtudiant)) {
+            $this->stageEtudiants->removeElement($stageEtudiant);
+            // set the owning side to null (unless already changed)
+            if ($stageEtudiant->getTuteurUniversitaire() === $this) {
+                $stageEtudiant->setTuteurUniversitaire(null);
+            }
         }
 
         return $this;
