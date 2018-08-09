@@ -36,6 +36,5 @@ class CommissionAbsenceController extends BaseController
      */
     public function export(Semestre $semestre)
     {
-
     }
 }

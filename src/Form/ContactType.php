@@ -26,6 +26,7 @@ class ContactType extends AbstractType
             ->add('email', TextType::class, ['label' => 'label.email'])
             ->add('telephone', TextType::class, ['label' => 'label.telephone'])
             ->add('portable', TextType::class, ['label' => 'label.portable'])
+            ->add('fax', TextType::class, ['label' => 'label.fax'])
 
         ;
     }

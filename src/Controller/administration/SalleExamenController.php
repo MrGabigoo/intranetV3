@@ -39,8 +39,13 @@ class SalleExamenController extends BaseController
     public function export(MyExport $myExport, SalleExamenRepository $salleExamenRepository, $_format): Response
     {
         $salles_examen = $salleExamenRepository->findByFormation($this->dataUserSession->getFormation(), 0);
-        $response = $myExport->genereFichierGenerique($_format, $salles_examen, 'salles_examens',
-            ['article_administration', 'utilisateur'], ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]);//todo: définir les colonnes. copier/coller ici
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $salles_examen,
+            'salles_examens',
+            ['article_administration', 'utilisateur'],
+            ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]
+        );//todo: définir les colonnes. copier/coller ici
 
         return $response;
     }
@@ -107,7 +112,6 @@ class SalleExamenController extends BaseController
     {
         $id = $salleExamen->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($salleExamen);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'salle_examen.delete.success.flash');
@@ -133,6 +137,5 @@ class SalleExamenController extends BaseController
         $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'salle_examen.duplicate.success.flash');
 
         return $this->redirectToRoute('administration_salle_examen_edit', ['id' => $newSalleExamen->getId()]);
-
     }
 }

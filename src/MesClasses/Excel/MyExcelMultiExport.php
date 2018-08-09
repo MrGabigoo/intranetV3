@@ -18,7 +18,6 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Writer\Csv;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
-
 /**
  * Class MyExcelMultiExport
  * @package App\MesClasses\Excel
@@ -36,7 +35,6 @@ class MyExcelMultiExport
         MyExcelWriter $myExcelWriter
     ) {
         $this->serializer = $mySerializer;
-
     }
 
 //    /**
@@ -84,8 +82,10 @@ class MyExcelMultiExport
         MyExcelWriter::getSpreadsheet()->getActiveSheet()->getPageSetup()->setOrientation(PageSetup::ORIENTATION_LANDSCAPE);
         MyExcelWriter::getSpreadsheet()->getActiveSheet()->setShowGridlines(true); //affichage de la grille
         MyExcelWriter::getSpreadsheet()->getActiveSheet()->setPrintGridlines(true); //affichage de la grille
-        MyExcelWriter::getSpreadsheet()->getActiveSheet()->getPageSetup()->setRowsToRepeatAtTopByStartAndEnd(1,
-            1);//ligne a répéter en haut
+        MyExcelWriter::getSpreadsheet()->getActiveSheet()->getPageSetup()->setRowsToRepeatAtTopByStartAndEnd(
+            1,
+            1
+        );//ligne a répéter en haut
         MyExcelWriter::getSpreadsheet()->getActiveSheet()->getHeaderFooter()
             ->setOddHeader('&C&HDocument généré depuis l\'Intranet !');
         MyExcelWriter::getSpreadsheet()->getActiveSheet()->getHeaderFooter()
@@ -131,7 +131,6 @@ class MyExcelMultiExport
         return new StreamedResponse(
             function () use ($writer) {
                 $writer->save('php://output');
-
             },
             200,
             [
@@ -156,11 +155,13 @@ class MyExcelMultiExport
         $i = 1;
         $ligne = 1;
         foreach ($colonne as $value) {
-
             if (\is_array($value)) {
                 foreach ($value as $col) {
-                    MyExcelWriter::getSheet()->setCellValueByColumnAndRow($i, $ligne,
-                        $col);//todo: utiliser translate pour générer les en-têtes de colonnes
+                    MyExcelWriter::getSheet()->setCellValueByColumnAndRow(
+                        $i,
+                        $ligne,
+                        $col
+                    );//todo: utiliser translate pour générer les en-têtes de colonnes
                     $i++;
                 }
             } else {
@@ -201,17 +202,29 @@ class MyExcelMultiExport
             $colonne++;
             MyExcelWriter::writeCellXY($colonne, $ligne, $etudiant->getPrenom());
             $colonne++;
-            MyExcelWriter::writeCellXY($colonne, $ligne,
-                $myAbsences->getStatistiques()[$etudiant->getId()]['nbCoursManques']);
+            MyExcelWriter::writeCellXY(
+                $colonne,
+                $ligne,
+                $myAbsences->getStatistiques()[$etudiant->getId()]['nbCoursManques']
+            );
             $colonne++;
-            MyExcelWriter::writeCellXY($colonne, $ligne,
-                $myAbsences->getStatistiques()[$etudiant->getId()]['totalDuree']->format('H:i'));
+            MyExcelWriter::writeCellXY(
+                $colonne,
+                $ligne,
+                $myAbsences->getStatistiques()[$etudiant->getId()]['totalDuree']->format('H:i')
+            );
             $colonne++;
-            MyExcelWriter::writeCellXY($colonne, $ligne,
-                $myAbsences->getStatistiques()[$etudiant->getId()]['nbNonJustifie']);
+            MyExcelWriter::writeCellXY(
+                $colonne,
+                $ligne,
+                $myAbsences->getStatistiques()[$etudiant->getId()]['nbNonJustifie']
+            );
             $colonne++;
-            MyExcelWriter::writeCellXY($colonne, $ligne,
-                $myAbsences->getStatistiques()[$etudiant->getId()]['nbJustifie']);
+            MyExcelWriter::writeCellXY(
+                $colonne,
+                $ligne,
+                $myAbsences->getStatistiques()[$etudiant->getId()]['nbJustifie']
+            );
             $ligne++;
             $colonne = 1;
         }

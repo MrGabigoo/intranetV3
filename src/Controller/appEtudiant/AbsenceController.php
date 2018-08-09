@@ -26,7 +26,6 @@ class AbsenceController extends BaseController
      */
     public function details(Absence $absence): Response
     {
-
         return $this->render('appEtudiant/absence/detail.html.twig', [
             'absence' => $absence
         ]);
@@ -39,7 +38,6 @@ class AbsenceController extends BaseController
      */
     public function justificatifDepot()
     {
-
     }
 
     /**

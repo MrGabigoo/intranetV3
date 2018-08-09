@@ -41,7 +41,7 @@ class AnneeType extends AbstractType
                 'required'      => true,
                 'choice_label'  => 'libelle',
                 'expanded'      => true,
-                'query_builder' => function(DiplomeRepository $diplomeRepository) {
+                'query_builder' => function (DiplomeRepository $diplomeRepository) {
                     return $diplomeRepository->findByFormationBuilder($this->formation);
                 },
                 'label'         => 'label.diplome'

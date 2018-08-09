@@ -63,7 +63,6 @@ class MailingSubscriber implements EventSubscriberInterface
             $this->myMailer->setTemplate('mails/absence_added.txt.twig', ['absence' => $absence]);
             $this->myMailer->sendMessage($absence->getEtudiant()->getMails(), 'Nouvelle absence enregistrée');
         }
-
     }
 
     /**
@@ -82,7 +81,6 @@ class MailingSubscriber implements EventSubscriberInterface
                 $this->myMailer->sendMessage($rattrapage->getEtudiant()->getMails(), 'Demande de rattrapage refusée');
             }
         }
-
     }
 
     /**
@@ -101,7 +99,6 @@ class MailingSubscriber implements EventSubscriberInterface
                 $this->myMailer->sendMessage($absenceJustificatif->getEtudiant()->getMails(), 'Justificatif d\'absence refusé');
             }
         }
-
     }
 
     /**
@@ -113,10 +110,11 @@ class MailingSubscriber implements EventSubscriberInterface
         $absence = $event->getSubject();
         if ($absence->getMatiere() !== null && $absence->getMatiere()->getSemestre() !== null && $absence->getMatiere()->getSemestre()->getOptDestMailAbsenceResp() !== null) {
             $this->myMailer->setTemplate('mails/absence_added_responsable.txt.twig', ['absence' => $absence]);
-            $this->myMailer->sendMessage($absence->getMatiere()->getSemestre()->getOptDestMailAbsenceResp()->getMails(),
-                'Nouvelle absence enregistrée');
+            $this->myMailer->sendMessage(
+                $absence->getMatiere()->getSemestre()->getOptDestMailAbsenceResp()->getMails(),
+                'Nouvelle absence enregistrée'
+            );
         }
-
     }
 
     /**
@@ -141,8 +139,10 @@ class MailingSubscriber implements EventSubscriberInterface
         $absence = $event->getSubject();
         if ($absence->getMatiere() !== null && $absence->getMatiere()->getSemestre() !== null && $absence->getMatiere()->getSemestre()->getOptDestMailAbsenceResp() !== null) {
             $this->myMailer->setTemplate('mails/absence_removed_responsable.txt.twig', ['absence' => $absence]);
-            $this->myMailer->sendMessage($absence->getMatiere()->getSemestre()->getOptDestMailAbsenceResp()->getMails(),
-                'Suppression d\'une absence enregistrée');
+            $this->myMailer->sendMessage(
+                $absence->getMatiere()->getSemestre()->getOptDestMailAbsenceResp()->getMails(),
+                'Suppression d\'une absence enregistrée'
+            );
         }
     }
 
@@ -158,11 +158,11 @@ class MailingSubscriber implements EventSubscriberInterface
             $note->getEvaluation()->getMatiere()->getSemestre() !== null &&
             $note->getEvaluation()->getMatiere()->getSemestre()->getOptDestMailModifNote() !== null) {
             $this->myMailer->setTemplate('mails/note_modification.txt.twig', ['note' => $note]);
-            $this->myMailer->sendMessage($note->getEvaluation()->getMatiere()->getSemestre()->getOptDestMailModifNote()->getMails(),
-                'Modification d\'une note');
+            $this->myMailer->sendMessage(
+                $note->getEvaluation()->getMatiere()->getSemestre()->getOptDestMailModifNote()->getMails(),
+                'Modification d\'une note'
+            );
         }
-
-
     }
 
     /**
@@ -176,8 +176,10 @@ class MailingSubscriber implements EventSubscriberInterface
             $evaluation->getMatiere()->getSemestre() !== null &&
             $evaluation->getMatiere()->getSemestre()->getOptDestMailReleve() !== null) {
             $this->myMailer->setTemplate('mails/new_transcript.txt.twig', ['evaluation' => $evaluation]);
-            $this->myMailer->sendMessage($evaluation->getMatiere()->getSemestre()->getOptDestMailReleve()->getMails(),
-                'Nouveau relevé de note saisi');
+            $this->myMailer->sendMessage(
+                $evaluation->getMatiere()->getSemestre()->getOptDestMailReleve()->getMails(),
+                'Nouveau relevé de note saisi'
+            );
         }
     }
 }

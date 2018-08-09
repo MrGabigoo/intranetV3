@@ -124,6 +124,4 @@ class TypeDiplome extends BaseEntity
     {
         $this->niveauSortie = $niveauSortie;
     }
-
-
 }

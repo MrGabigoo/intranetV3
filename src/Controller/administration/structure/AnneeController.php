@@ -114,13 +114,16 @@ class AnneeController extends BaseController
     public function edit(Request $request, Annee $annee): Response
     {
         if ($annee->getDiplome() !== null && $annee->getDiplome()->getFormation() !== null) {
-            $form = $this->createForm(AnneeType::class, $annee,
+            $form = $this->createForm(
+                AnneeType::class,
+                $annee,
                 [
                     'formation' => $annee->getDiplome()->getFormation()->getId(),
                     'attr'      => [
                         'data-provide' => 'validation'
                     ]
-                ]);
+                ]
+            );
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -159,6 +162,5 @@ class AnneeController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

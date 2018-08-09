@@ -27,6 +27,5 @@ class SemestreExportController extends BaseController
      */
     public function exportReleveProvisoire(Etudiant $etudiant, Semestre $semestre = null): Response
     {
-
     }
 }

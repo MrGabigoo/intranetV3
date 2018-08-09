@@ -72,8 +72,10 @@ class UeController extends BaseController
                 $this->entityManager->flush();
                 $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'ue.add.success.flash');
 
-                return $this->redirectToRoute('sa_structure_index',
-                    ['formation' => $ue->getSemestre()->getAnnee()->getDiplome()->getFormation()->getId()]);
+                return $this->redirectToRoute(
+                    'sa_structure_index',
+                    ['formation' => $ue->getSemestre()->getAnnee()->getDiplome()->getFormation()->getId()]
+                );
             }
 
             return $this->render('structure/ue/new.html.twig', [
@@ -83,7 +85,6 @@ class UeController extends BaseController
         }
 
         return $this->redirectToRoute('erreur_666');
-
     }
 
     /**
@@ -107,7 +108,6 @@ class UeController extends BaseController
     public function edit(Request $request, Ue $ue): Response
     {
         if ($ue->getDiplome() !== null) {
-
             $form = $this->createForm(UeType::class, $ue, [
                 'diplome' => $ue->getDiplome(),
                 'attr'    => [
@@ -120,8 +120,10 @@ class UeController extends BaseController
                 $this->entityManager->flush();
                 $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'ue.edit.success.flash');
 
-                return $this->redirectToRoute('sa_structure_index',
-                    ['formation' => $ue->getSemestre()->getAnnee()->getDiplome()->getFormation()->getId()]);
+                return $this->redirectToRoute(
+                    'sa_structure_index',
+                    ['formation' => $ue->getSemestre()->getAnnee()->getDiplome()->getFormation()->getId()]
+                );
             }
 
             return $this->render('structure/ue/edit.html.twig', [
@@ -154,6 +156,5 @@ class UeController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

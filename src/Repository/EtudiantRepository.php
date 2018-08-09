@@ -41,7 +41,6 @@ class EtudiantRepository extends ServiceEntityRepository
         $tab = array();
         /** @var Etudiant $etudiant */
         foreach ($etudiants as $etudiant) {
-
             $t = array();
 
             $t['numetudiant'] = $etudiant->getId();

@@ -18,5 +18,4 @@ class MessageDestinataireRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, MessageDestinataire::class);
     }
-
 }

@@ -37,8 +37,11 @@ class ArticleController extends BaseController
     ): Response {
         $articles = $articleRepository->findByTypeFormationBuilder($categorie, $this->dataUserSession->getFormation());
 
-        $myPagination->calculPagination($articles,
-            ['path' => 'article_categorie', 'args' => ['categorie' => $categorie]], $page);
+        $myPagination->calculPagination(
+            $articles,
+            ['path' => 'article_categorie', 'args' => ['categorie' => $categorie]],
+            $page
+        );
 
 
         return $this->render('article/articles.html.twig', [
@@ -55,7 +58,6 @@ class ArticleController extends BaseController
      */
     public function show(Article $article): Response
     {
-
         return $this->render('article/article.html.twig', [
             'article' => $article
         ]);
@@ -77,6 +79,5 @@ class ArticleController extends BaseController
         $this->entityManager->flush();
 
         return $this->json(\count($article->getLikes()), Response::HTTP_OK);
-
     }
 }

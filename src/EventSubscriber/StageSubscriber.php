@@ -4,7 +4,9 @@ namespace App\EventSubscriber;
 
 use App\Entity\Notification;
 use App\Entity\StageEtudiant;
+use App\Entity\StageMailTemplate;
 use App\Repository\StageMailTemplateRepository;
+use App\Twig\DatabaseTwigLoader;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Events;
 use App\MesClasses\Mail\MyMailer;
@@ -53,12 +55,14 @@ class StageSubscriber implements EventSubscriberInterface
             Events::MAIL_CHGT_ETAT_STAGE_AUTORISE           => 'onMailChgtEtatStageAutorise',
             Events::MAIL_CHGT_ETAT_STAGE_DEPOSE             => 'onMailChgtEtatStageDepose',
             Events::MAIL_CHGT_ETAT_STAGE_VALIDE             => 'onMailChgtEtatStageValide',
+            Events::MAIL_CHGT_ETAT_STAGE_IMPRIME             => 'onMailChgtEtatStageImprime',
             Events::MAIL_CHGT_ETAT_STAGE_CONVENTION_ENVOYEE => 'onMailChgtEtatStageConventionEnvoyee',
             Events::MAIL_CHGT_ETAT_CONVENTION_RECUE         => 'onMailChgtEtatStageConventionRecue',
 
             Events::CHGT_ETAT_STAGE_AUTORISE           => 'onChgtEtatStageAutorise',
             Events::CHGT_ETAT_STAGE_DEPOSE             => 'onChgtEtatStageDepose',
             Events::CHGT_ETAT_STAGE_VALIDE             => 'onChgtEtatStageValide',
+            Events::CHGT_ETAT_STAGE_IMPRIME             => 'onChgtEtatStageImprime',
             Events::CHGT_ETAT_STAGE_CONVENTION_ENVOYEE => 'onChgtEtatStageConventionEnvoyee',
             Events::CHGT_ETAT_CONVENTION_RECUE         => 'onChgtEtatStageConventionRecue',
         ];
@@ -78,8 +82,10 @@ class StageSubscriber implements EventSubscriberInterface
             $notif->setEtudiant($stageEtudiant->getEtudiant());
             $notif->setTypeUser(Notification::ETUDIANT);
             $notif->setType($codeEvent);
-            $notif->setUrl($this->router->generate('user_mon_profil',
-                ['onglet' => 'absence']));//todo: lien vers detail du stage
+            $notif->setUrl($this->router->generate(
+                'user_mon_profil',
+                ['onglet' => 'absence']
+            ));//todo: lien vers detail du stage
             $this->entityManager->persist($notif);
             $this->entityManager->flush();
         }
@@ -105,6 +111,11 @@ class StageSubscriber implements EventSubscriberInterface
         $this->addNotification($event, Events::CHGT_ETAT_STAGE_VALIDE);
     }
 
+    public function onChgtEtatStageImprime(GenericEvent $event): void
+    {
+        $this->addNotification($event, Events::CHGT_ETAT_STAGE_IMPRIME);
+    }
+
     /**
      * @param GenericEvent $event
      *
@@ -127,23 +138,30 @@ class StageSubscriber implements EventSubscriberInterface
         $stageEtudiant = $event->getSubject();
 
         //table avec les templates des mails et le sujet, a récupérer en fonction du codeEvent et de la période.
-        $mailTemplate = $this->stageMailTemplateRepository->findEventPeriode($codeEvent,
-            $stageEtudiant->getStagePeriode());
+        /** @var StageMailTemplate $mailTemplate */
+        $mailTemplate = $this->stageMailTemplateRepository->findEventPeriode(
+            $codeEvent,
+            $stageEtudiant->getStagePeriode()
+        );
 
-        if ($mailTemplate !== null && $stageEtudiant->getEtudiant() !== null) {
-            $this->myMailer->setTemplate('mails/', ['stageEtudiant' => $stageEtudiant]);
+        if ($mailTemplate !== null && $mailTemplate->getTwigTemplate() !== null && $stageEtudiant->getEtudiant() !== null) {
+            $this->myMailer->setTemplateFromDatabase($mailTemplate->getTwigTemplate()->getName(), ['stageEtudiant' => $stageEtudiant]);
             $this->myMailer->sendMessage($stageEtudiant->getEtudiant()->getMails(), $mailTemplate->getSubject());
         }
 
         if ($stageEtudiant->getStagePeriode() !== null && $stageEtudiant->getStagePeriode()->getCopieAssistant()) {
-            $mailTemplate = $this->stageMailTemplateRepository->findEventPeriode($codeEvent . '_COPIE',
-                $stageEtudiant->getStagePeriode());
+            $mailTemplate = $this->stageMailTemplateRepository->findEventPeriode(
+                $codeEvent . '_COPIE',
+                $stageEtudiant->getStagePeriode()
+            );
 
-            if ($mailTemplate !== null && $stageEtudiant->getEtudiant() !== null) {
-                $this->myMailer->setTemplate('mails/', ['stageEtudiant' => $stageEtudiant]);
-                $this->myMailer->sendMessage($stageEtudiant->getEtudiant()->getMails(),
-                    $mailTemplate->getSubject());//mail de l'assistant...
-            }
+            if ($mailTemplate !== null && $mailTemplate->getTwigTemplate() && $stageEtudiant->getEtudiant() !== null) {
+                $this->myMailer->setTemplateFromDatabase($mailTemplate->getTwigTemplate()->getName(), ['stageEtudiant' => $stageEtudiant]);
+                $this->myMailer->sendMessage(
+                    $stageEtudiant->getEtudiant()->getMails(),
+                    $mailTemplate->getSubject()
+                );//mail de l'assistant...
+            }//todo: else mail par défaut
         }
     }
 
@@ -155,7 +173,6 @@ class StageSubscriber implements EventSubscriberInterface
     public function onMailChgtEtatStageConventionEnvoyee(GenericEvent $event): void
     {
         $this->sendMail($event, Events::MAIL_CHGT_ETAT_STAGE_CONVENTION_ENVOYEE);
-
     }
 
     /**
@@ -166,7 +183,6 @@ class StageSubscriber implements EventSubscriberInterface
     public function onMailChgtEtatStageConventionRecue(GenericEvent $event): void
     {
         $this->sendMail($event, Events::MAIL_CHGT_ETAT_CONVENTION_RECUE);
-
     }
 
     /**
@@ -178,7 +194,6 @@ class StageSubscriber implements EventSubscriberInterface
     public function onMailChgtEtatStageDepose(GenericEvent $event): void
     {
         $this->sendMail($event, Events::MAIL_CHGT_ETAT_STAGE_DEPOSE);
-
     }
 
     /**
@@ -189,6 +204,15 @@ class StageSubscriber implements EventSubscriberInterface
     public function onMailChgtEtatStageValide(GenericEvent $event): void
     {
         $this->sendMail($event, Events::MAIL_CHGT_ETAT_STAGE_VALIDE);
+    }
 
+    /**
+     * @param GenericEvent $event
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function onMailChgtEtatStageImprime(GenericEvent $event): void
+    {
+        $this->sendMail($event, Events::MAIL_CHGT_ETAT_STAGE_IMPRIME);
     }
 }

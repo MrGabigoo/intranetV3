@@ -53,6 +53,5 @@ class EvaluationController extends BaseController
         $notes = $myEvaluation->setEvaluation($evaluation)->getNotesTableau();
 
         return null;
-
     }
 }

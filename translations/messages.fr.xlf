@@ -8512,5 +8512,23 @@
         <target>stage_etudiant.change_etat.success.flash</target>
       </segment>
     </unit>
+    <unit id="fb20FRg" name="chgt.etat_stage.autorise">
+      <segment>
+        <source>chgt.etat_stage.autorise</source>
+        <target>chgt.etat_stage.autorise</target>
+      </segment>
+    </unit>
+    <unit id="7TeNraa" name="fixe">
+      <segment>
+        <source>fixe</source>
+        <target>fixe</target>
+      </segment>
+    </unit>
+    <unit id="lud0k6I" name="applications.etudiant.stage.formulaire.heading">
+      <segment>
+        <source>applications.etudiant.stage.formulaire.heading</source>
+        <target>applications.etudiant.stage.formulaire.heading</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

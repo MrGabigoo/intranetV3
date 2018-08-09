@@ -85,8 +85,10 @@ class SemestreController extends BaseController
                 $this->entityManager->flush();
                 $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'semestre.add.success.flash');
 
-                return $this->redirectToRoute('sa_structure_index',
-                    ['formation' => $annee->getDiplome()->getFormation()->getId()]);
+                return $this->redirectToRoute(
+                    'sa_structure_index',
+                    ['formation' => $annee->getDiplome()->getFormation()->getId()]
+                );
             }
 
             return $this->render('structure/semestre/new.html.twig', [
@@ -119,21 +121,26 @@ class SemestreController extends BaseController
     public function edit(Request $request, Semestre $semestre): Response
     {
         if ($semestre->getAnnee() !== null && $semestre->getAnnee()->getDiplome() !== null) {
-            $form = $this->createForm(SemestreType::class, $semestre,
+            $form = $this->createForm(
+                SemestreType::class,
+                $semestre,
                 [
                     'diplome' => $semestre->getAnnee()->getDiplome(),
                     'attr'    => [
                         'data-provide' => 'validation'
                     ]
-                ]);
+                ]
+            );
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->entityManager->flush();
                 $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'semestre.edit.success.flash');
 
-                return $this->redirectToRoute('sa_structure_index',
-                    ['formation' => $semestre->getAnnee()->getDiplome()->getFormation()->getId()]);
+                return $this->redirectToRoute(
+                    'sa_structure_index',
+                    ['formation' => $semestre->getAnnee()->getDiplome()->getFormation()->getId()]
+                );
             }
 
             return $this->render('structure/semestre/edit.html.twig', [
@@ -167,6 +174,5 @@ class SemestreController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

@@ -41,6 +41,10 @@
             {{ render(controller(
                 'App\\Controller\\appEtudiant\\RattrapageController::index'
             )) }}
+        {% elseif onglet == 'stage' %}
+            {{ render(controller(
+                'App\\Controller\\appEtudiant\\StageController::index'
+            )) }}
         {% else %}
             {{ render(controller(
                 'App\\Controller\\MessagerieController::index'

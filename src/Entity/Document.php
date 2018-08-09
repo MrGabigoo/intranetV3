@@ -281,6 +281,4 @@ class Document extends BaseEntity
     {
         return $this->getUuid()->toString();
     }
-
-
 }

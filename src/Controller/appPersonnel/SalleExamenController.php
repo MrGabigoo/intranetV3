@@ -50,12 +50,14 @@ class SalleExamenController extends BaseController
      */
     public function generePlacement(MySalleExamen $mySalleExamen, Request $request): void
     {
-        $mySalleExamen->genereDocument($request->request->get('dateeval'),
+        $mySalleExamen->genereDocument(
+            $request->request->get('dateeval'),
             $request->request->get('salle'),
             $request->request->get('selectmatiere'),
             $request->request->get('selectgroupes'),
             $request->request->get('selectgroupes'),
             $request->request->get('enseignant1'),
-            $request->request->get('enseignant2'));
+            $request->request->get('enseignant2')
+        );
     }
 }

@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 use App\Entity\Evaluation;
 use App\Entity\Matiere;
 use App\Entity\Semestre;
@@ -143,6 +142,4 @@ class MyEvaluations
     {
         return $this->statistiques;
     }
-
-
 }

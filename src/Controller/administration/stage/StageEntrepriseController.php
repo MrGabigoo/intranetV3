@@ -40,8 +40,13 @@ class StageEntrepriseController extends BaseController
     public function export(MyExport $myExport, $_format): Response
     {
         $dates = $stagePeriodeRepository->findByFormation($this->dataUserSession->getFormation());
-        $response = $myExport->genereFichierGenerique($_format, $dates, 'dates',
-            ['stage_periode_administration', 'utilisateur'], ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]);//todo: définir les colonnes. copier/coller ici
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $dates,
+            'dates',
+            ['stage_periode_administration', 'utilisateur'],
+            ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]
+        );//todo: définir les colonnes. copier/coller ici
 
         return $response;
     }

@@ -171,6 +171,4 @@ class Competence extends BaseEntity
     {
         $this->parent = $parent;
     }
-
-
 }

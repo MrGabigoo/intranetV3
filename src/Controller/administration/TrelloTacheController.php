@@ -25,10 +25,12 @@ class TrelloTacheController extends BaseController
      */
     public function index(TrelloTacheRepository $trelloTacheRepository): Response
     {
-        return $this->render('administration/trello_tache/index.html.twig',
+        return $this->render(
+            'administration/trello_tache/index.html.twig',
             [
                 'trello_taches' => $trelloTacheRepository->findAll()
-            ]);
+            ]
+        );
     }
 
     /**
@@ -102,13 +104,16 @@ class TrelloTacheController extends BaseController
     public function create(Request $request): Response
     {
         $trelloTache = new TrelloTache($this->dataUserSession->getFormation());
-        $form = $this->createForm(TrelloTacheType::class, $trelloTache,
+        $form = $this->createForm(
+            TrelloTacheType::class,
+            $trelloTache,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -145,13 +150,16 @@ class TrelloTacheController extends BaseController
      */
     public function edit(Request $request, TrelloTache $trelloTache): Response
     {
-        $form = $this->createForm(TrelloTacheType::class, $trelloTache,
+        $form = $this->createForm(
+            TrelloTacheType::class,
+            $trelloTache,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -180,7 +188,6 @@ class TrelloTacheController extends BaseController
             $this->entityManager->remove($trelloTache);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'trello.delete.success.flash');
-
         }
         $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'trello.delete.error.flash');
 

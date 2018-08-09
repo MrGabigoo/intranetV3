@@ -47,8 +47,10 @@ class StageEtudiantController extends BaseController
      */
     public function show(StageEtudiant $stageEtudiant): Response
     {
-        return $this->render('administration/stage/stage_etudiant/show.html.twig',
-            ['stage_etudiant' => $stageEtudiant]);
+        return $this->render(
+            'administration/stage/stage_etudiant/show.html.twig',
+            ['stage_etudiant' => $stageEtudiant]
+        );
     }
 
     /**
@@ -76,8 +78,6 @@ class StageEtudiantController extends BaseController
      */
     public function delete(Request $request, StageEtudiant $stageEtudiant): Response
     {
-
-
         return $this->redirectToRoute('administration_stage_periode_gestion', ['uuid' => $stageEtudiant->getStagePeriode()->getUuidString()]);
     }
 
@@ -88,7 +88,8 @@ class StageEtudiantController extends BaseController
      * @Route("/change-etat/{stagePeriode}/{etudiant}/{etat}", name="administration_stage_etudiant_change_etat")
      * @ParamConverter("stagePeriode", options={"mapping": {"stagePeriode": "uuid"}})
      */
-    public function changeEtat(MyStageEtudiant $myStageEtudiant, StagePeriode $stagePeriode, Etudiant $etudiant, $etat) {
+    public function changeEtat(MyStageEtudiant $myStageEtudiant, StagePeriode $stagePeriode, Etudiant $etudiant, $etat)
+    {
         $myStageEtudiant->changeEtat($stagePeriode, $etudiant, $etat);
         $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'stage_etudiant.change_etat.success.flash');
 

@@ -23,5 +23,4 @@ class UeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Ue::class);
     }
-
 }

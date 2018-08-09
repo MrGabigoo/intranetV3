@@ -89,6 +89,4 @@ class ProfilPersonnelController extends BaseController
             'previsionnel' => $myPrevisionnel,
         ]);
     }
-
-
 }

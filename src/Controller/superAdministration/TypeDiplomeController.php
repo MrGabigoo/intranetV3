@@ -138,6 +138,5 @@ class TypeDiplomeController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

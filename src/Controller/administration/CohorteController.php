@@ -29,6 +29,5 @@ class CohorteController extends BaseController
      */
     public function export()
     {
-
     }
 }

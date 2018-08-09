@@ -8,7 +8,6 @@
 
 namespace App\Normalizer;
 
-
 use App\Entity\Actualite;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -20,7 +19,6 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
  */
 class ActualiteNormalizer implements NormalizerInterface
 {
-
     private $router;
     private $normalizer;
 
@@ -58,6 +56,4 @@ class ActualiteNormalizer implements NormalizerInterface
     {
         return $data instanceof Actualite;
     }
-
-
 }

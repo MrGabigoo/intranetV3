@@ -128,6 +128,5 @@ class UfrController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

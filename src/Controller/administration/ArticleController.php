@@ -42,8 +42,13 @@ class ArticleController extends BaseController
     public function export(MyExport $myExport, ArticleRepository $articleRepository, $_format): Response
     {
         $articles = $articleRepository->findByFormation($this->dataUserSession->getFormation(), 0);
-        $response = $myExport->genereFichierGenerique($_format, $articles, 'articles',
-            ['article_administration', 'utilisateur'], ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]);
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $articles,
+            'articles',
+            ['article_administration', 'utilisateur'],
+            ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]
+        );
 
         return $response;
     }
@@ -57,13 +62,16 @@ class ArticleController extends BaseController
     public function create(Request $request): Response
     {
         $article = new Article($this->getUser());
-        $form = $this->createForm(ArticleType::class, $article,
+        $form = $this->createForm(
+            ArticleType::class,
+            $article,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -100,13 +108,16 @@ class ArticleController extends BaseController
      */
     public function edit(Request $request, Article $article): Response
     {
-        $form = $this->createForm(ArticleType::class, $article,
+        $form = $this->createForm(
+            ArticleType::class,
+            $article,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -133,7 +144,6 @@ class ArticleController extends BaseController
     {
         $id = $article->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($article);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'article.delete.success.flash');

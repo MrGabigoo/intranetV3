@@ -32,8 +32,10 @@ class PlanningController extends BaseController
             'tabFerie'    => Calendrier::getTabJoursFeries(),
             'tabFinMois'  => Calendrier::getTabFinMois(),
             'annee'       => $annee,
-            'events'      => $dateRepository->findByFormationPlanning($this->dataUserSession->getFormationId(),
-                $annee)
+            'events'      => $dateRepository->findByFormationPlanning(
+                $this->dataUserSession->getFormationId(),
+                $annee
+            )
         ]);
     }
 }

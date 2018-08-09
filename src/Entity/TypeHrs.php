@@ -161,6 +161,4 @@ class TypeHrs extends BaseEntity
     {
         $this->type = $type;
     }
-
-
 }

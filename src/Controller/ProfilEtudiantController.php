@@ -86,7 +86,6 @@ class ProfilEtudiantController extends BaseController
      */
     public function absences(Etudiant $etudiant): Response
     {
-
         Calendrier::calculPlanning($this->dataUserSession->getAnneeUniversitaire(), 2, Constantes::DUREE_SEMESTRE);
 
         //todo: gérer les mois, selon le semestre ?

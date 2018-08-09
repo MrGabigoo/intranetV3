@@ -48,13 +48,16 @@ class DocumentController extends BaseController
     public function create(Request $request): Response
     {
         $document = new Document();
-        $form = $this->createForm(DocumentType::class, $document,
+        $form = $this->createForm(
+            DocumentType::class,
+            $document,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -93,13 +96,16 @@ class DocumentController extends BaseController
      */
     public function edit(Request $request, Document $document): Response
     {
-        $form = $this->createForm(DocumentType::class, $document,
+        $form = $this->createForm(
+            DocumentType::class,
+            $document,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -126,7 +132,6 @@ class DocumentController extends BaseController
     {
         $id = $document->getUuidString();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($document);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'document.delete.success.flash');

@@ -59,38 +59,56 @@ class DiplomeType extends AbstractType
             ->add('opt_nb_jours_saisie', TextType::class, [
                 'label' => 'label.opt_nb_jours_saisie'
             ])
-            ->add('opt_dilpome_decale', YesNoType::class,
+            ->add(
+                'opt_dilpome_decale',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_dilpome_decale'
-                ])
-            ->add('opt_suppr_absence', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_suppr_absence',
+                YesNoType::class,
                 [
                     'label' => 'label.opt_suppr_absence'
-                ])
-            ->add('opt_methode_calcul', ChoiceType::class,
+                ]
+            )
+            ->add(
+                'opt_methode_calcul',
+                ChoiceType::class,
                 [
                     'choices'                   => ['choice.moymodules' => 'moymodules', 'choice.moyues' => 'moyues'],
                     'expanded'                  => true,
                     'label'                     => 'label.opt_methode_calcul',
                     'choice_translation_domain' => 'form'
 
-                ])
-            ->add('opt_anonymat', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_anonymat',
+                YesNoType::class,
                 [
                     'label' => 'label.opt_anonymat'
-                ])
-            ->add('opt_commentaires_releve', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_commentaires_releve',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_commentaires_releve'
-                ])
-            ->add('opt_espace_perso_visible', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_espace_perso_visible',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_espace_perso_visible',
 
-                ])
+                ]
+            )
             ->add('volume_horaire', TextType::class, [
                 'label' => 'label.volume_horaire'
             ])

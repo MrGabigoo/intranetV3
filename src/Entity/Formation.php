@@ -663,7 +663,6 @@ class Formation extends BaseEntity
      */
     public function update($name, $value): void
     {
-
         $name[0] = \chr(\ord($name[0]) - 32);
         $method = 'set' . $name;
         if (method_exists($this, $method)) {

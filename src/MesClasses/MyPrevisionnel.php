@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 use App\Entity\Formation;
 use App\Entity\Hrs;
 use App\Entity\Matiere;
@@ -77,8 +76,7 @@ class MyPrevisionnel
         EntityManagerInterface $entityManager,
         PrevisionnelRepository $previsionnelRepository,
         HrsRepository $hrsRepository
-    )
-    {
+    ) {
         $this->previsionnelRepository = $previsionnelRepository;
         $this->hrsRepository = $hrsRepository;
         $this->entityManager = $entityManager;
@@ -251,9 +249,7 @@ class MyPrevisionnel
     public function getPrevisionnelEnseignantFormation(
         Personnel $personnel,
         Formation $formation
-    )
-    {
-
+    ) {
         return $this->previsionnelRepository->findPrevisionnelEnseignantFormation($personnel, $formation);
     }
 
@@ -265,7 +261,6 @@ class MyPrevisionnel
      */
     public function getPrevisionnelEnseignantComplet(Personnel $personnel, $annee) :array
     {
-
         return $this->previsionnelRepository->findPrevisionnelEnseignantComplet($personnel, $annee);
     }
 
@@ -283,7 +278,6 @@ class MyPrevisionnel
             $sem = $pr->getSemestre() ? $pr->getSemestre()->getId() : null;
 
             if ($sem !== null) {
-
                 if (!array_key_exists($sem, $tprev)) {
                     $tprev[$sem] = array();
                     $this->semestres[] = $pr->getSemestre();
@@ -329,7 +323,6 @@ class MyPrevisionnel
             $this->totalEtuTd += $previ->getNbHTd();
             $this->totalEtuTp += $previ->getNbHTp();
         }
-
     }
 
     /**

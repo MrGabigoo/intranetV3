@@ -23,5 +23,4 @@ class TypeHrsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, TypeHrs::class);
     }
-
 }

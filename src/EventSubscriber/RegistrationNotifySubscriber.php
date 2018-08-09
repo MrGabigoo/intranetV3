@@ -90,7 +90,6 @@ class RegistrationNotifySubscriber implements EventSubscriberInterface
      */
     public function onNoteAdded(GenericEvent $event): void
     {
-
     }
 
     /**

@@ -22,6 +22,5 @@ class ReleveController extends BaseController
      */
     public function releveProvisoireAll(Semestre $semestre)
     {
-
     }
 }

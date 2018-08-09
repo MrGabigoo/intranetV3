@@ -8,7 +8,6 @@
 
 namespace App\Entity;
 
-
 /**
  * Class Constantes
  * @package App\Entity

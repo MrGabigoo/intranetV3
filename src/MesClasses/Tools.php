@@ -8,10 +8,8 @@
 
 namespace App\MesClasses;
 
-
 abstract class Tools
 {
-
     public static function convertDateToObject($date): \DateTime
     {
         $t = explode('/', $date);
@@ -24,8 +22,6 @@ abstract class Tools
 
     public static function convertTimeToObject($heure): \DateTime
     {
-
-
         return new \DateTime($heure);
     }
 

@@ -87,7 +87,6 @@ class AbsenceJustificatif extends BaseEntity
         $this->uuid = Uuid::uuid4();
         $this->anneeUniversitaire = $anneeUniversitaire;
         $this->setEtudiant($etudiant);
-
     }
 
     public function getDateDebut(): ?\DateTimeInterface

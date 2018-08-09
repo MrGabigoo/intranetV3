@@ -45,11 +45,9 @@ class NotificationController extends BaseController
         foreach ($notifications as $notif) {
             $notif->setLu(true);
             $this->entityManager->persist($notif);
-
         }
         $this->entityManager->flush();
 
         return new Response('ok', 200);
-
     }
 }

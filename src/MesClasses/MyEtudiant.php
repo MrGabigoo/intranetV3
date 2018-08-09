@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 use App\Entity\Absence;
 use App\Entity\Etudiant;
 use App\Entity\Evaluation;
@@ -170,7 +169,7 @@ class MyEtudiant
             $note[0]->setCommentaire($data['commentaire']);
             $this->entityManager->persist($note[0]);
             $this->entityManager->flush();
-            //todo: ecrire dans la table de tracking
+        //todo: ecrire dans la table de tracking
         } elseif (\count($note) === 0) {
             //creation
 

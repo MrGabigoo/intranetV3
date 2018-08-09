@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 use App\Entity\Etudiant;
 use App\Entity\StageEtudiant;
 use App\Entity\StagePeriode;
@@ -66,7 +65,9 @@ class MyStage
         /** @var StageEtudiant $stageEtudiant */
         foreach ($stagePeriode->getStageEtudiants() as $stageEtudiant) {
             if ($stageEtudiant->getEtudiant() !== null) {
-                $this->dataEtudiants[$etudiant->getId()]['stage'] = $stageEtudiant;
+                if (array_key_exists($stageEtudiant->getEtudiant()->getId(), $this->dataEtudiants)) {
+                    $this->dataEtudiants[$stageEtudiant->getEtudiant()->getId()]['stage'] = $stageEtudiant;
+                }
 
                 switch ($stageEtudiant->getEtatStage()) {
                     case StageEtudiant::ETAT_STAGE_DEPOSE:
@@ -75,10 +76,10 @@ class MyStage
                     case StageEtudiant::ETAT_STAGE_VALIDE:
                         $this->conventionAEnvoyer[$stageEtudiant->getEtudiant()->getId()] = $stageEtudiant;
                         break;
-                    case StageEtudiant::ETAT_STAGE_CONVENTION_ENVOYEE;
+                    case StageEtudiant::ETAT_STAGE_CONVENTION_ENVOYEE:
                         $this->conventionEnAttente[$stageEtudiant->getEtudiant()->getId()] = $stageEtudiant;
                         break;
-                    case StageEtudiant::ETAT_STAGE_CONVENTION_RECUE;
+                    case StageEtudiant::ETAT_STAGE_CONVENTION_RECUE:
                         $this->conventionComplete[$stageEtudiant->getEtudiant()->getId()] = $stageEtudiant;
                         break;
                 }
@@ -127,6 +128,4 @@ class MyStage
     {
         return $this->conventionComplete;
     }
-
-
 }

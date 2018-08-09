@@ -23,5 +23,4 @@ class StagePeriodeOffreRepository extends ServiceEntityRepository
     public function findByStagePeriode(StagePeriode $stagePeriode)
     {
     }
-
 }

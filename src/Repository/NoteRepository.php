@@ -27,5 +27,4 @@ class NoteRepository extends ServiceEntityRepository
     public function findBySemestre($semestre, $getAnneeUniversitaire)
     {
     }
-
 }

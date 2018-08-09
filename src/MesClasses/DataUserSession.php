@@ -126,11 +126,11 @@ class DataUserSession
         if ($this->getUser() instanceof Etudiant) {
             $this->messagesRepository = $messageDestinataireEtudiantRepository;
             $this->formation = $this->formationRepository->findFormationEtudiant($this->getUser());
-            //todo: si formation est null alors pas d'accès. Rediriger vers page. Listener ?
+        //todo: si formation est null alors pas d'accès. Rediriger vers page. Listener ?
         } elseif ($this->getUser() instanceof Personnel) {
             $this->messagesRepository = $messageDestinatairePersonnelRepository;
             $this->formation = $this->formationRepository->findFormationPersonnelDefaut($this->getUser());
-            //todo: si formation > 1 (plusieurs formation par défaut ? étrange).
+        //todo: si formation > 1 (plusieurs formation par défaut ? étrange).
             //todo: si formation est null alors pas d'accès autorisé. Rediriger vers page. Listener ?
         } else {
             //todo: erreur
@@ -256,7 +256,6 @@ class DataUserSession
     public function isGoodFormation($role): bool
     {
         if ($this->getUser() !== null && !($this->getUser() instanceof Etudiant)) {
-
             $autorize = false;
 
             /** @var PersonnelFormation $rf */
@@ -270,7 +269,6 @@ class DataUserSession
         }
 
         return false;
-
     }
 
     public function getMessages()

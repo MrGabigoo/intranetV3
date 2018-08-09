@@ -37,7 +37,7 @@ class HrsType extends AbstractType
                 'class'         => Personnel::class,
                 'required'      => true,
                 'choice_label'  => 'display',
-                'query_builder' => function(PersonnelRepository $personnelRepository) {
+                'query_builder' => function (PersonnelRepository $personnelRepository) {
                     return $personnelRepository->findByFormationBuilder($this->formation);
                 },
                 'label'         => 'label.personnel'
@@ -54,7 +54,7 @@ class HrsType extends AbstractType
                 'class'         => Semestre::class,
                 'required'      => false,
                 'choice_label'  => 'display',
-                'query_builder' => function(SemestreRepository $semestreRepository) {
+                'query_builder' => function (SemestreRepository $semestreRepository) {
                     return $semestreRepository->findByFormationBuilder($this->formation);
                 },
                 'label'         => 'label.semestre'
@@ -63,7 +63,7 @@ class HrsType extends AbstractType
                 'class'         => Diplome::class,
                 'required'      => false,
                 'choice_label'  => 'libelle',
-                'query_builder' => function(DiplomeRepository $diplomeRepository) {
+                'query_builder' => function (DiplomeRepository $diplomeRepository) {
                     return $diplomeRepository->findByFormationBuilder($this->formation);
                 },
                 'label'         => 'label.diplome'

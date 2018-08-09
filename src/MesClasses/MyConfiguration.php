@@ -75,7 +75,6 @@ class MyConfiguration
         $this->semestreRepository = $semestreRepository;
         $this->personnelRepository = $personnelRepository;
         $this->entityManager = $entityManager;
-
     }
 
     /**
@@ -100,7 +99,6 @@ class MyConfiguration
         }
 
         return false;
-
     }
 
     /**

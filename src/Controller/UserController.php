@@ -86,12 +86,15 @@ class UserController extends BaseController
     {
         $user = $this->getUser();
         if ($user instanceof Personnel) {
-            $form = $this->createForm(PersonnelProfilType::class, $user,
+            $form = $this->createForm(
+                PersonnelProfilType::class,
+                $user,
                 [
                     'attr' => [
                         'data-provide' => 'validation'
                     ]
-                ]);
+                ]
+            );
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {

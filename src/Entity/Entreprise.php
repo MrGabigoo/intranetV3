@@ -32,21 +32,6 @@ class Entreprise extends BaseEntity
     private $adresse;
 
     /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $telephone;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
-    private $fax;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\Contact", cascade={"persist", "remove"})
      */
     private $responsable;
@@ -105,42 +90,6 @@ class Entreprise extends BaseEntity
     public function setAdresse(?Adresse $adresse): self
     {
         $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(string $telephone): self
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getFax(): ?string
-    {
-        return $this->fax;
-    }
-
-    public function setFax(string $fax): self
-    {
-        $this->fax = $fax;
 
         return $this;
     }

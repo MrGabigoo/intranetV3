@@ -26,8 +26,10 @@ class ActualiteController extends BaseController
      */
     public function index(ActualiteRepository $actualiteRepository): Response
     {
-        return $this->render('administration/actualite/index.html.twig',
-            ['actualites' => $actualiteRepository->findByFormation($this->dataUserSession->getFormation())]);
+        return $this->render(
+            'administration/actualite/index.html.twig',
+            ['actualites' => $actualiteRepository->findByFormation($this->dataUserSession->getFormation())]
+        );
     }
 
     /**
@@ -43,8 +45,13 @@ class ActualiteController extends BaseController
     public function export(MyExport $myExport, ActualiteRepository $actualiteRepository, $_format): Response
     {
         $actualites = $actualiteRepository->findByFormation($this->dataUserSession->getFormation(), 0);
-        $response = $myExport->genereFichierGenerique($_format, $actualites, 'actualites',
-            ['actualite_administration', 'utilisateur'], ['titre', 'texte', 'formation' => ['libelle']]);
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $actualites,
+            'actualites',
+            ['actualite_administration', 'utilisateur'],
+            ['titre', 'texte', 'formation' => ['libelle']]
+        );
 
         return $response;
     }
@@ -130,11 +137,12 @@ class ActualiteController extends BaseController
     {
         $id = $actualite->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($actualite);
             $this->entityManager->flush();
-            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS,
-                'actualite.delete.success.flash');//todo: interet ? jamais affiché ?
+            $this->addFlashBag(
+                Constantes::FLASHBAG_SUCCESS,
+                'actualite.delete.success.flash'
+            );//todo: interet ? jamais affiché ?
 
             return $this->json($id, Response::HTTP_OK);
         }

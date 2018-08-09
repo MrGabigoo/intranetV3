@@ -57,7 +57,9 @@ class NoteController extends BaseController
     {
         if ($matiere !== null && $matiere->getUe() !== null) {
             $evaluation = new Evaluation($this->getUser(), $matiere, $this->dataUserSession->getFormation());
-            $form = $this->createForm(EvaluationType::class, $evaluation,
+            $form = $this->createForm(
+                EvaluationType::class,
+                $evaluation,
                 [
                     'formation'       => $this->dataUserSession->getFormation(),
                     'semestre'        => $matiere->getUe()->getSemestre(),
@@ -65,7 +67,8 @@ class NoteController extends BaseController
                     'attr'            => [
                         'data-provide' => 'validation'
                     ]
-                ]);
+                ]
+            );
 
             $form->handleRequest($request);
 
@@ -73,8 +76,10 @@ class NoteController extends BaseController
                 $this->entityManager->persist($evaluation);
                 $this->entityManager->flush();
 
-                return $this->redirectToRoute('application_personnel_note_saisie_2',
-                    ['evaluation' => $evaluation->getId()]);
+                return $this->redirectToRoute(
+                    'application_personnel_note_saisie_2',
+                    ['evaluation' => $evaluation->getId()]
+                );
             }
 
             return $this->render('appPersonnel/note/saisie.html.twig', [
@@ -139,7 +144,9 @@ class NoteController extends BaseController
     public function import(Request $request, Matiere $matiere): Response
     {
         $evaluation = new Evaluation($this->getUser(), $matiere, $this->dataUserSession->getFormation());
-        $form = $this->createForm(EvaluationType::class, $evaluation,
+        $form = $this->createForm(
+            EvaluationType::class,
+            $evaluation,
             [
                 'formation'       => $this->dataUserSession->getFormation(),
                 'semestre'        => $matiere->getUe() !== null ? $matiere->getUe()->getSemestre() : '',
@@ -148,7 +155,8 @@ class NoteController extends BaseController
                 'attr'            => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
 
         $form->handleRequest($request);
 

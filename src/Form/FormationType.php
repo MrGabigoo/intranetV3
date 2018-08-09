@@ -39,12 +39,17 @@ class FormationType extends AbstractType
                 'label'   => 'label.annee_courante',
                 'choices' => array_combine(range(date('Y') - 2, date('Y') + 4), range(date('Y') - 2, date('Y') + 4))
             ])
-            ->add('opt_annee_previsionnel', ChoiceType::class,
+            ->add(
+                'opt_annee_previsionnel',
+                ChoiceType::class,
                 [
-                    'choices' => array_combine(range(date('Y') - 2, date('Y') + 4),
-                        range(date('Y') - 2, date('Y') + 4)),
+                    'choices' => array_combine(
+                        range(date('Y') - 2, date('Y') + 4),
+                        range(date('Y') - 2, date('Y') + 4)
+                    ),
                     'label'   => 'label.opt_annee_previsionnel'
-                ])
+                ]
+            )
             ->add('tel_contact', TextType::class, [
                 'label'    => 'label.tel_contact',
                 'required' => false
@@ -64,40 +69,61 @@ class FormationType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'label.description'
             ])
-            ->add('opt_update_celcat', YesNoType::class,
+            ->add(
+                'opt_update_celcat',
+                YesNoType::class,
                 [
                     'label' => 'label.opt_update_celcat'
-                ])
-            ->add('opt_agence', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_agence',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_agence'
-                ])
-            ->add('opt_materiel', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_materiel',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_materiel'
-                ])
-            ->add('opt_edt', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_edt',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_edt'
-                ])
-            ->add('opt_stage', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_stage',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_stage'
-                ])
-            ->add('opt_synthese', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_synthese',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_synthese'
-                ])
-            ->add('opt_messagerie', YesNoType::class,
+                ]
+            )
+            ->add(
+                'opt_messagerie',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_messagerie'
-                ])
+                ]
+            )
             ->add('respri', EntityType::class, [
                 'class'        => Personnel::class,
                 'choice_label' => 'display',

@@ -46,7 +46,6 @@ class Adresse extends BaseEntity
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -188,6 +187,4 @@ class Adresse extends BaseEntity
 
         return $this;
     }
-
-
 }

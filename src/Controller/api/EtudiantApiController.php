@@ -78,16 +78,27 @@ class EtudiantApiController extends BaseController
         ];
 
         $users = $this->etudiantRepository->getArrayEtudiantsByFormation(
-            $this->dataUserSession->getFormationId(), $filters, $start, $length
+            $this->dataUserSession->getFormationId(),
+            $filters,
+            $start,
+            $length
         );
 
         $output = [
             'draw'            => 1,
             'data'            => $users,
-            'recordsFiltered' => \count($this->etudiantRepository->getEtudiantsByFormation($this->dataUserSession->getFormationId(),
-                $filters, 0, false)),
-            'recordsTotal'    => \count($this->etudiantRepository->getEtudiantsByFormation($this->dataUserSession->getFormationId(),
-                [], 0, false))
+            'recordsFiltered' => \count($this->etudiantRepository->getEtudiantsByFormation(
+                $this->dataUserSession->getFormationId(),
+                $filters,
+                0,
+                false
+            )),
+            'recordsTotal'    => \count($this->etudiantRepository->getEtudiantsByFormation(
+                $this->dataUserSession->getFormationId(),
+                [],
+                0,
+                false
+            ))
         ];
 
         //return new Response(json_encode($output), 200, ['Content-Type' => 'application/json']);

@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 use App\Entity\Constantes;
 use App\Entity\Etudiant;
 use App\Entity\StageEtudiant;

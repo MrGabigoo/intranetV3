@@ -28,8 +28,10 @@ class DiplomeController extends BaseController
     public function index(DiplomeRepository $diplomeRepository): Response
     {
         //todo: comment l'exploiter...
-        return $this->render('structure/diplome/index.html.twig',
-            ['diplomes' => $diplomeRepository->findByFormation($this->dataUserSession->getFormationId())]);
+        return $this->render(
+            'structure/diplome/index.html.twig',
+            ['diplomes' => $diplomeRepository->findByFormation($this->dataUserSession->getFormationId())]
+        );
     }
 
     /**
@@ -155,6 +157,5 @@ class DiplomeController extends BaseController
      */
     public function delete(Diplome $id): void
     {
-
     }
 }

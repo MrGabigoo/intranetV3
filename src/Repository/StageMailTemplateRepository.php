@@ -33,8 +33,8 @@ class StageMailTemplateRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('s')
             ->where('s.stagePeriode = :stagePeriode')
             ->andWhere('s.event = :code')
-            ->setParameter('stagePeriode', $codeEvent)
-            ->setParameter('code', $stagePeriode)
+            ->setParameter('stagePeriode', $stagePeriode)
+            ->setParameter('code', $codeEvent)
             ->getQuery()
             ->getOneOrNullResult()
             ;

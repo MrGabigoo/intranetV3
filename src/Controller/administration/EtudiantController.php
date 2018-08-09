@@ -60,13 +60,16 @@ class EtudiantController extends BaseController
      */
     public function import(Request $request): Response
     {
-        $form = $this->createForm(ImportEtudiantType::class, null,
+        $form = $this->createForm(
+            ImportEtudiantType::class,
+            null,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
 
         $form->handleRequest($request);
 
@@ -75,13 +78,11 @@ class EtudiantController extends BaseController
             $data = $form->getData();
 
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'etudiant.import.success.flash');
-
         }
 
         return $this->render('administration/etudiant/import.html.twig', [
             'form' => $form->createView(),
         ]);
-
     }
 
 

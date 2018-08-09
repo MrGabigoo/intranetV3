@@ -8,7 +8,6 @@
 
 namespace App\MesClasses\Pdf;
 
-
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,8 +37,8 @@ abstract class MyPDF
         self::$options->set('isPhpEnabled', true);
     }
 
-    public static function addOptions(array $options) {
-
+    public static function addOptions(array $options)
+    {
     }
 
     /**
@@ -50,7 +49,6 @@ abstract class MyPDF
      */
     public static function generePdf($template, $data, $name)
     {
-
         $html = self::$templating->render($template, $data);
 
         self::$domPdf = new Dompdf(self::$options);

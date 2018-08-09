@@ -81,8 +81,10 @@ class AbsenceController extends BaseController
     {
         return $this->render('appPersonnel/absence/voir.html.twig', [
             'matiere'  => $matiere,
-            'absences' => $this->myAbsences->getAbsencesMatiere($matiere,
-                $this->dataUserSession->getAnneeUniversitaire())
+            'absences' => $this->myAbsences->getAbsencesMatiere(
+                $matiere,
+                $this->dataUserSession->getAnneeUniversitaire()
+            )
         ]);
     }
 
@@ -138,10 +140,11 @@ class AbsenceController extends BaseController
     public function ajaxGetAbsencesMatiere(
         AbsenceRepository $absenceRepository,
         Matiere $matiere
-    ): \Symfony\Component\HttpFoundation\JsonResponse
-    {
-        $absences = $absenceRepository->getAbsencesMatiereArray($matiere,
-            $this->dataUserSession->getAnneeUniversitaire());
+    ): \Symfony\Component\HttpFoundation\JsonResponse {
+        $absences = $absenceRepository->getAbsencesMatiereArray(
+            $matiere,
+            $this->dataUserSession->getAnneeUniversitaire()
+        );
 
         return $this->json($absences);
     }
@@ -183,10 +186,13 @@ class AbsenceController extends BaseController
                 $heure,
                 $matiere,
                 $this->dataUserSession->getUser(),
-                $this->dataUserSession->getAnneeUniversitaire());
+                $this->dataUserSession->getAnneeUniversitaire()
+            );
 
-            $absences = $absenceRepository->getAbsencesMatiereArray($matiere,
-                $this->dataUserSession->getAnneeUniversitaire());
+            $absences = $absenceRepository->getAbsencesMatiereArray(
+                $matiere,
+                $this->dataUserSession->getAnneeUniversitaire()
+            );
 
             return $this->json($absences);
 
@@ -203,14 +209,14 @@ class AbsenceController extends BaseController
             $myEtudiant->setIdEtudiant($request->request->get('etudiant'));
             $myEtudiant->removeAbsence($absence[0]);
 
-            $absences = $absenceRepository->getAbsencesMatiereArray($matiere,
-                $this->dataUserSession->getAnneeUniversitaire());
+            $absences = $absenceRepository->getAbsencesMatiereArray(
+                $matiere,
+                $this->dataUserSession->getAnneeUniversitaire()
+            );
 
             return $this->json($absences);
-
         }
 
         return new response('nok', 500);
     }
-
 }

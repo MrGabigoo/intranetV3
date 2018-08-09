@@ -43,7 +43,7 @@ class SemestreType extends AbstractType
                 'required'      => true,
                 'choice_label'  => 'libelle',
                 'expanded'      => true,
-                'query_builder' => function(AnneeRepository $anneeRepository) {
+                'query_builder' => function (AnneeRepository $anneeRepository) {
                     return $anneeRepository->findByDiplomeBuilder($this->diplome);
                 },
                 'label'         => 'label.annee'
@@ -89,10 +89,13 @@ class SemestreType extends AbstractType
                 'label'   => 'label.ordre_lmd',
                 'choices' => range(1, 16)
             ])
-            ->add('actif', YesNoType::class,
+            ->add(
+                'actif',
+                YesNoType::class,
                 [
                     'label' => 'label.actif'
-                ])
+                ]
+            )
             ->add('nbGroupesTd', ChoiceType::class, [
                 'label'   => 'label.nbGroupesTd',
                 'choices' => range(1, 10)
@@ -101,74 +104,101 @@ class SemestreType extends AbstractType
                 'label'   => 'label.nbGroupesTP',
                 'choices' => range(1, 20)
             ])
-            ->add('optMailReleve', YesNoType::class,
+            ->add(
+                'optMailReleve',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_mail_releve'
-                ])
+                ]
+            )
             ->add('optDestMailReleve', EntityType::class, [
                 'class'        => Personnel::class,
                 'choice_label' => 'display',
                 'label'        => 'label.opt_destinataire_mail_releve',
                 'required'     => false
             ])
-            ->add('optEvaluationModifiable', YesNoType::class,
+            ->add(
+                'optEvaluationModifiable',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_evaluation_modifiable'
-                ])
-            ->add('optMailModificationNote', YesNoType::class,
+                ]
+            )
+            ->add(
+                'optMailModificationNote',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_mail_modification_note'
-                ])
+                ]
+            )
             ->add('optDestMailModifNote', EntityType::class, [
                 'class'        => Personnel::class,
                 'choice_label' => 'display',
                 'label'        => 'label.opt_destinataire_mail_modification_note',
                 'required'     => false
             ])
-            ->add('optEvaluationVisible', YesNoType::class,
+            ->add(
+                'optEvaluationVisible',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_evaluation_visible'
-                ])
-            ->add('optPenaliteAbsence', YesNoType::class,
+                ]
+            )
+            ->add(
+                'optPenaliteAbsence',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_penalite_absence'
-                ])
-            ->add('optPointPenaliteAbsence', TextType::class,
+                ]
+            )
+            ->add(
+                'optPointPenaliteAbsence',
+                TextType::class,
                 [
                     'label'    => 'label.opt_point_penalite_absence',
                     'required' => false,
-                ])
-            ->add('optMailAbsenceResp', YesNoType::class,
+                ]
+            )
+            ->add(
+                'optMailAbsenceResp',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_mail_absence_responsable'
-                ])
+                ]
+            )
             ->add('optDestMailAbsenceResp', EntityType::class, [
                 'class'        => Personnel::class,
                 'choice_label' => 'display',
                 'label'        => 'label.opt_destinataire_mail_absence_responsable',
                 'required'     => false
             ])
-            ->add('optMailAbsenceEtudiant', YesNoType::class,
+            ->add(
+                'optMailAbsenceEtudiant',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_mail_absence_etudiant'
-                ])
-            ->add('optPenaliteAbsence', YesNoType::class,
+                ]
+            )
+            ->add(
+                'optPenaliteAbsence',
+                YesNoType::class,
                 [
 
                     'label' => 'label.opt_point_penalite_absence'
-                ])
+                ]
+            )
             ->add('precedent', EntityType::class, [
                 'class'         => Semestre::class,
                 'required'      => false,
                 'choice_label'  => 'display',
-                'query_builder' => function(SemestreRepository $semestreRepository) {
+                'query_builder' => function (SemestreRepository $semestreRepository) {
                     return $semestreRepository->findByDiplomeBuilder($this->diplome);
                 },
                 'label'         => 'label.semestre_precedent'
@@ -177,7 +207,7 @@ class SemestreType extends AbstractType
                 'class'         => Semestre::class,
                 'required'      => false,
                 'choice_label'  => 'display',
-                'query_builder' => function(SemestreRepository $semestreRepository) {
+                'query_builder' => function (SemestreRepository $semestreRepository) {
                     return $semestreRepository->findByDiplomeBuilder($this->diplome);
                 },
                 'label'         => 'label.semestre_suivant'
@@ -187,13 +217,12 @@ class SemestreType extends AbstractType
                 'class'         => Semestre::class,
                 'required'      => false,
                 'choice_label'  => 'display',
-                'query_builder' => function(SemestreRepository $semestreRepository) {
+                'query_builder' => function (SemestreRepository $semestreRepository) {
                     return $semestreRepository->findByDiplomeBuilder($this->diplome);
                 },
                 'label'         => 'label.semestre_decale'
             ]);
         }
-
     }
 
     /**

@@ -8,7 +8,6 @@
 
 namespace App\MesClasses\Csv;
 
-
 /**
  * Class CsvWrite
  * @package App\MesClasses\Csv

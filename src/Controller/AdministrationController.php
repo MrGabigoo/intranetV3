@@ -21,7 +21,9 @@ class AdministrationController extends BaseController
      */
     public function index(StagePeriodeRepository $stagePeriodeRepository) :Response
     {
-        return $this->render('administration/index.html.twig',
-            ['periodes' => $stagePeriodeRepository->findByFormation($this->dataUserSession->getFormation(), $this->dataUserSession->getAnneeUniversitaire())]);
+        return $this->render(
+            'administration/index.html.twig',
+            ['periodes' => $stagePeriodeRepository->findByFormation($this->dataUserSession->getFormation(), $this->dataUserSession->getAnneeUniversitaire())]
+        );
     }
 }

@@ -82,13 +82,16 @@ class GroupeController extends BaseController
     public function edit(Request $request, Groupe $groupe): Response
     {
         if ($groupe->getTypeGroupe() !== null && $groupe->getTypeGroupe()->getSemestre() !== null) {
-            $form = $this->createForm(GroupeType::class, $groupe,
+            $form = $this->createForm(
+                GroupeType::class,
+                $groupe,
                 [
                     'semestre' => $groupe->getTypeGroupe()->getSemestre(),
                     'attr'     => [
                         'data-provide' => 'validation'
                     ]
-                ]);
+                ]
+            );
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -136,7 +139,6 @@ class GroupeController extends BaseController
 
         $id = $groupe->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($groupe);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'groupe.delete.success.flash');

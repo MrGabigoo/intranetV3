@@ -79,14 +79,16 @@ class EtudiantSemestreController extends BaseController
         EtudiantRepository $etudiantRepository,
         Semestre $semestre,
         $_format
-    ): Response
-    {
+    ): Response {
         $etudiants = $etudiantRepository->findBySemestre($semestre);
-        $response = $myExport->genereFichierGenerique($_format, $etudiants, 'etudiants_' . $semestre->getLibelle(),
-            ['etudiants_administration', 'utilisateur'], ['nom', 'prenom', 'sexe', 'numEtudiant', 'bac', 'mailUniv']);
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $etudiants,
+            'etudiants_' . $semestre->getLibelle(),
+            ['etudiants_administration', 'utilisateur'],
+            ['nom', 'prenom', 'sexe', 'numEtudiant', 'bac', 'mailUniv']
+        );
 
         return $response;
     }
-
-
 }

@@ -17,10 +17,8 @@ use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
-
 class MySerializer
 {
-
     public function serialize($data, $groups)
     {
         //pour prendre en compte les annotations groups et maxdepth

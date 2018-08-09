@@ -12,6 +12,4 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class UserApiController extends BaseController
 {
-
-
 }

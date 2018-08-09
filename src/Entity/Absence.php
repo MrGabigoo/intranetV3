@@ -238,6 +238,4 @@ class Absence extends BaseEntity
 
         return $this;
     }
-
-
 }

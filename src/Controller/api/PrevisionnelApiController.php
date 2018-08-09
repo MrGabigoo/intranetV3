@@ -28,10 +28,14 @@ class PrevisionnelApiController extends BaseController
         PrevisionnelRepository $previsionnelRepository,
         Matiere $matiere
     ): Response {
-        $previsionnel = $previsionnelRepository->findPrevisionnelMatiere($matiere,
-            $this->dataUserSession->getAnneePrevisionnel());
+        $previsionnel = $previsionnelRepository->findPrevisionnelMatiere(
+            $matiere,
+            $this->dataUserSession->getAnneePrevisionnel()
+        );
 
-        return $this->render('api/previsionnel/matiere.html.twig',
-            ['previsionnel' => $previsionnel, 'matiere' => $matiere]);
+        return $this->render(
+            'api/previsionnel/matiere.html.twig',
+            ['previsionnel' => $previsionnel, 'matiere' => $matiere]
+        );
     }
 }

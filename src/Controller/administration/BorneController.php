@@ -41,13 +41,16 @@ class BorneController extends BaseController
     public function create(Request $request): Response
     {
         $borne = new Borne();
-        $form = $this->createForm(BorneType::class, $borne,
+        $form = $this->createForm(
+            BorneType::class,
+            $borne,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -84,13 +87,16 @@ class BorneController extends BaseController
      */
     public function edit(Request $request, Borne $borne): Response
     {
-        $form = $this->createForm(BorneType::class, $borne,
+        $form = $this->createForm(
+            BorneType::class,
+            $borne,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -117,7 +123,6 @@ class BorneController extends BaseController
     {
         $id = $borne->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($borne);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'borne.delete.success.flash');
@@ -141,8 +146,13 @@ class BorneController extends BaseController
     public function export(MyExport $myExport, BorneRepository $borneRepository, $_format): Response
     {
         $bornes = $borneRepository->findByFormation($this->dataUserSession->getFormation(), 0);
-        $response = $myExport->genereFichierGenerique($_format, $bornes, 'bornes',
-            ['bornes_administration'], ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]);
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $bornes,
+            'bornes',
+            ['bornes_administration'],
+            ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]
+        );
 
         return $response;
     }

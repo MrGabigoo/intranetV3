@@ -62,5 +62,4 @@ class EvaluationRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
 }

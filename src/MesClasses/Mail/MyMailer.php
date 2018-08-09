@@ -9,8 +9,8 @@
 namespace App\MesClasses\Mail;
 
 use App\Entity\Constantes;
+use App\Twig\DatabaseTwigLoader;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-
 
 /**
  * Class MyMailer
@@ -26,16 +26,20 @@ class MyMailer
 
     private $template;
 
+    /** @var DatabaseTwigLoader */
+    protected $databaseTwigLoader;
+
     /**
      * MyMailer constructor.
      *
      * @param \Swift_Mailer   $mailer
      * @param EngineInterface $templating
      */
-    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating)
+    public function __construct(\Swift_Mailer $mailer, EngineInterface $templating, DatabaseTwigLoader $databaseTwigLoader)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
+        $this->databaseTwigLoader = $databaseTwigLoader;
     }
 
     /**
@@ -126,5 +130,20 @@ class MyMailer
         }
 
         return 'text/plain';
+    }
+
+    /**
+     * @param string $templateName
+     * @param array  $array
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function setTemplateFromDatabase(string $templateName, array $array)
+    {
+        $twig = new \Twig_Environment($this->databaseTwigLoader);
+
+        $this->template = $twig->render($templateName, $array);
     }
 }

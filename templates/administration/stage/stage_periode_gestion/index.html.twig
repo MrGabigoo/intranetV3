@@ -183,7 +183,8 @@
                             <td>{{ stageEtudiant.etudiant.display }}</td>
                             {% if stageEtudiant.stage is defined %}
                                 {% if stageEtudiant.stage.etatStage == 'ETAT_STAGE_AUTORISE' %}
-                                    <td colspan="5">Saisie Autorisée. Formulaire non complété</td>
+                                    <td colspan="5">
+                                        <button class="btn btn-block btn-primary">Saisie Autorisée. Formulaire non complété</button></td>
                                     <td>
                                         <div class="dropdown table-action btn btn-primary btn-outline">
                                             <span class="dropdown-toggle no-caret" data-toggle="dropdown"><i class="ti-more-alt rotate-90"></i> Autre situation ?</span>

@@ -51,8 +51,10 @@ class TrombinoscopeController extends BaseController
      */
     public function trombiPersonnel(PersonnelRepository $personnelRepository, $type): Response
     {
-        $personnels = $personnelRepository->findByType($type,
-            $this->dataUserSession->getFormationId());
+        $personnels = $personnelRepository->findByType(
+            $type,
+            $this->dataUserSession->getFormationId()
+        );
 
         return $this->render('trombinoscope/trombiPersonnel.html.twig', [
             'personnels' => $personnels,

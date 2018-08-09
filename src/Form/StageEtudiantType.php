@@ -19,13 +19,22 @@ class StageEtudiantType extends AbstractType
         $builder
             ->add('entreprise', EntrepriseType::class, ['label' => 'label.entreprise'])
             ->add('tuteur', ContactType::class, ['label' => 'label.tuteurEntreprise'])
+            ->add('adresseStage', AdresseType::class, ['label' => 'Adresse du lieu où le stage sera effectué', 'help' => 'Cette adresse peut être différente du siège de l\'entreprise.'])
+
             ->add('serviceStageEntreprise', TextType::class, ['label' => 'label.serviceStageEntreprise'])
             ->add('sujetStage', TextareaType::class, ['label' => 'label.sujetStage'])
             ->add('activites', TextareaType::class, ['label' => 'label.activites'])
 
             ->add('dateDebutStage', DateType::class, ['label' => 'label.dateDebutStage', 'widget' => 'single_text'])
             ->add('dateFinStage', DateType::class, ['label' => 'label.dateFinStage', 'widget' => 'single_text'])
+            ->add('periodesInterruptions', TextareaType::class, ['label' => 'label.periodesInterruptions'])
+
             ->add('dureeHebdomadaire', TextType::class, ['label' => 'label.dureeHebdomadaire'])
+            ->add(
+                'commentaireDureeHebdomadaire',
+                TextareaType::class,
+                ['label' => 'label.commentaireDureeHebdomadaire', 'help' => 'help.commentaireDureeHebdomadaire']
+            )
             ->add('dureeJoursStage', TextType::class, ['label' => 'label.dureeJoursStage'])
             ->add('amenagementStage', TextareaType::class, ['label' => 'label.amenagementStage'])
 

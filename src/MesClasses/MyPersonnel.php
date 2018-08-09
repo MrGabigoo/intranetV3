@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 use App\Entity\Personnel;
 use App\Repository\PersonnelRepository;
 use Symfony\Component\Routing\RouterInterface;
@@ -51,15 +50,16 @@ class MyPersonnel
         $tab = array();
         /** @var Personnel $personnel */
         foreach ($personnels as $personnel) {
-
             $t = array();
 
             $t['numero_harpege'] = $personnel->getNumeroHarpege();
             $t['nom'] = $personnel->getNom();
             $t['prenom'] = $personnel->getPrenom();
             $t['formations'] = $personnel->getId();
-            $t['profil'] = '<a href="' . $this->router->generate('user_profil',
-                    ['type' => 'personnel', 'slug' => $personnel->getSlug()]) . '">Voir</a>';
+            $t['profil'] = '<a href="' . $this->router->generate(
+                'user_profil',
+                    ['type' => 'personnel', 'slug' => $personnel->getSlug()]
+            ) . '">Voir</a>';
 
             $tab[] = $t;
         }

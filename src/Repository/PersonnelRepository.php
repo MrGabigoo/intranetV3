@@ -175,6 +175,5 @@ class PersonnelRepository extends ServiceEntityRepository
         }
 
         return $getResult ? $preparedQuery->getResult() : $preparedQuery;
-
     }
 }

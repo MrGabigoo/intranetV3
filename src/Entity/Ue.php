@@ -259,6 +259,4 @@ class Ue extends BaseEntity
 
         return $this;
     }
-
-
 }

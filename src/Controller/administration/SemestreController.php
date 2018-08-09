@@ -24,7 +24,7 @@ class SemestreController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(RattrapageRepository $rattrapageRepository,  Semestre $semestre): Response
+    public function index(RattrapageRepository $rattrapageRepository, Semestre $semestre): Response
     {
         return $this->render('administration/semestre/index.html.twig', [
             'semestre' => $semestre,

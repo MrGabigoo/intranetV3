@@ -154,7 +154,6 @@ class SalleController extends BaseController
             $this->entityManager->remove($salle);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'salle.delete.success.flash');
-
         }
 
         $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'salle.delete.error.flash');

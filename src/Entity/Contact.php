@@ -44,6 +44,11 @@ class Contact extends BaseEntity
      */
     private $civilite;
 
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $fax;
+
     public function __construct()
     {
         $this->civilite = Constantes::CIVILITE_HOMME;
@@ -129,6 +134,18 @@ class Contact extends BaseEntity
     public function setCivilite(string $civilite): self
     {
         $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    public function getFax(): ?string
+    {
+        return $this->fax;
+    }
+
+    public function setFax(string $fax): self
+    {
+        $this->fax = $fax;
 
         return $this;
     }

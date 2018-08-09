@@ -116,7 +116,6 @@ class HrsController extends BaseController
 
 
         return $this->redirectToRoute('administration_hrs_edit', ['id' => $newHrs->getId()]);
-
     }
 
     /**
@@ -149,7 +148,6 @@ class HrsController extends BaseController
     {
         $id = $hrs->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($hrs);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'hrs.delete.success.flash');
@@ -161,6 +159,4 @@ class HrsController extends BaseController
 
         return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }
-
-
 }

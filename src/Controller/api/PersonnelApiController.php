@@ -42,8 +42,10 @@ class PersonnelApiController extends BaseController
      */
     public function getEnseignantsByType($type): Response
     {
-        $personnels = $this->personnelRepository->findByType($type,
-            $this->dataUserSession->getFormationId());
+        $personnels = $this->personnelRepository->findByType(
+            $type,
+            $this->dataUserSession->getFormationId()
+        );
         $pers = array();
 
         /** @var PersonnelFormation $p */
@@ -112,7 +114,6 @@ class PersonnelApiController extends BaseController
             }
 
             return new Response('Déjà dans la base', Response::HTTP_OK);
-
         }
 
         return new Response('Erreur', Response::HTTP_INTERNAL_SERVER_ERROR);
@@ -139,16 +140,24 @@ class PersonnelApiController extends BaseController
         ];
 
         $users = $myPersonnel->getArrayAllPersonnel(
-            $filters, $start, $length
+            $filters,
+            $start,
+            $length
         );
 
         $output = [
             'draw'            => 1,
             'data'            => $users,
             'recordsFiltered' => \count($this->personnelRepository->getAllPersonnel(
-                $filters, 0, false)),
+                $filters,
+                0,
+                false
+            )),
             'recordsTotal'    => \count($this->personnelRepository->getAllPersonnel(
-                [], 0, false))
+                [],
+                0,
+                false
+            ))
         ];
 
         return $this->json($output, Response::HTTP_OK);

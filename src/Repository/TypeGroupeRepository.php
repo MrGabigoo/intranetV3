@@ -41,5 +41,4 @@ class TypeGroupeRepository extends ServiceEntityRepository
     {
         return $this->findBySemestreBuilder($semestre)->getQuery()->getResult();
     }
-
 }

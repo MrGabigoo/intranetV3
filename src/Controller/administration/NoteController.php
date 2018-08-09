@@ -53,11 +53,14 @@ class NoteController extends BaseController
         NoteRepository $noteRepository,
         Semestre $semestre,
         $_format
-    ): Response
-    {
+    ): Response {
         $notes = $noteRepository->findBySemestre($semestre, $this->dataUserSession->getAnneeUniversitaire());
-        $response = $myExport->genereFichierGenerique($_format, $notes, 'notes_' . $semestre->getLibelle(),
-            ['notes_administration', 'utilisateur', 'matiere'], [
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $notes,
+            'notes_' . $semestre->getLibelle(),
+            ['notes_administration', 'utilisateur', 'matiere'],
+            [
                 'date',
                 'heure',
                 'duree',
@@ -65,7 +68,8 @@ class NoteController extends BaseController
                 'justifie',
                 'matiere' => ['libelle'],
                 'personnel' => ['nom', 'prenom']
-            ]);
+            ]
+        );
 
         return $response;
     }

@@ -99,5 +99,4 @@ class Actualite extends BaseEntity
 
         return $this;
     }
-
 }

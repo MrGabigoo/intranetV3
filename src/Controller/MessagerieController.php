@@ -83,7 +83,6 @@ class MessagerieController extends BaseController
             $messaged->setDateLu(new \DateTime('now'));
             $this->entityManager->persist($messaged);
             $this->entityManager->flush();
-
         }
 
         return $this->render('messagerie/message.html.twig', [
@@ -118,6 +117,4 @@ class MessagerieController extends BaseController
             'messages' => $messages
         ]);
     }
-
-
 }

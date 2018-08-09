@@ -27,8 +27,10 @@ class StagePeriodeController extends BaseController
      */
     public function index(StagePeriodeRepository $stagePeriodeRepository): Response
     {
-        return $this->render('administration/stage/stage_periode/index.html.twig',
-            ['stage_periodes' => $stagePeriodeRepository->findByFormation($this->dataUserSession->getFormation())]);
+        return $this->render(
+            'administration/stage/stage_periode/index.html.twig',
+            ['stage_periodes' => $stagePeriodeRepository->findByFormation($this->dataUserSession->getFormation())]
+        );
     }
 
     /**
@@ -43,8 +45,13 @@ class StagePeriodeController extends BaseController
     public function export(MyExport $myExport, StagePeriodeRepository $stagePeriodeRepository, $_format): Response
     {
         $dates = $stagePeriodeRepository->findByFormation($this->dataUserSession->getFormation());
-        $response = $myExport->genereFichierGenerique($_format, $dates, 'dates',
-            ['stage_periode_administration', 'utilisateur'], ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]);//todo: définir les colonnes. copier/coller ici
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $dates,
+            'dates',
+            ['stage_periode_administration', 'utilisateur'],
+            ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]
+        );//todo: définir les colonnes. copier/coller ici
 
         return $response;
     }
@@ -103,7 +110,7 @@ class StagePeriodeController extends BaseController
      */
     public function edit(Request $request, StagePeriode $stagePeriode): Response
     {
-        $form = $this->createForm(StagePeriodeType::class, $stagePeriode,[
+        $form = $this->createForm(StagePeriodeType::class, $stagePeriode, [
             'formation' => $this->dataUserSession->getFormation(),
             'attr'      => [
                 'data-provide' => 'validation'
@@ -136,11 +143,12 @@ class StagePeriodeController extends BaseController
     {
         $id = $stagePeriode->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($stagePeriode);
             $this->entityManager->flush();
-            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS,
-                'stage_periode.delete.success.flash');
+            $this->addFlashBag(
+                Constantes::FLASHBAG_SUCCESS,
+                'stage_periode.delete.success.flash'
+            );
 
             //todo: supprimer les autres éléments ??
 
@@ -165,6 +173,5 @@ class StagePeriodeController extends BaseController
         $this->entityManager->flush();
 
         return $this->redirectToRoute('administration_stage_periode_edit', ['id' => $newStagePeriode->getId()]);
-
     }
 }

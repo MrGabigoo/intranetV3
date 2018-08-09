@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 /**
  * Class Calendrier
  * @package App\MesClasses
@@ -35,7 +34,6 @@ abstract class Calendrier
         }
 
         for ($mois = 1; $mois <= $nbMois; $mois++) {
-
             if ($bonMois > 12) {
                 $bonMois -= 12;
                 $year++;
@@ -44,7 +42,6 @@ abstract class Calendrier
             self::$tabFinMois[$mois] = date('t', mktime(0, 0, 0, $bonMois, 1, $year));
 
             for ($jour = 1; $jour <= self::$tabFinMois[$mois]; $jour++) {
-
                 self::$tabPlanning[$mois][$jour] = new \DateTime($year . '-' . $bonMois . '-' . $jour);
             }
             $bonMois++;
@@ -106,6 +103,4 @@ abstract class Calendrier
     {
         return self::$tabJoursFeries;
     }
-
-
 }

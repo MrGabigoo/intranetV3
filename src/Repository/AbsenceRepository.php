@@ -55,7 +55,6 @@ class AbsenceRepository extends ServiceEntityRepository
      */
     public function getAbsencesMatiereArray($matiere, $anneeCourante): array
     {
-
         $absences = $this->getAbsencesMatiere($matiere, $anneeCourante);
 
         $tab = array();
@@ -79,7 +78,6 @@ class AbsenceRepository extends ServiceEntityRepository
         }
 
         return $tab;
-
     }
 
     /**
@@ -99,7 +97,6 @@ class AbsenceRepository extends ServiceEntityRepository
             ->orderBy('m.heure', 'DESC')
             ->getQuery()
             ->getResult();
-
     }
 
     public function findAbsenceBySemestreRattrapage(Semestre $semestre, $anneeCourante)
@@ -111,10 +108,14 @@ class AbsenceRepository extends ServiceEntityRepository
         /** @var Absence $absence */
         foreach ($absences as $absence) {
             if ($absence->getEtudiant() !== null && array_key_exists($absence->getEtudiant()->getId(), $trattrapages)) {
-                if (array_key_exists($absence->getDate()->format('Ymd'),
-                    $trattrapages[$absence->getEtudiant()->getId()])) {
-                    if (!array_key_exists($absence->getHeure()->format('Hi'),
-                        $trattrapages[$absence->getEtudiant()->getId()][$absence->getDate()->format('Ymd')])) {
+                if (array_key_exists(
+                    $absence->getDate()->format('Ymd'),
+                    $trattrapages[$absence->getEtudiant()->getId()]
+                )) {
+                    if (!array_key_exists(
+                        $absence->getHeure()->format('Hi'),
+                        $trattrapages[$absence->getEtudiant()->getId()][$absence->getDate()->format('Ymd')]
+                    )) {
                         $trattrapages[$absence->getEtudiant()->getId()][$absence->getDate()->format('Ymd')][$absence->getHeure()->format('Hi')] = $absence->isJustifie();
                     }
                 } else {
@@ -127,5 +128,4 @@ class AbsenceRepository extends ServiceEntityRepository
 
         return $trattrapages;
     }
-
 }

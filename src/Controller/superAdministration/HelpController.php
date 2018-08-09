@@ -105,12 +105,15 @@ class HelpController extends BaseController
      */
     public function edit(Request $request, Help $help): Response
     {
-        $form = $this->createForm(HelpType::class, $help,
+        $form = $this->createForm(
+            HelpType::class,
+            $help,
             [
                 'attr' => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -137,7 +140,6 @@ class HelpController extends BaseController
     {
         $id = $help->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($help);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'help.delete.success.flash');

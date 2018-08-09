@@ -139,11 +139,14 @@ class AbsenceController extends BaseController
         AbsenceRepository $absenceRepository,
         Semestre $semestre,
         $_format
-    ): Response
-    {
+    ): Response {
         $absences = $absenceRepository->findBySemestre($semestre, $this->dataUserSession->getAnneeUniversitaire());
-        $response = $myExport->genereFichierGenerique($_format, $absences, 'absences_' . $semestre->getLibelle(),
-            ['absences_administration', 'utilisateur', 'matiere'], [
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $absences,
+            'absences_' . $semestre->getLibelle(),
+            ['absences_administration', 'utilisateur', 'matiere'],
+            [
                 'date',
                 'heure',
                 'duree',
@@ -151,7 +154,8 @@ class AbsenceController extends BaseController
                 'justifie',
                 'matiere'   => ['libelle'],
                 'personnel' => ['nom', 'prenom']
-            ]);
+            ]
+        );
 
         return $response;
     }

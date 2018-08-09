@@ -44,8 +44,10 @@ class AbsenceJustificatifController extends BaseController
     ): Response {
         return $this->render('administration/absencejustificatif/justificatif.html.twig', [
             'semestre'      => $semestre,
-            'justificatifs' => $absenceJustificatifRepository->findBySemestre($semestre,
-                $this->dataUserSession->getAnneeUniversitaire())
+            'justificatifs' => $absenceJustificatifRepository->findBySemestre(
+                $semestre,
+                $this->dataUserSession->getAnneeUniversitaire()
+            )
         ]);
     }
 
@@ -66,8 +68,10 @@ class AbsenceJustificatifController extends BaseController
         Semestre $semestre,
         $_format
     ): Response {
-        $justificatifs = $absenceJustificatifRepository->findBySemestre($semestre,
-            $this->dataUserSession->getAnneeUniversitaire());
+        $justificatifs = $absenceJustificatifRepository->findBySemestre(
+            $semestre,
+            $this->dataUserSession->getAnneeUniversitaire()
+        );
         $response = $myExport->genereFichierAbsence($_format, $justificatifs, 'absences_' . $semestre->getLibelle());
 
         return $response;
@@ -84,11 +88,12 @@ class AbsenceJustificatifController extends BaseController
     {
         $id = $absenceJustificatif->getUuidString();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($absenceJustificatif);
             $this->entityManager->flush();
-            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS,
-                'absenceJustificatif.delete.success.flash');//todo: interet ? jamais affiché ?
+            $this->addFlashBag(
+                Constantes::FLASHBAG_SUCCESS,
+                'absenceJustificatif.delete.success.flash'
+            );//todo: interet ? jamais affiché ?
 
             return $this->json($id, Response::HTTP_OK);
         }
@@ -124,19 +129,19 @@ class AbsenceJustificatifController extends BaseController
      */
     public function accepte(EventDispatcherInterface $eventDispatcher, AbsenceJustificatif $absenceJustificatif, $etat)
     {
-            $absenceJustificatif->setEtat($etat);
-            $this->entityManager->flush();
+        $absenceJustificatif->setEtat($etat);
+        $this->entityManager->flush();
 
-            if ($etat === 'A') {
-                //todo: Mettre à jour les absences en conséquence !!
-            }
+        if ($etat === 'A') {
+            //todo: Mettre à jour les absences en conséquence !!
+        }
 
-            if ($etat === 'A' || $etat === 'R') {
-                $event = new GenericEvent($absenceJustificatif);
-                $eventDispatcher->dispatch(Events::MAIL_DECISION_JUSTIFICATIF, $event);
-                $eventDispatcher->dispatch(Events::DECISION_JUSTIFICATIF, $event);
-            }
+        if ($etat === 'A' || $etat === 'R') {
+            $event = new GenericEvent($absenceJustificatif);
+            $eventDispatcher->dispatch(Events::MAIL_DECISION_JUSTIFICATIF, $event);
+            $eventDispatcher->dispatch(Events::DECISION_JUSTIFICATIF, $event);
+        }
 
-            return new Response('', Response::HTTP_OK);
+        return new Response('', Response::HTTP_OK);
     }
 }

@@ -2675,5 +2675,251 @@
         <target>label.dateRenduRapport</target>
       </segment>
     </unit>
+    <unit id="XyZAxzY" name="label.raisonSociale">
+      <segment>
+        <source>label.raisonSociale</source>
+        <target>label.raisonSociale</target>
+      </segment>
+    </unit>
+    <unit id="9quJ8qO" name="label.siret">
+      <segment>
+        <source>label.siret</source>
+        <target>label.siret</target>
+      </segment>
+    </unit>
+    <unit id="q6Og1w3" name="label.responsable">
+      <segment>
+        <source>label.responsable</source>
+        <target>label.responsable</target>
+      </segment>
+    </unit>
+    <unit id="SV.QxiZ" name="label.civilite">
+      <segment>
+        <source>label.civilite</source>
+        <target>label.civilite</target>
+      </segment>
+    </unit>
+    <unit id="jebmWU6" name="Mme">
+      <segment>
+        <source>Mme</source>
+        <target>Mme</target>
+      </segment>
+    </unit>
+    <unit id="2Lh32Xe" name="M.">
+      <segment>
+        <source>M.</source>
+        <target>M.</target>
+      </segment>
+    </unit>
+    <unit id="BJGF.iB" name="label.fonction">
+      <segment>
+        <source>label.fonction</source>
+        <target>label.fonction</target>
+      </segment>
+    </unit>
+    <unit id="D2N6_cP" name="label.email">
+      <segment>
+        <source>label.email</source>
+        <target>label.email</target>
+      </segment>
+    </unit>
+    <unit id="y9O4aZF" name="label.telephone">
+      <segment>
+        <source>label.telephone</source>
+        <target>label.telephone</target>
+      </segment>
+    </unit>
+    <unit id="hLqpbDM" name="label.portable">
+      <segment>
+        <source>label.portable</source>
+        <target>label.portable</target>
+      </segment>
+    </unit>
+    <unit id="65rkuUL" name="Tuteur">
+      <segment>
+        <source>Tuteur</source>
+        <target>Tuteur</target>
+      </segment>
+    </unit>
+    <unit id="Q5bV_Ww" name="Adresse du lieu où le stage sera effectué">
+      <segment>
+        <source>Adresse du lieu où le stage sera effectué</source>
+        <target>Adresse du lieu où le stage sera effectué</target>
+      </segment>
+    </unit>
+    <unit id="g32cgxi" name="Cette adresse peut être différente du siège de l'entreprise.">
+      <segment>
+        <source>Cette adresse peut être différente du siège de l'entreprise.</source>
+        <target>Cette adresse peut être différente du siège de l'entreprise.</target>
+      </segment>
+    </unit>
+    <unit id="QrSUavN" name="label.dateDebutStage">
+      <segment>
+        <source>label.dateDebutStage</source>
+        <target>label.dateDebutStage</target>
+      </segment>
+    </unit>
+    <unit id="0aivzEP" name="help.dateDebutStage">
+      <segment>
+        <source>help.dateDebutStage</source>
+        <target>help.dateDebutStage</target>
+      </segment>
+    </unit>
+    <unit id="EjA7qT8" name="label.dateFinStage">
+      <segment>
+        <source>label.dateFinStage</source>
+        <target>label.dateFinStage</target>
+      </segment>
+    </unit>
+    <unit id="SYy0RLN" name="help.dateFinStage">
+      <segment>
+        <source>help.dateFinStage</source>
+        <target>help.dateFinStage</target>
+      </segment>
+    </unit>
+    <unit id="TYrIg41" name="label.dureeJoursStage">
+      <segment>
+        <source>label.dureeJoursStage</source>
+        <target>label.dureeJoursStage</target>
+      </segment>
+    </unit>
+    <unit id="Y0huDfW" name="help.dureeJoursStage">
+      <segment>
+        <source>help.dureeJoursStage</source>
+        <target>help.dureeJoursStage</target>
+      </segment>
+    </unit>
+    <unit id="N2_EK0q" name="label.serviceStageEntreprise">
+      <segment>
+        <source>label.serviceStageEntreprise</source>
+        <target>label.serviceStageEntreprise</target>
+      </segment>
+    </unit>
+    <unit id="HKSzNKm" name="help.serviceStageEntreprise">
+      <segment>
+        <source>help.serviceStageEntreprise</source>
+        <target>help.serviceStageEntreprise</target>
+      </segment>
+    </unit>
+    <unit id="Raaw2Ut" name="label.sujetStage">
+      <segment>
+        <source>label.sujetStage</source>
+        <target>label.sujetStage</target>
+      </segment>
+    </unit>
+    <unit id="zASD7Pj" name="help.sujetStage">
+      <segment>
+        <source>help.sujetStage</source>
+        <target>help.sujetStage</target>
+      </segment>
+    </unit>
+    <unit id="I6LJWQc" name="label.activites">
+      <segment>
+        <source>label.activites</source>
+        <target>label.activites</target>
+      </segment>
+    </unit>
+    <unit id="fub7Iu7" name="help.activites">
+      <segment>
+        <source>help.activites</source>
+        <target>help.activites</target>
+      </segment>
+    </unit>
+    <unit id="saE3yvv" name="label.periodesInterruptions">
+      <segment>
+        <source>label.periodesInterruptions</source>
+        <target>label.periodesInterruptions</target>
+      </segment>
+    </unit>
+    <unit id="kxb.YTD" name="help.periodesInterruptions">
+      <segment>
+        <source>help.periodesInterruptions</source>
+        <target>help.periodesInterruptions</target>
+      </segment>
+    </unit>
+    <unit id="cb4z_46" name="label.dureeHebdomadaire">
+      <segment>
+        <source>label.dureeHebdomadaire</source>
+        <target>label.dureeHebdomadaire</target>
+      </segment>
+    </unit>
+    <unit id="RlvHvfK" name="help.dureeHebdomadaire">
+      <segment>
+        <source>help.dureeHebdomadaire</source>
+        <target>help.dureeHebdomadaire</target>
+      </segment>
+    </unit>
+    <unit id="p9pFSd0" name="label.commentaireDureeHebdomadaire">
+      <segment>
+        <source>label.commentaireDureeHebdomadaire</source>
+        <target>label.commentaireDureeHebdomadaire</target>
+      </segment>
+    </unit>
+    <unit id="9JA9Ld_" name="help.commentaireDureeHebdomadaire">
+      <segment>
+        <source>help.commentaireDureeHebdomadaire</source>
+        <target>help.commentaireDureeHebdomadaire</target>
+      </segment>
+    </unit>
+    <unit id="y2Pgelb" name="label.amenagementStage">
+      <segment>
+        <source>label.amenagementStage</source>
+        <target>label.amenagementStage</target>
+      </segment>
+    </unit>
+    <unit id="jdcWOKZ" name="help.amenagementStage">
+      <segment>
+        <source>help.amenagementStage</source>
+        <target>help.amenagementStage</target>
+      </segment>
+    </unit>
+    <unit id="6Ul6YI0" name="label.gratification">
+      <segment>
+        <source>label.gratification</source>
+        <target>label.gratification</target>
+      </segment>
+    </unit>
+    <unit id="5F7DxVp" name="help.gratification">
+      <segment>
+        <source>help.gratification</source>
+        <target>help.gratification</target>
+      </segment>
+    </unit>
+    <unit id="FvRMsJ4" name="label.gratificationPeriode">
+      <segment>
+        <source>label.gratificationPeriode</source>
+        <target>label.gratificationPeriode</target>
+      </segment>
+    </unit>
+    <unit id="u0kwox0" name="help.gratificationPeriode">
+      <segment>
+        <source>help.gratificationPeriode</source>
+        <target>help.gratificationPeriode</target>
+      </segment>
+    </unit>
+    <unit id="PaLFqvq" name="label.gratificationMontant">
+      <segment>
+        <source>label.gratificationMontant</source>
+        <target>label.gratificationMontant</target>
+      </segment>
+    </unit>
+    <unit id="moAbFFs" name="help.gratificationMontant">
+      <segment>
+        <source>help.gratificationMontant</source>
+        <target>help.gratificationMontant</target>
+      </segment>
+    </unit>
+    <unit id="t8.aZH8" name="label.avantages">
+      <segment>
+        <source>label.avantages</source>
+        <target>label.avantages</target>
+      </segment>
+    </unit>
+    <unit id="RLPpbBN" name="help.avantages">
+      <segment>
+        <source>help.avantages</source>
+        <target>help.avantages</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

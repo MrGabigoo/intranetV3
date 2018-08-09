@@ -39,13 +39,16 @@ class DocumentType extends AbstractType
                 'download_label' => 'label.apercu',
                 'allow_delete'   => false
             ])
-            ->add('type_document', EntityType::class,
-                ['class' => TypeDocument::class, 'choice_label' => 'libelle', 'label' => 'label.type_document'])
+            ->add(
+                'type_document',
+                EntityType::class,
+                ['class' => TypeDocument::class, 'choice_label' => 'libelle', 'label' => 'label.type_document']
+            )
             ->add('semestres', EntityType::class, array(
                 'class'         => Semestre::class,
                 'label'         => 'label.semestres_document',
                 'choice_label'  => 'libelle',
-                'query_builder' => function(SemestreRepository $semestreRepository) {
+                'query_builder' => function (SemestreRepository $semestreRepository) {
                     return $semestreRepository->findByFormationBuilder($this->formation);
                 },
                 'required'      => true,

@@ -113,6 +113,5 @@ class MatiereController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

@@ -122,8 +122,7 @@ class PrevisionnelController extends BaseController
         PersonnelRepository $personnelRepository,
         MatiereRepository $matiereRepository,
         Request $request
-    )
-    {
+    ) {
         if ($request->isMethod('POST')) {
             $matiere = $matiereRepository->find($request->request->get('previsionnel_matiere'));
 
@@ -166,13 +165,16 @@ class PrevisionnelController extends BaseController
      */
     public function import(Request $request): Response
     {
-        $form = $this->createForm(ImportPrevisionnelType::class, null,
+        $form = $this->createForm(
+            ImportPrevisionnelType::class,
+            null,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
 
         $form->handleRequest($request);
 
@@ -212,7 +214,6 @@ class PrevisionnelController extends BaseController
         /* todo: faire revenir sur la page à l'origine de la duplication. */
 
         return $this->redirectToRoute('administration_previsionnel_index');
-
     }
 
     /**
@@ -228,7 +229,6 @@ class PrevisionnelController extends BaseController
     ): Response {
         $id = $previsionnel->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($previsionnel);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'previsionnel.delete.success.flash');

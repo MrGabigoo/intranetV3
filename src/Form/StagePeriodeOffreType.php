@@ -40,7 +40,7 @@ class StagePeriodeOffreType extends AbstractType
                 'class'         => StagePeriode::class,
                 'label'         => 'label.stagePeriodes',
                 'choice_label'  => 'libelle',
-                'query_builder' => function(StagePeriodeRepository $stagePeriodeRepository) {
+                'query_builder' => function (StagePeriodeRepository $stagePeriodeRepository) {
                     return $stagePeriodeRepository->findByFormationBuilder($this->formation, $this->formation->getAnneeCourante());
                 },
                 'required'      => true,

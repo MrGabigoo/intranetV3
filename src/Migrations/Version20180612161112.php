@@ -19,8 +19,10 @@ final class Version20180612161112 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql',
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('CREATE TABLE annee (id INT AUTO_INCREMENT NOT NULL, diplome_id INT DEFAULT NULL, created DATETIME NOT NULL, updated DATETIME NOT NULL, libelle VARCHAR(255) NOT NULL, ordre INT NOT NULL, couleurCM VARCHAR(7) DEFAULT NULL, couleurTD VARCHAR(7) DEFAULT NULL, couleurTP VARCHAR(7) DEFAULT NULL, couleurtexte VARCHAR(7) DEFAULT NULL, libelle_long VARCHAR(150) DEFAULT NULL, code_apogee VARCHAR(20) NOT NULL, code_version VARCHAR(10) NOT NULL, code_departement VARCHAR(10) NOT NULL, opt_alternance TINYINT(1) NOT NULL, INDEX IDX_DE92C5CF26F859E2 (diplome_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE personnel (id INT AUTO_INCREMENT NOT NULL, adresse_id INT DEFAULT NULL, roles LONGTEXT NOT NULL, created DATETIME NOT NULL, updated DATETIME NOT NULL, statut VARCHAR(10) NOT NULL, poste_interne VARCHAR(10) DEFAULT NULL, tel_bureau VARCHAR(20) DEFAULT NULL, responsabilites LONGTEXT DEFAULT NULL, domaines LONGTEXT DEFAULT NULL, entreprise VARCHAR(255) DEFAULT NULL, bureau1 VARCHAR(20) DEFAULT NULL, bureau2 VARCHAR(20) DEFAULT NULL, numero_harpege INT DEFAULT NULL, initiales VARCHAR(10) DEFAULT NULL, cv VARCHAR(50) DEFAULT NULL, cv_name VARCHAR(50) NOT NULL, nb_heures_service DOUBLE PRECISION NOT NULL, username VARCHAR(75) NOT NULL, password VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL, type_user VARCHAR(75) NOT NULL, nom VARCHAR(75) NOT NULL, prenom VARCHAR(75) NOT NULL, mail_univ VARCHAR(255) NOT NULL, site_univ VARCHAR(255) DEFAULT NULL, mail_perso VARCHAR(255) DEFAULT NULL, site_perso VARCHAR(255) DEFAULT NULL, sexe VARCHAR(1) DEFAULT \'M\' NOT NULL, date_naissance DATE DEFAULT NULL, tel1 VARCHAR(20) DEFAULT NULL, tel2 VARCHAR(20) DEFAULT NULL, remarque LONGTEXT DEFAULT NULL, signature LONGTEXT DEFAULT NULL, visible TINYINT(1) NOT NULL, photo VARCHAR(50) DEFAULT NULL, UNIQUE INDEX UNIQ_A6BCF3DE4DE7DC5C (adresse_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE = InnoDB');
@@ -166,8 +168,10 @@ final class Version20180612161112 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql',
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE semestre DROP FOREIGN KEY FK_71688FBC543EC5F0');
         $this->addSql('ALTER TABLE diplome DROP FOREIGN KEY FK_EB4C4D4ED2D1AAE2');

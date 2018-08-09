@@ -31,8 +31,8 @@ class StagePeriodeRepository extends ServiceEntityRepository
      */
     public function findByFormation(Formation $formation, $anneeUniversitaire = 0)
     {
-           return $this->findByFormationBuilder($formation, $anneeUniversitaire)->getQuery()
-               ->getResult();
+        return $this->findByFormationBuilder($formation, $anneeUniversitaire)->getQuery()
+            ->getResult();
     }
 
     public function findByFormationBuilder(Formation $formation, $anneeUniversitaire = 0)
@@ -50,9 +50,23 @@ class StagePeriodeRepository extends ServiceEntityRepository
 
         $query->setParameter('formation', $formation->getId())
             ->orderBy('p.anneeUniversitaire', 'DESC')
-            ->orderBy('p.numeroPeriode', 'ASC')
-        ;
+            ->orderBy('p.numeroPeriode', 'ASC');
 
         return $query;
+    }
+
+    public function findStageEtudiant(Semestre $semestre, int $getAnneeUniversitaire)
+    {
+        //trouver les périodes de stage sur ce semestre et le suivant
+        $query = $this->createQueryBuilder('s')
+            ->where('s.semestre = :semestreCourant')
+            ->setParameter('semestreCourant', $semestre->getId());
+        if ($semestre->getSuivant() !== null) {
+            $query->orWhere('s.semestre = :semestreSuivant')
+                ->setParameter('semestreSuivant', $semestre->getSuivant()->getId());
+        }
+        $query->orderBy('s.dateDebut', 'DESC');
+
+        return $query->getQuery()->getResult();
     }
 }

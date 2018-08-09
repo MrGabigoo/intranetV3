@@ -19,8 +19,10 @@ final class Version20180623075315 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql',
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('CREATE TABLE article_etudiant (article_id INT NOT NULL, etudiant_id INT NOT NULL, INDEX IDX_2496D6887294869C (article_id), INDEX IDX_2496D688DDEAB1A3 (etudiant_id), PRIMARY KEY(article_id, etudiant_id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE article_etudiant ADD CONSTRAINT FK_2496D6887294869C FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE CASCADE');
@@ -40,8 +42,10 @@ final class Version20180623075315 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql',
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('DROP TABLE article_etudiant');
         $this->addSql('ALTER TABLE article ADD nb_like INT NOT NULL');

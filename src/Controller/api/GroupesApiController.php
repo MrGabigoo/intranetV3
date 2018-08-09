@@ -26,7 +26,7 @@ class GroupesApiController extends BaseController
     /**
      * @var TypeGroupeRepository
      */
-   protected $typeGroupeRepository;
+    protected $typeGroupeRepository;
 
     /**
      * GroupesApiController constructor.
@@ -46,7 +46,6 @@ class GroupesApiController extends BaseController
      */
     public function typeGroupeSemestreAjax(Semestre $semestre)
     {
-
     }
 
     /**
@@ -55,6 +54,5 @@ class GroupesApiController extends BaseController
      */
     public function grouepTypeGroupeAjax(TypeGroupe $typeGroupe)
     {
-
     }
 }

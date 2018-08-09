@@ -40,8 +40,11 @@ class PersonnelProfilType extends AbstractType
                 'expanded'                  => true
             ])
             ->add('date_naissance', DateType::class, ['label' => 'label.date_naissance'])
-            ->add('numero_harpege', TextType::class,
-                ['label' => 'label.numero_harpege', 'disabled' => true, 'help' => 'Si erreur contacté les RH'])
+            ->add(
+                'numero_harpege',
+                TextType::class,
+                ['label' => 'label.numero_harpege', 'disabled' => true, 'help' => 'Si erreur contacté les RH']
+            )
             ->add('statut', YesNoType::class, [
                 'label' => 'label.statut',
             ])

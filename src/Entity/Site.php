@@ -152,6 +152,4 @@ class Site extends BaseEntity
 
         return $this;
     }
-
-
 }

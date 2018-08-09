@@ -28,8 +28,10 @@ class CompetenceController extends BaseController
      */
     public function index(CompetenceRepository $competenceRepository): Response
     {
-        return $this->render('administration/competence/index.html.twig',
-            ['competences' => $competenceRepository->findAll()]);
+        return $this->render(
+            'administration/competence/index.html.twig',
+            ['competences' => $competenceRepository->findAll()]
+        );
     }
 
     /**
@@ -104,7 +106,6 @@ class CompetenceController extends BaseController
         $this->entityManager->flush();
 
         return $this->redirectToRoute('administration_competence_edit', ['id' => $newCompetence->getId()]);
-
     }
 
     /**
@@ -147,7 +148,7 @@ class CompetenceController extends BaseController
     {
         $id = $competence->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-//todo: vérifier le cascade delete s'il y a des enfants ...
+            //todo: vérifier le cascade delete s'il y a des enfants ...
             $this->entityManager->remove($competence);
             $this->entityManager->flush();
 

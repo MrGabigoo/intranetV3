@@ -30,10 +30,12 @@ class StagePeriodeOffreController extends BaseController
      */
     public function index(StagePeriode $stagePeriode): Response
     {
-        return $this->render('administration/stage/stage_periode_offre/index.html.twig',
+        return $this->render(
+            'administration/stage/stage_periode_offre/index.html.twig',
             ['stage_periode_offres' => $stagePeriode->getStagePeriodeOffres(),
              'stagePeriode' => $stagePeriode
-            ]);
+            ]
+        );
     }
 
     /**
@@ -46,8 +48,13 @@ class StagePeriodeOffreController extends BaseController
     public function export(MyExport $myExport, StagePeriodeOffreRepository $stagePeriodeOffreRepository, StagePeriode $stagePeriode, $_format): Response
     {
         $dates = $stagePeriodeOffreRepository->findByStagePeriode($stagePeriode);
-        $response = $myExport->genereFichierGenerique($_format, $dates, 'dates',
-            ['date_administration', 'utilisateur'], ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]);//todo: définir les colonnes. copier/coller ici
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $dates,
+            'dates',
+            ['date_administration', 'utilisateur'],
+            ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]
+        );//todo: définir les colonnes. copier/coller ici
 
         return $response;
     }
@@ -59,7 +66,7 @@ class StagePeriodeOffreController extends BaseController
     public function create(Request $request, StagePeriode $stagePeriode): Response
     {
         $stagePeriodeOffre = new StagePeriodeOffre($stagePeriode);
-        $form = $this->createForm(StagePeriodeOffreType::class, $stagePeriodeOffre,[
+        $form = $this->createForm(StagePeriodeOffreType::class, $stagePeriodeOffre, [
             'formation' => $this->dataUserSession->getFormation(),
             'attr'      => [
                 'data-provide' => 'validation'
@@ -99,7 +106,7 @@ class StagePeriodeOffreController extends BaseController
      */
     public function edit(Request $request, StagePeriodeOffre $stagePeriodeOffre): Response
     {
-        $form = $this->createForm(StagePeriodeOffreType::class, $stagePeriodeOffre,[
+        $form = $this->createForm(StagePeriodeOffreType::class, $stagePeriodeOffre, [
             'formation' => $this->dataUserSession->getFormation(),
             'attr'      => [
                 'data-provide' => 'validation'
@@ -134,7 +141,6 @@ class StagePeriodeOffreController extends BaseController
         $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'stage_periode_offre.duplicate.success.flash');
 
         return $this->redirectToRoute('administration_stage_periode_offre_edit', ['id' => $newStagePeriodeOffre->getId()]);
-
     }
 
     /**
@@ -147,7 +153,6 @@ class StagePeriodeOffreController extends BaseController
     {
         $id = $date->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($date);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'stage_periode_offre.delete.success.flash');
@@ -159,5 +164,4 @@ class StagePeriodeOffreController extends BaseController
 
         return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }
-
 }

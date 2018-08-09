@@ -28,10 +28,13 @@ class ImportEtudiantType extends AbstractType
         $this->formation = $options['formation'];
 
         $builder
-            ->add('semestre', EntityType::class, [
+            ->add(
+                'semestre',
+                EntityType::class,
+                [
                     'class'         => Semestre::class,
                     'choice_label'  => 'libelle',
-                    'query_builder' => function(SemestreRepository $semestreRepository) {
+                    'query_builder' => function (SemestreRepository $semestreRepository) {
                         return $semestreRepository->findByFormationBuilder($this->formation);
                     },
                     'label'         => 'label.semestre'

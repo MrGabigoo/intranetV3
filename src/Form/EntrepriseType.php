@@ -16,10 +16,6 @@ class EntrepriseType extends AbstractType
             ->add('raisonSociale', TextType::class, ['label' => 'label.raisonSociale'])
             ->add('libelle', TextType::class, ['label' => 'label.libelle'])
             ->add('siret', TextType::class, ['label' => 'label.siret'])
-            ->add('email', TextType::class, ['label' => 'label.email'])
-            ->add('telephone', TextType::class, ['label' => 'label.telephone'])
-            ->add('fax', TextType::class, ['label' => 'label.fax'])
-
             ->add('adresse', AdresseType::class, ['label' => 'label.adresse'])
 
             ->add('responsable', ContactType::class, ['label' => 'label.responsable'])

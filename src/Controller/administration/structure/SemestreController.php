@@ -109,13 +109,16 @@ class SemestreController extends BaseController
     public function edit(Request $request, Semestre $semestre): Response
     {
         if ($semestre->getAnnee() !== null && $semestre->getAnnee()->getDiplome() !== null) {
-            $form = $this->createForm(SemestreType::class, $semestre,
+            $form = $this->createForm(
+                SemestreType::class,
+                $semestre,
                 [
                     'diplome' => $semestre->getAnnee()->getDiplome(),
                     'attr'    => [
                         'data-provide' => 'validation'
                     ]
-                ]);
+                ]
+            );
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -154,6 +157,5 @@ class SemestreController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

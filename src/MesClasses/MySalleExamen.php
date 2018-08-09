@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 use App\Entity\Constantes;
 use App\Entity\Etudiant;
 use App\Entity\Groupe;
@@ -94,7 +93,6 @@ class MySalleExamen
 
 
         if ($this->salle !== null && $this->matiere !== null) {
-
             if ($requesttypegroupe !== '') {
                 $this->typeGroupe = $this->typeGroupeRepository->find($requesttypegroupe);
                 $groupes = $this->typeGroupe->getGroupes();
@@ -121,7 +119,6 @@ class MySalleExamen
 
 
             if (count($etudiants) <= $this->salle->getCapacite()) {
-
                 $tabplace = $this->calculPlaces();
 
                 /* document 1 par groupe */
@@ -140,9 +137,10 @@ class MySalleExamen
 
                 MyPDF::generePdf('pdf/placement.html.twig', $data, 'placement');
             }
-            $this->container->get('session')->getFlashBag()->add('warning',
-                'Salle Trop petite Veuillez choisir une autre salle !');
-
+            $this->container->get('session')->getFlashBag()->add(
+                'warning',
+                'Salle Trop petite Veuillez choisir une autre salle !'
+            );
         }
     }
 

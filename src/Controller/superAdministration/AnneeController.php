@@ -90,8 +90,10 @@ class AnneeController extends BaseController
                 $this->entityManager->flush();
                 $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'annee.add.success.flash');
 
-                return $this->redirectToRoute('sa_structure_index',
-                    ['formation' => $diplome->getFormation()->getId()]);
+                return $this->redirectToRoute(
+                    'sa_structure_index',
+                    ['formation' => $diplome->getFormation()->getId()]
+                );
             }
 
             return $this->render('structure/annee/new.html.twig', [
@@ -124,21 +126,26 @@ class AnneeController extends BaseController
     public function edit(Request $request, Annee $annee): Response
     {
         if ($annee->getDiplome() !== null && $annee->getDiplome()->getFormation() !== null) {
-            $form = $this->createForm(AnneeType::class, $annee,
+            $form = $this->createForm(
+                AnneeType::class,
+                $annee,
                 [
                     'formation' => $annee->getDiplome()->getFormation(),
                     'attr'      => [
                         'data-provide' => 'validation'
                     ]
-                ]);
+                ]
+            );
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->entityManager->flush();
                 $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'annee.edit.success.flash');
 
-                return $this->redirectToRoute('sa_structure_index',
-                    ['formation' => $annee->getDiplome()->getFormation()->getId()]);
+                return $this->redirectToRoute(
+                    'sa_structure_index',
+                    ['formation' => $annee->getDiplome()->getFormation()->getId()]
+                );
             }
 
             return $this->render('structure/annee/edit.html.twig', [
@@ -172,6 +179,5 @@ class AnneeController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

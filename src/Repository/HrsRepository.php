@@ -61,6 +61,4 @@ class HrsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-
 }

@@ -52,8 +52,11 @@ class MatiereType extends AbstractType
                 'label' => 'label.pac'
             ])
             ->add('objectifsModule', TextareaType::class, ['label' => 'label.objectifs_module', 'required' => false])
-            ->add('competencesVisees', TextareaType::class,
-                ['label' => 'label.competences_visees', 'required' => false])
+            ->add(
+                'competencesVisees',
+                TextareaType::class,
+                ['label' => 'label.competences_visees', 'required' => false]
+            )
             ->add('contenu', TextareaType::class, ['label' => 'label.contenu', 'required' => false])
             ->add('preRequis', TextareaType::class, ['label' => 'label.pre_requis', 'required' => false])
             ->add('modalites', TextareaType::class, ['label' => 'label.modalites', 'required' => false])

@@ -55,8 +55,7 @@ class MyExportListing
         TypeGroupeRepository $typeGroupeRepository,
         DataUserSession $dataUserSession,
         KernelInterface $kernel
-)
-    {
+) {
         $this->typeGroupeRepository = $typeGroupeRepository;
         $this->dataUserSession = $dataUserSession;
         $this->base = $kernel->getRootDir() . '/../';
@@ -131,7 +130,7 @@ class MyExportListing
         $writer = new Csv(MyExcelWriter::getSpreadsheet());
 
         return new StreamedResponse(
-            function() use ($writer) {
+            function () use ($writer) {
                 $writer->save('php://output');
             },
             200,
@@ -165,19 +164,18 @@ class MyExportListing
                 $this->newColonne();
                 MyExcelWriter::writeCellXY($this->colonne, $this->ligne, strtoupper($etudiant->getPrenom()));
                 $this->newLine();
-
             }
 
             MyExcelWriter::writeCellName('A11', $id);
 
-             MyExcelWriter::borderCells('A12:H' . (string)$this->ligne);
+            MyExcelWriter::borderCells('A12:H' . (string)$this->ligne);
 
-             MyExcelWriter::getColumnDimension('A', 3);
-             MyExcelWriter::getColumnAutoSize('B');
-             MyExcelWriter::getColumnAutoSize('C');
-             MyExcelWriter::getColumnDimension('E', 15);
-             MyExcelWriter::getColumnDimension('F', 15);
-             MyExcelWriter::getColumnDimension('G', 15);
+            MyExcelWriter::getColumnDimension('A', 3);
+            MyExcelWriter::getColumnAutoSize('B');
+            MyExcelWriter::getColumnAutoSize('C');
+            MyExcelWriter::getColumnDimension('E', 15);
+            MyExcelWriter::getColumnDimension('F', 15);
+            MyExcelWriter::getColumnDimension('G', 15);
 
             $this->setMiseEnPage();
         }
@@ -185,7 +183,7 @@ class MyExportListing
         $writer = new Xlsx(MyExcelWriter::getSpreadsheet());
 
         return new StreamedResponse(
-            function() use ($writer) {
+            function () use ($writer) {
                 $writer->save('php://output');
             },
             200,
@@ -235,14 +233,16 @@ class MyExportListing
         $objDrawing->setCoordinates('A1');
         $objDrawing->setWorksheet(MyExcelWriter::getSheet());
 
-        switch ($this->exportTypeDocument)
-        {
+        switch ($this->exportTypeDocument) {
             case Constantes::TYPEDOCUMENT_EMARGEMENT:
 
                 break;
             case Constantes::TYPEDOCUMENT_EVALUATION:
-                MyExcelWriter::writeCellName('H5', 'Date de l\'évaluation : .......................................',
-                    ['style' => ['HORIZONTAL_RIGHT']]);
+                MyExcelWriter::writeCellName(
+                    'H5',
+                    'Date de l\'évaluation : .......................................',
+                    ['style' => ['HORIZONTAL_RIGHT']]
+                );
                 MyExcelWriter::writeCellName('A8', 'NOM DE L\'ENSEIGNANT :');
                 MyExcelWriter::mergeCells('A8:C8');
 

@@ -30,17 +30,17 @@ class StagePeriodeType extends AbstractType
         $this->formation = $options['formation'];
         $builder
             ->add('libelle', TextType::class, ['label' => 'label.libelle', 'help' => 'help.libelleStagePeriode'])
-            ->add('numeroPeriode',   ChoiceType::class, [
+            ->add('numeroPeriode', ChoiceType::class, [
                 'label'              => 'label.ordre_annee',
                 'choices'            => [1 => 1, 2 => 2,3 => 3, 4 => 4,5 => 5, 6 => 6],
                 'translation_domain' => 'form'
             ])
 
-            ->add('semestre',EntityType::class, array(
+            ->add('semestre', EntityType::class, array(
                 'class'         => Semestre::class,
                 'label'         => 'label.semestre_stage_periode',
                 'choice_label'  => 'libelle',
-                'query_builder' => function(SemestreRepository $semestreRepository) {
+                'query_builder' => function (SemestreRepository $semestreRepository) {
                     return $semestreRepository->findByFormationBuilder($this->formation);
                 },
                 'required'      => true,
@@ -89,12 +89,12 @@ class StagePeriodeType extends AbstractType
                 'allow_delete'   => true,
                 'help' => 'help.ficheRenseignement'
             ])
-            ->add('texteLibre',TextareaType::class, ['label' => 'label.texteLibre', 'help' => 'help.texteLibre'])
-            ->add('competencesVisees',TextareaType::class, ['label' => 'label.competencesVisees', 'help' => 'help.competencesVisees'])
-            ->add('modaliteEvaluation',TextareaType::class, ['label' => 'label.modaliteEvaluation', 'help' => 'help.modaliteEvaluation'])
-            ->add('modaliteEvaluationPedagogique',TextareaType::class, ['label' => 'label.modaliteEvaluationPedagogique', 'help' => 'help.modaliteEvaluationPedagogique'])
-            ->add('modaliteEncadrement',TextareaType::class, ['label' => 'label.modaliteEncadrement', 'help' => 'help.modaliteEncadrement'])
-            ->add('documentRendre',TextareaType::class, ['label' => 'label.documentRendre', 'help' => 'help.documentRendre'])
+            ->add('texteLibre', TextareaType::class, ['label' => 'label.texteLibre', 'help' => 'help.texteLibre'])
+            ->add('competencesVisees', TextareaType::class, ['label' => 'label.competencesVisees', 'help' => 'help.competencesVisees'])
+            ->add('modaliteEvaluation', TextareaType::class, ['label' => 'label.modaliteEvaluation', 'help' => 'help.modaliteEvaluation'])
+            ->add('modaliteEvaluationPedagogique', TextareaType::class, ['label' => 'label.modaliteEvaluationPedagogique', 'help' => 'help.modaliteEvaluationPedagogique'])
+            ->add('modaliteEncadrement', TextareaType::class, ['label' => 'label.modaliteEncadrement', 'help' => 'help.modaliteEncadrement'])
+            ->add('documentRendre', TextareaType::class, ['label' => 'label.documentRendre', 'help' => 'help.documentRendre'])
             ->add('nbEcts', TextType::class, ['label' => 'label.nbEcts', 'help' => 'help.nbEcts'])
 
 

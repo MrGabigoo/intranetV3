@@ -84,9 +84,5 @@ class AppTranslationRearangeCommand extends Command
         } else {
             $tab[$keys[0]] = $value;
         }
-
-
     }
-
-
 }

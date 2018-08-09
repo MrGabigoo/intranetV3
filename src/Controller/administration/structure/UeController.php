@@ -71,7 +71,6 @@ class UeController extends BaseController
         }
 
         return $this->redirectToRoute('erreur_666');
-
     }
 
     /**
@@ -96,7 +95,6 @@ class UeController extends BaseController
     public function edit(Request $request, Ue $ue): Response
     {
         if ($ue->getDiplome() !== null) {
-
             $form = $this->createForm(UeType::class, $ue, [
                 'diplome' => $ue->getDiplome(),
                 'attr'    => [
@@ -140,6 +138,5 @@ class UeController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

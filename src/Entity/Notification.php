@@ -12,17 +12,29 @@ class Notification extends BaseEntity
     public const ETUDIANT = 'e';
     public const PERSONNEL = 'p';
 
-    public const TABICONE = array('carnet.added'                 => 'ti-bookmark-alt',
-                                  'absence.removed'              => 'ti-bookmark-alt',
-                                  'absence.added'                => 'ti-bookmark-alt',
-                                  'decision.rattrapage.acceptee' => 'ti-check',
-                                  'decision.rattrapage.refusee'  => 'ti-na'
+    public const TABICONE = array(
+        'carnet.added'                       => 'ti-bookmark-alt',
+        'absence.removed'                    => 'ti-bookmark-alt',
+        'absence.added'                      => 'ti-bookmark-alt',
+        'decision.rattrapage.acceptee'       => 'ti-check',
+        'decision.rattrapage.refusee'        => 'ti-na',
+        'chgt.etat_stage.autorise'           => 'ti-info',
+        'chgt.etat_stage.depose'             => 'ti-info',
+        'chgt.etat_stage.valide'             => 'ti-info',
+        'chgt.etat_stage.convention_envoyee' => 'ti-info',
+        'chgt.etat_stage.convention_recue'   => 'ti-info'
     );
-    public const TABCOLOR = array('carnet.added'                 => 'info',
-                                  'absence.removed'              => 'success',
-                                  'absence.added'                => 'danger',
-                                  'decision.rattrapage.acceptee' => 'success',
-                                  'decision.rattrapage.refusee'  => 'warning'
+    public const TABCOLOR = array(
+        'carnet.added'                       => 'info',
+        'absence.removed'                    => 'success',
+        'absence.added'                      => 'danger',
+        'decision.rattrapage.acceptee'       => 'success',
+        'decision.rattrapage.refusee'        => 'warning',
+        'chgt.etat_stage.autorise'           => 'info',
+        'chgt.etat_stage.depose'             => 'info',
+        'chgt.etat_stage.valide'             => 'info',
+        'chgt.etat_stage.convention_envoyee' => 'info',
+        'chgt.etat_stage.convention_recue'   => 'info'
     );
 
     /**
@@ -189,7 +201,6 @@ class Notification extends BaseEntity
      */
     public function icone()
     {
-
         return self::TABICONE[$this->type];
     }
 
@@ -198,7 +209,6 @@ class Notification extends BaseEntity
      */
     public function color()
     {
-
         return self::TABCOLOR[$this->type];
     }
 }

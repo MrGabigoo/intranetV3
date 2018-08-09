@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 use App\Entity\Absence;
 use App\Entity\Etudiant;
 use App\Entity\Semestre;
@@ -120,6 +119,5 @@ class MyAbsences
                 $absence->isJustifie() ? $this->statistiques[$etuId]['nbJustifie']++ : $this->statistiques[$etuId]['nbNonJustifie']++;
             }
         }
-
     }
 }

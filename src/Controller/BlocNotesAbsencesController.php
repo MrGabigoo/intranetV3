@@ -21,8 +21,10 @@ class BlocNotesAbsencesController extends BaseController
     public function personnel(MyPrevisionnel $myPrevisionnel): Response
     {
         return $this->render('bloc_notes_absences/personnel.html.twig', [
-            'previsionnel' => $myPrevisionnel->getPrevisionnelEnseignantFormation($this->getUser(),
-                $this->dataUserSession->getFormation())
+            'previsionnel' => $myPrevisionnel->getPrevisionnelEnseignantFormation(
+                $this->getUser(),
+                $this->dataUserSession->getFormation()
+            )
         ]);
     }
 

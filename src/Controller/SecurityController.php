@@ -50,7 +50,6 @@ class SecurityController extends BaseController
      */
     public function logout(): void
     {
-
     }
 
     /**

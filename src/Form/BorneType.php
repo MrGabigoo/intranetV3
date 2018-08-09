@@ -37,7 +37,7 @@ class BorneType extends AbstractType
                 'attr'        => ['data-provide' => 'selectpicker'],
                 'label'       => 'label.icone',
                 'choices'     => Borne::ICONES,
-                'choice_attr' => function($choiceValue, $key, $value) {
+                'choice_attr' => function ($choiceValue, $key, $value) {
                     // adds a class like attending_yes, attending_no, etc
                     return ['data-icon' => Borne::ICONES[$key] . ' mr-2'];
                 },
@@ -59,15 +59,18 @@ class BorneType extends AbstractType
             ->add('dateFinPublication', DateTimeType::class, [
                 'label' => 'label.dateFinPublication',
             ])
-            ->add('visible', YesNoType::class,
+            ->add(
+                'visible',
+                YesNoType::class,
                 [
                     'label' => 'label.visible'
-                ])
+                ]
+            )
             ->add('semestres', EntityType::class, array(
                 'class'         => Semestre::class,
                 'label'         => 'label.semestres_date',
                 'choice_label'  => 'libelle',
-                'query_builder' => function(SemestreRepository $semestreRepository) {
+                'query_builder' => function (SemestreRepository $semestreRepository) {
                     return $semestreRepository->findByFormationBuilder($this->formation);
                 },
                 'required'      => true,

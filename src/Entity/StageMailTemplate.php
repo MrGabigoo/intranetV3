@@ -27,14 +27,14 @@ class StageMailTemplate
     private $subject;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private $template;
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
     private $event;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\TwigTemplate", cascade={"persist", "remove"})
+     */
+    private $twigTemplate;
 
     public function getId()
     {
@@ -65,18 +65,6 @@ class StageMailTemplate
         return $this;
     }
 
-    public function getTemplate(): ?string
-    {
-        return $this->template;
-    }
-
-    public function setTemplate(string $template): self
-    {
-        $this->template = $template;
-
-        return $this;
-    }
-
     public function getEvent(): ?string
     {
         return $this->event;
@@ -85,6 +73,18 @@ class StageMailTemplate
     public function setEvent(string $event): self
     {
         $this->event = $event;
+
+        return $this;
+    }
+
+    public function getTwigTemplate(): ?TwigTemplate
+    {
+        return $this->twigTemplate;
+    }
+
+    public function setTwigTemplate(?TwigTemplate $twigTemplate): self
+    {
+        $this->twigTemplate = $twigTemplate;
 
         return $this;
     }

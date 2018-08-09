@@ -23,5 +23,4 @@ class UfrRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Ufr::class);
     }
-
 }

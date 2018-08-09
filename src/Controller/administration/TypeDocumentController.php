@@ -25,8 +25,10 @@ class TypeDocumentController extends BaseController
      */
     public function index(TypeDocumentRepository $typeDocumentRepository): Response
     {
-        return $this->render('administration/type_document/index.html.twig',
-            ['type_documents' => $typeDocumentRepository->findAll()]);
+        return $this->render(
+            'administration/type_document/index.html.twig',
+            ['type_documents' => $typeDocumentRepository->findAll()]
+        );
     }
 
     /**
@@ -113,6 +115,6 @@ class TypeDocumentController extends BaseController
      */
     public function delete(): void
     {
-//todo: supprimer les documents?
+        //todo: supprimer les documents?
     }
 }

@@ -26,8 +26,10 @@ class PersonnelController extends BaseController
      */
     public function index(PersonnelFormationRepository $personnelRepository): Response
     {
-        return $this->render('administration/personnel/index.html.twig',
-            ['personnels' => $personnelRepository->findByType('permanent', $this->dataUserSession->getFormationId())]);
+        return $this->render(
+            'administration/personnel/index.html.twig',
+            ['personnels' => $personnelRepository->findByType('permanent', $this->dataUserSession->getFormationId())]
+        );
     }
 
     /**
@@ -44,7 +46,6 @@ class PersonnelController extends BaseController
      */
     public function ajout(): Response
     {
-
         return $this->render('administration/personnel/add.html.twig');
     }
 

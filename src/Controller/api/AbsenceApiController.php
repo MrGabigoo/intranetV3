@@ -27,6 +27,5 @@ class AbsenceApiController extends BaseController
         return $this->render('api/absence/listeEtudiant.html.twig', [
             'selectedTypeGroupe' => $typegroupe
         ]);
-
     }
 }

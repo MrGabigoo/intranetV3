@@ -31,7 +31,6 @@ class UserAjaxController extends BaseController
         EtudiantRepository $etudiantRepository,
         Request $request
     ): Response {
-
         $action = $request->request->get('etat');
         $user = $etudiantRepository->findOneBySlug($request->request->get('user'));
         if ($user && $action === 'true') {

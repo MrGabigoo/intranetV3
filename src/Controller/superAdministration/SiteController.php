@@ -146,6 +146,5 @@ class SiteController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

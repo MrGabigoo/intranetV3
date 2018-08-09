@@ -95,6 +95,5 @@ class FormationController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

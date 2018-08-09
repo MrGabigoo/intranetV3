@@ -55,6 +55,4 @@ class DocumentController extends BaseController
             'documents' => $documents
         ]);
     }
-
-
 }

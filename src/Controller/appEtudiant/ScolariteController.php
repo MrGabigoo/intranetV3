@@ -25,7 +25,6 @@ class ScolariteController extends BaseController
      */
     public function details(Scolarite $scolarite): Response
     {
-
         return $this->render('appEtudiant/scolarite/detail.html.twig', [
             'scolarite' => $scolarite,
         ]);

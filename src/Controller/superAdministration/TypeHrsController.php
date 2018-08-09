@@ -146,6 +146,5 @@ class TypeHrsController extends BaseController
      */
     public function delete(): void
     {
-
     }
 }

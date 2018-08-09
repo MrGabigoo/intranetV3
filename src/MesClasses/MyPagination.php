@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-
 use App\Entity\Constantes;
 use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\Routing\RouterInterface;
@@ -58,7 +57,6 @@ class MyPagination
             ->getResult();
 
         $this->nbPages = ceil($this->nbMaxResult / Constantes::NB_RESULTS_PER_PAGE);
-
     }
 
     /**

@@ -40,11 +40,15 @@ class RattrapageController extends BaseController
         Semestre $semestre
     ): Response {
         return $this->render('administration/rattrapage/index.html.twig', [
-            'rattrapages' => $rattrapageRepository->findBySemestre($semestre,
-                $this->dataUserSession->getAnneeUniversitaire()),
+            'rattrapages' => $rattrapageRepository->findBySemestre(
+                $semestre,
+                $this->dataUserSession->getAnneeUniversitaire()
+            ),
             'semestre'    => $semestre,
-            'absences'    => $absenceRepository->findAbsenceBySemestreRattrapage($semestre,
-                $this->dataUserSession->getAnneeUniversitaire())
+            'absences'    => $absenceRepository->findAbsenceBySemestreRattrapage(
+                $semestre,
+                $this->dataUserSession->getAnneeUniversitaire()
+            )
         ]);
     }
 
@@ -64,12 +68,17 @@ class RattrapageController extends BaseController
         RattrapageRepository $rattrapageRepository,
         Semestre $semestre,
         $_format
-    ): Response
-    {
-        $rattrapages = $rattrapageRepository->findBySemestre($semestre,
-            $this->dataUserSession->getAnneeUniversitaire());
-        $response = $myExport->genereFichierGenerique($_format, $rattrapages, 'rattrapages_' . $semestre->getLibelle(),
-            ['rattrapage_administration', 'utilisateur', 'matiere'], [
+    ): Response {
+        $rattrapages = $rattrapageRepository->findBySemestre(
+            $semestre,
+            $this->dataUserSession->getAnneeUniversitaire()
+        );
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $rattrapages,
+            'rattrapages_' . $semestre->getLibelle(),
+            ['rattrapage_administration', 'utilisateur', 'matiere'],
+            [
                 'etudiant'  => ['nom', 'prenom'],
                 'dateEval',
                 'heureEval',
@@ -80,7 +89,8 @@ class RattrapageController extends BaseController
                 'heureRattrapage',
                 'salle',
                 'etatDemande'
-            ]);
+            ]
+        );
 
         return $response;
     }
@@ -109,7 +119,6 @@ class RattrapageController extends BaseController
         }
 
         return new Response('', Response::HTTP_INTERNAL_SERVER_ERROR);
-
     }
 
     /**
@@ -123,7 +132,6 @@ class RattrapageController extends BaseController
     {
         $id = $rattrapage->getUuidString();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($rattrapage);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'rattrapage.delete.success.flash');
@@ -134,5 +142,4 @@ class RattrapageController extends BaseController
 
         return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }
-
 }

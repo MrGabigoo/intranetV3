@@ -42,8 +42,13 @@ class DateController extends BaseController
     public function export(MyExport $myExport, DateRepository $dateRepository, $_format): Response
     {
         $dates = $dateRepository->findByFormation($this->dataUserSession->getFormation(), 0);
-        $response = $myExport->genereFichierGenerique($_format, $dates, 'dates',
-            ['date_administration', 'utilisateur'], ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]);//todo: définir les colonnes. copier/coller ici
+        $response = $myExport->genereFichierGenerique(
+            $_format,
+            $dates,
+            'dates',
+            ['date_administration', 'utilisateur'],
+            ['titre', 'texte', 'type', 'personnel' => ['nom', 'prenom']]
+        );//todo: définir les colonnes. copier/coller ici
 
         return $response;
     }
@@ -57,13 +62,16 @@ class DateController extends BaseController
     public function create(Request $request): Response
     {
         $date = new Date();
-        $form = $this->createForm(DatesType::class, $date,
+        $form = $this->createForm(
+            DatesType::class,
+            $date,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -99,13 +107,16 @@ class DateController extends BaseController
      */
     public function edit(Request $request, Date $date): Response
     {
-        $form = $this->createForm(DatesType::class, $date,
+        $form = $this->createForm(
+            DatesType::class,
+            $date,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -135,7 +146,6 @@ class DateController extends BaseController
         $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'date.duplicate.success.flash');
 
         return $this->redirectToRoute('administration_date_edit', ['id' => $newDate->getId()]);
-
     }
 
     /**
@@ -149,7 +159,6 @@ class DateController extends BaseController
     {
         $id = $date->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($date);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'date.delete.success.flash');

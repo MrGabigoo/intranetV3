@@ -88,6 +88,4 @@ class DateRepository extends ServiceEntityRepository
 
         return $tab;
     }
-
-
 }

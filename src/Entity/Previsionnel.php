@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Previsionnel extends BaseEntity
 {
-
     public const DUREE_SEANCE = 1.5;
 
 

@@ -3,16 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StageEtudiantRepository")
  */
 class StageEtudiant extends BaseEntity
 {
-
     public const ETAT_STAGE_AUTORISE = 'ETAT_STAGE_AUTORISE';
     public const ETAT_STAGE_DEPOSE = 'ETAT_STAGE_DEPOSE';
     public const ETAT_STAGE_VALIDE = 'ETAT_STAGE_VALIDE';
+    public const ETAT_STAGE_IMPRIME = 'ETAT_STAGE_IMPRIME';
     public const ETAT_STAGE_CONVENTION_ENVOYEE = 'ETAT_STAGE_CONVENTION_ENVOYEE';
     public const ETAT_STAGE_CONVENTION_RECUE = 'ETAT_STAGE_CONVENTION_RECUE';
     public const ETAT_STAGE_ERASMUS = 'ETAT_STAGE_ERASMUS';
@@ -140,6 +141,57 @@ class StageEtudiant extends BaseEntity
      */
     private $dateAutorise;
 
+    /**
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Column(type="uuid_binary", unique=true)
+     */
+    protected $uuid;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateImprime;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Adresse", cascade={"persist", "remove"})
+     */
+    private $adresseStage;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $periodesInterruptions;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $commentaireDureeHebdomadaire;
+
+    /**
+     * StageEtudiant constructor.
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        $this->uuid = Uuid::uuid4();
+    }
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuid(): \Ramsey\Uuid\UuidInterface
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getUuidString(): string
+    {
+        return $this->getUuid()->toString();
+    }
 
     public function getStagePeriode(): ?StagePeriode
     {
@@ -413,6 +465,54 @@ class StageEtudiant extends BaseEntity
     public function setDateAutorise(\DateTimeInterface $dateAutorise): self
     {
         $this->dateAutorise = $dateAutorise;
+
+        return $this;
+    }
+
+    public function getDateImprime(): ?\DateTimeInterface
+    {
+        return $this->dateImprime;
+    }
+
+    public function setDateImprime(\DateTimeInterface $dateImprime): self
+    {
+        $this->dateImprime = $dateImprime;
+
+        return $this;
+    }
+
+    public function getAdresseStage(): ?Adresse
+    {
+        return $this->adresseStage;
+    }
+
+    public function setAdresseStage(?Adresse $adresseStage): self
+    {
+        $this->adresseStage = $adresseStage;
+
+        return $this;
+    }
+
+    public function getPeriodesInterruptions(): ?string
+    {
+        return $this->periodesInterruptions;
+    }
+
+    public function setPeriodesInterruptions(string $periodesInterruptions): self
+    {
+        $this->periodesInterruptions = $periodesInterruptions;
+
+        return $this;
+    }
+
+    public function getCommentaireDureeHebdomadaire(): ?string
+    {
+        return $this->commentaireDureeHebdomadaire;
+    }
+
+    public function setCommentaireDureeHebdomadaire(string $commentaireDureeHebdomadaire): self
+    {
+        $this->commentaireDureeHebdomadaire = $commentaireDureeHebdomadaire;
 
         return $this;
     }

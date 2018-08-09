@@ -272,5 +272,4 @@ class Article extends BaseEntity
 
         return $this;
     }
-
 }

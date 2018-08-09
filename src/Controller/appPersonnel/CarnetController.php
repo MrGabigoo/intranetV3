@@ -33,8 +33,10 @@ class CarnetController extends BaseController
      */
     public function index(CahierTexteRepository $cahierRepository): Response
     {
-        return $this->render('appPersonnel/carnet/index.html.twig',
-            ['cahierTextes' => $cahierRepository->findByPersonnel($this->getUser()->getId())]);
+        return $this->render(
+            'appPersonnel/carnet/index.html.twig',
+            ['cahierTextes' => $cahierRepository->findByPersonnel($this->getUser()->getId())]
+        );
     }
 
     /**
@@ -72,17 +74,19 @@ class CarnetController extends BaseController
     public function create(
         Request $request,
         EventDispatcherInterface $eventDispatcher
-    ): Response
-    {
+    ): Response {
         $cahierTexte = new CahierTexte();
         $cahierTexte->setPersonnel($this->getUser());
-        $form = $this->createForm(CahierTexteType::class, $cahierTexte,
+        $form = $this->createForm(
+            CahierTexteType::class,
+            $cahierTexte,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -122,13 +126,16 @@ class CarnetController extends BaseController
      */
     public function edit(Request $request, CahierTexte $cahierTexte): Response
     {
-        $form = $this->createForm(CahierTexteType::class, $cahierTexte,
+        $form = $this->createForm(
+            CahierTexteType::class,
+            $cahierTexte,
             [
                 'formation' => $this->dataUserSession->getFormation(),
                 'attr'      => [
                     'data-provide' => 'validation'
                 ]
-            ]);
+            ]
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -154,7 +161,6 @@ class CarnetController extends BaseController
     {
         $id = $cahierTexte->getId();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-
             $this->entityManager->remove($cahierTexte);
             $this->entityManager->flush();
 
@@ -171,5 +177,4 @@ class CarnetController extends BaseController
     {
         return $this->render('appPersonnel/carnet/help.html.twig');
     }
-
 }
