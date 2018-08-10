@@ -36,7 +36,7 @@ class AbsenceController extends BaseController
      * @Route("/justificatif/depot", name="app_etudiant_absence_justificatif_depot")
      * @return Response
      */
-    public function justificatifDepot()
+    public function justificatifDepot(): Response
     {
     }
 
@@ -45,7 +45,7 @@ class AbsenceController extends BaseController
      * @Route("/justificatif/depot", name="app_etudiant_absence_justificatif_etat")
      * @return Response
      */
-    public function justificatifEtat()
+    public function justificatifEtat(): Response
     {
         //return $this->render('app')
     }

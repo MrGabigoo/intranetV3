@@ -6,7 +6,6 @@ use App\Controller\BaseController;
 use App\Entity\Constantes;
 use App\Entity\Diplome;
 use App\Form\DiplomeType;
-use App\MesClasses\DataUserSession;
 use App\Repository\DiplomeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

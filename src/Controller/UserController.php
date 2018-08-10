@@ -23,7 +23,9 @@ class UserController extends BaseController
 {
     /**
      * @Route("/mon-profil/{onglet}", name="user_mon_profil")
-     * @throws \LogicException
+     * @param string $onglet
+     *
+     * @return Response
      */
     public function monProfil($onglet = 'timeline'): Response
     {
@@ -41,9 +43,10 @@ class UserController extends BaseController
      * @param                     $type
      * @param                     $slug
      *
+     * @param string              $onglet
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Doctrine\ORM\ORMException
      */
     public function index(
         EtudiantRepository $etudiantRepository,

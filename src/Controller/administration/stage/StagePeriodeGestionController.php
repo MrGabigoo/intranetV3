@@ -23,6 +23,7 @@ class StagePeriodeGestionController extends BaseController
      * @Route("/{uuid}", name="administration_stage_periode_gestion")
      * @ParamConverter("stagePeriode", options={"mapping": {"uuid": "uuid"}})
      * @param StagePeriodeRepository $stagePeriodeRepository
+     * @param MyStage                $myStage
      * @param StagePeriode           $stagePeriode
      *
      * @return \Symfony\Component\HttpFoundation\Response

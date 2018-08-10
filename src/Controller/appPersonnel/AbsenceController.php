@@ -7,7 +7,6 @@ use App\Entity\Absence;
 use App\Entity\Constantes;
 use App\Entity\Etudiant;
 use App\Entity\Matiere;
-use App\Events;
 use App\MesClasses\MyAbsences;
 use App\MesClasses\MyEtudiant;
 use App\MesClasses\Tools;
@@ -16,8 +15,6 @@ use App\Repository\MatiereRepository;
 use App\Repository\TypeGroupeRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -110,9 +107,12 @@ class AbsenceController extends BaseController
 
     /**
      * @Route("/{uuid}", name="application_personnel_absence_delete", methods="DELETE")
-     * @param Absence $absence
-     * @ParamConverter("absence", options={"mapping": {"uuid": "uuid"}})
+     * @param MyEtudiant $myEtudiant
+     * @param Request    $request
+     * @param Absence    $absence
+     *
      * @return Response
+     * @ParamConverter("absence", options={"mapping": {"uuid": "uuid"}})
      */
     public function supprimer(MyEtudiant $myEtudiant, Request $request, Absence $absence): Response
     {

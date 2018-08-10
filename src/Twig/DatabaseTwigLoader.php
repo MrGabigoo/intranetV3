@@ -43,7 +43,7 @@ class DatabaseTwigLoader implements \Twig_LoaderInterface
         return new \Twig_Source($source, $name);
     }
 
-    public function exists($name)
+    public function exists($name): bool
     {
         if ($this->getValue($name) !== null) {
             return $name === $this->getValue($name)->getName();
@@ -51,12 +51,12 @@ class DatabaseTwigLoader implements \Twig_LoaderInterface
         return false;
     }
 
-    public function getCacheKey($name)
+    public function getCacheKey($name): string
     {
         return $name;
     }
 
-    public function isFresh($name, $time)
+    public function isFresh($name, $time): bool
     {
         if (false === $lastModified = $this->getValue($name)->getUpdated()) {
             return false;

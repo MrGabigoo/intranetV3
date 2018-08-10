@@ -8,6 +8,7 @@ use App\Entity\Formation;
 use App\Entity\Semestre;
 use App\Entity\StagePeriode;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -35,7 +36,7 @@ class StagePeriodeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByFormationBuilder(Formation $formation, $anneeUniversitaire = 0)
+    public function findByFormationBuilder(Formation $formation, $anneeUniversitaire = 0): QueryBuilder
     {
         $query = $this->createQueryBuilder('p')
             ->innerJoin(Semestre::class, 's', 'WITH', 'p.semestre = s.id')

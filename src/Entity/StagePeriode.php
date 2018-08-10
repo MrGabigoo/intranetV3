@@ -171,6 +171,9 @@ class StagePeriode extends BaseEntity
 
     /**
      * StagePeriode constructor.
+     *
+     * @param $anneeUniversitaire
+     *
      * @throws \Exception
      */
     public function __construct($anneeUniversitaire)

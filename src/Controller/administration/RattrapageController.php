@@ -105,7 +105,7 @@ class RattrapageController extends BaseController
      *
      * @return Response
      */
-    public function accepte(EventDispatcherInterface $eventDispatcher, Rattrapage $rattrapage, $etat)
+    public function accepte(EventDispatcherInterface $eventDispatcher, Rattrapage $rattrapage, $etat): Response
     {
         if ($etat === 'A' || $etat === 'R') {
             $rattrapage->setEtatDemande($etat);

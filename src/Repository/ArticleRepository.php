@@ -32,7 +32,7 @@ class ArticleRepository extends ServiceEntityRepository
      */
     public function findByTypeFormation($type, $formation)
     {
-        return $this->findByTypeFormationBuilder()
+        return $this->findByTypeFormationBuilder($type, $formation)
             ->getQuery()
             ->getResult();
     }

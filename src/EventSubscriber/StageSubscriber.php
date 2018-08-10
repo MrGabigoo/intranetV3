@@ -6,7 +6,6 @@ use App\Entity\Notification;
 use App\Entity\StageEtudiant;
 use App\Entity\StageMailTemplate;
 use App\Repository\StageMailTemplateRepository;
-use App\Twig\DatabaseTwigLoader;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Events;
 use App\MesClasses\Mail\MyMailer;
@@ -49,7 +48,7 @@ class StageSubscriber implements EventSubscriberInterface
         $this->myMailer = $myMailer;
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             Events::MAIL_CHGT_ETAT_STAGE_AUTORISE           => 'onMailChgtEtatStageAutorise',
@@ -73,7 +72,7 @@ class StageSubscriber implements EventSubscriberInterface
         $this->addNotification($event, Events::CHGT_ETAT_STAGE_AUTORISE);
     }
 
-    private function addNotification(GenericEvent $event, $codeEvent)
+    private function addNotification(GenericEvent $event, $codeEvent): void
     {
         /** @var StageEtudiant $stageEtudiant */
         $stageEtudiant = $event->getSubject();

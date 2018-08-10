@@ -75,7 +75,8 @@ class ProfilPersonnelController extends BaseController
     /**
      * @Route("/profil/{slug}/previsionnel", name="profil_personnel_previsionnel")
      * @ParamConverter("personnel", options={"mapping": {"slug": "slug"}})
-     * @param Personnel $personnel
+     * @param MyPrevisionnel $myPrevisionnel
+     * @param Personnel      $personnel
      *
      * @return Response
      */

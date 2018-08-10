@@ -24,7 +24,7 @@ class NoteRepository extends ServiceEntityRepository
         parent::__construct($registry, Note::class);
     }
 
-    public function findBySemestre($semestre, $getAnneeUniversitaire)
+    public function findBySemestre($semestre, $getAnneeUniversitaire): void
     {
     }
 }

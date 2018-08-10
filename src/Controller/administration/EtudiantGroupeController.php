@@ -34,8 +34,10 @@ class EtudiantGroupeController extends BaseController
 
     /**
      * @Route("/{id}", name="administration_etudiant_groupe_delete", methods="DELETE")
-     * @param Request $request
-     * @param Groupe  $groupe
+     * @param Request  $request
+     * @param Groupe   $groupe
+     *
+     * @param Etudiant $etudiant
      *
      * @return Response
      */

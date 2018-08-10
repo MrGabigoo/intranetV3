@@ -20,7 +20,7 @@ class StagePeriodeOffreRepository extends ServiceEntityRepository
         parent::__construct($registry, StagePeriodeOffre::class);
     }
 
-    public function findByStagePeriode(StagePeriode $stagePeriode)
+    public function findByStagePeriode(StagePeriode $stagePeriode): void
     {
     }
 }

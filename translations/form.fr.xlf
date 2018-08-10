@@ -2939,5 +2939,23 @@
         <target>Minute</target>
       </segment>
     </unit>
+    <unit id="VPE4OJT" name="dateRange">
+      <segment>
+        <source>dateRange</source>
+        <target>Période d'affichage</target>
+      </segment>
+    </unit>
+    <unit id="O.iYcEm" name="Left date">
+      <segment>
+        <source>Left date</source>
+        <target>Left date</target>
+      </segment>
+    </unit>
+    <unit id="0zTxLZx" name="Right date">
+      <segment>
+        <source>Right date</source>
+        <target>Right date</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

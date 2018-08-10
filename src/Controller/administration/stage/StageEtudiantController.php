@@ -10,6 +10,7 @@ use App\Entity\StagePeriode;
 use App\Form\StageEtudiantType;
 use App\MesClasses\MyStageEtudiant;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,9 @@ class StageEtudiantController extends BaseController
 {
     /**
      * @Route("/{id}", name="administration_stage_etudiant_show", methods="GET")
+     * @param StageEtudiant $stageEtudiant
+     *
+     * @return Response
      */
     public function show(StageEtudiant $stageEtudiant): Response
     {
@@ -32,6 +36,10 @@ class StageEtudiantController extends BaseController
 
     /**
      * @Route("/{id}/edit", name="administration_stage_etudiant_edit", methods="GET|POST")
+     * @param Request       $request
+     * @param StageEtudiant $stageEtudiant
+     *
+     * @return Response
      */
     public function edit(Request $request, StageEtudiant $stageEtudiant): Response
     {
@@ -40,6 +48,7 @@ class StageEtudiantController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'stage_etudiant.create.success.flash');
 
             return $this->redirectToRoute('administration_stage_etudiant_edit', ['id' => $stageEtudiant->getId()]);
         }
@@ -52,24 +61,50 @@ class StageEtudiantController extends BaseController
 
     /**
      * @Route("/{id}", name="administration_stage_etudiant_delete", methods="DELETE")
+     * @param Request       $request
+     * @param StageEtudiant $stageEtudiant
+     *
+     * @return Response
      */
     public function delete(Request $request, StageEtudiant $stageEtudiant): Response
     {
-        return $this->redirectToRoute('administration_stage_periode_gestion', ['uuid' => $stageEtudiant->getStagePeriode()->getUuidString()]);
+        //todo: a tester car pas appelé en Ajax...
+        $id = $stageEtudiant->getId();
+        if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
+            $this->entityManager->remove($stageEtudiant);
+            $this->entityManager->flush();
+            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'stage_etudiant.delete.success.flash');
+
+            return $stageEtudiant->getStagePeriode() !== null ? $this->redirectToRoute('administration_stage_periode_gestion',
+                ['uuid' => $stageEtudiant->getStagePeriode()->getUuidString()]) : $this->redirectToRoute('administratif_homepage');
+        }
+        $this->addFlashBag(Constantes::FLASHBAG_ERROR, 'stage_etudiant.delete.error.flash');
+
+        return $stageEtudiant->getStagePeriode() !== null ? $this->redirectToRoute('administration_stage_periode_gestion',
+            ['uuid' => $stageEtudiant->getStagePeriode()->getUuidString()]) : $this->redirectToRoute('administratif_homepage');
     }
 
     /**
-     * @param StagePeriode $stagePeriode
-     * @param Etudiant     $etudiant
-     * @param              $etat
+     * @param MyStageEtudiant $myStageEtudiant
+     * @param StagePeriode    $stagePeriode
+     * @param Etudiant        $etudiant
+     * @param                 $etat
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Doctrine\ORM\NonUniqueResultException
      * @Route("/change-etat/{stagePeriode}/{etudiant}/{etat}", name="administration_stage_etudiant_change_etat")
      * @ParamConverter("stagePeriode", options={"mapping": {"stagePeriode": "uuid"}})
      */
-    public function changeEtat(MyStageEtudiant $myStageEtudiant, StagePeriode $stagePeriode, Etudiant $etudiant, $etat)
-    {
+    public function changeEtat(
+        MyStageEtudiant $myStageEtudiant,
+        StagePeriode $stagePeriode,
+        Etudiant $etudiant,
+        $etat
+    ): RedirectResponse {
         $myStageEtudiant->changeEtat($stagePeriode, $etudiant, $etat);
         $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'stage_etudiant.change_etat.success.flash');
 
-        return $this->redirectToRoute('administration_stage_periode_gestion', ['uuid' => $stagePeriode->getUuidString()]);
+        return $this->redirectToRoute('administration_stage_periode_gestion',
+            ['uuid' => $stagePeriode->getUuidString()]);
     }
 }

@@ -19,20 +19,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EtudiantController extends BaseController
 {
-    /** @var EtudiantRepository */
-    private $etudiantRepository;
-
-    /**
-     * EtudiantController constructor.
-     *
-     * @param EtudiantRepository $etudiantRepository
-     */
-    public function __construct(EtudiantRepository $etudiantRepository)
-    {
-        $this->etudiantRepository = $etudiantRepository;
-    }
-
-
     /**
      * @Route("/", name="administration_etudiant_index")
      *

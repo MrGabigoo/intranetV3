@@ -9,6 +9,7 @@ use App\Entity\Semestre;
 use App\Repository\EvaluationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,14 +25,15 @@ class EvaluationController extends BaseController
 {
 
     /**
-     * @param          $etat
-     * @param Semestre $semestre
+     * @param EvaluationRepository $evaluationRepository
+     * @param                      $etat
+     * @param Semestre             $semestre
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/visibilite/semestre/{semestre}/{etat}", name="administration_evaluation_visibilite_all",
      *                                                  methods={"GET"})
      */
-    public function visibiliteAll(EvaluationRepository $evaluationRepository, $etat, Semestre $semestre)
+    public function visibiliteAll(EvaluationRepository $evaluationRepository, $etat, Semestre $semestre): RedirectResponse
     {
         $evals = $evaluationRepository->findBySemestre($semestre);
 
@@ -50,14 +52,15 @@ class EvaluationController extends BaseController
     }
 
     /**
-     * @param          $etat
-     * @param Semestre $semestre
+     * @param EvaluationRepository $evaluationRepository
+     * @param                      $etat
+     * @param Semestre             $semestre
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/modifiable/semestre/{semestre}/{etat}", name="administration_evaluation_modifiable_all",
      *                                                  methods={"GET"})
      */
-    public function modifiableAll(EvaluationRepository $evaluationRepository, $etat, Semestre $semestre)
+    public function modifiableAll(EvaluationRepository $evaluationRepository, $etat, Semestre $semestre): RedirectResponse
     {
         $evals = $evaluationRepository->findBySemestre($semestre);
 
@@ -83,7 +86,7 @@ class EvaluationController extends BaseController
      *                                    options={"expose":true})
      * @ParamConverter("evaluation", options={"mapping": {"uuid": "uuid"}})
     */
-    public function modifiable(Evaluation $evaluation)
+    public function modifiable(Evaluation $evaluation): Response
     {
         $evaluation->setModifiable(!$evaluation->getModifiable());
         $this->entityManager->flush();
@@ -99,7 +102,7 @@ class EvaluationController extends BaseController
      * @Route("/visibilite/{uuid}", name="administration_evaluation_visibilite", methods={"GET"},
      *                                    options={"expose":true})
      */
-    public function visibilite(Evaluation $evaluation)
+    public function visibilite(Evaluation $evaluation): Response
     {
         $evaluation->setVisible(!$evaluation->getVisible());
         $this->entityManager->flush();

@@ -53,6 +53,7 @@ class MySalleExamen
      * @param PersonnelRepository   $personnelRepository
      * @param SalleExamenRepository $salleExamenRepository
      * @param GroupeRepository      $groupeRepository
+     * @param EtudiantRepository    $etudiantRepository
      */
     public function __construct(
         MatiereRepository $matiereRepository,
@@ -87,7 +88,8 @@ class MySalleExamen
         $requestgroupes,
         $requestenseignant1,
         $requestenseignant2
-    ) {
+    ): void
+    {
         $this->salle = $this->salleExamenRepository->find($requestsalle);
         $this->matiere = $this->matiereRepository->find($requestmatiere);
 
@@ -97,7 +99,7 @@ class MySalleExamen
                 $this->typeGroupe = $this->typeGroupeRepository->find($requesttypegroupe);
                 $groupes = $this->typeGroupe->getGroupes();
 
-                $typeg = $groupes[0]->getTypegroupe();
+                $typeg = $groupes[0]->getTypeGroupe();
                 $grdetail = array();
                 $etudiants = array();
                 /** @var Groupe $gr */
@@ -113,7 +115,7 @@ class MySalleExamen
                 }
             } else {
                 $grdetail = $this->groupeDefaut($this->matiere->getSemestre());
-                $typeg = $grdetail[0]->getTypegroupe();
+                $typeg = $grdetail[0]->getTypeGroupe();
                 $etudiants = $this->etudiantRepository->findBySemestre($this->matiere->getSemestre());
             }
 
@@ -166,7 +168,7 @@ class MySalleExamen
     /**
      * @return array
      */
-    private function calculPlaces()
+    private function calculPlaces(): array
     {
         $k = 0;
         $tabinterdit = explode(';', $this->salle->getPlacesInterdites());
@@ -177,12 +179,12 @@ class MySalleExamen
         for ($i = 0; $i < $nbCol; $i++) {
             for ($j = 0; $j < $nbRang; $j++) {
                 if ($j + 1 < 10) {
-                    $place = chr(65 + $i) . '0' . ($j + 1);
+                    $place = \chr(65 + $i) . '0' . ($j + 1);
                 } else {
-                    $place = chr(65 + $i) . ($j + 1);
+                    $place = \chr(65 + $i) . ($j + 1);
                 }
 
-                if (!in_array($place, $tabinterdit)) {
+                if (!\in_array($place, $tabinterdit)) {
                     $tabplace[$k] = $place;
                 }
                 $k++;
@@ -200,7 +202,7 @@ class MySalleExamen
      *
      * @return array
      */
-    private function placement($etudiants, $tabplace)
+    private function placement($etudiants, $tabplace): array
     {
         $placementetu = array();
         $placement = array();

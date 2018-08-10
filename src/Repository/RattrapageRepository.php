@@ -29,6 +29,8 @@ class RattrapageRepository extends ServiceEntityRepository
     /**
      * @param Semestre $semestre
      *
+     * @param          $anneeUniversitaire
+     *
      * @return mixed
      */
     public function findBySemestre(Semestre $semestre, $anneeUniversitaire)

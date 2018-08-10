@@ -49,10 +49,10 @@ class Constantes
     public const FORMAT_PDF = 'pdf';
 
     public const NB_RESULTS_PER_PAGE = 2;
-    const BASE_URL = '';
+    public const BASE_URL = '';
 
-    const CIVILITE_HOMME = 'M.';
-    const CIVILITE_FEMME = 'Mme';
+    public const CIVILITE_HOMME = 'M.';
+    public const CIVILITE_FEMME = 'Mme';
 
     /**
      * @return array

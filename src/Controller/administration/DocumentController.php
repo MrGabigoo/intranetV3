@@ -41,9 +41,10 @@ class DocumentController extends BaseController
 
     /**
      * @Route("/new", name="administration_document_new", methods="GET|POST")
-     * @param Request                $request
+     * @param Request $request
      *
      * @return Response
+     * @throws \Exception
      */
     public function create(Request $request): Response
     {

@@ -47,10 +47,10 @@ class StagePeriodeOffreType extends AbstractType
                 'expanded'      => true,
                 'multiple'      => true
             ));
-        ;
+
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => StagePeriodeOffre::class,

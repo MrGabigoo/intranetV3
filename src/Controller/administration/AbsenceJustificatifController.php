@@ -5,15 +5,11 @@ namespace App\Controller\administration;
 use App\Controller\BaseController;
 use App\Entity\AbsenceJustificatif;
 use App\Entity\Constantes;
-use App\Entity\Etudiant;
 use App\Entity\Semestre;
 use App\Events;
-use App\MesClasses\MyAbsences;
 use App\MesClasses\MyExport;
 use App\Repository\AbsenceJustificatifRepository;
-use App\Repository\AbsenceRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,10 +29,10 @@ class AbsenceJustificatifController extends BaseController
 
     /**
      * @Route("/semestre/{semestre}", name="administration_absences_justificatif_semestre_liste")
-     * @param Semestre $semestre
+     * @param AbsenceJustificatifRepository $absenceJustificatifRepository
+     * @param Semestre                      $semestre
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
      */
     public function justificatif(
         AbsenceJustificatifRepository $absenceJustificatifRepository,
@@ -55,12 +51,14 @@ class AbsenceJustificatifController extends BaseController
     /**
      * @Route("/semestre/{semestre}/export.{_format}", name="administration_absences_justificatif_semestre_export",
      *                                                 requirements={"_format"="csv|xlsx|pdf"})
-     * @param MyExport   $myExport
-     * @param MyAbsences $myAbsences
-     * @param Semestre   $semestre
+     * @param MyExport                      $myExport
+     * @param AbsenceJustificatifRepository $absenceJustificatifRepository
+     * @param Semestre                      $semestre
+     *
+     * @param                               $_format
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     public function exportJustificatif(
         MyExport $myExport,
@@ -127,7 +125,7 @@ class AbsenceJustificatifController extends BaseController
      *
      * @return Response
      */
-    public function accepte(EventDispatcherInterface $eventDispatcher, AbsenceJustificatif $absenceJustificatif, $etat)
+    public function accepte(EventDispatcherInterface $eventDispatcher, AbsenceJustificatif $absenceJustificatif, $etat): Response
     {
         $absenceJustificatif->setEtat($etat);
         $this->entityManager->flush();

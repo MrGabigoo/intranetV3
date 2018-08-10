@@ -32,8 +32,9 @@ class MyMailer
     /**
      * MyMailer constructor.
      *
-     * @param \Swift_Mailer   $mailer
-     * @param EngineInterface $templating
+     * @param \Swift_Mailer      $mailer
+     * @param EngineInterface    $templating
+     * @param DatabaseTwigLoader $databaseTwigLoader
      */
     public function __construct(\Swift_Mailer $mailer, EngineInterface $templating, DatabaseTwigLoader $databaseTwigLoader)
     {
@@ -91,7 +92,8 @@ class MyMailer
     }
 
     /**
-     * @param $from
+     *
+     * @param array $options
      *
      * @return array
      */
@@ -105,7 +107,7 @@ class MyMailer
     }
 
     /**
-     * @param $replyTo
+     * @param array $options
      *
      * @return array|string
      */
@@ -140,7 +142,7 @@ class MyMailer
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function setTemplateFromDatabase(string $templateName, array $array)
+    public function setTemplateFromDatabase(string $templateName, array $array): void
     {
         $twig = new \Twig_Environment($this->databaseTwigLoader);
 

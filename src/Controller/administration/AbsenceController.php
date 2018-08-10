@@ -91,12 +91,14 @@ class AbsenceController extends BaseController
 
     /**
      * @Route("/semestre/{semestre}/justificatif/export.{_format}", name="administration_absences_semestre_justificatif_export", requirements={"_format"="csv|xlsx|pdf"})
-     * @param MyExport   $myExport
-     * @param MyAbsences $myAbsences
-     * @param Semestre   $semestre
+     * @param MyExport                      $myExport
+     * @param AbsenceJustificatifRepository $absenceJustificatifRepository
+     * @param Semestre                      $semestre
+     *
+     * @param                               $_format
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     public function exportJustificatif(MyExport $myExport, AbsenceJustificatifRepository $absenceJustificatifRepository, Semestre $semestre, $_format): Response
     {
@@ -112,8 +114,10 @@ class AbsenceController extends BaseController
      * @param MyAbsences $myAbsences
      * @param Semestre   $semestre
      *
+     * @param            $_format
+     *
      * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     public function export(MyExport $myExport, MyAbsences $myAbsences, Semestre $semestre, $_format): Response
     {

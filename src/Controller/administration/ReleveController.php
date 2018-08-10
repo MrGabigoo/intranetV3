@@ -20,7 +20,7 @@ class ReleveController extends BaseController
      * @param Semestre $semestre
      * @Route("/provisoire/all/{semestre}", name="administration_note_all_releves_provisoires")
      */
-    public function releveProvisoireAll(Semestre $semestre)
+    public function releveProvisoireAll(Semestre $semestre): void
     {
     }
 }

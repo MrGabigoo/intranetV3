@@ -8,6 +8,7 @@
 namespace App\MesClasses;
 
 use App\MesClasses\Excel\MyExcelMultiExport;
+use Symfony\Component\HttpFoundation\Response;
 
 class MyExport
 {
@@ -33,10 +34,10 @@ class MyExport
      * @param array  $groups
      * @param array  $colonne
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\Response|bool
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    public function genereFichierGenerique($format, $data, $nomFichier, array $groups, array $colonne)
+    public function genereFichierGenerique($format, $data, $nomFichier, array $groups, array $colonne): ?Response
     {
         $this->excel->genereExcelFromSerialization($data, $groups, $colonne);
 
@@ -48,6 +49,8 @@ class MyExport
             case 'xlsx':
                 return $this->excel->saveXlsx($nomFichier);
         }
+
+        return false;
     }
 
     /**
@@ -55,10 +58,10 @@ class MyExport
      * @param $myAbsences
      * @param $nomFichier
      *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse|bool
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    public function genereFichierAbsence($format, $myAbsences, $nomFichier)
+    public function genereFichierAbsence($format, $myAbsences, $nomFichier): ?Response
     {
         $this->excel->genereExcelAbsence($myAbsences);
 
@@ -70,5 +73,7 @@ class MyExport
             case 'xlsx':
                 return $this->excel->saveXlsx($nomFichier);
         }
+
+        return false;
     }
 }

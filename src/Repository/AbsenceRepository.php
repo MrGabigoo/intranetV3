@@ -28,26 +28,6 @@ class AbsenceRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param Semestre $semestre
-     * @param          $anneeCourante
-     *
-     * @return mixed
-     */
-    public function findBySemestre(Semestre $semestre, $anneeCourante)
-    {
-        return $this->createQueryBuilder('a')
-            ->innerJoin(Etudiant::class, 'e', 'WITH', 'a.etudiant =e.id')
-            ->where('e.semestre = :semestre')
-            ->andWhere('a.anneeuniversitaire = :annee')
-            ->setParameter('semestre', $semestre->getId())
-            ->setParameter('annee', $anneeCourante)
-            ->orderBy('a.date', 'DESC')
-            ->orderBy('a.heure', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    /**
      * @param $matiere
      * @param $anneeCourante
      *
@@ -99,7 +79,7 @@ class AbsenceRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findAbsenceBySemestreRattrapage(Semestre $semestre, $anneeCourante)
+    public function findAbsenceBySemestreRattrapage(Semestre $semestre, $anneeCourante): array
     {
         $absences = $this->findBySemestre($semestre, $anneeCourante);
 
@@ -127,5 +107,25 @@ class AbsenceRepository extends ServiceEntityRepository
         }
 
         return $trattrapages;
+    }
+
+    /**
+     * @param Semestre $semestre
+     * @param          $anneeCourante
+     *
+     * @return mixed
+     */
+    public function findBySemestre(Semestre $semestre, $anneeCourante)
+    {
+        return $this->createQueryBuilder('a')
+            ->innerJoin(Etudiant::class, 'e', 'WITH', 'a.etudiant =e.id')
+            ->where('e.semestre = :semestre')
+            ->andWhere('a.anneeuniversitaire = :annee')
+            ->setParameter('semestre', $semestre->getId())
+            ->setParameter('annee', $anneeCourante)
+            ->orderBy('a.date', 'DESC')
+            ->orderBy('a.heure', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 }

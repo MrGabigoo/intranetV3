@@ -10,7 +10,6 @@ namespace App\MesClasses\Pdf;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 abstract class MyPDF
@@ -26,7 +25,7 @@ abstract class MyPDF
     /**
      * MyPDF constructor.
      *
-     * @param Dompdf $domPdf
+     * @param EngineInterface $templating
      */
     public function __construct(EngineInterface $templating)
     {
@@ -37,7 +36,10 @@ abstract class MyPDF
         self::$options->set('isPhpEnabled', true);
     }
 
-    public static function addOptions(array $options)
+    /**
+     * @param array $options
+     */
+    public static function addOptions(array $options):void
     {
     }
 
@@ -47,7 +49,7 @@ abstract class MyPDF
      * @param $name
      *
      */
-    public static function generePdf($template, $data, $name)
+    public static function generePdf($template, $data, $name):void
     {
         $html = self::$templating->render($template, $data);
 

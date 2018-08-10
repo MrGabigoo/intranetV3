@@ -28,7 +28,7 @@ class CompetenceRepository extends ServiceEntityRepository
      * @param $getFormation
      * @param $int
      */
-    public function findByFormation($getFormation, $int): void
+    public function findByFormation($getFormation, $int): array
     {
     }
 

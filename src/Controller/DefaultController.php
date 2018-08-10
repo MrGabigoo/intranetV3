@@ -59,7 +59,7 @@ class DefaultController extends BaseController
     /**
      * @Route("/administratif/", name="administratif_homepage")
      */
-    public function administratifHomepage()
+    public function administratifHomepage(): Response
     {
         return $this->render('default/administratif_homepage.html.twig', [
 

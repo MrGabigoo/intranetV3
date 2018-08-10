@@ -27,7 +27,7 @@ class MyExportListing
     /** @var TypeGroupeRepository */
     protected $typeGroupeRepository;
 
-    protected $name = 'test';
+    private $name = 'test';
 
     protected $groupes;
 
@@ -45,13 +45,15 @@ class MyExportListing
     /** @var DataUserSession */
     private $dataUserSession;
     private $base;
+
     /**
      * MyExport constructor.
      *
-     * @param MyExcelWriter $excel
+     * @param TypeGroupeRepository $typeGroupeRepository
+     * @param DataUserSession      $dataUserSession
+     * @param KernelInterface      $kernel
      */
     public function __construct(
-        MyExcelWriter $myExcelWriter,
         TypeGroupeRepository $typeGroupeRepository,
         DataUserSession $dataUserSession,
         KernelInterface $kernel
@@ -62,7 +64,7 @@ class MyExportListing
     }
 
 
-    public function genereFichier($exportTypeDocument, $exportFormat, $exportChamps, $exportFiltre, Matiere $matiere)
+    public function genereFichier($exportTypeDocument, $exportFormat, $exportChamps, $exportFiltre, Matiere $matiere): ?StreamedResponse
     {
         $this->exportTypeDocument = $exportTypeDocument;
         $this->exportFormat = $exportFormat;
@@ -91,9 +93,11 @@ class MyExportListing
                     break;
             }
         }
+
+        return false;
     }
 
-    private function prepareColonnes()
+    private function prepareColonnes(): void
     {
         $this->colonnesEnTete[] = '#';
         $this->colonnesEnTete[] = 'Nom';
@@ -194,26 +198,28 @@ class MyExportListing
         );
     }
 
-    private function newColonne()
+    private function newColonne(): void
     {
         $this->colonne++;
     }
 
-    private function newLine()
+    private function newLine(): void
     {
         $this->ligne++;
         $this->colonne = 1;
     }
 
-    private function exportPdf()
+    private function exportPdf(): void
     {
         return null;
     }
 
     /**
+     * @param Groupe $groupe
+     *
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    private function writeSpecialHeader(Groupe $groupe)
+    private function writeSpecialHeader(Groupe $groupe): void
     {
         $dbt = $this->dataUserSession->getAnneeUniversitaire();
         $fin = $dbt + 1;
@@ -263,7 +269,7 @@ class MyExportListing
         }
     }
 
-    private function setMiseEnPage()
+    private function setMiseEnPage(): void
     {
         MyExcelWriter::getSheet()->getHeaderFooter()->setOddHeader('&C&H' . $this->titre);
         MyExcelWriter::getSheet()->getHeaderFooter()->setOddFooter('&L&BDépartement | ' . $this->name . ' | Généré depuis l\'intranet le ' . date('d/m/Y') . '&RPage &P sur &N');

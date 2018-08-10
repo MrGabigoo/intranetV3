@@ -49,6 +49,10 @@ class Note extends BaseEntity
      */
     private $absenceJustifie = false;
 
+    /**
+     * Note constructor.
+     * @throws \Exception
+     */
     public function __construct()
     {
         $this->uuid = Uuid::uuid4();

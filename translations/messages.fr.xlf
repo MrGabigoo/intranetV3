@@ -8554,5 +8554,35 @@
         <target>document.add.success.flash</target>
       </segment>
     </unit>
+    <unit id="5NQ1B3f" name="form_date">
+      <segment>
+        <source>form_date</source>
+        <target>form_date</target>
+      </segment>
+    </unit>
+    <unit id="eptVqnq" name="from_date">
+      <segment>
+        <source>from_date</source>
+        <target>A partir du</target>
+      </segment>
+    </unit>
+    <unit id="nLg8kZc" name="to_date">
+      <segment>
+        <source>to_date</source>
+        <target>Jusqu'au</target>
+      </segment>
+    </unit>
+    <unit id="38hkrKy" name="table.icone_couleur">
+      <segment>
+        <source>table.icone_couleur</source>
+        <target>table.icone_couleur</target>
+      </segment>
+    </unit>
+    <unit id="1u_CKPH" name="borne.delete.success.flash">
+      <segment>
+        <source>borne.delete.success.flash</source>
+        <target>borne.delete.success.flash</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

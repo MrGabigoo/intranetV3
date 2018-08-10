@@ -19,7 +19,7 @@ class RhController extends BaseController
     /**
      * @Route("/rh", name="sa_rh_index")
      */
-    public function index()
+    public function index(): Response
     {
         return $this->render('super-administration/rh/index.html.twig', [
             'controller_name' => 'ScolariteController',

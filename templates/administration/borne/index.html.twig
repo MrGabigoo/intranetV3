@@ -17,8 +17,7 @@
             <table class="table table-striped table-bordered" cellspacing="0" data-provide="datatables">
                 <thead>
                 <tr>
-                    <th>{{ 'table.icone'|trans }}</th>
-                    <th>{{ 'table.couleur'|trans }}</th>
+                    <th>{{ 'table.icone_couleur'|trans }}</th>
                     <th>{{ 'table.message'|trans }}</th>
                     <th>{{ 'table.dateDebutPublication'|trans }}</th>
                     <th>{{ 'table.dateFinPublication'|trans }}</th>
@@ -30,11 +29,10 @@
                 <tbody>
                 {% for borne in bornes %}
                     <tr id="ligne_{{ borne.id }}">
-                        <td>{{ borne.icone }}</td>
-                        <td>{{ borne.couleur }}</td>
+                        <td style="background-color: {{ borne.couleur }}"><i class="{{ borne.icone }}"></i></td>
                         <td>{{ borne.message }}</td>
-                        <td>{{ borne.dateDebutPublication ? borne.dateDebutPublication|localizeddate('long', 'short', app.request.getLocale()) : '' }}</td>
-                        <td>{{ borne.dateFinPublication ? borne.dateFinPublication|localizeddate('long', 'short', app.request.getLocale()) : '' }}</td>
+                        <td>{{ borne.dateDebutPublication ? borne.dateDebutPublication|localizeddate('long', 'none', app.request.getLocale()) : '' }}</td>
+                        <td>{{ borne.dateFinPublication ? borne.dateFinPublication|localizeddate('long', 'none', app.request.getLocale()) : '' }}</td>
                         <td>{{ borne.visible ? 'Yes'|trans : 'No'|trans }}</td>
                         <td>{% for semestre in borne.semestres %}{{ semestre.libelle }}, {% endfor %}</td>
                         <td>
@@ -49,7 +47,7 @@
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="8">{{ 'no.record.found'|trans }}</td>
+                        <td colspan="7">{{ 'no.record.found'|trans }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

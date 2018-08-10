@@ -62,6 +62,8 @@ class Borne extends BaseEntity
     public function __construct()
     {
         $this->semestres = new ArrayCollection();
+        $this->dateDebutPublication = new \DateTime();
+        $this->dateFinPublication = new \DateTime();
     }
 
     /**

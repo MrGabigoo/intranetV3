@@ -10,18 +10,9 @@ namespace App\MesClasses;
 
 
 use App\Entity\Constantes;
-use App\Entity\Diplome;
 use App\Entity\Formation;
-use App\Entity\Semestre;
-use App\Entity\Ue;
-use App\Repository\AnneeRepository;
-use App\Repository\DiplomeRepository;
-use App\Repository\MatiereRepository;
-use App\Repository\SemestreRepository;
-use App\Repository\UeRepository;
 use Dompdf\Dompdf;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\HttpFoundation\Response;
 
 class MyStructure
 {
@@ -42,7 +33,7 @@ class MyStructure
     }
 
 
-    public function export(Formation $formation, $_format)
+    public function export(Formation $formation, $_format): void
     {
         $this->formation = $formation;
 

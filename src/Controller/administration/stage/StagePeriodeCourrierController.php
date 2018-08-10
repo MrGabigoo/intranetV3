@@ -3,6 +3,7 @@
 namespace App\Controller\administration\stage;
 
 use App\Controller\BaseController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -16,7 +17,7 @@ class StagePeriodeCourrierController extends BaseController
     /**
      * @Route("/", name="administration_stage_periode_courrier_index")
      */
-    public function index()
+    public function index(): Response
     {
         return $this->render('administration/stage/stage_periode_courrier/index.html.twig', [
             'controller_name' => 'StagePeriodeCourrierController',

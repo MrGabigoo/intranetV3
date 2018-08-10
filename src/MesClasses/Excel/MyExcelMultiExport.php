@@ -11,7 +11,6 @@ namespace App\MesClasses\Excel;
 use App\MesClasses\MyAbsences;
 use App\MesClasses\MySerializer;
 use PhpOffice\PhpSpreadsheet\Exception;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
 use PhpOffice\PhpSpreadsheet\Writer\Pdf\Dompdf;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -75,7 +74,7 @@ class MyExcelMultiExport
      *
      * @throws Exception
      */
-    public function pageSetup($name)
+    public function pageSetup($name): void
     {
         MyExcelWriter::getSpreadsheet()->getProperties()->setTitle($name);
         MyExcelWriter::getSpreadsheet()->getActiveSheet()->getPageSetup()->setPaperSize(PageSetup::PAPERSIZE_A4);
@@ -97,6 +96,7 @@ class MyExcelMultiExport
      * @param array $options
      *
      * @return StreamedResponse
+     * @throws Exception
      */
     public function saveCsv($name, array $options = []): StreamedResponse
     {
@@ -143,8 +143,9 @@ class MyExcelMultiExport
     /**
      * @param $data
      * @param $modele
+     * @param $colonne
      */
-    public function genereExcelFromSerialization($data, $modele, $colonne)
+    public function genereExcelFromSerialization($data, $modele, $colonne): void
     {
         //serialize les data
         $dataJson = $this->serializer->serialize($data, $modele);
@@ -192,7 +193,7 @@ class MyExcelMultiExport
     /**
      * @param $myAbsences
      */
-    public function genereExcelAbsence(MyAbsences $myAbsences)
+    public function genereExcelAbsence(MyAbsences $myAbsences): void
     {
         MyExcelWriter::writeHeader(['nom', 'prenom', 'nbCoursManques', 'totalDuree', 'nbNonJustifie', 'nbJustifie']);
         $ligne = 2;//todo: en param ?

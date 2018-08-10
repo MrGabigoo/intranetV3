@@ -91,6 +91,10 @@ class Rattrapage extends BaseEntity
      * Rattrapage constructor.
      *
      * @param Etudiant $etudiant
+     *
+     * @param          $annee
+     *
+     * @throws \Exception
      */
     public function __construct(Etudiant $etudiant, $annee)
     {

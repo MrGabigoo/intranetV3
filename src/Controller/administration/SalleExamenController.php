@@ -8,7 +8,6 @@ use App\Entity\SalleExamen;
 use App\Form\SalleExamenType;
 use App\MesClasses\MyExport;
 use App\Repository\SalleExamenRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +20,9 @@ class SalleExamenController extends BaseController
 {
     /**
      * @Route("/", name="administration_salle_examen_index", methods="GET")
+     * @param SalleExamenRepository $salleExamenRepository
+     *
+     * @return Response
      */
     public function index(SalleExamenRepository $salleExamenRepository): Response
     {
@@ -52,6 +54,9 @@ class SalleExamenController extends BaseController
 
     /**
      * @Route("/new", name="administration_salle_examen_new", methods="GET|POST")
+     * @param Request $request
+     *
+     * @return Response
      */
     public function create(Request $request): Response
     {
@@ -75,6 +80,9 @@ class SalleExamenController extends BaseController
 
     /**
      * @Route("/{id}", name="administration_salle_examen_show", methods="GET")
+     * @param SalleExamen $salleExaman
+     *
+     * @return Response
      */
     public function show(SalleExamen $salleExaman): Response
     {
@@ -83,6 +91,10 @@ class SalleExamenController extends BaseController
 
     /**
      * @Route("/{id}/edit", name="administration_salle_examen_edit", methods="GET|POST")
+     * @param Request     $request
+     * @param SalleExamen $salleExaman
+     *
+     * @return Response
      */
     public function edit(Request $request, SalleExamen $salleExaman): Response
     {

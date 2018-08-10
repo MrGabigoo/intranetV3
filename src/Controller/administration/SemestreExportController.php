@@ -20,10 +20,12 @@ class SemestreExportController extends BaseController
 {
     /**
      * @Route("/{slug}/{semestre}", name="administration_semestre_export_releve_provisoire")
+     * @param Etudiant $etudiant
      * @param Semestre $semestre
-     * @ParamConverter("etudiant", options={"mapping": {"slug": "slug"}})
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @ParamConverter("etudiant", options={"mapping": {"slug": "slug"}})
+     *
      */
     public function exportReleveProvisoire(Etudiant $etudiant, Semestre $semestre = null): Response
     {

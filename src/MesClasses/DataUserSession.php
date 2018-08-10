@@ -25,7 +25,6 @@ use App\Repository\MessageDestinatairePersonnelRepository;
 use App\Repository\NotificationRepository;
 use App\Repository\PersonnelRepository;
 use App\Repository\SemestreRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Security;
 
@@ -126,11 +125,11 @@ class DataUserSession
         if ($this->getUser() instanceof Etudiant) {
             $this->messagesRepository = $messageDestinataireEtudiantRepository;
             $this->formation = $this->formationRepository->findFormationEtudiant($this->getUser());
-        //todo: si formation est null alors pas d'accès. Rediriger vers page. Listener ?
+            //todo: si formation est null alors pas d'accès. Rediriger vers page. Listener ?
         } elseif ($this->getUser() instanceof Personnel) {
             $this->messagesRepository = $messageDestinatairePersonnelRepository;
             $this->formation = $this->formationRepository->findFormationPersonnelDefaut($this->getUser());
-        //todo: si formation > 1 (plusieurs formation par défaut ? étrange).
+            //todo: si formation > 1 (plusieurs formation par défaut ? étrange).
             //todo: si formation est null alors pas d'accès autorisé. Rediriger vers page. Listener ?
         } else {
             //todo: erreur
@@ -215,9 +214,9 @@ class DataUserSession
     {
         if ($this->user->getToken() !== null) {
             return $this->user->getToken()->getUser();
-        } else {
-            return null;
         }
+
+        return null;
     }
 
     /**

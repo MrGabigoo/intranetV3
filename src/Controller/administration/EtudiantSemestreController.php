@@ -18,19 +18,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EtudiantSemestreController extends BaseController
 {
-    /** @var EtudiantRepository */
-    private $etudiantRepository;
-
-    /**
-     * EtudiantController constructor.
-     *
-     * @param EtudiantRepository $etudiantRepository
-     */
-    public function __construct(EtudiantRepository $etudiantRepository)
-    {
-        $this->etudiantRepository = $etudiantRepository;
-    }
-
     /**
      * @Route("/parcours/{semestre}", name="administration_etudiant_parcours_semestre_index")
      * @param Semestre $semestre

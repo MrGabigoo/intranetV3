@@ -5,6 +5,7 @@ namespace App\Controller\administration\stage;
 use App\Controller\BaseController;
 use App\Entity\StagePeriode;
 use App\MesClasses\MyExport;
+use App\Repository\StagePeriodeRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,8 +21,11 @@ class StageEntrepriseController extends BaseController
     /**
      * @Route("/{stagePeriode}", name="administration_stage_entreprise_index")
      * @ParamConverter("stagePeriode", options={"mapping": {"stagePeriode": "uuid"}})
+     * @param StagePeriode $stagePeriode
+     *
+     * @return Response
      */
-    public function index(StagePeriode $stagePeriode)
+    public function index(StagePeriode $stagePeriode): Response
     {
         return $this->render('administration/stage/stage_entreprise/index.html.twig', [
             'entreprises' => [],
@@ -31,13 +35,14 @@ class StageEntrepriseController extends BaseController
 
     /**
      * @Route("/export.{_format}", name="administration_stage_entreprise_export", methods="GET", requirements={"_format"="csv|xlsx|pdf"})
-     * @param MyExport          $myExport
-     * @param                   $_format
+     * @param StagePeriodeRepository $stagePeriodeRepository
+     * @param MyExport               $myExport
+     * @param                        $_format
      *
      * @return Response
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    public function export(MyExport $myExport, $_format): Response
+    public function export(StagePeriodeRepository $stagePeriodeRepository, MyExport $myExport, $_format): Response
     {
         $dates = $stagePeriodeRepository->findByFormation($this->dataUserSession->getFormation());
         $response = $myExport->genereFichierGenerique(

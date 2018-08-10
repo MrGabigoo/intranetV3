@@ -57,6 +57,10 @@ class Scolarite extends BaseEntity
      */
     private $commentaire;
 
+    /**
+     * Scolarite constructor.
+     * @throws \Exception
+     */
     public function __construct()
     {
         $this->uuid = Uuid::uuid4();

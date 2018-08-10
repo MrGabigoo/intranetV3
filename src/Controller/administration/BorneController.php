@@ -67,11 +67,12 @@ class BorneController extends BaseController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $this->entityManager->persist($borne);
             $this->entityManager->flush();
             $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'borne.add.success.flash');
 
-            return $this->redirectToRoute('administration_borne_index');
+            //return $this->redirectToRoute('administration_borne_index');
         }
 
         return $this->render('administration/borne/new.html.twig', [

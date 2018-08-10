@@ -26,26 +26,20 @@ class RegistrationNotifySubscriber implements EventSubscriberInterface
     /** @var RouterInterface */
     private $router;
 
-    /**
-     * @var EtudiantRepository
-     */
-    private $etudiantRepository;
+
 
     /**
      * RegistrationNotifySubscriber constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param RouterInterface        $router
-     * @param EtudiantRepository     $etudiantRepository
      */
     public function __construct(
         EntityManagerInterface $entityManager,
-        RouterInterface $router,
-        EtudiantRepository $etudiantRepository
+        RouterInterface $router
     ) {
         $this->entityManager = $entityManager;
         $this->router = $router;
-        $this->etudiantRepository = $etudiantRepository;
     }
 
 

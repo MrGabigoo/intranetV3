@@ -22,10 +22,10 @@
     <div class="tab-content">
         <div class="tab-pane active show" id="vosInformations">
             <div class="card">
-                <h4 class="card-title">{{ 'settins.vos.informations'|trans }}</h4>
+                <h4 class="card-title">{{ 'settings.vos.informations'|trans }}</h4>
 
                 <div class="card-body">
-                    {% form_theme form 'form/bootstrap_4_layout.html.twig' %}
+                    {% form_theme form 'form/my-form.html.twig' %}
                     {{ form_start(form) }}
                     {{ form_widget(form) }}
                     <button class="btn btn-success">{{ button_label|default('label.save'|trans) }}</button>

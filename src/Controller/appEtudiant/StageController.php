@@ -5,7 +5,6 @@ namespace App\Controller\appEtudiant;
 use App\Controller\BaseController;
 use App\Entity\Constantes;
 use App\Entity\StageEtudiant;
-use App\Entity\StagePeriode;
 use App\Form\StageEtudiantEtudiantType;
 use App\Repository\StageEtudiantRepository;
 use App\Repository\StagePeriodeRepository;
@@ -27,6 +26,10 @@ class StageController extends BaseController
 {
     /**
      * @Route("/", name="application_etudiant_stage_index")
+     * @param StageEtudiantRepository $stageEtudiantRepository
+     * @param StagePeriodeRepository  $stagePeriodeRepository
+     *
+     * @return Response
      */
     public function index(StageEtudiantRepository $stageEtudiantRepository, StagePeriodeRepository $stagePeriodeRepository): Response
     {
@@ -46,6 +49,10 @@ class StageController extends BaseController
     /**
      * @Route("/formulaire/{stageEtudiant}", name="application_etudiant_stage_formulaire", methods="GET|POST")
      * @ParamConverter("stageEtudiant", options={"mapping": {"stageEtudiant": "uuid"}})
+     * @param Request       $request
+     * @param StageEtudiant $stageEtudiant
+     *
+     * @return Response
      */
     public function create(Request $request, StageEtudiant $stageEtudiant): Response
     {

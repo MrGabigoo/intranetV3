@@ -21,7 +21,7 @@ class ConfigurationController extends BaseController
     /**
      * @Route("/configuration", name="administration_configuration")
      */
-    public function index()
+    public function index(): Response
     {
         return $this->render('administration/configuration/index.html.twig', [
         ]);

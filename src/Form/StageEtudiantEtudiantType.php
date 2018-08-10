@@ -16,7 +16,7 @@ class StageEtudiantEtudiantType extends AbstractType
 {
     protected $flexible = false;
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->flexible = $options['flexible'];
 
@@ -89,10 +89,10 @@ class StageEtudiantEtudiantType extends AbstractType
                     TextType::class,
                     ['label' => 'label.dureeJoursStage', 'help' => 'help.dureeJoursStage']
                 );
-        };
+        }
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class'         => StageEtudiant::class,

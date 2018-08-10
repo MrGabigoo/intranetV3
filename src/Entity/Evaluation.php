@@ -90,6 +90,8 @@ class Evaluation extends BaseEntity
      * @param Personnel $personnel
      * @param Matiere   $matiere
      * @param Formation $formation
+     *
+     * @throws \Exception
      */
     public function __construct(Personnel $personnel, Matiere $matiere, Formation $formation)
     {

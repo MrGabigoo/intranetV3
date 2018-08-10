@@ -45,17 +45,17 @@ class Events
 
     /* STAGE */
 
-    const MAIL_CHGT_ETAT_STAGE_AUTORISE = 'mail.chgt.etat_stage.autorise';
-    const MAIL_CHGT_ETAT_STAGE_DEPOSE = 'mail.chgt.etat_stage.depose';
-    const MAIL_CHGT_ETAT_STAGE_VALIDE = 'mail.chgt.etat_stage.valide';
-    const MAIL_CHGT_ETAT_STAGE_IMPRIME = 'mail.chgt.etat_stage.imprime';
-    const MAIL_CHGT_ETAT_STAGE_CONVENTION_ENVOYEE = 'mail.chgt.etat_stage.convention_envoyee';
-    const MAIL_CHGT_ETAT_CONVENTION_RECUE = 'mail.chgt.etat_stage.convention_recue';
+    public const MAIL_CHGT_ETAT_STAGE_AUTORISE = 'mail.chgt.etat_stage.autorise';
+    public const MAIL_CHGT_ETAT_STAGE_DEPOSE = 'mail.chgt.etat_stage.depose';
+    public const MAIL_CHGT_ETAT_STAGE_VALIDE = 'mail.chgt.etat_stage.valide';
+    public const MAIL_CHGT_ETAT_STAGE_IMPRIME = 'mail.chgt.etat_stage.imprime';
+    public const MAIL_CHGT_ETAT_STAGE_CONVENTION_ENVOYEE = 'mail.chgt.etat_stage.convention_envoyee';
+    public const MAIL_CHGT_ETAT_CONVENTION_RECUE = 'mail.chgt.etat_stage.convention_recue';
 
-    const CHGT_ETAT_STAGE_AUTORISE = 'chgt.etat_stage.autorise';
-    const CHGT_ETAT_STAGE_DEPOSE = 'chgt.etat_stage.depose';
-    const CHGT_ETAT_STAGE_VALIDE = 'chgt.etat_stage.valide';
-    const CHGT_ETAT_STAGE_IMPRIME = 'chgt.etat_stage.imprime';
-    const CHGT_ETAT_STAGE_CONVENTION_ENVOYEE = 'chgt.etat_stage.convention_envoyee';
-    const CHGT_ETAT_CONVENTION_RECUE = 'chgt.etat_stage.convention_recue';
+    public const CHGT_ETAT_STAGE_AUTORISE = 'chgt.etat_stage.autorise';
+    public const CHGT_ETAT_STAGE_DEPOSE = 'chgt.etat_stage.depose';
+    public const CHGT_ETAT_STAGE_VALIDE = 'chgt.etat_stage.valide';
+    public const CHGT_ETAT_STAGE_IMPRIME = 'chgt.etat_stage.imprime';
+    public const CHGT_ETAT_STAGE_CONVENTION_ENVOYEE = 'chgt.etat_stage.convention_envoyee';
+    public const CHGT_ETAT_CONVENTION_RECUE = 'chgt.etat_stage.convention_recue';
 }

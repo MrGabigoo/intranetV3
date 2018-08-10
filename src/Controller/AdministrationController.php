@@ -18,6 +18,9 @@ class AdministrationController extends BaseController
 {
     /**
      * @Route("/", name="administration_index")
+     * @param StagePeriodeRepository $stagePeriodeRepository
+     *
+     * @return Response
      */
     public function index(StagePeriodeRepository $stagePeriodeRepository) :Response
     {

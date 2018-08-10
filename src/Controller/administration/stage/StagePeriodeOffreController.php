@@ -10,7 +10,6 @@ use App\Form\StagePeriodeOffreType;
 use App\MesClasses\MyExport;
 use App\Repository\StagePeriodeOffreRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +22,6 @@ class StagePeriodeOffreController extends BaseController
     /**
      * @Route("/{stagePeriode}", name="administration_stage_periode_offre_index", methods="GET")
      * @ParamConverter("stagePeriode", options={"mapping": {"stagePeriode": "uuid"}})
-     * @param StagePeriodeOffreRepository $stagePeriodeOffreRepository
      * @param StagePeriode                $stagePeriode
      *
      * @return Response
@@ -40,10 +38,14 @@ class StagePeriodeOffreController extends BaseController
 
     /**
      * @Route("/{stagePeriode}/export.{_format}", name="administration_stage_periode_offre_export", methods="GET", requirements={"_format"="csv|xlsx|pdf"})
-     * @param                   $_format
-     * @ParamConverter("stagePeriode", options={"mapping": {"stagePeriode": "uuid"}})
+     * @param MyExport                    $myExport
+     * @param StagePeriodeOffreRepository $stagePeriodeOffreRepository
+     * @param StagePeriode                $stagePeriode
+     * @param                             $_format
+     *
      * @return Response
      * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @ParamConverter("stagePeriode", options={"mapping": {"stagePeriode": "uuid"}})
      */
     public function export(MyExport $myExport, StagePeriodeOffreRepository $stagePeriodeOffreRepository, StagePeriode $stagePeriode, $_format): Response
     {
@@ -62,6 +64,10 @@ class StagePeriodeOffreController extends BaseController
     /**
      * @Route("/new/{stagePeriode}", name="administration_stage_periode_offre_new", methods="GET|POST")
      * @ParamConverter("stagePeriode", options={"mapping": {"stagePeriode": "uuid"}})
+     * @param Request      $request
+     * @param StagePeriode $stagePeriode
+     *
+     * @return Response
      */
     public function create(Request $request, StagePeriode $stagePeriode): Response
     {
@@ -92,6 +98,10 @@ class StagePeriodeOffreController extends BaseController
     /**
      * @Route("/{id}/{stagePeriode}", name="administration_stage_periode_offre_show", methods="GET")
      * @ParamConverter("stagePeriode", options={"mapping": {"stagePeriode": "uuid"}})
+     * @param StagePeriodeOffre $stagePeriodeOffre
+     * @param StagePeriode      $stagePeriode
+     *
+     * @return Response
      */
     public function show(StagePeriodeOffre $stagePeriodeOffre, StagePeriode $stagePeriode): Response
     {
@@ -103,6 +113,10 @@ class StagePeriodeOffreController extends BaseController
 
     /**
      * @Route("/{id}/edit", name="administration_stage_periode_offre_edit", methods="GET|POST")
+     * @param Request           $request
+     * @param StagePeriodeOffre $stagePeriodeOffre
+     *
+     * @return Response
      */
     public function edit(Request $request, StagePeriodeOffre $stagePeriodeOffre): Response
     {
@@ -131,6 +145,8 @@ class StagePeriodeOffreController extends BaseController
     /**
      * @Route("/{id}/duplicate", name="administration_stage_periode_offre_duplicate", methods="GET")
      *
+     * @param StagePeriodeOffre $stagePeriodeOffre
+     *
      * @return Response
      */
     public function duplicate(StagePeriodeOffre $stagePeriodeOffre): Response
@@ -145,7 +161,9 @@ class StagePeriodeOffreController extends BaseController
 
     /**
      * @Route("/{id}", name="administration_stage_periode_offre_delete", methods="DELETE")
-     * @param Request                $request
+     * @param Request           $request
+     *
+     * @param StagePeriodeOffre $date
      *
      * @return Response
      */

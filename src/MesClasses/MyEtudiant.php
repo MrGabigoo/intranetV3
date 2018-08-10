@@ -58,10 +58,11 @@ class MyEtudiant
     /**
      * MyEtudiant constructor.
      *
-     * @param EntityManagerInterface $entityManager
-     * @param EtudiantRepository     $etudiantRepository
-     * @param NoteRepository         $noteRepository
-     * @param AbsenceRepository      $absenceRepository
+     * @param EntityManagerInterface   $entityManager
+     * @param EtudiantRepository       $etudiantRepository
+     * @param NoteRepository           $noteRepository
+     * @param AbsenceRepository        $absenceRepository
+     * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         EntityManagerInterface $entityManager,
@@ -133,6 +134,7 @@ class MyEtudiant
      * @param           $annee
      *
      * @return void
+     * @throws \Exception
      */
     public function addAbsence($date, $heure, Matiere $matiere, Personnel $personnel, $annee): void
     {
@@ -189,7 +191,7 @@ class MyEtudiant
     /**
      * @param Absence $absence
      */
-    public function removeAbsence(Absence $absence)
+    public function removeAbsence(Absence $absence): void
     {
         $event = new GenericEvent($absence);
         $this->entityManager->remove($absence);

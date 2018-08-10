@@ -4,15 +4,17 @@ namespace App\Form;
 
 use App\Entity\Borne;
 use App\Entity\Semestre;
+use App\Form\Type\DateRangeType;
 use App\Form\Type\YesNoType;
 use App\Repository\SemestreRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -38,7 +40,6 @@ class BorneType extends AbstractType
                 'label'       => 'label.icone',
                 'choices'     => Borne::ICONES,
                 'choice_attr' => function ($choiceValue, $key, $value) {
-                    // adds a class like attending_yes, attending_no, etc
                     return ['data-icon' => Borne::ICONES[$key] . ' mr-2'];
                 },
             ])
@@ -52,13 +53,9 @@ class BorneType extends AbstractType
                 'label'    => 'label.url',
                 'required' => false
             ])
-            ->add('dateDebutPublication', DateTimeType::class, [
-                'label' => 'label.dateDebutPublication',
 
-            ])
-            ->add('dateFinPublication', DateTimeType::class, [
-                'label' => 'label.dateFinPublication',
-            ])
+            ->add('dateRange', DateRangeType::class, ['label' => 'dateRange', 'mapped' => false, 'required' => true])
+
             ->add(
                 'visible',
                 YesNoType::class,
@@ -76,7 +73,19 @@ class BorneType extends AbstractType
                 'required'      => true,
                 'expanded'      => true,
                 'multiple'      => true
-            ));
+            ))
+            ->addEventListener(            FormEvents::POST_SUBMIT, function (FormEvent $event) {
+                $borne = $event->getData();
+                $form = $event->getForm();
+                $dateRange = $form->get('dateRange')->getData();
+                $borne->setDateDebutPublication($dateRange['from_date']);
+                $borne->setDateFinPublication($dateRange['to_date']);
+            })
+            ->addEventListener(            FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+                $borne = $event->getData();
+                $form = $event->getForm();
+                $form->add('dateRange', DateRangeType::class, ['label' => 'dateRange', 'mapped' => false, 'date_data' => ['from' => $borne->getDateDebutPublication(), 'to' => $borne->getDateFinPublication()]]);
+            });
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\MesClasses\MyExport;
 use App\MesClasses\MyExportListing;
 use App\Repository\MatiereRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,8 +18,10 @@ class ExportController extends Controller
     /**
      * @Route("/listing", name="export_listing")
      * @param MatiereRepository $matiereRepository
-     * @param MyExportListing          $myExport
+     * @param MyExportListing   $myExport
      * @param Request           $request
+     *
+     * @return bool|null|\Symfony\Component\HttpFoundation\StreamedResponse
      */
     public function listing(MatiereRepository $matiereRepository, MyExportListing $myExport, Request $request)
     {

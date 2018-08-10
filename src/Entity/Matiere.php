@@ -810,7 +810,7 @@ class Matiere extends BaseEntity
         return $this;
     }
 
-    public function getDisplay()
+    public function getDisplay(): string
     {
         return $this->getCodeMatiere() . ' | ' . $this->getLibelle();
     }

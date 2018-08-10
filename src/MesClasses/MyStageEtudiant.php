@@ -8,7 +8,6 @@
 
 namespace App\MesClasses;
 
-use App\Entity\Constantes;
 use App\Entity\Etudiant;
 use App\Entity\StageEtudiant;
 use App\Entity\StagePeriode;
@@ -35,7 +34,9 @@ class MyStageEtudiant
     /**
      * MyStageEtudiant constructor.
      *
-     * @param EntityManagerInterface $entityManger
+     * @param EntityManagerInterface   $entityManger
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param StageEtudiantRepository  $stageEtudiantRepository
      */
     public function __construct(EntityManagerInterface $entityManger, EventDispatcherInterface $eventDispatcher, StageEtudiantRepository $stageEtudiantRepository)
     {
@@ -51,7 +52,7 @@ class MyStageEtudiant
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function changeEtat(StagePeriode $stagePeriode, Etudiant $etudiant, $etat)
+    public function changeEtat(StagePeriode $stagePeriode, Etudiant $etudiant, $etat): void
     {
         $this->stageEtudiant = $this->checkStageEtudiantExist($stagePeriode, $etudiant);
 
@@ -136,6 +137,7 @@ class MyStageEtudiant
      * @param Etudiant     $etudiant
      *
      * @return StageEtudiant
+     * @throws \Exception
      */
     private function createStageEtudiant(StagePeriode $stagePeriode, Etudiant $etudiant): StageEtudiant
     {

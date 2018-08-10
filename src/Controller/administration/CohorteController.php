@@ -3,6 +3,7 @@
 namespace App\Controller\administration;
 
 use App\Controller\BaseController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -17,7 +18,7 @@ class CohorteController extends BaseController
     /**
      * @Route("/", name="administration_cohorte_index")
      */
-    public function index()
+    public function index(): Response
     {
         return $this->render('administration/cohorte/index.html.twig', [
             'controller_name' => 'CohorteController',
@@ -27,7 +28,7 @@ class CohorteController extends BaseController
     /**
      * @Route("/export.{_format}", name="administration_cohorte_export", requirements={"_format"="csv|xlsx|pdf"})
      */
-    public function export()
+    public function export(): void
     {
     }
 }
