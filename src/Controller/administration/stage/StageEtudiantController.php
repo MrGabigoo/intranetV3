@@ -20,29 +20,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class StageEtudiantController extends BaseController
 {
     /**
-     * @Route("/new", name="administration_stage_etudiant_new", methods="GET|POST")
-     */
-    public function create(Request $request): Response
-    {
-        $stageEtudiant = new StageEtudiant();
-        $form = $this->createForm(StageEtudiantType::class, $stageEtudiant);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($stageEtudiant);
-            $em->flush();
-
-            return $this->redirectToRoute('administration_stage_periode_gestion', ['uuid' => $stageEtudiant->getStagePeriode()->getUuidString()]);
-        }
-
-        return $this->render('administration/stage/stage_etudiant/new.html.twig', [
-            'stage_etudiant' => $stageEtudiant,
-            'form'           => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="administration_stage_etudiant_show", methods="GET")
      */
     public function show(StageEtudiant $stageEtudiant): Response

@@ -71,10 +71,6 @@
                                     <td>{{ competence.libelle }}</td>
                                     <td>{{ competence.updated ? competence.updated|localizeddate('long', 'short', app.request.getLocale()) : '' }}</td>
                                     <td>
-                                        <a href="{{ path('administration_competence_duplicate', {'id': competence.id}) }}"
-                                           class="btn btn-success btn-outline btn-square" data-provide="tooltip"
-                                           data-placement="bottom" title="{{ 'atitle.dupliquer'|trans }}"><i
-                                                    class="fa fa-copy"></i></a>
                                         {{ include('composants/adm-buttons-table-index.html.twig', {elt: 'competence', id: competence.id}) }}
                                     </td>
                                 </tr>
@@ -85,17 +81,13 @@
                                         <td>{{ comp.libelle }}</td>
                                         <td>{{ comp.updated ? comp.updated|localizeddate('long', 'short', app.request.getLocale()) : '' }}</td>
                                         <td>
-                                            <a href="{{ path('administration_competence_duplicate', {'id': comp.id}) }}"
-                                               class="btn btn-success btn-outline btn-square" data-provide="tooltip"
-                                               data-placement="bottom" title="{{ 'atitle.dupliquer'|trans }}"><i
-                                                        class="fa fa-copy"></i></a>
                                             {{ include('composants/adm-buttons-table-index.html.twig', {elt: 'competence', id: comp.id}) }}
                                         </td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
                                 <tr>
-                                    <td colspan="4">{{ 'no.record.found'|trans }}</td>
+                                    <td colspan="5">{{ 'no.record.found'|trans }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -114,7 +106,7 @@
             type:'info',
             href:path('help_article', {sujet: 'administration_competence'}),
             title: 'aide'|trans,
-            icone: 'ti-help'
+            icone: 'fa fa-question'
         }
     ]}) }}
 {% endblock %}

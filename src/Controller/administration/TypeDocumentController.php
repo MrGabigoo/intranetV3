@@ -32,7 +32,7 @@ class TypeDocumentController extends BaseController
     }
 
     /**
-     * @Route("/export.{_format}", name="administration_type_document_export", methods="GET", requirements={"_format":"pdf|csv\xlsx"})
+     * @Route("/export.{_format}", name="administration_type_document_export", methods="GET", requirements={"_format":"pdf|csv|xlsx"})
      */
     public function export(): Response
     {
@@ -115,6 +115,23 @@ class TypeDocumentController extends BaseController
      */
     public function delete(): void
     {
-        //todo: supprimer les documents?
+        //todo: supprimer les documents? Affecter les documents sans catégorie
+    }
+
+    /**
+     * @Route("/{id}/duplicate", name="administration_type_document_duplicate", methods="GET|POST")
+     * @param TypeDocument $type_document
+     *
+     * @return Response
+     */
+    public function duplicate(TypeDocument $type_document): Response
+    {
+        $newTypeDocument = clone $type_document;
+
+        $this->entityManager->persist($newTypeDocument);
+        $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'type_document.duplicate.success.flash');
+
+        return $this->redirectToRoute('administration_type_document_edit', ['id' => $newTypeDocument->getId()]);
     }
 }

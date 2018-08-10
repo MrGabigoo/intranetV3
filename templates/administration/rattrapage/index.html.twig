@@ -22,13 +22,13 @@
         <div class="buttons">
             <a href="{{ path('administration_rattrapage_export', {semestre:semestre.id, _format:'pdf'}) }}"
                class="btn btn-info btn-sm btn-float" data-provide="tooltip"
-               data-placement="bottom" title="{{ 'atitle.imprimer_pdf'|trans }}"><i class="ti-printer"></i></a>
+               data-placement="bottom" title="{{ 'atitle.save_pdf'|trans }}"><i class="fa fa-file-pdf-o"></i></a>
             <a href="{{ path('administration_rattrapage_export', {semestre:semestre.id,_format:'csv'}) }}"
                class="btn btn-info btn-sm btn-float" data-provide="tooltip"
-               data-placement="bottom" title="{{ 'atitle.save_csv'|trans }}"><i class="ti-save"></i></a>
+               data-placement="bottom" title="{{ 'atitle.save_csv'|trans }}"><i class="fa fa-file-text-o"></i></a>
             <a href="{{ path('administration_rattrapage_export', {semestre:semestre.id, _format:'xlsx'}) }}"
                class="btn btn-info btn-sm btn-float" data-provide="tooltip"
-               data-placement="bottom" title="{{ 'atitle.save_xls'|trans }}"><i class="fa fa-table"></i></a>
+               data-placement="bottom" title="{{ 'atitle.save_xls'|trans }}"><i class="fa fa-file-excel-o"></i></a>
 
             <a href="{{ path('administration_semestre_index', {semestre:semestre.id}) }}"
                class="btn btn-primary btn-float" data-provide="tooltip"
@@ -108,24 +108,25 @@
         {type: 'info',
             href: path('administration_rattrapage_export', {semestre:semestre.id,_format:'pdf'}),
             title: 'exporter.pdf'|trans,
-            icone : "ti-printer"},
+            icone : "fa fa-file-pdf-o"
+        },
         {
             type:'info',
             href:path('administration_rattrapage_export', {semestre:semestre.id,_format:'csv'}),
             title: 'exporter.csv'|trans,
-            icone: 'ti-save'
+            icone: 'fa fa-file-text-o'
         },
         {
             type:'info',
             href:path('administration_rattrapage_export', {semestre:semestre.id,_format:'xlsx'}),
             title: 'exporter.xls'|trans,
-            icone: 'fa fa-table'
+            icone: 'fa fa-file-excel-o'
         },
         {
             type:'info',
             href:path('help_article', {sujet: 'administration_rattrapage'}),
             title: 'aide'|trans,
-            icone: 'ti-help'
+            icone: 'fa fa-question'
         }
     ]}) }}
 {% endblock %}

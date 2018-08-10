@@ -104,6 +104,7 @@ class CompetenceController extends BaseController
         $newCompetence = clone $competence;
         $this->entityManager->persist($newCompetence);
         $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'competence.duplicate.success.flash');
 
         return $this->redirectToRoute('administration_competence_edit', ['id' => $newCompetence->getId()]);
     }

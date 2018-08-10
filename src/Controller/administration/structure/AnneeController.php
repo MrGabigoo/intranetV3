@@ -4,6 +4,7 @@ namespace App\Controller\administration\structure;
 
 use App\Controller\BaseController;
 use App\Entity\Annee;
+use App\Entity\Constantes;
 use App\Entity\Diplome;
 use App\Form\AnneeType;
 use App\Repository\AnneeRepository;
@@ -79,6 +80,7 @@ class AnneeController extends BaseController
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->entityManager->persist($annee);
                 $this->entityManager->flush();
+                $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'annee.create.success.flash');
 
                 return $this->redirectToRoute('administration_structure_index');
             }
@@ -128,6 +130,7 @@ class AnneeController extends BaseController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->entityManager->flush();
+                $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'annee.edit.success.flash');
 
                 return $this->redirectToRoute('administration_structure_index');
             }
@@ -153,6 +156,7 @@ class AnneeController extends BaseController
 
         $this->entityManager->persist($newAnnee);
         $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'annee.duplicate.success.flash');
 
         return $this->redirectToRoute('administration_structure_annee_edit', ['id' => $newAnnee->getId()]);
     }

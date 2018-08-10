@@ -30,7 +30,20 @@ class BorneController extends BaseController
         return $this->render('administration/borne/index.html.twig', ['bornes' => $borneRepository->findAll()]);
     }
 
-    //todo: ajouter duplicate
+    /**
+     * @Route("/{id}/duplicate", name="administration_borne_duplicate", methods="GET")
+     * @param Borne $borne
+     *
+     * @return Response
+     */
+    public function duplicate(Borne $borne): Response
+    {
+        $newBorne = clone $borne;
+        $this->entityManager->persist($newBorne);
+        $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'borne.duplicate.success.flash');
+        return $this->redirectToRoute('administration_borne_edit', ['id' => $newBorne->getId()]);
+    }
 
     /**
      * @Route("/new", name="administration_borne_new", methods="GET|POST")

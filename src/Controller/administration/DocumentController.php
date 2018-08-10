@@ -77,9 +77,9 @@ class DocumentController extends BaseController
     }
 
     /**
-     * @Route("/{uuid}", name="administration_document_show", methods="GET")
+     * @Route("/{id}", name="administration_document_show", methods="GET")
      * @param Document $document
-     * @ParamConverter("document", options={"mapping": {"uuid": "uuid"}})
+     * @ParamConverter("document", options={"mapping": {"id": "uuid"}})
      * @return Response
      */
     public function show(Document $document): Response
@@ -88,10 +88,10 @@ class DocumentController extends BaseController
     }
 
     /**
-     * @Route("/{uuid}/edit", name="administration_document_edit", methods="GET|POST")
+     * @Route("/{id}/edit", name="administration_document_edit", methods="GET|POST")
      * @param Request                $request
      * @param Document               $document
-     * @ParamConverter("document", options={"mapping": {"uuid": "uuid"}})
+     * @ParamConverter("document", options={"mapping": {"id": "uuid"}})
      * @return Response
      */
     public function edit(Request $request, Document $document): Response
@@ -122,10 +122,10 @@ class DocumentController extends BaseController
     }
 
     /**
-     * @Route("/{uuid}", name="administration_document_delete", methods="DELETE")
+     * @Route("/{id}", name="administration_document_delete", methods="DELETE")
      * @param Request                $request
      * @param Document               $document
-     * @ParamConverter("document", options={"mapping": {"uuid": "uuid"}})
+     * @ParamConverter("document", options={"mapping": {"id": "uuid"}})
      * @return Response
      */
     public function delete(Request $request, Document $document): Response
@@ -141,5 +141,22 @@ class DocumentController extends BaseController
         $this->addFlashBag(Constantes::FLASHBAG_ERROR, 'document.delete.error.flash');
 
         return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * @Route("/{id}/duplicate", name="administration_document_duplicate", methods="GET|POST")
+     * @param Document $document
+     * @ParamConverter("document", options={"mapping": {"id": "uuid"}})
+     * @return Response
+     */
+    public function duplicate(Document $document): Response
+    {
+        $newDocument = clone $document;
+
+        $this->entityManager->persist($newDocument);
+        $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'document.duplicate.success.flash');
+
+        return $this->redirectToRoute('administration_document_edit', ['id' => $newDocument->getId()]);
     }
 }

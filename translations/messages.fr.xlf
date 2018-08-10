@@ -8530,5 +8530,29 @@
         <target>applications.etudiant.stage.formulaire.heading</target>
       </segment>
     </unit>
+    <unit id="DYYqftE" name="borne.add.success.flash">
+      <segment>
+        <source>borne.add.success.flash</source>
+        <target>borne.add.success.flash</target>
+      </segment>
+    </unit>
+    <unit id="QgSp5gE" name="borne.edit.success.flash">
+      <segment>
+        <source>borne.edit.success.flash</source>
+        <target>borne.edit.success.flash</target>
+      </segment>
+    </unit>
+    <unit id="NDZ8uR_" name="type_document.add.success.flash">
+      <segment>
+        <source>type_document.add.success.flash</source>
+        <target>type_document.add.success.flash</target>
+      </segment>
+    </unit>
+    <unit id="iopVV5B" name="document.add.success.flash">
+      <segment>
+        <source>document.add.success.flash</source>
+        <target>document.add.success.flash</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

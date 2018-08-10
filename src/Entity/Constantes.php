@@ -69,4 +69,5 @@ class Constantes
     /* Constantes de l'IUT utilisateur */
     public const MAIL_FROM = 'intranet@iut-troyes.univ-reims.fr';
     public const NOM_IUT = 'IUT de Troyes';
+    public const LOGO_IUT = 'logo.jpg';
 }

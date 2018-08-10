@@ -3,6 +3,7 @@
 namespace App\Controller\administration\structure;
 
 use App\Controller\BaseController;
+use App\Entity\Constantes;
 use App\Entity\Semestre;
 use App\Entity\Ue;
 use App\Form\UeType;
@@ -60,6 +61,7 @@ class UeController extends BaseController
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->entityManager->persist($ue);
                 $this->entityManager->flush();
+                $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'ue.create.success.flash');
 
                 return $this->redirectToRoute('administration_structure_index');
             }
@@ -105,6 +107,7 @@ class UeController extends BaseController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->entityManager->flush();
+                $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'ue.edit.success.flash');
 
                 return $this->redirectToRoute('administration_structure_index');
             }
@@ -129,6 +132,7 @@ class UeController extends BaseController
 
         $this->entityManager->persist($newUe);
         $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'ue.duplicate.success.flash');
 
         return $this->redirectToRoute('administration_structure_ue_edit', ['id' => $newUe->getId()]);
     }

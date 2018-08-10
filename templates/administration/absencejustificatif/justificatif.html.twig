@@ -23,13 +23,13 @@
 
             {#<a href="{{ path('administration_absences_semestre_liste_export', {semestre:semestre.id, _format: 'pdf'}) }}"#}
             {#class="btn btn-info btn-sm btn-float" data-provide="tooltip"#}
-            {#data-placement="bottom" title="{{ 'atitle.save_pdf'|trans }}"><i class="ti-printer"></i></a>#}
+            {#data-placement="bottom" title="{{ 'atitle.save_pdf'|trans }}"><i class="fa fa-file-pdf-o"></i></a>#}
             {#<a href="{{ path('administration_absences_semestre_liste_export', {semestre:semestre.id, _format: 'csv'}) }}"#}
             {#class="btn btn-info btn-sm btn-float" data-provide="tooltip"#}
-            {#data-placement="bottom" title="{{ 'atitle.save_csv'|trans }}"><i class="ti-save"></i></a>#}
+            {#data-placement="bottom" title="{{ 'atitle.save_csv'|trans }}"><i class="fa fa-file-text-o"></i></a>#}
             {#<a href="{{ path('administration_absences_semestre_liste_export', {semestre:semestre.id, _format: 'xlsx'}) }}"#}
             {#class="btn btn-info btn-sm btn-float" data-provide="tooltip"#}
-            {#data-placement="bottom" title="{{ 'atitle.save_xls'|trans }}"><i class="fa fa-table"></i></a>#}
+            {#data-placement="bottom" title="{{ 'atitle.save_xls'|trans }}"><i class="fa fa-file-excel-o"></i></a>#}
 
             <a href="{{ path('administration_semestre_index', {semestre:semestre.id}) }}"
                class="btn btn-primary btn-float" data-provide="tooltip"
@@ -77,34 +77,35 @@
                                             class="ti-check"></i> Accepté</button>
                                 <button
                                         data-justificatif="{{ justificatif.uuidString }}"
-                                   class="btn btn-danger btn-outline btn-square justificatif-annuler bx_{{ justificatif.uuidString }}"><i
-                                            class="fa fa-undo" data-provide="tooltip" data-placement="bottom"
-                                            title="{{ 'atitle.annuler'|trans }}"></i></button>
+                                   class="btn btn-danger btn-outline btn-square justificatif-annuler bx_{{ justificatif.uuidString }}" data-provide="tooltip" data-placement="bottom"
+                                        title="{{ 'atitle.annuler'|trans }}"><i
+                                            class="material-icons">undo</i></button>
                             {% elseif justificatif.etat == 'R' %}
                                 <button
                                    class="btn btn-warning btn-outline bx_{{ justificatif.uuidString }}"><i
                                             class="ti-na"></i> Refusé</button>
                                 <button
                                         data-justificatif="{{ justificatif.uuidString }}"
-                                   class="btn btn-danger btn-outline btn-square justificatif-annuler bx_{{ justificatif.uuidString }}"><i
-                                            class="fa fa-undo" data-provide="tooltip" data-placement="bottom"
-                                            title="{{ 'atitle.annuler'|trans }}"></i></button>
+                                   class="btn btn-danger btn-outline btn-square justificatif-annuler bx_{{ justificatif.uuidString }}" data-provide="tooltip" data-placement="bottom"
+                                        title="{{ 'atitle.annuler'|trans }}"><i
+                                            class="material-icons">undo</i></button>
                             {% else %}
                             <a href="#"
                                class="btn btn-success btn-outline btn-square justificatif-accepte bx_{{ justificatif.uuidString }}" data-provide="tooltip"
                                data-justificatif="{{ justificatif.uuidString }}"
                                data-placement="bottom" title="{{ 'atitle.accepter.le.justificatif'|trans }}"><i
-                                        class="ti-check"></i></a>
+                                        class="material-icons">check</i></a>
                             <a href="#"
                                class="btn btn-warning btn-outline btn-square justificatif-refuse bx_{{ justificatif.uuidString }}" data-provide="tooltip"
                                data-justificatif="{{ justificatif.uuidString }}"
                                data-placement="bottom" title="{{ 'atitle.refuser.le.justificatif'|trans }}"><i
-                                        class="ti-na"></i></a>
+                                        class="material-icons">not_interested</i></a>
 
                             <a href="{{ path('administration_absence_justificatif_delete', {id: justificatif.uuidString}) }}" data-csrf="{{ csrf_token('delete' ~ justificatif.uuidString) }}"
+                               data-provide="tooltip" data-placement="bottom"
+                               title="{{ 'atitle.supprimer'|trans }}"
                                class="btn btn-danger btn-outline btn-square supprimer bx_{{ justificatif.uuidString }}"><i
-                                        class="ti-close" data-provide="tooltip" data-placement="bottom"
-                                        title="{{ 'atitle.supprimer'|trans }}"></i></a>
+                                        class="material-icons" >delete</i></a>
                             {% endif %}
 
                             </td>
@@ -121,24 +122,24 @@
         {type: 'info',
             href: path('administration_absences_justificatif_semestre_export', {semestre:semestre.id, _format: 'pdf'}),
             title: 'exporter.pdf'|trans,
-            icone : "ti-printer"},
+            icone : "fa fa-file-pdf-o"},
         {
             type:'info',
             href:path('administration_absences_justificatif_semestre_export', {semestre:semestre.id, _format: 'csv'}),
             title: 'exporter.csv'|trans,
-            icone: 'ti-save'
+            icone: 'fa fa-file-text-o'
         },
         {
             type:'info',
             href:path('administration_absences_justificatif_semestre_export', {semestre:semestre.id, _format: 'xlsx'}),
             title: 'exporter.xls'|trans,
-            icone: 'fa fa-table'
+            icone: 'fa fa-file-excel-o'
         },
         {
             type:'info',
             href:path('help_article', {sujet: 'administration_absence_justificatif'}),
             title: 'aide'|trans,
-            icone: 'ti-help'
+            icone: 'fa fa-question'
         }
     ]}) }}
 {% endblock %}

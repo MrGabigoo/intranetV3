@@ -150,4 +150,21 @@ class ActualiteController extends BaseController
         $this->addFlashBag(Constantes::FLASHBAG_ERROR, 'actualite.delete.error.flash');
         return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }
+
+    /**
+     * @Route("/{id}/duplicate", name="administration_actualite_duplicate", methods="GET|POST")
+     * @param Actualite $actualite
+     *
+     * @return Response
+     */
+    public function duplicate(Actualite $actualite): Response
+    {
+        $newActualite = clone $actualite;
+
+        $this->entityManager->persist($newActualite);
+        $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'actualite.duplicate.success.flash');
+
+        return $this->redirectToRoute('administration_actualite_edit', ['id' => $newActualite->getId()]);
+    }
 }

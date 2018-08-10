@@ -53,18 +53,19 @@
         {type: 'info',
             href: path('administration_ppn_export', {_format:'pdf'}),
             title: 'exporter.pdf'|trans,
-            icone : "ti-printer"},
+            icone : "fa fa-file-pdf-o"
+        },
         {
             type:'info',
             href:path('administration_ppn_export', {_format:'csv'}),
             title: 'exporter.csv'|trans,
-            icone: 'ti-save'
+            icone: 'fa fa-file-text-o'
         },
         {
             type:'info',
             href:path('administration_ppn_export', {_format:'xlsx'}),
             title: 'exporter.xls'|trans,
-            icone: 'fa fa-table'
+            icone: 'fa fa-file-excel-o'
         },
         {
             type:'info',
@@ -76,7 +77,7 @@
             type:'info',
             href:path('help_article', {sujet: 'administration_ppn'}),
             title: 'aide'|trans,
-            icone: 'ti-help'
+            icone: 'fa fa-question'
         }
     ]}) }}
 {% endblock %}

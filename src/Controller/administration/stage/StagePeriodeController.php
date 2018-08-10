@@ -171,6 +171,7 @@ class StagePeriodeController extends BaseController
         $newStagePeriode = clone $stagePeriode;
         $this->entityManager->persist($newStagePeriode);
         $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'stage_periode.duplicate.success.flash');
 
         return $this->redirectToRoute('administration_stage_periode_edit', ['id' => $newStagePeriode->getId()]);
     }

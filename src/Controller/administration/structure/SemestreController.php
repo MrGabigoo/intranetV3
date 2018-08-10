@@ -4,6 +4,7 @@ namespace App\Controller\administration\structure;
 
 use App\Controller\BaseController;
 use App\Entity\Annee;
+use App\Entity\Constantes;
 use App\Entity\Semestre;
 use App\Form\SemestreType;
 use App\Repository\SemestreRepository;
@@ -74,6 +75,7 @@ class SemestreController extends BaseController
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->entityManager->persist($semestre);
                 $this->entityManager->flush();
+                $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'semestre.create.success.flash');
 
                 return $this->redirectToRoute('administration_structure_index');
             }
@@ -123,6 +125,7 @@ class SemestreController extends BaseController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->entityManager->flush();
+                $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'semestre.edit.success.flash');
 
                 return $this->redirectToRoute('administration_structure_index');
             }
@@ -148,6 +151,7 @@ class SemestreController extends BaseController
 
         $this->entityManager->persist($newSemestre);
         $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'semestre.duplicate.success.flash');
 
         return $this->redirectToRoute('administration_structure_semestre_edit', ['id' => $newSemestre->getId()]);
     }

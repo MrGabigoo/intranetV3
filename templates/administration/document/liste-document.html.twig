@@ -21,7 +21,7 @@
             <td><a href="{{ asset('upload/documents/'~document.documentName) }}"
                    target="_blank">{{ 'voir.le.fichier'|trans }}</a></td>
             <td>
-                {{ include('composants/adm-buttons-table-index.html.twig', {elt:'document', id:document.id}) }}
+                {{ include('composants/adm-buttons-table-index.html.twig', {elt:'document', id:document.uuidString}) }}
             </td>
         </tr>
     {% endfor %}

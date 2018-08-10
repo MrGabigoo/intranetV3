@@ -2921,5 +2921,23 @@
         <target>help.avantages</target>
       </segment>
     </unit>
+    <unit id="Ej.WZqo" name="danger">
+      <segment>
+        <source>danger</source>
+        <target>danger</target>
+      </segment>
+    </unit>
+    <unit id="8AY7gIc" name="Hour">
+      <segment>
+        <source>Hour</source>
+        <target>Hour</target>
+      </segment>
+    </unit>
+    <unit id="S3hmW_x" name="Minute">
+      <segment>
+        <source>Minute</source>
+        <target>Minute</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

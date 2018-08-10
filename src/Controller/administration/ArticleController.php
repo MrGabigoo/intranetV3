@@ -154,4 +154,21 @@ class ArticleController extends BaseController
 
         return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }
+
+    /**
+     * @Route("/{id}/duplicate", name="administration_article_duplicate", methods="GET|POST")
+     * @param Article $article
+     *
+     * @return Response
+     */
+    public function duplicate(Article $article): Response
+    {
+        $newArticle = clone $article;
+
+        $this->entityManager->persist($newArticle);
+        $this->entityManager->flush();
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'article.duplicate.success.flash');
+
+        return $this->redirectToRoute('administration_article_edit', ['id' => $newArticle->getId()]);
+    }
 }
