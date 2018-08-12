@@ -54,10 +54,10 @@
                                     <td>{% for diplome in formation.formation.diplomes %}{{ diplome.display }}, {% endfor %}</td>
                                     <td>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="pardefaut"
+                                            <input class="form-check-input formationParDefaut" type="radio" name="pardefaut"
                                                    value="{{ formation.formation.id }}"
                                                    {% if formation.defaut == true %}checked{% endif %}>
-                                        </div>{# todo: gérer le changement de formation par défaut. #}
+                                        </div>{# todo: A TESTER ! gérer le changement de formation par défaut. #}
                                     </td>
                                 </tr>
                             {% endfor %}

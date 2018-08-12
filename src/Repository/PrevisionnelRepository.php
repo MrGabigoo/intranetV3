@@ -113,4 +113,22 @@ class PrevisionnelRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findPrevisionnelFormation(Formation $formation, $annee)
+    {
+
+        return $this->createQueryBuilder('p')
+            ->innerJoin(Matiere::class, 'm', 'WITH', 'p.matiere = m.id')
+            ->innerJoin(Ue::class, 'u', 'WITH', 'm.ue = u.id')
+            ->innerJoin(Semestre::class, 's', 'WITH', 'u.semestre = s.id')
+            ->innerJoin(Annee::class, 'a', 'WITH', 's.annee = a.id')
+            ->innerJoin(Diplome::class, 'd', 'WITH', 'a.diplome = d.id')
+            ->where('p.annee = :annee')
+            ->andWhere('d.formation = :formation')
+            ->setParameter('annee', $annee)
+            ->setParameter('formation', $formation->getId())
+            ->getQuery()
+            ->getResult();
+
+    }
 }

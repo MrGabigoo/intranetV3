@@ -125,6 +125,11 @@ class MyEtudiant
         $this->etudiant = $this->etudiantRepository->find($id);
     }
 
+    public function setUuidEtudiant($uuid): void
+    {
+        $this->etudiant = $this->etudiantRepository->findOneByUuid($uuid);
+    }
+
     /**
      * @param           $date
      * @param           $heure

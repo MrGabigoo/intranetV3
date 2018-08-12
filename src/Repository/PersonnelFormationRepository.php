@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Formation;
 use App\Entity\Personnel;
 use App\Entity\PersonnelFormation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -41,6 +42,18 @@ class PersonnelFormationRepository extends ServiceEntityRepository
             ->setParameter('formation', $formation)
             ->orderBy('p.nom', 'DESC')
             ->orderBy('p.prenom', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByPersonnel($user)
+    {
+        return $this->createQueryBuilder('f')
+            ->innerJoin(Personnel::class, 'p', 'WITH', 'f.personnel = p.id')
+            ->innerJoin(Formation::class, 'm', 'WITH', 'f.formation = m.id')
+            ->where('f.personnel = :personnel')
+            ->setParameter('personnel', $user)
+            ->orderBy('m.libelle', 'DESC')
             ->getQuery()
             ->getResult();
     }

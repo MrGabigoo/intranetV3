@@ -166,4 +166,19 @@ class EtudiantRepository extends ServiceEntityRepository
 
         return $t;
     }
+
+    /**
+     * @param $uuid
+     *
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByUuid($uuid)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.uuid = :uuid')
+            ->setParameter('uuid', $uuid)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

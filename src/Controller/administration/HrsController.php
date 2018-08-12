@@ -21,15 +21,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class HrsController extends BaseController
 {
     /**
-     * @Route("/index", name="administration_hrs_index", methods="GET")
+     * @Route("/{annee}", name="administration_hrs_index", methods="GET", options={"expose":true})
      * @param HrsRepository $hrsRepository
+     *
+     * @param int           $annee
      *
      * @return Response
      */
-    public function index(HrsRepository $hrsRepository): Response
+    public function index(HrsRepository $hrsRepository, $annee = 0): Response
     {
+        if($annee === 0 && $this->dataUserSession->getFormation() !== null) {
+            $annee = $this->dataUserSession->getFormation()->getOptAnneePrevisionnel();
+        }
         return $this->render('administration/hrs/index.html.twig', [
-            'hrs' => $hrsRepository->findAll() //todo: filtrer par formation
+            'hrs' => $hrsRepository->findHrsFormation($this->dataUserSession->getFormation(), $annee),
+            'annee' => $annee
         ]);
     }
 
@@ -100,6 +106,42 @@ class HrsController extends BaseController
     }
 
     /**
+     * @Route("/annee/duplicate", name="administration_hrs_duplicate_annee", methods="POST")
+
+     *
+     * @return Response
+     */
+    public function duplicateAnnee(HrsRepository $hrsRepository, Request $request): Response
+    {
+        $anneeDepart = $request->request->get('annee_depart');
+        $annee_destination = $request->request->get('annee_destination');
+        $annee_concerver = $request->request->get('annee_concerver');
+
+        //on efface, sauf si la case est cochée.
+        if ($annee_concerver === null || $annee_concerver !== 'true') {
+            $hrs = $hrsRepository->findHrsFormation($this->dataUserSession->getFormation(), $annee_destination);
+            foreach ($hrs as $hr) {
+                $this->entityManager->remove($hr);
+            }
+            $this->entityManager->flush();
+        }
+
+        $hrs = $hrsRepository->findHrsFormation($this->dataUserSession->getFormation(), $anneeDepart);
+
+        /** @var Hrs $hr */
+        foreach ($hrs as $hr) {
+            $newHrs = clone $hr;
+            $newHrs->setAnnee($annee_destination);
+            $this->entityManager->persist($newHrs);
+        }
+        $this->entityManager->flush();
+
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'hrs.duplicate_annee.success.flash');
+
+        return $this->redirectToRoute('administration_hrs_index', ['annee' => $annee_destination]);
+    }
+
+    /**
      * @Route("/{id}/duplicate", name="administration_hrs_duplicate", methods="GET")
      * @param Hrs $hrs
      *
@@ -113,16 +155,18 @@ class HrsController extends BaseController
         $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'hrs.duplicate.success.flash');
 
         //'Copie effectuée avec succès. VOus pouvez modifier le nouvel élément.'
-
-
         return $this->redirectToRoute('administration_hrs_edit', ['id' => $newHrs->getId()]);
     }
 
+
+
     /**
-     * @Route("/export.{_format}", name="administration_hrs_export", methods="GET", requirements={"_format"="csv|xlsx|pdf"})
+     * @Route("/export.{_format}", name="administration_hrs_export", methods="GET",
+     *                             requirements={"_format"="csv|xlsx|pdf"})
      */
     public function export(): Response
     {
+        //todo: a faire
         return new Response('', Response::HTTP_OK);
     }
 

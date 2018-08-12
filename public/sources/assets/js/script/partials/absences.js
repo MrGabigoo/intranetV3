@@ -3,7 +3,7 @@ var tabsences = [];
 $(document).on('change', '#justifier_etudiant', function (e) {
   console.log('justifier_etudiant')
   $.ajax({
-    url: Routing.generate('administration_absences_liste_absence_etudiant.fr', {etudiant: $(this).val()}),
+    url: Routing.generate('administration_absences_liste_absence_etudiant'+locale, {etudiant: $(this).val()}),
     //dataType: 'json',
     success: function (data) {
       console.log('ok')
@@ -55,7 +55,7 @@ $(document).on('click', '.absChangeTypeGroupe', function (e) {
 function updateAffichage (date, heure) {
   $.ajax({
     type: 'GET',
-    url: Routing.generate('application_personnel_absence_get_ajax.fr', {matiere: $('#absence-matiere').val()}),
+    url: Routing.generate('application_personnel_absence_get_ajax'+locale, {matiere: $('#absence-matiere').val()}),
     dataType: 'json',
     success: function (data) {
       tabsences = data
@@ -109,7 +109,7 @@ $(document).on('click', '.etudiant', function () {
     //$(this).addClass('absence');
     $.ajax({
       type: 'POST',
-      url: Routing.generate('application_personnel_absence_saisie_ajax.fr', {
+      url: Routing.generate('application_personnel_absence_saisie_ajax'+locale, {
         matiere: $('#absence-matiere').val(),
         etudiant: $(this).attr('id')
       }),
@@ -135,7 +135,7 @@ $(document).on('click', '.etudiant', function () {
     //$(this).removeClass('absence');
     $.ajax({
       type: 'POST',
-      url: Routing.generate('application_personnel_absence_saisie_ajax.fr', {
+      url: Routing.generate('application_personnel_absence_saisie_ajax'+locale, {
         matiere: $('#absence-matiere').val(),
         etudiant: $(this).attr('id')
       }),
@@ -188,7 +188,7 @@ $('#liste-absences').dataTable({
 $(document).on('click', '.justificatif-accepte', function (e) {
   var justificatif = $(this).data('justificatif')
   $.ajax({
-    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'A'}),
+    url: Routing.generate('administration_absence_justificatif_change_etat'+locale, {uuid: justificatif, etat: 'A'}),
     success: function (e) {
       var bx = $('.bx_' + justificatif)
       var parent = bx.parent()
@@ -206,7 +206,7 @@ $(document).on('click', '.justificatif-accepte', function (e) {
 $(document).on('click', '.justificatif-refuse', function (e) {
   var justificatif = $(this).data('justificatif')
   $.ajax({
-    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'R'}),
+    url: Routing.generate('administration_absence_justificatif_change_etat'+locale, {uuid: justificatif, etat: 'R'}),
     success: function (e) {
       var bx = $('.bx_' + justificatif)
       var parent = bx.parent()
@@ -224,7 +224,7 @@ $(document).on('click', '.justificatif-refuse', function (e) {
 $(document).on('click', '.justificatif-annuler', function (e) {
   var justificatif = $(this).data('justificatif')
   $.ajax({
-    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'D'}),
+    url: Routing.generate('administration_absence_justificatif_change_etat'+locale, {uuid: justificatif, etat: 'D'}),
     success: function (e) {
       var bx = $('.bx_' + justificatif)
       var parent = bx.parent()

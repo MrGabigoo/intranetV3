@@ -220,9 +220,9 @@ class DataUserSession
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getAnneeUniversitaire(): ?int
+    public function getAnneeUniversitaire(): int
     {
         return $this->formation->getAnneeCourante();
     }

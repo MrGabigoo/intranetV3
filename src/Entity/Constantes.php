@@ -43,7 +43,7 @@ class Constantes
     public const CHAMPS_BAC = 'bac';
     public const CHAMPS_MAIL_ETUDIANT = 'mail';
 
-    public const FORMAT_CSV_POINT_VIRGULE = 'csv-pv';
+    public const FORMAT_CSV_POINT_VIRGULE = 'csv';
     public const FORMAT_CSV_VIRGULE = 'csv-v';
     public const FORMAT_EXCEL = 'xlsx';
     public const FORMAT_PDF = 'pdf';

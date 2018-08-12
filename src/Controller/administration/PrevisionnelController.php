@@ -13,6 +13,7 @@ use App\MesClasses\MyPrevisionnel;
 use App\MesClasses\Tools;
 use App\Repository\MatiereRepository;
 use App\Repository\PersonnelRepository;
+use App\Repository\PrevisionnelRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,67 +29,89 @@ use Symfony\Component\Routing\Annotation\Route;
 class PrevisionnelController extends BaseController
 {
     /**
-     * @Route("/", name="administration_previsionnel_index")
+     * @Route("/{annee}", name="administration_previsionnel_index", options={"expose":true})
      * @param MatiereRepository $matiereRepository
+     *
+     * @param int               $annee
      *
      * @return Response
      */
-    public function index(MatiereRepository $matiereRepository): Response
+    public function index(MatiereRepository $matiereRepository, $annee = 0): Response
     {
+        if($annee === 0 && $this->dataUserSession->getFormation() !== null) {
+            $annee = $this->dataUserSession->getFormation()->getOptAnneePrevisionnel();
+        }
+
         return $this->render('administration/previsionnel/index.html.twig', [
-            'matieres' => $matiereRepository->findAll()
+            'matieres' => $matiereRepository->findByFormation($this->dataUserSession->getFormation()),
+            'annee' => $annee
         ]);
     }
 
     /**
-     * @Route("/matiere/{matiere}", name="administration_previsionnel_matiere", options={"expose":true})
+     * @Route("/matiere/{matiere}/{annee}", name="administration_previsionnel_matiere", options={"expose":true})
      * @param MyPrevisionnel $myPrevisionnel
      * @param Matiere        $matiere
      *
      * @return Response
      */
-    public function matiere(MyPrevisionnel $myPrevisionnel, Matiere $matiere): Response
+    public function matiere(MyPrevisionnel $myPrevisionnel, Matiere $matiere, $annee = 0): Response
     {
-        $myPrevisionnel->getPrevisionnelMatiere($matiere, $this->dataUserSession->getAnneePrevisionnel());
+        if($annee === 0 && $this->dataUserSession->getFormation() !== null) {
+            $annee = $this->dataUserSession->getFormation()->getOptAnneePrevisionnel();
+        }
+
+        $myPrevisionnel->getPrevisionnelMatiere($matiere, $annee);
 
         return $this->render('administration/previsionnel/matiere.html.twig', [
-            'previsionnel' => $myPrevisionnel
+            'previsionnel' => $myPrevisionnel,
+            'annee' => $annee
         ]);
     }
 
     /**
-     * @Route("/semestre/{semestre}", name="administration_previsionnel_semestre", options={"expose":true})
+     * @Route("/semestre/{semestre}/{annee}", name="administration_previsionnel_semestre", options={"expose":true})
      *
      * @param MyPrevisionnel $myPrevisionnel
      * @param Semestre       $semestre
      *
      * @return Response
      */
-    public function semestre(MyPrevisionnel $myPrevisionnel, Semestre $semestre): Response
+    public function semestre(MyPrevisionnel $myPrevisionnel, Semestre $semestre, $annee =0): Response
     {
-        $myPrevisionnel->getPrevisionnelSemestre($semestre, $this->dataUserSession->getAnneePrevisionnel());
+        if($annee === 0 && $this->dataUserSession->getFormation() !== null) {
+            $annee = $this->dataUserSession->getFormation()->getOptAnneePrevisionnel();
+        }
+
+        $myPrevisionnel->getPrevisionnelSemestre($semestre, $annee);
 
         return $this->render('administration/previsionnel/semestre.html.twig', [
-            'previsionnel' => $myPrevisionnel
+            'previsionnel' => $myPrevisionnel,
+            'annee' => $annee
 
         ]);
     }
 
     /**
-     * @Route("/personnel/{personnel}", name="administration_previsionnel_personnel", options={"expose":true})
+     * @Route("/personnel/{personnel}/{annee}", name="administration_previsionnel_personnel", options={"expose":true})
      * @param MyPrevisionnel $myPrevisionnel
      * @param Personnel      $personnel
      *
      * @return Response
      */
-    public function personnel(MyPrevisionnel $myPrevisionnel, Personnel $personnel): Response
+    public function personnel(MyPrevisionnel $myPrevisionnel, Personnel $personnel, $annee = 0): Response
     {
+        if($annee === 0 && $this->dataUserSession->getFormation() !== null) {
+            $annee = $this->dataUserSession->getFormation()->getOptAnneePrevisionnel();
+        }
+
         $myPrevisionnel->setPersonnel($personnel);
-        $myPrevisionnel->getPrevisionnelEnseignantBySemestre($this->dataUserSession->getAnneePrevisionnel());
-        $myPrevisionnel->getHrsEnseignant($this->dataUserSession->getAnneePrevisionnel());
+        $myPrevisionnel->getPrevisionnelEnseignantBySemestre($annee);
+        $myPrevisionnel->getHrsEnseignant($annee);
 
         return $this->render('administration/previsionnel/personnel.html.twig', [
-            'previsionnel' => $myPrevisionnel
+            'previsionnel' => $myPrevisionnel,
+            'annee' => $annee
         ]);
     }
 
@@ -129,7 +152,8 @@ class PrevisionnelController extends BaseController
             $annee = $request->request->get('previsionnel_annee_previsionnel') !== '' ? $request->request->get('previsionnel_annee_previsionnel') : $this->dataUserSession->getAnneePrevisionnel();
 
             if ($matiere !== null) {
-                for ($i = 1; $i <= $request->request->get('nbLignes'); $i++) {
+                $nbLignes = $request->request->get('nbLignes');
+                for ($i = 1; $i <= $nbLignes; $i++) {
                     $personnel = $personnelRepository->find($request->request->get('intervenant_' . $i));
                     if ($personnel !== null) {
                         $previsionnel = new Previsionnel($matiere, $personnel, $annee);
@@ -189,12 +213,50 @@ class PrevisionnelController extends BaseController
     }
 
     /**
-     * @Route("/export.{_format}", name="administration_previsionnel_export", methods="GET", requirements={"_format"="csv|xlsx|pdf"})
+     * @Route("/{annee}/export.{_format}", name="administration_previsionnel_export", methods="GET", requirements={"_format"="csv|xlsx|pdf"})
      */
-    public function export(): Response
+    public function export($annee): Response
     {
         //todo: probablement ajouter aussi un export spécifique au format OMEGA
         return new Response('', Response::HTTP_OK);
+    }
+
+    /**
+     * @Route("/annee/duplicate", name="administration_previsionnel_duplicate_annee", methods="POST")
+     *
+     * @param PrevisionnelRepository $previsionnelRepository
+     * @param Request                $request
+     *
+     * @return Response
+     */
+    public function duplicateAnnee(PrevisionnelRepository $previsionnelRepository, Request $request): Response
+    {
+        $anneeDepart = $request->request->get('annee_depart');
+        $annee_destination = $request->request->get('annee_destination');
+        $annee_concerver = $request->request->get('annee_concerver');
+
+        //on efface, sauf si la case est cochée.
+        if ($annee_concerver === null || $annee_concerver !== 'true') {
+            $previsionnels = $previsionnelRepository->findPrevisionnelFormation($this->dataUserSession->getFormation(), $annee_destination);
+            foreach ($previsionnels as $previsionnel) {
+                $this->entityManager->remove($previsionnel);
+            }
+            $this->entityManager->flush();
+        }
+
+        $previsionnels = $previsionnelRepository->findPrevisionnelFormation($this->dataUserSession->getFormation(), $anneeDepart);
+
+        /** @var Previsionnel $hr */
+        foreach ($previsionnels as $previsionnel) {
+            $newPrevisonnel = clone $previsionnel;
+            $newPrevisonnel->setAnnee($annee_destination);
+            $this->entityManager->persist($newPrevisonnel);
+        }
+        $this->entityManager->flush();
+
+        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'previsionnel.duplicate_annee.success.flash');
+
+        return $this->redirectToRoute('administration_previsionnel_index', ['annee' => $annee_destination]);
     }
 
     /**

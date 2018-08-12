@@ -39,6 +39,7 @@ class DatesType extends AbstractType
                 'label'    => 'label.texte_date',
                 'required' => false
             ])
+            //todo: remplacer par un DateRange
             ->add('dateDebut', DateType::class, ['widget' => 'single_text', 'label' => 'label.date_debut'])
             ->add('heureDebut', TimeType::class, ['widget' => 'single_text', 'label' => 'label.heure_debut'])
             ->add('dateFin', DateType::class, ['widget' => 'single_text', 'label' => 'label.date_fin'])

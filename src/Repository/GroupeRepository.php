@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Etudiant;
 use App\Entity\Groupe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -22,5 +23,18 @@ class GroupeRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Groupe::class);
+    }
+
+    public function findEtudiantsByTypeGroupe(\App\Entity\TypeGroupe $typeGroupe)
+    {
+        return $this->createQueryBuilder('g')
+            ->innerJoin(Etudiant::class, 'e', 'WITH', 'g.etudiant = e.id')
+            ->where('g.typeGroupe = :typeGroupe')
+            ->setParameter('typeGroupe', $typeGroupe->getId())
+            ->orderBy('g.libelle', 'ASC')
+            ->orderBy('e.nom', 'ASC')
+            ->orderBy('e.prenom', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }

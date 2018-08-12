@@ -3859,7 +3859,7 @@
       </notes>
       <segment>
         <source>adm.hrs.index.heading</source>
-        <target>Liste des HRS et Primes</target>
+        <target>Liste des HRS et Primes pour l'année %annee%</target>
       </segment>
     </unit>
     <unit id="0fcGqyZ" name="table.personnel">
@@ -8582,6 +8582,72 @@
       <segment>
         <source>borne.delete.success.flash</source>
         <target>borne.delete.success.flash</target>
+      </segment>
+    </unit>
+    <unit id="2Lh32Xe" name="M.">
+      <segment>
+        <source>M.</source>
+        <target>M.</target>
+      </segment>
+    </unit>
+    <unit id="jebmWU6" name="Mme">
+      <segment>
+        <source>Mme</source>
+        <target>Mme</target>
+      </segment>
+    </unit>
+    <unit id="pap_txp" name="settings.vos.informations">
+      <segment>
+        <source>settings.vos.informations</source>
+        <target>settings.vos.informations</target>
+      </segment>
+    </unit>
+    <unit id="CEOKYgD" name="adm.hrs.duplicate.annee.heading">
+      <segment>
+        <source>adm.hrs.duplicate.annee.heading</source>
+        <target>adm.hrs.duplicate.annee.heading</target>
+      </segment>
+    </unit>
+    <unit id="dK5ZkCS" name="hrs.duplicate_annee.success.flash">
+      <segment>
+        <source>hrs.duplicate_annee.success.flash</source>
+        <target>hrs.duplicate_annee.success.flash</target>
+      </segment>
+    </unit>
+    <unit id=".XlBsMT" name="administration.previsionnel.heading">
+      <segment>
+        <source>administration.previsionnel.heading</source>
+        <target>Prévisionnels de la formation (année : %annee%)</target>
+      </segment>
+    </unit>
+    <unit id="wHi.lbd" name="adm.previsionnel.duplicate.annee.heading">
+      <segment>
+        <source>adm.previsionnel.duplicate.annee.heading</source>
+        <target>adm.previsionnel.duplicate.annee.heading</target>
+      </segment>
+    </unit>
+    <unit id="YsxB2xD" name="previsionnel.duplicate_annee.success.flash">
+      <segment>
+        <source>previsionnel.duplicate_annee.success.flash</source>
+        <target>previsionnel.duplicate_annee.success.flash</target>
+      </segment>
+    </unit>
+    <unit id="1pkNEkL" name="atitle.refresh">
+      <segment>
+        <source>atitle.refresh</source>
+        <target>atitle.refresh</target>
+      </segment>
+    </unit>
+    <unit id="0">
+      <segment>
+        <source>aucun.groupe.dans.typegroupe</source>
+        <target>Aucun groupe dans ce type de groupe.</target>
+      </segment>
+    </unit>
+    <unit id="1">
+      <segment>
+        <source>aucun.etudiant.groupe</source>
+        <target>Aucun étudiant dans ce groupe.</target>
       </segment>
     </unit>
   </file>

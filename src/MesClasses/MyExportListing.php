@@ -209,7 +209,7 @@ class MyExportListing
         $this->colonne = 1;
     }
 
-    private function exportPdf(): void
+    private function exportPdf()
     {
         return null;
     }

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Personnel;
+use App\Form\Type\CiviliteType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -25,6 +26,9 @@ class PersonnelType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('civilite', CiviliteType::class, [
+                'label'                     => 'label.civilite'
+            ])
             ->add('nom', TextType::class, ['label' => 'label.nom'])
             ->add('prenom', TextType::class, ['label' => 'label.prenom'])
             ->add('photoFile', VichFileType::class, ['label' => 'label.photo', 'required' => false])
@@ -33,12 +37,7 @@ class PersonnelType extends AbstractType
             ->add('site_univ', TextType::class, ['label' => 'label.site_univ', 'required' => false])
             ->add('mail_perso', TextType::class, ['label' => 'label.mail_perso', 'required' => false])
             ->add('site_perso', TextType::class, ['label' => 'label.site_perso', 'required' => false])
-            ->add('sexe', ChoiceType::class, [
-                'label'                     => 'label.sexe',
-                'choices'                   => ['choice.femme' => 'F', 'choice.homme' => 'H'],
-                'choice_translation_domain' => 'form',
-                'expanded'                  => true
-            ])
+
             ->add('date_naissance', BirthdayType::class, ['label' => 'label.date_naissance'])
             ->add('numero_harpege', TextType::class, ['label' => 'label.numero_harpege', 'required' => false])
             ->add('initiales', TextType::class, ['label' => 'label.initiales', 'required' => false])

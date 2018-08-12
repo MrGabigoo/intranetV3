@@ -3,7 +3,7 @@ var nbLignePrevisionnel = 1;
 $(document).ajaxComplete(function () {
   $('.editPrevi').editable({
     type: 'text',
-    url: Routing.generate('administration_previsionnel_edit.fr')
+    url: Routing.generate('administration_previsionnel_edit'+locale)
     //todo: si success recalculer toute la ligne.
   })
 })
@@ -11,19 +11,37 @@ $(document).ajaxComplete(function () {
 $(document).on('change', '#previSemestre', function (e) {
   e.preventDefault();
   e.stopPropagation();
-  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_semestre.fr', {semestre: $(this).val()}));
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_semestre'+locale, {semestre: $(this).val(), annee:$(this).data('annee')}));
+});
+
+$(document).on('click', '#reloadPreviSemestre', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_semestre'+locale, {semestre: $(this).data('semestre'), annee:$(this).data('annee')}));
 });
 
 $(document).on('change', '#previMatiere', function (e) {
   e.preventDefault();
   e.stopPropagation();
-  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_matiere.fr', {matiere: $(this).val()}));
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_matiere'+locale, {matiere: $(this).val(), annee:$(this).data('annee')}));
+});
+
+$(document).on('click', '#reloadPreviMatiere', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_matiere'+locale, {matiere: $(this).data('matiere'), annee:$(this).data('annee')}));
 });
 
 $(document).on('change', '#previPersonnel', function (e) {
   e.preventDefault();
   e.stopPropagation();
-  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_personnel.fr', {personnel: $(this).val()}));
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_personnel'+locale, {personnel: $(this).val(), annee:$(this).data('annee')}));
+});
+
+$(document).on('click', '#reloadPreviPersonnel', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_personnel'+locale, {personnel: $(this).data('personnel'), annee:$(this).data('annee')}));
 });
 
 $(document).on('click', '.previsionnel_add_change', function (e) {
@@ -156,6 +174,7 @@ $(document).on('change', '#previsionnel_matiere', function () {
   }
 });
 
+
 $(document).on('click', '#btnGenereFichier', function (e) {
   e.preventDefault()
   e.stopPropagation()
@@ -181,6 +200,16 @@ $(document).on('click', '#btnGenereFichier', function (e) {
   })
 });
 
+
+//reload si changement d'année
+$(document).on('change', '#change_annee_temp_hrs', function (e){
+
+  window.location = Routing.generate('administration_hrs_index'+locale, {annee: $(this).val()});
+});
+
+$(document).on('change', '#change_annee_temp_previsionnel', function (e){
+  window.location = Routing.generate('administration_previsionnel_index'+locale, {annee: $(this).val()});
+});
 
 // $(document).on('click', '.previsionnelModule', function () {
 //   var modalPrevisionnel = $('#modalPrevisionnel');

@@ -205,7 +205,7 @@
                                         data-type="formation"
                                         data-id="{{ user_data.formation.id }}">
                                     <option value="">{{ 'non.selectione'|trans }} / {{ 'aucun'|trans }}</option>
-                                    {% for personnel in user_data.personnels %} {# todo: ajotuer les seleected #}
+                                    {% for personnel in user_data.personnels %}
                                         <option value="pers{{ personnel.id }}"
                                                 {% if user_data.formation.respRi != null and user_data.formation.respRi.id == personnel.id %}selected{% endif %}>{{ personnel.display }}</option>
                                     {% endfor %}

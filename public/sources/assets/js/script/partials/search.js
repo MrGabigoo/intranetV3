@@ -16,7 +16,7 @@ $(document).on('keyup', '#search', function (e) {
         var html = ''
         if (data.etudiants.length > 0) {
           jQuery.each(data.etudiants, function (index, etudiant) {
-            html = html + '<a class="media" href="' + Routing.generate('user_profil.fr', {
+            html = html + '<a class="media" href="' + Routing.generate('user_profil'+locale, {
                 type: 'etudiant',
                 slug: etudiant.slug
               }) + '" target="_blank">\n' +
@@ -40,7 +40,7 @@ $(document).on('keyup', '#search', function (e) {
         html = ''
         if (data.personnels.length > 0) {
           jQuery.each(data.personnels, function (index, personnel) {
-            html = html + '<a class="media items-center" href="' + Routing.generate('user_profil.fr', {
+            html = html + '<a class="media items-center" href="' + Routing.generate('user_profil'+locale, {
                 type: 'personnel',
                 slug: personnel.slug
               }) + '" target="_blank">\n' +

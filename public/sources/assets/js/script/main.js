@@ -7,7 +7,7 @@ require('./util');
 /** CSS **/
 require("../../css/style.scss");
 
-
+var locale = '.fr';
 /*
 |--------------------------------------------------------------------------
 | Application Is Ready
@@ -106,6 +106,7 @@ app.ready(function () {
   require('./partials/rattrapages')
   require('./partials/adm-notes')
   require('./partials/planning')
+  require('./partials/user')
 
   //$.fn.dataTable.moment( 'Do MMMM  YYYY à h:mm' ); pour trier les datatable selon une date. Ne fonctionne pas.
 

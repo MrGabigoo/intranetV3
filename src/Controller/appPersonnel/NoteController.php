@@ -64,6 +64,7 @@ class NoteController extends BaseController
                     'formation'       => $this->dataUserSession->getFormation(),
                     'semestre'        => $matiere->getUe()->getSemestre(),
                     'matiereDisabled' => true,
+                    'locale' =>$request->get(),
                     'attr'            => [
                         'data-provide' => 'validation'
                     ]
@@ -152,6 +153,7 @@ class NoteController extends BaseController
                 'semestre'        => $matiere->getUe() !== null ? $matiere->getUe()->getSemestre() : '',
                 'import'          => true,
                 'matiereDisabled' => true,
+                'locale' =>$request->get(),
                 'attr'            => [
                     'data-provide' => 'validation'
                 ]

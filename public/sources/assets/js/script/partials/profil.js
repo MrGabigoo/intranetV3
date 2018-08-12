@@ -12,7 +12,7 @@ $(document).on('change', '.addfavori', function (e) {
   e.stopPropagation();
 
   $.ajax({
-    url: Routing.generate('user_add_favori.fr'),
+    url: Routing.generate('user_add_favori'+locale),
     method: 'POST',
     data: {
       'user': $(this).val(),

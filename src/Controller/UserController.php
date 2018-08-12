@@ -93,6 +93,7 @@ class UserController extends BaseController
                 PersonnelProfilType::class,
                 $user,
                 [
+                    'locale' => $request->getLocale(),
                     'attr' => [
                         'data-provide' => 'validation'
                     ]

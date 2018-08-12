@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class StageEtudiantType extends AbstractType
 {
+    //formuliare Administrateur.
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -25,6 +26,7 @@ class StageEtudiantType extends AbstractType
             ->add('sujetStage', TextareaType::class, ['label' => 'label.sujetStage'])
             ->add('activites', TextareaType::class, ['label' => 'label.activites'])
 
+            //todo: remplacer par un dateRange
             ->add('dateDebutStage', DateType::class, ['label' => 'label.dateDebutStage', 'widget' => 'single_text'])
             ->add('dateFinStage', DateType::class, ['label' => 'label.dateFinStage', 'widget' => 'single_text'])
             ->add('periodesInterruptions', TextareaType::class, ['label' => 'label.periodesInterruptions'])

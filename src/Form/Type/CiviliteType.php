@@ -2,6 +2,7 @@
 // src/Form/Type/ShippingType.php
 namespace App\Form\Type;
 
+use App\Entity\Constantes;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -32,8 +33,8 @@ class CiviliteType extends AbstractType
     {
         $resolver->setDefaults(array(
             'choices'            => array(
-                $this->translator->trans('choice.monsieur') => 'M.',
-                $this->translator->trans('choice.madame') => 'Mme'
+                $this->translator->trans(Constantes::CIVILITE_HOMME) => Constantes::CIVILITE_HOMME,
+                $this->translator->trans(Constantes::CIVILITE_FEMME) => Constantes::CIVILITE_FEMME
             ),
             'multiple'           => false,
             'expanded'           => true,

@@ -9,12 +9,19 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="{{ path('previsionnel_chronologique') }}"><i
                                 class="ti-alarm-clock"></i> {{ 'chronologique'|trans }}</a>
-                    <a class="dropdown-item" href="{{ path('previsionnel_save') }}"><i
-                                class="ti-export"></i> {{ 'export'|trans }}</a>
+                    {# todo: finaliser la partie export des prévisionnels et harmoniser. #}
+                    <a class="dropdown-item" href="{{ path('administration_previsionnel_export', {'annee': annee, '_format': 'csv'}) }}"><i
+                                class="ti-export"></i> {{ 'exporter.csv'|trans }}</a>
+                    <a class="dropdown-item" href="{{ path('administration_previsionnel_export', {'annee': annee, '_format': 'pdf'}) }}"><i
+                                class="ti-export"></i> {{ 'exporter.pdf'|trans }}</a>
+                    <a class="dropdown-item" href="{{ path('administration_previsionnel_export', {'annee': annee, '_format': 'xlsx'}) }}"><i
+                                class="ti-export"></i> {{ 'exporter.xlsx'|trans }}</a>
                 </div>
             </li>
+            <li><a class="card-btn-reload" href="#" id="reloadPreviPersonnel" data-annee="{{ annee }}" data-personnel="{{ previsionnel.personnel.id }}" title="" data-provide="tooltip" data-original-title="{{ 'atitle.refresh'|trans }}"><i class="fa fa-refresh"></i></a></li>
         </ul>
     </header>
+
 
     <div class="card-body">
         <!-- Nav tabs -->
@@ -42,7 +49,6 @@
     </div>
 </div>
 
-{# feature: Mettre des boutons reload pour raffraîchir les blocs #}
 {{ include('bloc_previsionnel/hrs.html.twig') }}
 
 {{ include('bloc_previsionnel/total.html.twig') }}

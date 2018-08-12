@@ -16,6 +16,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use App\Form\Type\DateRangeType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class StagePeriodeType extends AbstractType
 {
@@ -51,8 +54,10 @@ class StagePeriodeType extends AbstractType
                 'label'   => 'label.anneeUniversitaire',
                 'choices' => array_combine(range(date('Y') - 1, date('Y') + 4), range(date('Y') - 1, date('Y') + 4))
             ])
-            ->add('dateDebut', DateType::class, ['widget' => 'single_text', 'label' => 'label.date_debut'])
-            ->add('dateFin', DateType::class, ['widget' => 'single_text', 'label' => 'label.date_debut'])
+
+            ->add('dateRange', DateRangeType::class, ['label' => 'dateRange.periode', 'mapped' => false, 'required' => true])
+            //->add('dateDebut', DateType::class, ['widget' => 'single_text', 'label' => 'label.date_debut'])
+            //->add('dateFin', DateType::class, ['widget' => 'single_text', 'label' => 'label.date_debut'])
             ->add('nbSemaines', TextType::class, ['label' => 'label.nbSemaines', 'help' => 'help.nbSemaines'])
             ->add('nbJours', TextType::class, ['label' => 'label.nbJours', 'help' => 'help.nbJours'])
             ->add('datesFlexibles', YesNoType::class, ['label' => 'label.datesFlexibles', 'help' => 'help.datesFlexibles'])
@@ -98,8 +103,19 @@ class StagePeriodeType extends AbstractType
             ->add('nbEcts', TextType::class, ['label' => 'label.nbEcts', 'help' => 'help.nbEcts'])
 
 
+            ->addEventListener(            FormEvents::POST_SUBMIT, function (FormEvent $event) {
+                $stagePeriode = $event->getData();
+                $form = $event->getForm();
+                $dateRange = $form->get('dateRange')->getData();
+                $stagePeriode->setDateDebut($dateRange['from_date']);
+                $stagePeriode->setDateFin($dateRange['to_date']);
+            })
+            ->addEventListener(            FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+                $stagePeriode = $event->getData();
+                $form = $event->getForm();
+                $form->add('dateRange', DateRangeType::class, ['label' => 'dateRange.periode', 'mapped' => false, 'date_data' => ['from' => $stagePeriode->getDateDebut(), 'to' => $stagePeriode->getDateFin()]]);
+            });
 
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

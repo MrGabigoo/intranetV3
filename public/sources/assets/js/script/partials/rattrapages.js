@@ -1,7 +1,7 @@
 $(document).on('click', '.rattrapage-accepte', function (e) {
   var rattrapage = $(this).data('rattrapage')
   $.ajax({
-    url: Routing.generate('administration_rattrapage_change_etat.fr', {uuid: rattrapage, etat: 'A'}),
+    url: Routing.generate('administration_rattrapage_change_etat'+locale, {uuid: rattrapage, etat: 'A'}),
     success: function (e) {
       var bx = $('.bx_' + rattrapage)
       var parent = bx.parent()
@@ -18,7 +18,7 @@ $(document).on('click', '.rattrapage-accepte', function (e) {
 $(document).on('click', '.rattrapage-refuse', function (e) {
   var rattrapage = $(this).data('rattrapage')
   $.ajax({
-    url: Routing.generate('administration_rattrapage_change_etat.fr', {uuid: rattrapage, etat: 'R'}),
+    url: Routing.generate('administration_rattrapage_change_etat'+locale, {uuid: rattrapage, etat: 'R'}),
     success: function (e) {
       var bx = $('.bx_' + rattrapage)
       var parent = bx.parent()

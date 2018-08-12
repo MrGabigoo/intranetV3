@@ -6,7 +6,7 @@ $(document).on('change', '.changeOption', function (e) {
   console.log();
 
   $.ajax({
-    url: Routing.generate('administration_configuration_change_option.fr'),
+    url: Routing.generate('administration_configuration_change_option'+locale),
     method: 'POST',
     data: {
       type: $(this).data('type'),
@@ -26,7 +26,7 @@ $(document).on('change', '.changeOptionSelect', function (e) {
   console.log();
 
   $.ajax({
-    url: Routing.generate('administration_configuration_change_option.fr'),
+    url: Routing.generate('administration_configuration_change_option'+locale),
     method: 'POST',
     data: {
       type: $(this).data('type'),

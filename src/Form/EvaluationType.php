@@ -28,6 +28,8 @@ class EvaluationType extends AbstractType
     private $import = false;
     private $matiereDisabled = false;
 
+    private $locale;
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -35,6 +37,7 @@ class EvaluationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->formation = $options['formation'];
+        $this->locale = $options['locale'];
         $this->semestre = $options['semestre'];
         $this->import = $options['import'];
         $this->matiereDisabled = $options['matiereDisabled'];
@@ -42,7 +45,7 @@ class EvaluationType extends AbstractType
         $builder
             ->add('dateEvaluation', DateType::class, [
                 'label'  => 'label.date_evaluation',
-                'widget' => 'single_text'
+                'format' => 'dd/MM/yyyy', 'widget' => 'single_text',  'html5' => false, 'attr' => ['data-provide' => 'datepicker', 'data-language' => $this->locale]
             ])
             ->add('coefficient', TextType::class, ['label' => 'label.coefficient', 'help' => 'help.coefficient'])
             ->add('commentaire', TextType::class, ['label' => 'label.commentaire'])
@@ -99,7 +102,8 @@ class EvaluationType extends AbstractType
             'semestre'           => null,
             'import'             => null,
             'matiereDisabled'    => null,
-            'translation_domain' => 'form'
+            'translation_domain' => 'form',
+            'locale' => 'fr'
 
         ]);
     }

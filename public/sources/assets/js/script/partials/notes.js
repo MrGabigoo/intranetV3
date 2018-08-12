@@ -18,7 +18,7 @@ $('.savegroupe').click(function () {
 
   $.ajax(
     {
-      url: Routing.generate('application_personnel_note_ajax_saisie.fr', {uuid: $(this).data('evaluation')}),
+      url: Routing.generate('application_personnel_note_ajax_saisie'+locale, {uuid: $(this).data('evaluation')}),
       type: 'POST',
       data: {
         notes: notes

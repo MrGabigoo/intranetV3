@@ -193,6 +193,7 @@ function addCallout (message, label) {
 /** CSS **/
 
 
+var locale = '.fr';
 /*
 |--------------------------------------------------------------------------
 | Application Is Ready
@@ -321,7 +322,7 @@ $(document).on('change', '.addfavori', function (e) {
   e.stopPropagation();
 
   $.ajax({
-    url: Routing.generate('user_add_favori.fr'),
+    url: Routing.generate('user_add_favori'+locale),
     method: 'POST',
     data: {
       'user': $(this).val(),
@@ -396,14 +397,14 @@ $(document).on('click', '.semestretrombi', function(e) {
       });
     }
   })*/
-  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre.fr', {semestre: $(this).data('sem')})).slideDown();
+  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre'+locale, {semestre: $(this).data('sem')})).slideDown();
 });
 
 $(document).on('click', '.changeTypeGroupe', function (e) {
   //todo: comment gérer la locale ?
   e.preventDefault();
 
-  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre.fr', {
+  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre'+locale, {
     semestre: $(this).data('semestre'),
     typegroupe: $(this).data('typegroupe')
   })).slideDown();
@@ -415,7 +416,7 @@ $(document).on('click', '.enseignanttrombi', function(e) {
   $('.semestretrombi').removeClass('active show');
   $('.enseignanttrombi').removeClass('active show');
   $(this).addClass('active show');
-  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_personnel.fr', {type: $(this).data('type')})).slideDown();
+  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_personnel'+locale, {type: $(this).data('type')})).slideDown();
 
   //$('.card-title').html($(this).text());
   /*$.ajax({
@@ -665,7 +666,7 @@ var nbLignePrevisionnel = 1;
 $(document).ajaxComplete(function () {
   $('.editPrevi').editable({
     type: 'text',
-    url: Routing.generate('administration_previsionnel_edit.fr')
+    url: Routing.generate('administration_previsionnel_edit'+locale)
     //todo: si success recalculer toute la ligne.
   })
 })
@@ -673,19 +674,37 @@ $(document).ajaxComplete(function () {
 $(document).on('change', '#previSemestre', function (e) {
   e.preventDefault();
   e.stopPropagation();
-  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_semestre.fr', {semestre: $(this).val()}));
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_semestre'+locale, {semestre: $(this).val(), annee:$(this).data('annee')}));
+});
+
+$(document).on('click', '#reloadPreviSemestre', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_semestre'+locale, {semestre: $(this).data('semestre'), annee:$(this).data('annee')}));
 });
 
 $(document).on('change', '#previMatiere', function (e) {
   e.preventDefault();
   e.stopPropagation();
-  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_matiere.fr', {matiere: $(this).val()}));
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_matiere'+locale, {matiere: $(this).val(), annee:$(this).data('annee')}));
+});
+
+$(document).on('click', '#reloadPreviMatiere', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_matiere'+locale, {matiere: $(this).data('matiere'), annee:$(this).data('annee')}));
 });
 
 $(document).on('change', '#previPersonnel', function (e) {
   e.preventDefault();
   e.stopPropagation();
-  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_personnel.fr', {personnel: $(this).val()}));
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_personnel'+locale, {personnel: $(this).val(), annee:$(this).data('annee')}));
+});
+
+$(document).on('click', '#reloadPreviPersonnel', function (e) {
+  e.preventDefault();
+  e.stopPropagation();
+  $('#blocPrevisionnel').empty().load(Routing.generate('administration_previsionnel_personnel'+locale, {personnel: $(this).data('personnel'), annee:$(this).data('annee')}));
 });
 
 $(document).on('click', '.previsionnel_add_change', function (e) {
@@ -818,6 +837,7 @@ $(document).on('change', '#previsionnel_matiere', function () {
   }
 });
 
+
 $(document).on('click', '#btnGenereFichier', function (e) {
   e.preventDefault()
   e.stopPropagation()
@@ -843,6 +863,16 @@ $(document).on('click', '#btnGenereFichier', function (e) {
   })
 });
 
+
+//reload si changement d'année
+$(document).on('change', '#change_annee_temp_hrs', function (e){
+
+  window.location = Routing.generate('administration_hrs_index'+locale, {annee: $(this).val()});
+});
+
+$(document).on('change', '#change_annee_temp_previsionnel', function (e){
+  window.location = Routing.generate('administration_previsionnel_index'+locale, {annee: $(this).val()});
+});
 
 // $(document).on('click', '.previsionnelModule', function () {
 //   var modalPrevisionnel = $('#modalPrevisionnel');
@@ -917,7 +947,7 @@ $(document).on('change', '.changeOption', function (e) {
   console.log();
 
   $.ajax({
-    url: Routing.generate('administration_configuration_change_option.fr'),
+    url: Routing.generate('administration_configuration_change_option'+locale),
     method: 'POST',
     data: {
       type: $(this).data('type'),
@@ -937,7 +967,7 @@ $(document).on('change', '.changeOptionSelect', function (e) {
   console.log();
 
   $.ajax({
-    url: Routing.generate('administration_configuration_change_option.fr'),
+    url: Routing.generate('administration_configuration_change_option'+locale),
     method: 'POST',
     data: {
       type: $(this).data('type'),
@@ -989,7 +1019,7 @@ var tabsences = [];
 $(document).on('change', '#justifier_etudiant', function (e) {
   console.log('justifier_etudiant')
   $.ajax({
-    url: Routing.generate('administration_absences_liste_absence_etudiant.fr', {etudiant: $(this).val()}),
+    url: Routing.generate('administration_absences_liste_absence_etudiant'+locale, {etudiant: $(this).val()}),
     //dataType: 'json',
     success: function (data) {
       console.log('ok')
@@ -1041,7 +1071,7 @@ $(document).on('click', '.absChangeTypeGroupe', function (e) {
 function updateAffichage (date, heure) {
   $.ajax({
     type: 'GET',
-    url: Routing.generate('application_personnel_absence_get_ajax.fr', {matiere: $('#absence-matiere').val()}),
+    url: Routing.generate('application_personnel_absence_get_ajax'+locale, {matiere: $('#absence-matiere').val()}),
     dataType: 'json',
     success: function (data) {
       tabsences = data
@@ -1095,7 +1125,7 @@ $(document).on('click', '.etudiant', function () {
     //$(this).addClass('absence');
     $.ajax({
       type: 'POST',
-      url: Routing.generate('application_personnel_absence_saisie_ajax.fr', {
+      url: Routing.generate('application_personnel_absence_saisie_ajax'+locale, {
         matiere: $('#absence-matiere').val(),
         etudiant: $(this).attr('id')
       }),
@@ -1121,7 +1151,7 @@ $(document).on('click', '.etudiant', function () {
     //$(this).removeClass('absence');
     $.ajax({
       type: 'POST',
-      url: Routing.generate('application_personnel_absence_saisie_ajax.fr', {
+      url: Routing.generate('application_personnel_absence_saisie_ajax'+locale, {
         matiere: $('#absence-matiere').val(),
         etudiant: $(this).attr('id')
       }),
@@ -1174,7 +1204,7 @@ $('#liste-absences').dataTable({
 $(document).on('click', '.justificatif-accepte', function (e) {
   var justificatif = $(this).data('justificatif')
   $.ajax({
-    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'A'}),
+    url: Routing.generate('administration_absence_justificatif_change_etat'+locale, {uuid: justificatif, etat: 'A'}),
     success: function (e) {
       var bx = $('.bx_' + justificatif)
       var parent = bx.parent()
@@ -1192,7 +1222,7 @@ $(document).on('click', '.justificatif-accepte', function (e) {
 $(document).on('click', '.justificatif-refuse', function (e) {
   var justificatif = $(this).data('justificatif')
   $.ajax({
-    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'R'}),
+    url: Routing.generate('administration_absence_justificatif_change_etat'+locale, {uuid: justificatif, etat: 'R'}),
     success: function (e) {
       var bx = $('.bx_' + justificatif)
       var parent = bx.parent()
@@ -1210,7 +1240,7 @@ $(document).on('click', '.justificatif-refuse', function (e) {
 $(document).on('click', '.justificatif-annuler', function (e) {
   var justificatif = $(this).data('justificatif')
   $.ajax({
-    url: Routing.generate('administration_absence_justificatif_change_etat.fr', {uuid: justificatif, etat: 'D'}),
+    url: Routing.generate('administration_absence_justificatif_change_etat'+locale, {uuid: justificatif, etat: 'D'}),
     success: function (e) {
       var bx = $('.bx_' + justificatif)
       var parent = bx.parent()
@@ -1261,7 +1291,7 @@ $('.savegroupe').click(function () {
 
   $.ajax(
     {
-      url: Routing.generate('application_personnel_note_ajax_saisie.fr', {uuid: $(this).data('evaluation')}),
+      url: Routing.generate('application_personnel_note_ajax_saisie'+locale, {uuid: $(this).data('evaluation')}),
       type: 'POST',
       data: {
         notes: notes
@@ -1296,7 +1326,7 @@ $(document).on('click', '.articleLike', function (e) {
   var elt = $(this);
 
   $.ajax({
-    url: Routing.generate('article_like.fr', {slug: $(this).data('article')}),
+    url: Routing.generate('article_like'+locale, {slug: $(this).data('article')}),
     success: function (data) {
       elt.html('<i class="ti-heart text-danger fs-11"></i> ' + data);
     }
@@ -1321,7 +1351,7 @@ $(document).on('keyup', '#search', function (e) {
         var html = ''
         if (data.etudiants.length > 0) {
           jQuery.each(data.etudiants, function (index, etudiant) {
-            html = html + '<a class="media" href="' + Routing.generate('user_profil.fr', {
+            html = html + '<a class="media" href="' + Routing.generate('user_profil'+locale, {
                 type: 'etudiant',
                 slug: etudiant.slug
               }) + '" target="_blank">\n' +
@@ -1345,7 +1375,7 @@ $(document).on('keyup', '#search', function (e) {
         html = ''
         if (data.personnels.length > 0) {
           jQuery.each(data.personnels, function (index, personnel) {
-            html = html + '<a class="media items-center" href="' + Routing.generate('user_profil.fr', {
+            html = html + '<a class="media items-center" href="' + Routing.generate('user_profil'+locale, {
                 type: 'personnel',
                 slug: personnel.slug
               }) + '" target="_blank">\n' +
@@ -1383,7 +1413,7 @@ $(document).on('keyup', '#search', function (e) {
 $(document).on('click', '.rattrapage-accepte', function (e) {
   var rattrapage = $(this).data('rattrapage')
   $.ajax({
-    url: Routing.generate('administration_rattrapage_change_etat.fr', {uuid: rattrapage, etat: 'A'}),
+    url: Routing.generate('administration_rattrapage_change_etat'+locale, {uuid: rattrapage, etat: 'A'}),
     success: function (e) {
       var bx = $('.bx_' + rattrapage)
       var parent = bx.parent()
@@ -1400,7 +1430,7 @@ $(document).on('click', '.rattrapage-accepte', function (e) {
 $(document).on('click', '.rattrapage-refuse', function (e) {
   var rattrapage = $(this).data('rattrapage')
   $.ajax({
-    url: Routing.generate('administration_rattrapage_change_etat.fr', {uuid: rattrapage, etat: 'R'}),
+    url: Routing.generate('administration_rattrapage_change_etat'+locale, {uuid: rattrapage, etat: 'R'}),
     success: function (e) {
       var bx = $('.bx_' + rattrapage)
       var parent = bx.parent()
@@ -1419,7 +1449,7 @@ $(document).on('click', '.optAfficher', function (e) {
   var $child = $(this).children('i')
   var $a = $(this)
   $.ajax({
-    url: Routing.generate('administration_evaluation_visibilite.fr', {uuid: evaluation}),
+    url: Routing.generate('administration_evaluation_visibilite'+locale, {uuid: evaluation}),
     success: function (e) {
       if ($child.hasClass('fa-eye')) {
         $a.addClass('btn-danger')
@@ -1448,7 +1478,7 @@ $(document).on('click', '.optVerrouiller', function (e) {
   var $child = $(this).children('i')
   var $a = $(this)
   $.ajax({
-    url: Routing.generate('administration_evaluation_modifiable.fr', {uuid: evaluation}),
+    url: Routing.generate('administration_evaluation_modifiable'+locale, {uuid: evaluation}),
     success: function (e) {
       if ($(this).children('i').hasClass('fa-pencil')) {
         $a.addClass('btn-danger')

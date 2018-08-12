@@ -45,6 +45,11 @@ class Hrs extends BaseEntity
     private $annee;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Formation", inversedBy="hrs")
+     */
+    private $formation;
+
+    /**
      * @return float|null
      */
     public function getNbHeuresTd(): ?float
@@ -188,5 +193,17 @@ class Hrs extends BaseEntity
     public function __construct($annee)
     {
         $this->annee = $annee;
+    }
+
+    public function getFormation(): ?Formation
+    {
+        return $this->formation;
+    }
+
+    public function setFormation(?Formation $formation): self
+    {
+        $this->formation = $formation;
+
+        return $this;
     }
 }

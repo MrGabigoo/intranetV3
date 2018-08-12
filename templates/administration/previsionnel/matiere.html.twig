@@ -1,10 +1,15 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <h4 class="card-title"><strong>{{ 'service.previsionnel.matiere.heading'|trans }}</strong>
-                | {{ previsionnel.matiere.codeMatiere }} | {{ previsionnel.matiere.libelle }} |
-                ({{ 'periode'|trans }}
-                : {{ user_data.formation.optAnneePrevisionnel }})</h4>
+            <header class="card-header">
+                <h4 class="card-title"><strong>{{ 'service.previsionnel.matiere.heading'|trans }}</strong>
+                    | {{ previsionnel.matiere.codeMatiere }} | {{ previsionnel.matiere.libelle }} |
+                    ({{ 'periode'|trans }}
+                    : {{ user_data.formation.optAnneePrevisionnel }})</h4>
+                <ul class="card-controls">
+                    <li><a class="card-btn-reload" href="#" id="reloadPreviMatiere" data-annee="{{ annee }}" data-matiere="{{ previsionnel.matiere.id }}" title="" data-provide="tooltip" data-original-title="{{ 'atitle.refresh'|trans }}"><i class="fa fa-refresh"></i></a></li>
+                </ul>
+            </header>
 
             <div class="card-body">
                 <table class="table table-bordered table-condensed">
@@ -44,12 +49,12 @@
                                    class="btn btn-success btn-outline btn-square" data-provide="tooltip"
                                    data-placement="bottom"
                                    title="{{ 'atitle.dupliquer'|trans }}"><i
-                                            class="material-icons">content_copy</i></a>
+                                            class="fa fa-copy"></i></a>
                                 <a href="{{ path('administration_previsionnel_delete', {id: previsionnel.id}) }}"
                                    class="btn btn-danger btn-outline btn-square supprimer" data-provide="tooltip"
                                    data-placement="bottom"
                                    title="{{ 'atitle.supprimer'|trans }}"><i
-                                            class="material-icons">trash</i></a>
+                                                class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         <tr>

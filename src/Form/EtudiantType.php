@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Etudiant;
+use App\Form\Type\CiviliteType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,13 +21,15 @@ class EtudiantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('civilite', CiviliteType::class, [
+                'label'                     => 'label.civilite'
+            ])
             ->add('nom')
             ->add('prenom')
             ->add('mail_univ')
             ->add('site_univ')
             ->add('mail_perso')
             ->add('site_perso')
-            ->add('sexe')
             ->add('date_naissance')
             ->add('tel1')
             ->add('tel2')

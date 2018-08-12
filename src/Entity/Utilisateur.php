@@ -76,11 +76,11 @@ abstract class Utilisateur implements UserInterface
      */
     protected $sitePerso;
 
-    /**
-     * @ORM\Column(name="sexe", type="string", length=1, options={"default":"M"})
+/**
+     * @ORM\Column(name="civilite", type="string", length=3, options={"default":"M."})
      * @Groups({"etudiants_administration"})
      */
-    protected $sexe = 'H'; //H ou F
+    protected $civilite = 'M.'; //M. ou Mme
 
     /**
      * @ORM\Column(type="date",nullable=true)
@@ -331,19 +331,19 @@ abstract class Utilisateur implements UserInterface
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getSexe()
+    public function getCivilite(): ?string
     {
-        return $this->sexe;
+        return $this->civilite;
     }
 
     /**
      * @param mixed $sexe
      */
-    public function setSexe($sexe): void
+    public function setCivilite($civilite): void
     {
-        $this->sexe = $sexe;
+        $this->civilite = $civilite;
     }
 
     /**

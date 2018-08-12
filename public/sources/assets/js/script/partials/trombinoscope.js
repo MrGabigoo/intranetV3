@@ -54,14 +54,14 @@ $(document).on('click', '.semestretrombi', function(e) {
       });
     }
   })*/
-  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre.fr', {semestre: $(this).data('sem')})).slideDown();
+  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre'+locale, {semestre: $(this).data('sem')})).slideDown();
 });
 
 $(document).on('click', '.changeTypeGroupe', function (e) {
   //todo: comment gérer la locale ?
   e.preventDefault();
 
-  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre.fr', {
+  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_etudiant_semestre'+locale, {
     semestre: $(this).data('semestre'),
     typegroupe: $(this).data('typegroupe')
   })).slideDown();
@@ -73,7 +73,7 @@ $(document).on('click', '.enseignanttrombi', function(e) {
   $('.semestretrombi').removeClass('active show');
   $('.enseignanttrombi').removeClass('active show');
   $(this).addClass('active show');
-  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_personnel.fr', {type: $(this).data('type')})).slideDown();
+  $('#trombi').slideUp().empty().load(Routing.generate('trombinoscope_personnel'+locale, {type: $(this).data('type')})).slideDown();
 
   //$('.card-title').html($(this).text());
   /*$.ajax({

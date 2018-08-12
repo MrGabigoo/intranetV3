@@ -1,7 +1,7 @@
 {% if not duplicate is defined or duplicate != false %}
 <a href="{{ path('administration_'~elt~'_duplicate', {'id': id}) }}"
    class="btn btn-success btn-outline btn-square" data-provide="tooltip"
-   data-placement="bottom" title="{{ 'atitle.dupliquer'|trans }}"><i class="material-icons">content_copy</i></a>
+   data-placement="bottom" title="{{ 'atitle.dupliquer'|trans }}"><i class="fa fa-copy"></i></a>
 {% endif %}
 
 {% if modal is defined and modal == true %}
@@ -12,18 +12,18 @@
             title="{{ 'atitle.details'|trans }}"
             data-title="{{ 'adm.'~elt~'.show.heading'|trans }}"
     >
-        <i class="material-icons">info_outline</i>
+        <i class="fa fa-info"></i>
     </button>
 {% else %}
     <a href="{{ path('administration_'~elt~'_show', {'id': id}) }}"
        class="btn btn-info btn-outline btn-square" data-provide="tooltip"
-       data-placement="bottom" title="{{ 'atitle.details'|trans }}"><i class="material-icons">info_outline</i></a>
+       data-placement="bottom" title="{{ 'atitle.details'|trans }}"><i class="fa fa-info"></i></a>
 {% endif %}
 <a href="{{ path('administration_'~elt~'_edit', {'id': id}) }}"
    class="btn btn-warning btn-outline btn-square"
                                                      data-provide="tooltip"
                                                      data-placement="bottom"
-                                                     title="{{ 'atitle.modifier'|trans }}"><i class="material-icons">edit</i></a>
+                                                     title="{{ 'atitle.modifier'|trans }}"><i class="fa fa-edit"></i></a>
 <a href="{{ path('administration_'~elt~'_delete', {id: id}) }}" data-csrf="{{ csrf_token('delete' ~ id) }}"
    class="btn btn-danger btn-outline btn-square supprimer" data-provide="tooltip" data-placement="bottom"
-            title="{{ 'atitle.supprimer'|trans }}"><i class="material-icons">delete</i></a>
+            title="{{ 'atitle.supprimer'|trans }}"><i class="fa fa-trash"></i></a>

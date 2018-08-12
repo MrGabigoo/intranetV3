@@ -23,6 +23,10 @@ class RattrapageType extends AbstractType
 {
     private $semestre;
 
+    private $locale;
+
+
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -30,9 +34,11 @@ class RattrapageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $this->semestre = $options['semestre'];
+        $this->locale = $options['locale'];
+
 
         $builder
-            ->add('dateEval', DateType::class, ['label' => 'label.date_evaluation', 'required' => false])
+            ->add('dateEval', DateType::class, ['label' => 'label.date_evaluation', 'required' => false, 'format' => 'dd/MM/yyyy', 'widget' => 'single_text',  'html5' => false, 'attr' => ['data-provide' => 'datepicker', 'data-language' => $this->locale]])
             ->add('heureEval', TimeType::class, ['label' => 'label.heure_evaluation', 'required' => false])
             ->add('duree', TextType::class, ['label' => 'label.duree_evaluation', 'required' => false])
             ->add('matiere', EntityType::class, array(
@@ -66,7 +72,8 @@ class RattrapageType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Rattrapage::class,
-            'semestre'   => null
+            'semestre'   => null,
+            'locale' => 'fr'
         ]);
     }
 }

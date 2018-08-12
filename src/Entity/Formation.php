@@ -190,6 +190,11 @@ class Formation extends BaseEntity
      */
     private $salleExamens;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Hrs", mappedBy="formation")
+     */
+    private $hrs;
+
     public function __construct()
     {
         $this->anneeCourante = (int)date('Y');
@@ -200,6 +205,7 @@ class Formation extends BaseEntity
         $this->trelloTaches = new ArrayCollection();
         $this->diplomes = new ArrayCollection();
         $this->salleExamens = new ArrayCollection();
+        $this->hrs = new ArrayCollection();
     }
 
     /**
@@ -477,7 +483,7 @@ class Formation extends BaseEntity
     /**
      * @return int
      */
-    public function getOptAnneePrevisionnel(): ?int
+    public function getOptAnneePrevisionnel(): int
     {
         return $this->optAnneePrevisionnel;
     }
@@ -777,6 +783,37 @@ class Formation extends BaseEntity
             // set the owning side to null (unless already changed)
             if ($salleExamen->getFormation() === $this) {
                 $salleExamen->setFormation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Hrs[]
+     */
+    public function getHrs(): Collection
+    {
+        return $this->hrs;
+    }
+
+    public function addHr(Hrs $hr): self
+    {
+        if (!$this->hrs->contains($hr)) {
+            $this->hrs[] = $hr;
+            $hr->setFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHr(Hrs $hr): self
+    {
+        if ($this->hrs->contains($hr)) {
+            $this->hrs->removeElement($hr);
+            // set the owning side to null (unless already changed)
+            if ($hr->getFormation() === $this) {
+                $hr->setFormation(null);
             }
         }
 

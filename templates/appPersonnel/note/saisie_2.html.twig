@@ -59,12 +59,10 @@
                             {% for etudiant in groupe.etudiants %}
                                 <tr {% if not(notes[etudiant.id] is defined) or notes[etudiant.id].note == '-0.01' %}class="bg-pale-warning"{% endif %}>
                                     <td>{{ etudiant.nom|capitalize }} {{ etudiant.prenom|capitalize }}  </td>
-                                    {# todo: uuid sur étudiant#}
                                     <td><input type="text" name="no_{{ etudiant.id }}" tabindex="{{ tab }}"
-                                               id="no_{{ etudiant.id }}" data-etudiant="{{ etudiant.id }}"
+                                               id="no_{{ etudiant.uuidString }}" data-etudiant="{{ etudiant.uuidString }}"
                                                class="form-control noteetudiant groupe_{{ groupe.id }}"
                                                value="{% if notes[etudiant.id] is defined %}{{ notes[etudiant.id].note }}{% else %}-0.01{% endif %}"/>
-                                        {# todo: verifier en js que la note est entre 0 et 20, validation. #}
                                     </td>
                                     <td>Absent.</td>
                                     <td><input type="text" name="com_{{ etudiant.id }}" id="com_{{ etudiant.id }}"

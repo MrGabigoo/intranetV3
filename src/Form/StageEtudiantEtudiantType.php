@@ -72,6 +72,7 @@ class StageEtudiantEtudiantType extends AbstractType
 
 
         if ($this->flexible === true) {
+            //todo: remplacer par un dateRange
             $builder
                 ->add(
                     'dateDebutStage',

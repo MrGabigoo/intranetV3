@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Personnel;
+use App\Form\Type\CiviliteType;
 use App\Form\Type\YesNoType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -20,26 +21,27 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
  */
 class PersonnelProfilType extends AbstractType
 {
+    private $locale;
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $this->locale = $options['locale'];
+
         $builder
+            ->add('civilite', CiviliteType::class, [
+                'label'                     => 'label.civilite'
+            ])
             ->add('nom', TextType::class, ['label' => 'label.nom'])
             ->add('prenom', TextType::class, ['label' => 'label.prenom'])
             ->add('mail_univ', TextType::class, ['label' => 'label.mail_univ'])
             ->add('site_univ', TextType::class, ['label' => 'label.site_univ'])
             ->add('mail_perso', TextType::class, ['label' => 'label.mail_perso'])
             ->add('site_perso', TextType::class, ['label' => 'label.site_perso'])
-            ->add('sexe', ChoiceType::class, [
-                'label'                     => 'label.sexe',
-                'choices'                   => ['choice.femme' => 'F', 'choice.homme' => 'H'],
-                'choice_translation_domain' => 'form',
-                'expanded'                  => true
-            ])
-            ->add('date_naissance', DateType::class, ['label' => 'label.date_naissance'])
+            ->add('date_naissance', DateType::class, ['label' => 'label.date_naissance', 'format' => 'dd/MM/yyyy', 'widget' => 'single_text',  'html5' => false, 'attr' => ['data-provide' => 'datepicker', 'data-language' => $this->locale]])
             ->add(
                 'numero_harpege',
                 TextType::class,
@@ -84,7 +86,8 @@ class PersonnelProfilType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class'         => Personnel::class,
-            'translation_domain' => 'form'
+            'translation_domain' => 'form',
+            'locale' => 'fr'
 
         ]);
     }

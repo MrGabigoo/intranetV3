@@ -33,6 +33,7 @@ class RattrapageController extends BaseController
             $rattrapage,
             [
                 'semestre' => $this->getUser()->getSemestre(),
+                'locale' => $request->getLocale(),
                 'attr'     => [
                     'data-provide' => 'validation'
                 ],
