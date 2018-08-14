@@ -168,6 +168,11 @@ class Personnel extends Utilisateur implements \Serializable // implements Seria
      */
     private $stageEtudiants;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Alternance", mappedBy="tuteurUniversitaire")
+     */
+    private $alternances;
+
     public function __construct()
     {
         parent::__construct();
@@ -184,6 +189,7 @@ class Personnel extends Utilisateur implements \Serializable // implements Seria
         $this->messageDestinatairePersonnels = new ArrayCollection();
         $this->stagePeriodes = new ArrayCollection();
         $this->stageEtudiants = new ArrayCollection();
+        $this->alternances = new ArrayCollection();
     }
 
     /**
@@ -935,6 +941,37 @@ class Personnel extends Utilisateur implements \Serializable // implements Seria
             // set the owning side to null (unless already changed)
             if ($stageEtudiant->getTuteurUniversitaire() === $this) {
                 $stageEtudiant->setTuteurUniversitaire(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Alternance[]
+     */
+    public function getAlternances(): Collection
+    {
+        return $this->alternances;
+    }
+
+    public function addAlternance(Alternance $alternance): self
+    {
+        if (!$this->alternances->contains($alternance)) {
+            $this->alternances[] = $alternance;
+            $alternance->setTuteurUniversitaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlternance(Alternance $alternance): self
+    {
+        if ($this->alternances->contains($alternance)) {
+            $this->alternances->removeElement($alternance);
+            // set the owning side to null (unless already changed)
+            if ($alternance->getTuteurUniversitaire() === $this) {
+                $alternance->setTuteurUniversitaire(null);
             }
         }
 

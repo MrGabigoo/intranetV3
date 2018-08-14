@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Date;
+use App\Form\Type\DateRangeType;
 use App\Form\Type\YesNoType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -13,6 +14,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -39,9 +42,9 @@ class DatesType extends AbstractType
                 'label'    => 'label.texte_date',
                 'required' => false
             ])
-            //todo: remplacer par un DateRange
-            ->add('dateDebut', DateType::class, ['widget' => 'single_text', 'label' => 'label.date_debut'])
-            ->add('heureDebut', TimeType::class, ['widget' => 'single_text', 'label' => 'label.heure_debut'])
+            ->add('dateRange', DateRangeType::class, ['label' => 'dateRange', 'mapped' => false, 'required' => true])
+            //->add('dateDebut', DateType::class, ['widget' => 'single_text', 'label' => 'label.date_debut'])
+            //->add('heureDebut', TimeType::class, ['widget' => 'single_text', 'label' => 'label.heure_debut'])
             ->add('dateFin', DateType::class, ['widget' => 'single_text', 'label' => 'label.date_fin'])
             ->add('heureFin', TimeType::class, ['widget' => 'single_text', 'label' => 'label.heure_fin'])
             ->add('lieu', TextType::class, [
@@ -80,7 +83,20 @@ class DatesType extends AbstractType
                 'required'      => true,
                 'expanded'      => true,
                 'multiple'      => true
-            ));
+            ))
+            ->addEventListener(            FormEvents::POST_SUBMIT, function (FormEvent $event) {
+                $date = $event->getData();
+                $form = $event->getForm();
+                $dateRange = $form->get('dateRange')->getData();
+                $date->setDateDebut($dateRange['from_date']);
+                $date->setDateFin($dateRange['to_date']);
+            })
+            ->addEventListener(            FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+                $date = $event->getData();
+                $form = $event->getForm();
+                $form->add('dateRange', DateRangeType::class, ['label' => 'dateRange', 'mapped' => false, 'date_data' => ['from' => $date->getDateDebut(), 'to' => $date->getDateFin()]]);
+            });
+
     }
 
     /**

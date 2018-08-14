@@ -168,15 +168,6 @@ class Notification extends BaseEntity
     }
 
     /**
-     * @return string
-     */
-    public function getDateTexte(): string
-    {
-        //todo: calculer la date à partir de maintenant
-        return 'just now,,,'; //app de twig ?
-    }
-
-    /**
      * @return Personnel|null
      */
     public function getPersonnel(): ?Personnel

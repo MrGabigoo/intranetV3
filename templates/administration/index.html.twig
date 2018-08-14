@@ -22,10 +22,11 @@
                 <div class="card-body">
                     <div class="row gap-y">
                         {% for semestre in user_data.semestres %}
-                        <div class="col-md-2"><a href="{{ path('administration_semestre_index', {semestre:semestre.id}) }}"
-                                                 class="btn btn-block btn-primary">
-                                {{ semestre.libelle }}
-                            </a></div>
+                            <div class="col-md-2"><a
+                                        href="{{ path('administration_semestre_index', {semestre:semestre.id}) }}"
+                                        class="btn btn-block btn-primary">
+                                    {{ semestre.libelle }}
+                                </a></div>
                         {% endfor %}
                     </div>
                     <div class="row gap-y">
@@ -34,7 +35,8 @@
                                     class="btn btn-block btn-primary"> {{ 'adm.tous.les.etudiants'|trans }}</a></div>
                         </div>
                         <div class="col-sm-4">
-                            <div><a href="{{ path('administration_statistique_index') }}" class="btn btn-block btn-primary">
+                            <div><a href="{{ path('administration_statistique_index') }}"
+                                    class="btn btn-block btn-primary">
                                     {{ 'adm.statistiques'|trans }}</a></div>
                         </div>
                         <div class="col-sm-4">
@@ -55,7 +57,8 @@
                     </div>
                     <div class="row gap-y">
                         <div class="col-md-6">
-                            <div><a href="{{ path('administration_previsionnel_index') }}" class="btn btn-block btn-primary">
+                            <div><a href="{{ path('administration_previsionnel_index') }}"
+                                    class="btn btn-block btn-primary">
                                     {{ 'adm.previsionnels'|trans }}</a></div>
                         </div>
                         <div class="col-md-6">
@@ -122,40 +125,67 @@
             </div>
         </div>
         {% if user_data.formation.optStage %}
-        <div class="col-md-8 col-lg-8">
-            <div class="card"><h4 class="card-title"><strong>{{ 'adm.stages'|trans }}</strong></h4>
-                <div class="card-body">
-                    <div class="row gap-y">
-                        {% for periode in periodes %}
-                        <div class="col-md-4">
-                            <div><a href="{{ path('administration_stage_periode_gestion', {uuid:periode.uuidString}) }}" class="btn btn-block btn-primary"> Période {{ periode.libelle }}</a>
-                            </div>
+            <div class="col-md-8 col-lg-8">
+                <div class="card">
+                    <header class="card-header">
+                        <h4 class="card-title">{{ 'adm.stages'|trans }}</h4>
+                        <div class="card-header-actions" style="">
+                            <a href="{{ path('administration_stage_periode_index') }}" class="btn btn-sm btn-info"
+                               title="Créer une période" data-provide="tooltip"> <i class="ti-plus"></i> </a>
                         </div>
-                        {% endfor %}
+                    </header>
+                    <div class="card-body">
+                        <div class="row gap-y">
+                            {% for periode in periodes %}
+                                <div class="col-md-6">
+                                    <div>
+                                        <a href="{{ path('administration_stage_periode_gestion', {uuid:periode.uuidString}) }}"
+                                           class="btn btn-block btn-primary"> Période {{ periode.libelle }}</a>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="col-sm-12">
+                                    <div class="alert alert-info">Aucune période de stage.</div>
+                                </div>
+                            {% endfor %}
 
-
-                        <div class="col-md-4">
-                            <div><a href="{{ path('administration_stage_periode_index') }}" class="btn btn-block btn-primary"> <i class="material-icons">add_circle_outline</i> Créer une période</a></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         {% endif %}
+        <div class="col-md-4 col-lg-4">
+            <div class="card"><h4 class="card-title"><strong>{{ 'adm.alternances'|trans }}</strong></h4>
+                <div class="card-body">
+                    <div class="row gap-y">
+                        {% set alternance = false %}
+                        {% for annee in user_data.annees if annee.optAlternance == true %}
+                            {% set alternance = true %}
+                            <a href="{{ path('administration_alternance_index',{annee:annee.id}) }}"
+                               class="btn btn-block btn-primary"> Alternances pour l'année {{ annee.libelle }}</a>
+                        {% endfor %}
+                        {% if alternance == false %}
+                            <div class="alert alert-info">Aucune année n'est proposée en alternance</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-4 col-lg-4">
             <div class="card"><h4 class="card-title"><strong>{{ 'adm.documents'|trans }}</strong></h4>
                 <div class="card-body">
                     <div class="row gap-y">
                         <div class="col-md-12">
-                            <div><a href="{{ path('administration_document_index') }}"
+                            <a href="{{ path('administration_document_index') }}"
                                     class="btn btn-block btn-primary"> {{ 'adm.gerer.les.documents'|trans }}</a></div>
-                        </div>
+
                     </div>
                     <div class="row gap-y">
                         <div class="col-md-12">
-                            <div><a href="{{ path('administration_type_document_index') }}"
+                            <a href="{{ path('administration_type_document_index') }}"
                                     class="btn btn-block btn-primary"> {{ 'adm.gerer.les.categories.de.document'|trans }}</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -165,12 +195,14 @@
             <div class="card"><h4 class="card-title"><strong>{{ 'adm.articles'|trans }}</strong></h4>
                 <div class="card-body">
                     <div class="row gap-y">
-                        <div class="col-md-12"><a href="{{ path('administration_article_new') }}"
+                        <div class="col-md-12">
+                            <a href="{{ path('administration_article_new') }}"
                                                   class="btn btn-block btn-primary"> {{ 'adm.ajouter.articles'|trans }}
                             </a></div>
                     </div>
                     <div class="row gap-y">
-                        <div class="col-md-12"><a href="{{ path('administration_article_index') }}"
+                        <div class="col-md-12">
+                            <a href="{{ path('administration_article_index') }}"
                                                   class="btn btn-block btn-primary"> {{ 'adm.gerer.articles'|trans }}
                             </a></div>
                     </div>
@@ -181,12 +213,14 @@
             <div class="card"><h4 class="card-title"><strong>{{ 'adm.actualites.bornes'|trans }}</strong></h4>
                 <div class="card-body">
                     <div class="row gap-y">
-                        <div class="col-md-12"><a href="{{ path('administration_actualite_index') }}"
+                        <div class="col-md-12">
+                            <a href="{{ path('administration_actualite_index') }}"
                                                   class="btn btn-block btn-primary"> {{ 'adm.gerer.actualites'|trans }}
                             </a></div>
                     </div>
                     <div class="row gap-y">
-                        <div class="col-md-12"><a href="{{ path('administration_borne_index') }}"
+                        <div class="col-md-12">
+                            <a href="{{ path('administration_borne_index') }}"
                                                   class="btn btn-block btn-primary"> {{ 'adm.gerer.bornes'|trans }}
                             </a></div>
                     </div>
@@ -198,14 +232,14 @@
                 <div class="card-body">
                     <div class="row gap-y">
                         <div class="col-md-12">
-                            <div><a href="{{ path('administration_structure_index') }}"
-                                    class="btn btn-block btn-primary"> {{ 'adm.structure'|trans }}</a></div>
+                            <a href="{{ path('administration_structure_index') }}"
+                                    class="btn btn-block btn-primary"> {{ 'adm.structure'|trans }}</a>
                         </div>
                     </div>
                     <div class="row gap-y">
                         <div class="col-md-12">
-                            <div><a href="{{ path('administration_configuration') }}" class="btn btn-block btn-primary">
-                                    {{ 'adm.configuration'|trans }}</a></div>
+                            <a href="{{ path('administration_configuration') }}" class="btn btn-block btn-primary">
+                                    {{ 'adm.configuration'|trans }}</a>
                         </div>
                     </div>
                 </div>
@@ -216,8 +250,8 @@
                 <div class="card-body">
                     <div class="row gap-y">
                         <div class="col-md-12">
-                            <div><a href="{{ path('administration_salle_examen_index') }}"
-                                    class="btn btn-block btn-primary"> {{ 'adm.salle_examens'|trans }}</a></div>
+                            <a href="{{ path('administration_salle_examen_index') }}"
+                                    class="btn btn-block btn-primary"> {{ 'adm.salle_examens'|trans }}</a>
                         </div>
                     </div>
                 </div>

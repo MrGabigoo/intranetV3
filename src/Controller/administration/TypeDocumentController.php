@@ -112,10 +112,29 @@ class TypeDocumentController extends BaseController
 
     /**
      * @Route("/{id}", name="administration_type_document_delete", methods="DELETE")
+     * @param Request      $request
+     * @param TypeDocument $typeDocument
+     *
+     * @return Response
      */
-    public function delete(): void
-    {
-        //todo: supprimer les documents? Affecter les documents sans catégorie
+    public function delete(
+        Request $request,
+        TypeDocument $typeDocument
+    ): Response {
+        $id = $typeDocument->getId();
+        if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
+            foreach ($typeDocument->getDocuments() as $document)
+            {
+                $typeDocument->removeDocument($document);
+            }
+
+            $this->entityManager->remove($typeDocument);
+            $this->entityManager->flush();
+
+            return $this->json($id, Response::HTTP_OK);
+        }
+
+        return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     /**

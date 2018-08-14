@@ -43,14 +43,8 @@ class ConfigurationController extends BaseController
         $value = $request->request->get('value');
 
         if ($myConfiguration->updateOption($type, $id, $name, $value)) {
-            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'configuration.save.success.flash');
-
-            //todo: gérer le flashbag en JS...
             return new Response('', Response::HTTP_OK);
         }
-
-        $this->addFlashBag(Constantes::FLASHBAG_ERROR, 'configuration.save.error.flash');
-
         return new Response('', Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }

@@ -7,6 +7,7 @@ use App\Entity\Parcour;
 use App\Entity\Ppn;
 use App\Entity\Ue;
 use App\Form\Type\YesNoType;
+use App\Repository\UeRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -76,8 +77,13 @@ class MatiereType extends AbstractType
             ->add('ue', EntityType::class, [
                 'label'        => 'label.ue',
                 'class'        => Ue::class,
-                'choice_label' => 'libelle'
-            ])//todo: filtrer les UE
+                'choice_label' => 'libelle',
+                'query_builder' => function (UeRepository $ueRepository) {
+        return $ueRepository->findBySemestreBuilder($this->semestre);
+    },
+                'required'      => true,
+                'expanded'      => true,
+            ])
         ;
     }
 

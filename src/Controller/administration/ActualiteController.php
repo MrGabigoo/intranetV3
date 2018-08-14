@@ -142,7 +142,7 @@ class ActualiteController extends BaseController
             $this->addFlashBag(
                 Constantes::FLASHBAG_SUCCESS,
                 'actualite.delete.success.flash'
-            );//todo: interet ? jamais affiché ?
+            );
 
             return $this->json($id, Response::HTTP_OK);
         }

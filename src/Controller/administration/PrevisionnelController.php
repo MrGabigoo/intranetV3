@@ -217,8 +217,17 @@ class PrevisionnelController extends BaseController
      */
     public function export($annee): Response
     {
-        //todo: probablement ajouter aussi un export spécifique au format OMEGA
+        //todo: a finaliser... exporter quoi?
         return new Response('', Response::HTTP_OK);
+    }
+
+    /**
+     * @param MyPrevisionnel         $myPrevisionnel
+     * @Route("/{annee}/export_omega", name="administration_previsionnel_export_omega", methods="GET")
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public function exportOmega(MyPrevisionnel $myPrevisionnel, $annee ) {
+        $myPrevisionnel->exportOmegaFormation($this->dataUserSession->getFormation(), $annee);
     }
 
     /**
@@ -246,7 +255,7 @@ class PrevisionnelController extends BaseController
 
         $previsionnels = $previsionnelRepository->findPrevisionnelFormation($this->dataUserSession->getFormation(), $anneeDepart);
 
-        /** @var Previsionnel $hr */
+        /** @var Previsionnel $previsionnel */
         foreach ($previsionnels as $previsionnel) {
             $newPrevisonnel = clone $previsionnel;
             $newPrevisonnel->setAnnee($annee_destination);
@@ -293,11 +302,9 @@ class PrevisionnelController extends BaseController
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
             $this->entityManager->remove($previsionnel);
             $this->entityManager->flush();
-            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'previsionnel.delete.success.flash');
 
             return $this->json($id, Response::HTTP_OK);
         }
-        $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'previsionnel.delete.error.flash');
 
         return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }

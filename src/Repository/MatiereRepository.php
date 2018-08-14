@@ -46,7 +46,7 @@ class MatiereRepository extends ServiceEntityRepository
      *
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function findByFormationBuilder($formation): \Doctrine\ORM\QueryBuilder
+    public function findByFormationBuilder(Formation $formation): \Doctrine\ORM\QueryBuilder
     {
         return $this->createQueryBuilder('m')
             ->innerJoin(Ue::class, 'u', 'WITH', 'u.id = m.ue')
@@ -54,7 +54,7 @@ class MatiereRepository extends ServiceEntityRepository
             ->innerJoin(Annee::class, 'a', 'WITH', 'a.id = s.annee')
             ->innerJoin(Diplome::class, 'd', 'WITH', 'd.id = a.diplome')
             ->where('d.formation = :formation')
-            ->setParameter('formation', $formation->getId())//todo: id necessaire ?
+            ->setParameter('formation', $formation->getId())
             ->orderBy('m.codeMatiere', 'ASC')
             ->orderBy('m.libelle', 'ASC');
     }

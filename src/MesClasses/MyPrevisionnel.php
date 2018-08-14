@@ -14,9 +14,12 @@ use App\Entity\Matiere;
 use App\Entity\Personnel;
 use App\Entity\Previsionnel;
 use App\Entity\Semestre;
+use App\MesClasses\Excel\MyExcelWriter;
 use App\Repository\HrsRepository;
 use App\Repository\PrevisionnelRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class MyPrevisionnel
@@ -42,6 +45,8 @@ class MyPrevisionnel
 
     /** @var Hrs[] */
     private $hrs;
+
+    private $ligne = 0;
 
     /**
      * @var Semestre[]
@@ -89,7 +94,6 @@ class MyPrevisionnel
     {
         return $this->semestre;
     }
-
 
 
     /**
@@ -151,14 +155,6 @@ class MyPrevisionnel
     /**
      * @return float
      */
-    public function getTotalService(): float
-    {
-        return $this->totalCm + $this->totalTd + $this->totalTp;
-    }
-
-    /**
-     * @return float
-     */
     public function getTotalEtu(): float
     {
         return $this->totalEtuCm + $this->totalEtuTd + $this->totalEtuTp;
@@ -212,8 +208,6 @@ class MyPrevisionnel
         return $this->totalEtuTp;
     }
 
-
-
     /**
      * @return float
      */
@@ -235,7 +229,15 @@ class MyPrevisionnel
     /**
      * @return float
      */
-    public function getTotalHrsService() :float
+    public function getTotalService(): float
+    {
+        return $this->totalCm + $this->totalTd + $this->totalTp;
+    }
+
+    /**
+     * @return float
+     */
+    public function getTotalHrsService(): float
     {
         return $this->totalHrs + $this->getTotalService();
     }
@@ -259,7 +261,7 @@ class MyPrevisionnel
      *
      * @return array
      */
-    public function getPrevisionnelEnseignantComplet(Personnel $personnel, $annee) :array
+    public function getPrevisionnelEnseignantComplet(Personnel $personnel, $annee): array
     {
         return $this->previsionnelRepository->findPrevisionnelEnseignantComplet($personnel, $annee);
     }
@@ -268,7 +270,7 @@ class MyPrevisionnel
      * @param $annee
      *
      */
-    public function getPrevisionnelEnseignantBySemestre($annee) :void
+    public function getPrevisionnelEnseignantBySemestre($annee): void
     {
         $previsionnels = $this->previsionnelRepository->findPrevisionnelEnseignantComplet($this->personnel, $annee);
 
@@ -308,7 +310,7 @@ class MyPrevisionnel
      * @param Matiere $matiere
      * @param         $annee
      */
-    public function getPrevisionnelMatiere(Matiere $matiere, $annee) :void
+    public function getPrevisionnelMatiere(Matiere $matiere, $annee): void
     {
         $this->matiere = $matiere;
         $this->previsionnels = $this->previsionnelRepository->findPrevisionnelMatiere($matiere, $annee);
@@ -363,5 +365,197 @@ class MyPrevisionnel
         }
 
         return false;
+    }
+
+    /**
+     * @param Formation $formation
+     * @param int       $anneePrevisionnel
+     *
+     * @return StreamedResponse
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     */
+    public function exportOmegaFormation(Formation $formation, int $anneePrevisionnel)
+    {
+        $previsionnels = $this->previsionnelRepository->findPrevisionnelFormation($formation, $anneePrevisionnel);
+        $hrs = $this->hrsRepository->findHrsFormation($formation, $anneePrevisionnel);
+
+        MyExcelWriter::createSheet('omega');
+        MyExcelWriter::writeHeader([
+            'CODE VET',
+            'LIBELLE VET',
+            'CODE ELEMENT*',
+            'LIBELLE ELEMENT',
+            'CODE HARPEGE*',
+            'NOM PRENOM',
+            'H CM PREVU*',
+            'GP CM PREVU*',
+            'H TD PREVU*',
+            'GP TD PREVU*',
+            'H TP PREVU*',
+            'GP TP PREVU*'
+        ]);
+        $this->ligne = 2;
+        $this->ecritPrevisionnel($previsionnels);
+        $this->ecritHRS($hrs);
+
+        $writer = new Xlsx(MyExcelWriter::getSpreadsheet());
+
+        return new StreamedResponse(
+            function () use ($writer) {
+                $writer->save('php://output');
+            },
+            200,
+            [
+                'Content-Type'        => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'Content-Disposition' => 'attachment;filename="export-omega'.$formation->getLibelle().'.xlsx"'
+            ]
+        );
+    }
+
+    private function ecritPrevisionnel($previsionnels)
+    {
+        /** @var Previsionnel $previ */
+        foreach ($previsionnels as $previ) {
+            $colonne = 0;
+            if ($previ->getMatiere() !== null) {
+                if ($previ->getMatiere()->getSemestre() !== null && $previ->getMatiere()->getSemestre()->getAnnee() !== null) {
+                    //CODE VET
+                    MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                        $previ->getMatiere()->getSemestre()->getAnnee()->getCodeApogee());
+                    $colonne++;
+                    //LIBELLE VET
+                    MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                        $previ->getMatiere()->getSemestre()->getAnnee()->getLibelleLong());
+                } else {
+                    MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                        'ERR');
+                    $colonne++;
+                    //LIBELLE VET
+                    MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                        'ERR');
+                }
+                $colonne++;
+                //CODE ELEMENT*
+                MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getMatiere()->getCodeApogee());
+                $colonne++;
+                //LIBELLE ELEMENT
+                MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getMatiere()->getLibelle());
+                $colonne++;
+            } else {
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    'ERR');
+                $colonne++;
+                //LIBELLE VET
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    'ERR');
+                $colonne++;
+                //CODE ELEMENT*
+                MyExcelWriter::writeCellXY($colonne, 'ERR');
+                $colonne++;
+                //LIBELLE ELEMENT
+                MyExcelWriter::writeCellXY($colonne, 'ERR');
+                $colonne++;
+            }
+
+            if ($previ->getPersonnel() !== null) {
+                //CODE HARPEGE*
+                MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getPersonnel()->getNumeroHarpege());
+                $colonne++;
+                //NOM PRENOM
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    strtoupper($previ->getPersonnel()->getNom()) . ' ' . strtoupper($previ->getPersonnel()->getPrenom()));
+            } else {
+                MyExcelWriter::writeCellXY($colonne, $this->ligne, 'ERR-XXX');
+                $colonne++;
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    'ERR-XXX');
+            }
+            $colonne++;
+            //H CM PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getNbHCm());
+            $colonne++;
+            //GP CM PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getNbGrCm());
+            $colonne++;
+            // H TD PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getNbHTd());
+            $colonne++;
+            //GP TD PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getNbGrTd());
+            $colonne++;
+            //H TP PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getNbHTp());
+            $colonne++;
+            //GP TP PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getNbGrTp());
+            $this->ligne++;
+        }
+    }
+
+    private function ecritHRS($hrs)
+    {
+
+        /** @var Hrs $previ */
+        foreach ($hrs as $previ) {
+            $colonne = 0;
+            //CODE VET
+            if ($previ->getSemestre() !== null && $previ->getSemestre()->getAnnee() !== null) {
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    $previ->getSemestre()->getAnnee()->getCodeApogee());
+                $colonne++;
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    $previ->getSemestre()->getAnnee()->getLibelleLong());
+            } else {
+                MyExcelWriter::writeCellXY($colonne, $this->ligne, '');
+                $colonne++;
+                MyExcelWriter::writeCellXY($colonne, $this->ligne, '');
+            }
+//LIBELLE VET
+            $colonne++;
+//CODE ELEMENT*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getTypeHrs());
+            $colonne++;
+//LIBELLE ELEMENT
+            if ($previ->getTypeHrs() !== null) {
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    $previ->getTypeHrs()->getLibelle() . ' ' . $previ->getLibelle());
+            } else {
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    'ERR');
+            }
+            $colonne++;
+
+            if ($previ->getPersonnel() !== null) {
+                //CODE HARPEGE*
+                MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getPersonnel()->getNumeroHarpege());
+                $colonne++;
+                //NOM PRENOM
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    strtoupper($previ->getPersonnel()->getNom()) . ' ' . strtoupper($previ->getPersonnel()->getPrenom()));
+            } else {
+                MyExcelWriter::writeCellXY($colonne, $this->ligne, 'ERR-XXX');
+                $colonne++;
+                MyExcelWriter::writeCellXY($colonne, $this->ligne,
+                    'ERR-XXX');
+            }
+//H CM PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, 0);
+            $colonne++;
+//GP CM PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, 1);
+            $colonne++;
+// H TD PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, $previ->getNbHeuresTd());
+            $colonne++;
+//GP TD PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, 1);
+            $colonne++;
+//H TP PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, 0);
+            $colonne++;
+//GP TP PREVU*
+            MyExcelWriter::writeCellXY($colonne, $this->ligne, 1);
+            $this->ligne++;
+        }
     }
 }

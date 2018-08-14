@@ -4,7 +4,6 @@ namespace App\Controller\administration;
 
 use App\Controller\BaseController;
 use App\Entity\AbsenceJustificatif;
-use App\Entity\Constantes;
 use App\Entity\Semestre;
 use App\Events;
 use App\MesClasses\MyExport;
@@ -88,15 +87,9 @@ class AbsenceJustificatifController extends BaseController
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
             $this->entityManager->remove($absenceJustificatif);
             $this->entityManager->flush();
-            $this->addFlashBag(
-                Constantes::FLASHBAG_SUCCESS,
-                'absenceJustificatif.delete.success.flash'
-            );//todo: interet ? jamais affiché ?
 
             return $this->json($id, Response::HTTP_OK);
         }
-
-        $this->addFlashBag(Constantes::FLASHBAG_ERROR, 'absenceJustificatif.delete.error.flash');
 
         return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }

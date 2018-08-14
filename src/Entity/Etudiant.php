@@ -134,8 +134,10 @@ class Etudiant extends Utilisateur implements \Serializable
      */
     private $stageEtudiants;
 
-    //todo:  contrat pro
-    //todo: gestion de l'alternance.
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Alternance", mappedBy="etudiant")
+     */
+    private $alternances;
 
     /**
      * Etudiant constructor.
@@ -157,6 +159,7 @@ class Etudiant extends Utilisateur implements \Serializable
         $this->messageDestinataireEtudiants = new ArrayCollection();
         $this->absenceJustificatifs = new ArrayCollection();
         $this->stageEtudiants = new ArrayCollection();
+        $this->alternances = new ArrayCollection();
     }
 
     /**
@@ -822,6 +825,37 @@ class Etudiant extends Utilisateur implements \Serializable
             // set the owning side to null (unless already changed)
             if ($stageEtudiant->getEtudiant() === $this) {
                 $stageEtudiant->setEtudiant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Alternance[]
+     */
+    public function getAlternances(): Collection
+    {
+        return $this->alternances;
+    }
+
+    public function addAlternance(Alternance $alternance): self
+    {
+        if (!$this->alternances->contains($alternance)) {
+            $this->alternances[] = $alternance;
+            $alternance->setEtudiant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlternance(Alternance $alternance): self
+    {
+        if ($this->alternances->contains($alternance)) {
+            $this->alternances->removeElement($alternance);
+            // set the owning side to null (unless already changed)
+            if ($alternance->getEtudiant() === $this) {
+                $alternance->setEtudiant(null);
             }
         }
 

@@ -11,6 +11,7 @@ namespace App\MesClasses;
 use App\Entity\Etudiant;
 use App\Entity\Evaluation;
 use App\Entity\Note;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class MyEvaluation
@@ -28,6 +29,20 @@ class MyEvaluation
 
     /** @var array */
     protected $classement = [];
+
+    /** @var EntityManagerInterface */
+    protected $entityManager;
+
+    /**
+     * MyEvaluation constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     */
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
 
     /**
      * @param Evaluation $evaluation
@@ -50,7 +65,6 @@ class MyEvaluation
         $tgroupes = array();
 
         $t = array();
-        $tEtudiant = array();
 
         /** @var Note $note */
         foreach ($this->notes as $note) {
@@ -60,11 +74,13 @@ class MyEvaluation
             }
         }
 
-        foreach ($this->evaluation->getTypeGroupe()->getGroupes() as $groupe) {
-            $tgroupes[$groupe->getId()] = array();
-            foreach ($groupe->getEtudiants() as $etu) {
-                if (array_key_exists($etu->getId(), $t)) {
-                    $tgroupes[$groupe->getId()][$etu->getId()] = $t[$etu->getId()];
+        if ($this->evaluation->getTypeGroupe() !== null) {
+            foreach ($this->evaluation->getTypeGroupe()->getGroupes() as $groupe) {
+                $tgroupes[$groupe->getId()] = array();
+                foreach ($groupe->getEtudiants() as $etu) {
+                    if (array_key_exists($etu->getId(), $t)) {
+                        $tgroupes[$groupe->getId()][$etu->getId()] = $t[$etu->getId()];
+                    }
                 }
             }
         }
@@ -163,9 +179,40 @@ class MyEvaluation
 
         $tabEtudiant = array();
         foreach ($this->notes as $note) {
-            $tabEtudiant[$note->getEtudiant()->getId()] = $note;
+            if ($note->getEtudiant() !== null) {
+                $tabEtudiant[$note->getEtudiant()->getId()] = $note;
+            } else {
+                //note sans étudiant, on la supprime ?
+                $this->deleteNote($note);
+                $this->entityManager->flush();
+            }
         }
 
         return $tabEtudiant;
+    }
+
+    /**
+     * @param Note $note
+     */
+    public function deleteNote(Note $note)
+    {
+        foreach ($note->getModificationNotes() as $modif) {
+            $this->entityManager->remove($modif);
+        }
+        $this->entityManager->remove($note);
+    }
+
+    /**
+     * @return bool
+     */
+    public function delete()
+    {
+        $this->notes = $this->evaluation->getNotes();
+        foreach ($this->notes as $note) {
+            $this->deleteNote($note);
+        }
+        $this->entityManager->flush();
+
+        return true;
     }
 }

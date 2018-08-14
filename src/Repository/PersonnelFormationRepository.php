@@ -57,4 +57,15 @@ class PersonnelFormationRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByPersonnelFormation(Personnel $personnel, Formation $formation)
+    {
+        return $this->createQueryBuilder('f')
+            ->where('f.personnel = :personnel')
+            ->andWhere('f.formation = :formation')
+            ->setParameter('personnel', $personnel)
+            ->setParameter('formation', $formation)
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -121,9 +121,31 @@ class PersonnelController extends BaseController
 
     /**
      * @Route("/{id}", name="administration_personnel_delete", methods="DELETE", options={"expose":true})
+     * @param PersonnelFormationRepository $personnelFormationRepository
+     * @param Request                      $request
+     * @param Personnel                    $personnel
+     *
+     * @return Response
      */
-    public function delete(): void
+     public function delete(PersonnelFormationRepository $personnelFormationRepository, Request $request, Personnel $personnel): Response
     {
-        //todo: supprimer d'une formation. Même procédé que classiquement
+        $id = $personnel->getId();
+        if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
+
+            $pf = $personnelFormationRepository->findByPersonnelFormation($personnel, $this->dataUserSession->getFormation());
+            foreach ($pf as $p) {
+                $this->entityManager->remove($p);
+            }
+            $this->entityManager->flush();
+            $this->addFlashBag(
+                Constantes::FLASHBAG_SUCCESS,
+                'personnel.delete.success.flash'
+            );
+
+            return $this->json($id, Response::HTTP_OK);
+        }
+
+        $this->addFlashBag(Constantes::FLASHBAG_ERROR, 'personnel.delete.error.flash');
+        return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alternance{% endblock %}
+
+{% block body %}
+    <h1>Alternance</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ alternance.id }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ alternance.created ? alternance.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ alternance.updated ? alternance.updated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AnneeUniversitaire</th>
+                <td>{{ alternance.anneeUniversitaire }}</td>
+            </tr>
+            <tr>
+                <th>TypeContrat</th>
+                <td>{{ alternance.typeContrat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('alternance_index') }}">back to list</a>
+
+    <a href="{{ path('alternance_edit', {'id': alternance.id}) }}">edit</a>
+
+    {{ include('alternance/_delete_form.html.twig') }}
+{% endblock %}

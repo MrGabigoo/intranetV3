@@ -157,7 +157,28 @@ class Article extends BaseEntity
      */
     public function getResume()
     {
-        return substr($this->texte, 0, 100); //todo: améliorer par rapport aux mots
+        $nbreCar = 100;
+        $texte 						= trim(strip_tags($this->texte)); // suppression des balises HTML
+        if( is_numeric($nbreCar) )
+        {
+            $PointSuspension		= '...'; // points de suspension (ou '' si vous n'en voulez pas)
+            // ---------------------
+            // COUPE DU TEXTE pour le RÉSUMÉ
+            // ajout d'un espace de fin au cas où le texte n'en contiendrait pas...
+            $texte					.= ' ';
+            $LongueurAvant			= mb_strlen($texte);
+            if( $LongueurAvant > $nbreCar ){
+                // pour ne pas couper un mot, on va à l'espace suivant
+                $texte 				= mb_substr($texte, 0, strpos($texte, ' ', $nbreCar));
+                // On ajoute (ou pas) des points de suspension à la fin si le texte brut est plus long que $nbreCar
+                if( !empty($PointSuspension) ){
+                    $texte			.= $PointSuspension;
+                }
+            }
+            // ---------------------
+        }
+        // On renvoie le résumé du texte correctement formaté.
+        return $texte;
     }
 
     /**

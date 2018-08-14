@@ -6,6 +6,7 @@ use App\Controller\BaseController;
 use App\Entity\Constantes;
 use App\Entity\Evaluation;
 use App\Entity\Semestre;
+use App\MesClasses\MyEvaluation;
 use App\Repository\EvaluationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -117,19 +118,14 @@ class EvaluationController extends BaseController
      * @ParamConverter("evaluation", options={"mapping": {"uuid": "uuid"}})
      * @return Response
      */
-    public function delete(Request $request, Evaluation $evaluation): Response
+    public function delete(MyEvaluation $myEvaluation, Request $request, Evaluation $evaluation): Response
     {
         $id = $evaluation->getUuidString();
         if ($this->isCsrfTokenValid('delete' . $id, $request->request->get('_token'))) {
-            //todo: supprimer les notes et les modifications de notes.
-
-            $this->entityManager->remove($evaluation);
-            $this->entityManager->flush();
-            $this->addFlashBag(Constantes::FLASHBAG_SUCCESS, 'evaluation.delete.success.flash');
+            $myEvaluation->setEvaluation($evaluation)->delete();
 
             return $this->json($id, Response::HTTP_OK);
         }
-        $this->addFlashBag(Constantes::FLASHBAG_ERROR, 'evaluation.delete.error.flash');
 
         return $this->json(false, Response::HTTP_INTERNAL_SERVER_ERROR);
     }

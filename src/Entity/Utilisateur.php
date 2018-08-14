@@ -8,6 +8,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\MappedSuperclass
@@ -30,9 +31,10 @@ abstract class Utilisateur implements UserInterface
     protected $password = '';
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"prenom", "nom"})
+     * @ORM\Column(type="string", length=255, unique=true)
      */
-    protected $slug;//todo: passer le champs en index
+    protected $slug;
 
     /**
      * @ORM\Column(type="string", length=75)
@@ -53,10 +55,10 @@ abstract class Utilisateur implements UserInterface
     protected $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Groups({"etudiants_administration"})
      */
-    protected $mailUniv; //todo: passer le champs en index
+    protected $mailUniv;
 
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
@@ -184,14 +186,6 @@ abstract class Utilisateur implements UserInterface
     public function setCreatedValue(): void
     {
         $this->created = new \DateTime();
-    }
-
-    /**
-     * @ORM\PrePersist()
-     */
-    public function generateSlug(): void
-    {
-        $this->slug = strtolower($this->prenom) . '.' . strtolower($this->nom); //todo: améliorer la création du slug et vérifier les doublons.
     }
 
     /**

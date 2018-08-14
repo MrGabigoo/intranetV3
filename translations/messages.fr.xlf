@@ -8638,16 +8638,22 @@
         <target>atitle.refresh</target>
       </segment>
     </unit>
-    <unit id="0">
+    <unit id="DyOCuPC" name="aucun.groupe.dans.typegroupe">
       <segment>
         <source>aucun.groupe.dans.typegroupe</source>
         <target>Aucun groupe dans ce type de groupe.</target>
       </segment>
     </unit>
-    <unit id="1">
+    <unit id="2Ex7JEc" name="aucun.etudiant.groupe">
       <segment>
         <source>aucun.etudiant.groupe</source>
         <target>Aucun étudiant dans ce groupe.</target>
+      </segment>
+    </unit>
+    <unit id="kXt8WbW" name="adm.alternances">
+      <segment>
+        <source>adm.alternances</source>
+        <target>adm.alternances</target>
       </segment>
     </unit>
   </file>

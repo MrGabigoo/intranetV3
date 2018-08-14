@@ -18,10 +18,11 @@ class RattrapageController extends BaseController
 {
     /**
      * @Route("/rattrapage", name="application_etudiant_rattrapage_index")
-     * @param RattrapageRepository   $rattrapageRepository
-     * @param Request                $request
+     * @param RattrapageRepository $rattrapageRepository
+     * @param Request              $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function index(
         RattrapageRepository $rattrapageRepository,

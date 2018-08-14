@@ -45,7 +45,7 @@ $(document).on('click', '.supprimer', function (e) {
         },
         success: function (id) {
           $("#ligne_" + id).closest('tr').remove();
-          //table.row( $(this).parents('tr') )
+          addCallout('Suppression effectuée avec succès', 'success')
           swal(
             'Deleted!',
             'Your file has been deleted.',
@@ -54,7 +54,7 @@ $(document).on('click', '.supprimer', function (e) {
         },
         error: function (xhr, ajaxOptions, thrownError) {
           swal("Error deleting!", "Please try again", "error");
-          //todo: gérer le callout
+          addCallout('Erreur lors de la tentative de suppression', 'danger')
         }
       });
 

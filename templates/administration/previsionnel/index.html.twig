@@ -10,6 +10,9 @@
             <a href="{{ path('administration_previsionnel_import') }}" class="btn btn-info btn-sm btn-float"
                title="{{ 'atitle.import_previsionnel'|trans }}" data-provide="tooltip"
                data-placement="bottom"><i class="ti-import"></i></a>
+            <a href="{{ path('administration_previsionnel_export_omega', {annee:annee}) }}" class="btn btn-info btn-sm btn-float"
+               title="{{ 'atitle.export_omega'|trans }}" data-provide="tooltip"
+               data-placement="bottom"><i class="ti-layout-tab"></i></a>
             <a href="{{ path('administration_previsionnel_new') }}" class="btn btn-info btn-sm btn-float"
                title="{{ 'atitle.creer_nouveau'|trans }}" data-provide="tooltip" data-placement="bottom"><i
                         class="ti-plus"></i></a>
@@ -133,6 +136,11 @@
 
 {% block fabactions %}
     {{ include('composants/fab-buttons.html.twig', {boutons:[
+        {type: 'info',
+            href: path('administration_previsionnel_export_omega', {annee: annee}),
+            title: 'exporter.omega'|trans,
+            icone : "fa fa-table"
+        },
         {type: 'info',
             href: path('administration_previsionnel_export', {_format:'pdf', annee: annee}),
             title: 'exporter.pdf'|trans,
